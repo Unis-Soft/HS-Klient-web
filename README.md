@@ -4,7 +4,7 @@ Webový HS Klient a související HSBridge.
 
 ## Aktuální verze
 
-- HS Klient: **V229**
+- HS Klient: **V230**
 - HSBridge: **V010**
 - PROGRAMS synchronizace: **každých 15 minut**, snapshot se odesílá pouze při změně dat.
 - HairSoft databáze pro PROGRAMS: **SQLite i MySQL síťová verze**.
@@ -72,3 +72,13 @@ Při klasické PHP navigaci se v podporovaných Chromium prohlížečích drží
 obrazovce předchozí horní hlavička a levé menu až do připravení dalšího
 dokumentu. Hlavní obsah už nepoužívá legacy `fadeInUp`, takže odpadá druhé
 probliknutí po načtení.
+
+
+## V230 – streaming shell + Bonfero multi-company guard
+
+Horní hlavička a levé menu se odesílají do prohlížeče před vykreslením
+pomalejšího obsahu modulu; během čekání se překrývá jen pracovní plocha.
+
+Rezervace Bonfero se při více uložených HairSoft firmách bezpečně neotevřou,
+protože současná Bonfero browser session není svázaná s aktivní HairSoft firmou.
+Multi-firma integrace bude znovu povolena až přes company-bound SSO/token.
