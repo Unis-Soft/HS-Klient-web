@@ -3,6 +3,7 @@
 package main
 
 import (
+	"errors"
 	"os"
 	"path/filepath"
 	"testing"
@@ -70,5 +71,43 @@ func TestPartialMySQLSettingsFailClosed(t *testing.T) {
 	}
 	if err == nil {
 		t.Fatal("partial MySQL settings must fail instead of falling back to SQLite")
+	}
+}
+
+
+func TestBridgeTrafficPolicySQLiteIsActive(t *testing.T) {
+	p := bridgeTrafficPolicyFromMySQL(mysqlHairSoftSettings{}, "", false, nil)
+	if !p.Allowed || p.Role != bridgeRoleSQLite {
+		t.Fatalf("unexpected SQLite policy: %#v", p)
+	}
+}
+
+func TestBridgeTrafficPolicyMySQLServerIsActive(t *testing.T) {
+	for _, host := range []string{"localhost", "LOCALHOST", "127.0.0.1", "::1"} {
+		p := bridgeTrafficPolicyFromMySQL(mysqlHairSoftSettings{Host: host}, "Settings.xml", true, nil)
+		if !p.Allowed || p.Role != bridgeRoleMySQLServer {
+			t.Fatalf("host %q should be active MySQL server: %#v", host, p)
+		}
+	}
+}
+
+func TestBridgeTrafficPolicyMySQLClientIsPassive(t *testing.T) {
+	for _, host := range []string{"192.168.1.10", "10.0.0.15", "hairsoft-server"} {
+		p := bridgeTrafficPolicyFromMySQL(mysqlHairSoftSettings{Host: host}, "Settings.xml", true, nil)
+		if p.Allowed || p.Role != bridgeRoleMySQLClient {
+			t.Fatalf("host %q should be passive MySQL client: %#v", host, p)
+		}
+	}
+}
+
+func TestBridgeTrafficPolicyInvalidMySQLFailsClosed(t *testing.T) {
+	p := bridgeTrafficPolicyFromMySQL(
+		mysqlHairSoftSettings{Host: "192.168.1.10"},
+		"Settings.xml",
+		true,
+		errors.New("invalid SQL config"),
+	)
+	if p.Allowed || p.Role != bridgeRoleMySQLInvalid {
+		t.Fatalf("invalid MySQL settings must disable Bridge traffic: %#v", p)
 	}
 }
