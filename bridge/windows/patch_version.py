@@ -3,11 +3,11 @@ import struct
 import sys
 from pathlib import Path
 
-VERSION = "V009"
-FILE_VERSION = "0.0.9.0"
+VERSION = "V010"
+FILE_VERSION = "0.0.10.0"
 
 REPLACEMENTS = {
-    "HairSoft Voucher Bridge V016": "HSBridge V009",
+    "HairSoft Voucher Bridge V016": "HSBridge V010",
     "0.0.16.0": FILE_VERSION,
     "HSVoucherBridge": "HSBridge",
     "HSVoucherBridge.exe": "HSBridge.exe",
@@ -48,7 +48,7 @@ def patch_fixed_version(data: bytearray) -> None:
     # signature, structVersion, fileVersionMS, fileVersionLS,
     # productVersionMS, productVersionLS, ...
     struct.pack_into("<I", data, pos + 8, 0x00000000)
-    struct.pack_into("<I", data, pos + 12, 0x00090000)
+    struct.pack_into("<I", data, pos + 12, 0x000A0000)
     struct.pack_into("<I", data, pos + 16, 0x00000000)
     struct.pack_into("<I", data, pos + 20, 0x00010000)
 
@@ -75,8 +75,8 @@ def main() -> int:
             raise RuntimeError(f"Version resource field not found: {key}")
 
     # 0.0.16.0 occurs in FileVersion and ProductVersion.
-    # First replacement makes both 0.0.9.0; ProductVersion is then changed
-    # to V009 by locating the ProductVersion value specifically.
+    # First replacement makes both 0.0.10.0; ProductVersion is then changed
+    # to V010 by locating the ProductVersion value specifically.
     product_key = ("ProductVersion\0").encode("utf-16le")
     key_pos = data.find(product_key)
     if key_pos < 0:
@@ -90,10 +90,10 @@ def main() -> int:
 
     path.write_bytes(data)
     print("Patched Windows version resource:")
-    print("  FileDescription = HSBridge V009")
+    print("  FileDescription = HSBridge V010")
     print("  ProductName = HSBridge")
-    print("  FileVersion = 0.0.9.0")
-    print("  ProductVersion = V009")
+    print("  FileVersion = 0.0.10.0")
+    print("  ProductVersion = V010")
     print("  InternalName = HSBridge")
     print("  OriginalFilename = HSBridge.exe")
     return 0
