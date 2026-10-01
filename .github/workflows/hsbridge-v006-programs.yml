@@ -1,0 +1,49 @@
+name: HSBridge V006 Programs
+
+on:
+  push:
+    branches:
+      - hsbridge-v006-programs-15min
+    paths:
+      - 'bridge/windows/**'
+      - '.github/workflows/hsbridge-v006-programs.yml'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: bridge/windows
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.x'
+      - name: Build HSBridge
+        shell: cmd
+        run: |
+          set GOOS=windows
+          set GOARCH=amd64
+          set CGO_ENABLED=1
+          go build -trimpath -ldflags="-s -w -H=windowsgui" -o HSBridge.exe .
+      - name: Patch version resource
+        shell: cmd
+        run: python patch_version.py HSBridge.exe
+      - name: Verify build metadata
+        shell: powershell
+        run: |
+          $v = (Get-Item .\HSBridge.exe).VersionInfo
+          Write-Host "FileVersion=$($v.FileVersion)"
+          Write-Host "ProductVersion=$($v.ProductVersion)"
+          if ($v.ProductVersion -notmatch 'V006') { throw "Wrong product version" }
+      - name: Package
+        shell: powershell
+        run: |
+          Copy-Item README.md README_V006.md
+          Compress-Archive -Path HSBridge.exe, README_V006.md -DestinationPath HSBridge_V006_PROGRAMS.zip -Force
+      - uses: actions/upload-artifact@v4
+        with:
+          name: HSBridge_V006_PROGRAMS
+          path: bridge/windows/HSBridge_V006_PROGRAMS.zip
+          if-no-files-found: error

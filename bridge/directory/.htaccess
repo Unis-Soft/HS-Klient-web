@@ -1,0 +1,6 @@
+Options -Indexes
+<FilesMatch "(^\.env$|\.sqlite(?:-wal|-shm)?$)">
+  Require all denied
+</FilesMatch>
+RewriteEngine On
+RewriteRule ^storage/ - [F,L]
