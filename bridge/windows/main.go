@@ -12,7 +12,7 @@ import (
 	"time"
 )
 
-const bridgeVersion = "V006"
+const bridgeVersion = "V007"
 
 var codeRe = regexp.MustCompile(`^[A-Z0-9-]{1,20}$`)
 var errUserExit = errors.New("user exit")
@@ -24,7 +24,7 @@ func main() {
 		if errors.Is(err, errorAlreadyExists) {
 			return
 		}
-		showMessageBox("HSBridge V006", "Bridge nelze spustit: "+err.Error())
+		showMessageBox("HSBridge V007", "Bridge nelze spustit: "+err.Error())
 		return
 	}
 	defer release()
@@ -34,16 +34,16 @@ func main() {
 		if os.IsNotExist(err) {
 			c = defaultConfig()
 		} else {
-			showMessageBox("HSBridge V006", "Nelze nacist config.json: "+err.Error())
+			showMessageBox("HSBridge V007", "Nelze nacist config.json: "+err.Error())
 			return
 		}
 	}
 	if err := ensureBridgeIdentity(&c); err != nil {
-		showMessageBox("HSBridge V006", "Nelze vytvorit identitu Bridge: "+err.Error())
+		showMessageBox("HSBridge V007", "Nelze vytvorit identitu Bridge: "+err.Error())
 		return
 	}
 	if err := saveConfig(c); err != nil {
-		showMessageBox("HSBridge V006", "Nelze ulozit config.json: "+err.Error())
+		showMessageBox("HSBridge V007", "Nelze ulozit config.json: "+err.Error())
 		return
 	}
 
@@ -60,14 +60,19 @@ func main() {
 		}
 	}
 
-	if path, source, err := discoverHairSoftDB(c); err == nil {
-		if c.DBPath != path {
-			c.DBPath = path
-			_ = saveConfig(c)
+	if backend, detail, err := quickHairSoftBackend(c); err == nil {
+		logf("DB QUICK DISCOVERY OK backend=%s %s", backend, detail)
+		// DBPath zustava pouze SQLite/voucher kompatibilni hodnota. MySQL
+		// prihlasovaci udaje se vzdy ctou primo ze Settings.xml a do config.json
+		// se nekopiruji.
+		if backend == "sqlite" {
+			if path, _, sqliteErr := discoverHairSoftDB(c); sqliteErr == nil && c.DBPath != path {
+				c.DBPath = path
+				_ = saveConfig(c)
+			}
 		}
-		logf("DB QUICK DISCOVERY OK source=%s path=%s", source, path)
 	} else {
-		logf("DB QUICK DISCOVERY ERROR %v", err)
+		logf("DB QUICK DISCOVERY ERROR backend=%s detail=%s err=%v", backend, detail, err)
 	}
 
 	// Register/refresh SoftRC identity before any HS Klient request.
@@ -97,7 +102,7 @@ func main() {
 	if err != nil {
 		if !errors.Is(err, errUserExit) {
 			logf("PAIR ERROR %v", err)
-			showMessageBox("HSBridge V006", "Propojeni se nepodarilo: "+err.Error())
+			showMessageBox("HSBridge V007", "Propojeni se nepodarilo: "+err.Error())
 		}
 		return
 	}
