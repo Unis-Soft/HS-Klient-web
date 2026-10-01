@@ -47,10 +47,6 @@ func syncHSKlientPrograms(c Config) error {
 	if !features.HSKlientEnabled {
 		return nil
 	}
-	if strings.TrimSpace(c.DBPath) == "" {
-		return errors.New("HS Klient programs: chybi HairSoft DB path")
-	}
-
 	status, err := getHSKlientStatus(c)
 	if err != nil {
 		return err
@@ -60,12 +56,13 @@ func syncHSKlientPrograms(c Config) error {
 	}
 
 	hairSoftDBMu.Lock()
-	provider, err := openHairSoftReadProvider(c.DBPath)
+	provider, source, err := openHairSoftProgramsProvider(c)
 	if err != nil {
 		hairSoftDBMu.Unlock()
 		return err
 	}
 	snapshot, readErr := provider.ProgramsSnapshot()
+	backend := provider.Backend()
 	provider.Close()
 	hairSoftDBMu.Unlock()
 	if readErr != nil {
@@ -89,8 +86,8 @@ func syncHSKlientPrograms(c Config) error {
 	if err := saveHSKlientState(st); err != nil {
 		return err
 	}
-	logf("[PROGRAMS] SYNC OK programs=%d payments=%d visits=%d values=%d customer_values=%d",
-		len(snapshot.Programs), len(snapshot.Payments), len(snapshot.Visits), len(snapshot.ValueDefinitions), len(snapshot.Values))
+	logf("[PROGRAMS] SYNC OK backend=%s source=%s programs=%d payments=%d visits=%d values=%d customer_values=%d",
+		backend, source, len(snapshot.Programs), len(snapshot.Payments), len(snapshot.Visits), len(snapshot.ValueDefinitions), len(snapshot.Values))
 	return nil
 }
 
