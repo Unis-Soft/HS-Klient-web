@@ -1,6 +1,8 @@
-Windows Bridge: HSBridge V006
+Windows Bridge: HSBridge V007
 Voucher compatibility baseline: HSVoucherBridge V016
 Directory: Bonfero HairSoft Bridge Directory V002
 HS Klient endpoint: V003 PROGRAMS
 Protocol: 2
 Programs sync interval: 15 minutes
+Programs database backends: SQLite + MySQL
+MySQL source: Settings.xml (SQLHost, SQLPort, SQLDatabase, SQLUser, SQLPasword)
