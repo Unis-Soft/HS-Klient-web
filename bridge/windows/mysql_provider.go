@@ -59,8 +59,7 @@ func isLocalSQLHost(host string) bool {
 	return ip != nil && ip.IsLoopback()
 }
 
-func currentBridgeTrafficPolicy() bridgeTrafficPolicy {
-	cfg, settingsPath, present, err := discoverHairSoftMySQL()
+func bridgeTrafficPolicyFromMySQL(cfg mysqlHairSoftSettings, settingsPath string, present bool, err error) bridgeTrafficPolicy {
 	if !present {
 		return bridgeTrafficPolicy{Allowed: true, Role: bridgeRoleSQLite}
 	}
@@ -80,6 +79,11 @@ func currentBridgeTrafficPolicy() bridgeTrafficPolicy {
 		Allowed: false, Role: bridgeRoleMySQLClient,
 		SQLHost: cfg.Host, SettingsPath: settingsPath,
 	}
+}
+
+func currentBridgeTrafficPolicy() bridgeTrafficPolicy {
+	cfg, settingsPath, present, err := discoverHairSoftMySQL()
+	return bridgeTrafficPolicyFromMySQL(cfg, settingsPath, present, err)
 }
 
 func bridgeTrafficDisabledError(policy bridgeTrafficPolicy) error {
