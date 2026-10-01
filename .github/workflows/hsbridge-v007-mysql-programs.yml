@@ -22,11 +22,12 @@ jobs:
         with:
           go-version: '1.23.x'
           cache: false
-      - name: Resolve modules
+      - name: Download modules
         shell: cmd
-        run: |
-          go mod tidy
-          type go.sum
+        run: go mod download
+      - name: Test HSBridge
+        shell: cmd
+        run: go test ./...
       - name: Build HSBridge
         shell: cmd
         run: |
