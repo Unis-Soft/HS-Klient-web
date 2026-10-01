@@ -162,4 +162,33 @@ HS Klient PC nevyžaduje žádné propojení s Vouchery.
 
 Budoucí Bonfero voucher integrace není ve V005 aktivována a bude přidána až
 samostatně.
-\n\n## V006 – PROGRAMS po 15 minutach\n\nPROGRAMS kontroluje HairSoft databazi 4x za hodinu, tedy kazdych 15 minut. Snapshot se na server odesle pouze pri zmene dat. Cooper voucher flow zustava beze zmeny a CUSTOMER / STATISTICS / TIMELINE zustavaji v HSBridge neaktivni.\n
+
+
+## V006 – PROGRAMS po 15 minutách
+
+PROGRAMS kontroluje HairSoft databázi 4× za hodinu, tedy každých 15 minut.
+Snapshot se na server odešle pouze při změně dat.
+
+## V007 – MySQL síťová HairSoft instalace
+
+PROGRAMS podporuje dva zdroje dat:
+
+- SQLite: původní `DatabaseFile` / `data.sdb`,
+- MySQL: parametry `SQLHost`, `SQLPort`, `SQLDatabase`, `SQLUser` a
+  `SQLPasword` v `Settings.xml`.
+
+Pokud jsou SQL parametry v `Settings.xml` přítomné, MySQL má pro PROGRAMS
+přednost před starou hodnotou `DatabaseFile`. Je to záměrné: po převodu
+salonu ze SQLite na síťovou MySQL může `DatabaseFile` v XML stále ukazovat
+na původní lokální soubor.
+
+`OpenSQLsettings` se nepoužívá jako aktivační příznak. Reálná síťová
+konfigurace může obsahovat hodnotu 0 a přesto používat MySQL.
+
+Bridge nečte fyzické `.ibd` soubory z `C:\HairSoft\MySQL\data\data`.
+Připojuje se standardně přes MySQL TCP podle `SQLHost:SQLPort`. Přihlašovací
+heslo se nekopíruje do HSBridge `config.json` a nevypisuje se do logu.
+
+MySQL podpora je ve V007 přidána pouze do read-only PROGRAMS datové vrstvy.
+Cooper voucher flow a jeho stávající SQLite zápisová větev se nemění.
+CUSTOMER / STATISTICS / TIMELINE zůstávají neaktivní.
