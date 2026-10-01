@@ -136,6 +136,13 @@ func targetURL(base, route string) string {
 }
 
 func jsonRequest(method, endpoint string, payload any, headers map[string]string, out any) error {
+	// Safety net for every current HTTP direction. main() blocks MySQL client
+	// PCs before any module starts, and this guard prevents accidental future
+	// HTTP traffic if a caller bypasses that startup gate.
+	if policy := currentBridgeTrafficPolicy(); !policy.Allowed {
+		return bridgeTrafficDisabledError(policy)
+	}
+
 	var body io.Reader
 	if payload != nil {
 		b, err := json.Marshal(payload)
