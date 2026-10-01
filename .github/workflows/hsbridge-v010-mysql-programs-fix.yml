@@ -1,0 +1,63 @@
+name: HSBridge V010 MySQL Programs Fix
+
+on:
+  push:
+    branches:
+      - main
+      - hsbridge-v010-mysql-programs-fix
+    paths:
+      - 'bridge/windows/**'
+      - '.github/workflows/hsbridge-v010-mysql-programs-fix.yml'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: bridge/windows
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.x'
+          cache: false
+      - name: Download modules
+        shell: cmd
+        run: go mod download
+      - name: Test HSBridge
+        shell: cmd
+        run: go test ./...
+      - name: Verify MySQL Programs mapping
+        shell: powershell
+        run: |
+          $src = Get-Content .\mysql_provider.go -Raw
+          if ($src -notmatch 'COALESCE\(name1') { throw "programs.name1 mapping missing" }
+          if ($src -notmatch 'COALESCE\(pv\.name1') { throw "program_values.name1 mapping missing" }
+      - name: Build HSBridge
+        shell: cmd
+        run: |
+          set GOOS=windows
+          set GOARCH=amd64
+          set CGO_ENABLED=1
+          go build -trimpath -ldflags="-s -w -H=windowsgui" -o HSBridge.exe .
+      - name: Patch version resource
+        shell: cmd
+        run: python patch_version.py HSBridge.exe
+      - name: Verify build metadata
+        shell: powershell
+        run: |
+          $v = (Get-Item .\HSBridge.exe).VersionInfo
+          Write-Host "FileVersion=$($v.FileVersion)"
+          Write-Host "ProductVersion=$($v.ProductVersion)"
+          if ($v.ProductVersion -notmatch 'V010') { throw "Wrong product version" }
+      - name: Package
+        shell: powershell
+        run: |
+          Copy-Item README.md README_V010.md
+          Compress-Archive -Path HSBridge.exe, README_V010.md -DestinationPath HSBridge_V010_MYSQL_PROGRAMS.zip -Force
+      - uses: actions/upload-artifact@v4
+        with:
+          name: HSBridge_V010_MYSQL_PROGRAMS
+          path: bridge/windows/HSBridge_V010_MYSQL_PROGRAMS.zip
+          if-no-files-found: error
