@@ -3,7 +3,7 @@ name: HSBridge V006 Programs
 on:
   push:
     branches:
-      - hsbridge-v006-programs-15min
+      - main
     paths:
       - 'bridge/windows/**'
       - '.github/workflows/hsbridge-v006-programs.yml'
