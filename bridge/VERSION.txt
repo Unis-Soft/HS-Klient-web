@@ -1,4 +1,4 @@
-Windows Bridge: HSBridge V009 DIAG
+Windows Bridge: HSBridge V010
 Voucher compatibility baseline: HSVoucherBridge V016
 Directory: Bonfero HairSoft Bridge Directory V002
 HS Klient endpoint: V003 PROGRAMS
@@ -8,5 +8,4 @@ Programs database backends: SQLite + MySQL
 MySQL source: Settings.xml (SQLHost, SQLPort, SQLDatabase, SQLUser, SQLPasword)
 Network rule: SQLite=active, MySQL server localhost/loopback=active, MySQL client remote SQLHost=passive
 Passive MySQL client: all HSBridge send/receive traffic disabled
-V009 diagnostic: one-time startup schema dump for programs, program_payments, program_visits, program_values, program_values2customer
-Diagnostic data: columns, indexes, foreign keys, SHOW CREATE TABLE; no customer rows or passwords
+V010 MySQL PROGRAMS fix: programs.name1 and program_values.name1
