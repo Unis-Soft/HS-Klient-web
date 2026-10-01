@@ -1,0 +1,436 @@
+//go:build windows
+
+package main
+
+import (
+	"context"
+	"database/sql"
+	"errors"
+	"fmt"
+	"html"
+	"net"
+	"os"
+	"regexp"
+	"strconv"
+	"strings"
+	"time"
+
+	mysql "github.com/go-sql-driver/mysql"
+)
+
+type mysqlHairSoftSettings struct {
+	Host     string
+	Port     int
+	Database string
+	User     string
+	Password string
+}
+
+type mysqlHairSoftProvider struct {
+	db *sql.DB
+}
+
+func settingsElement(text, name string) (string, bool) {
+	re := regexp.MustCompile(`(?is)<\s*` + regexp.QuoteMeta(name) + `\s*>\s*([^<]*?)\s*<\s*/\s*` + regexp.QuoteMeta(name) + `\s*>`)
+	m := re.FindStringSubmatch(text)
+	if len(m) < 2 {
+		return "", false
+	}
+	return strings.TrimSpace(html.UnescapeString(m[1])), true
+}
+
+func mysqlSettingsFromSettings(path string) (mysqlHairSoftSettings, bool, error) {
+	var out mysqlHairSoftSettings
+	b, err := os.ReadFile(path)
+	if err != nil {
+		return out, false, err
+	}
+	text := decodeXMLText(b)
+
+	host, hasHost := settingsElement(text, "SQLHost")
+	portRaw, hasPort := settingsElement(text, "SQLPort")
+	database, hasDatabase := settingsElement(text, "SQLDatabase")
+	user, hasUser := settingsElement(text, "SQLUser")
+	password, hasPassword := settingsElement(text, "SQLPasword")
+	if !hasPassword {
+		password, hasPassword = settingsElement(text, "SQLPassword")
+	}
+
+	present := hasHost || hasPort || hasDatabase || hasUser || hasPassword
+	if !present {
+		return out, false, nil
+	}
+
+	if strings.TrimSpace(host) == "" {
+		return out, true, errors.New("MySQL Settings.xml: chybi SQLHost")
+	}
+	if strings.TrimSpace(database) == "" {
+		return out, true, errors.New("MySQL Settings.xml: chybi SQLDatabase")
+	}
+	if strings.TrimSpace(user) == "" {
+		return out, true, errors.New("MySQL Settings.xml: chybi SQLUser")
+	}
+
+	port := 3306
+	if strings.TrimSpace(portRaw) != "" {
+		p, parseErr := strconv.Atoi(strings.TrimSpace(portRaw))
+		if parseErr != nil || p < 1 || p > 65535 {
+			return out, true, fmt.Errorf("MySQL Settings.xml: neplatny SQLPort %q", portRaw)
+		}
+		port = p
+	}
+
+	out = mysqlHairSoftSettings{
+		Host: strings.TrimSpace(host),
+		Port: port,
+		Database: strings.TrimSpace(database),
+		User: strings.TrimSpace(user),
+		Password: password,
+	}
+	return out, true, nil
+}
+
+func discoverHairSoftMySQL() (mysqlHairSoftSettings, string, bool, error) {
+	var lastErr error
+	var lastPath string
+	for _, path := range settingsCandidates() {
+		if _, err := os.Stat(path); err != nil {
+			continue
+		}
+		cfg, present, err := mysqlSettingsFromSettings(path)
+		if !present {
+			continue
+		}
+		lastPath = path
+		if err != nil {
+			lastErr = err
+			continue
+		}
+		return cfg, path, true, nil
+	}
+	if lastErr != nil {
+		return mysqlHairSoftSettings{}, lastPath, true, lastErr
+	}
+	return mysqlHairSoftSettings{}, "", false, nil
+}
+
+func openMySQLHairSoftProvider(cfg mysqlHairSoftSettings) (HairSoftDataProvider, error) {
+	mc := mysql.Config{
+		User:                 cfg.User,
+		Passwd:               cfg.Password,
+		Net:                  "tcp",
+		Addr:                 net.JoinHostPort(cfg.Host, strconv.Itoa(cfg.Port)),
+		DBName:               cfg.Database,
+		AllowNativePasswords: true,
+		ParseTime:            false,
+		Timeout:              5 * time.Second,
+		ReadTimeout:          15 * time.Second,
+		WriteTimeout:         5 * time.Second,
+	}
+	db, err := sql.Open("mysql", mc.FormatDSN())
+	if err != nil {
+		return nil, err
+	}
+	db.SetMaxOpenConns(1)
+	db.SetMaxIdleConns(1)
+	db.SetConnMaxLifetime(5 * time.Minute)
+
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
+	if err := db.PingContext(ctx); err != nil {
+		db.Close()
+		return nil, fmt.Errorf("MySQL %s:%d/%s: %w", cfg.Host, cfg.Port, cfg.Database, err)
+	}
+	return &mysqlHairSoftProvider{db: db}, nil
+}
+
+func openHairSoftProgramsProvider(c Config) (HairSoftDataProvider, string, error) {
+	mysqlCfg, settingsPath, mysqlPresent, err := discoverHairSoftMySQL()
+	if mysqlPresent {
+		if err != nil {
+			return nil, "", err
+		}
+		p, err := openMySQLHairSoftProvider(mysqlCfg)
+		if err != nil {
+			return nil, "", err
+		}
+		return p, "Settings.xml MySQL " + settingsPath, nil
+	}
+
+	path, source, err := discoverHairSoftDB(c)
+	if err != nil {
+		return nil, "", err
+	}
+	p, err := openHairSoftReadProvider(path)
+	if err != nil {
+		return nil, "", err
+	}
+	return p, source + " SQLite " + path, nil
+}
+
+func quickHairSoftBackend(c Config) (string, string, error) {
+	mysqlCfg, settingsPath, mysqlPresent, err := discoverHairSoftMySQL()
+	if mysqlPresent {
+		if err != nil {
+			return "mysql", settingsPath, err
+		}
+		p, err := openMySQLHairSoftProvider(mysqlCfg)
+		if err != nil {
+			return "mysql", settingsPath, err
+		}
+		p.Close()
+		return "mysql", fmt.Sprintf("%s host=%s port=%d database=%s", settingsPath, mysqlCfg.Host, mysqlCfg.Port, mysqlCfg.Database), nil
+	}
+	path, source, err := discoverHairSoftDB(c)
+	if err != nil {
+		return "sqlite", source, err
+	}
+	return "sqlite", source + " path=" + path, nil
+}
+
+func (p *mysqlHairSoftProvider) Backend() string { return "mysql" }
+
+func (p *mysqlHairSoftProvider) Close() {
+	if p != nil && p.db != nil {
+		_ = p.db.Close()
+		p.db = nil
+	}
+}
+
+func (p *mysqlHairSoftProvider) queryContext() (context.Context, context.CancelFunc, error) {
+	if p == nil || p.db == nil {
+		return nil, nil, errors.New("HairSoft MySQL provider neni otevreny")
+	}
+	ctx, cancel := context.WithTimeout(context.Background(), 20*time.Second)
+	return ctx, cancel, nil
+}
+
+func (p *mysqlHairSoftProvider) CustomerByID(id int64) (CustomerSnapshot, error) {
+	var out CustomerSnapshot
+	ctx, cancel, err := p.queryContext()
+	if err != nil {
+		return out, err
+	}
+	defer cancel()
+
+	err = p.db.QueryRowContext(ctx, `
+SELECT id, COALESCE(KlientGuid,''), COALESCE(name,''), COALESCE(surname,''),
+       COALESCE(phone,''), COALESCE(cell,''), COALESCE(email,''),
+       COALESCE(note,''), COALESCE(loyalityPoints,0),
+       COALESCE(CAST(updated AS CHAR),''), COALESCE(ReSync,0)
+FROM customer
+WHERE id=?
+LIMIT 1`, id).Scan(
+		&out.ID, &out.GUID, &out.Name, &out.Surname, &out.Phone, &out.Cell,
+		&out.Email, &out.Note, &out.LoyalityPoints, &out.Updated, &out.ReSync,
+	)
+	if errors.Is(err, sql.ErrNoRows) {
+		return out, errNoRow
+	}
+	return out, err
+}
+
+func (p *mysqlHairSoftProvider) VisitDatesByCustomerID(id int64, now string) (VisitDatesSnapshot, error) {
+	out := VisitDatesSnapshot{CustomerID: id, AsOf: strings.TrimSpace(now)}
+	if id <= 0 || out.AsOf == "" {
+		return out, errors.New("HairSoft statistics: neplatny zakaznik nebo cas")
+	}
+	ctx, cancel, err := p.queryContext()
+	if err != nil {
+		return out, err
+	}
+	defer cancel()
+
+	if err := p.db.QueryRowContext(ctx, `
+SELECT COALESCE(CAST(MAX(endbill) AS CHAR),'')
+FROM bill
+WHERE id_customer=?
+  AND valid=1
+  AND COALESCE(Discarted,0)=0
+  AND endbill IS NOT NULL
+  AND endbill<=?`, id, out.AsOf).Scan(&out.LastVisit); err != nil {
+		return out, err
+	}
+	if err := p.db.QueryRowContext(ctx, `
+SELECT COALESCE(CAST(MIN(order_date) AS CHAR),'')
+FROM orders
+WHERE id_customer=?
+  AND valid=1
+  AND COALESCE(Break,0)=0
+  AND COALESCE(Canceled,0)=0
+  AND order_date IS NOT NULL
+  AND order_date>?`, id, out.AsOf).Scan(&out.NextVisit); err != nil {
+		return out, err
+	}
+	return out, nil
+}
+
+func (p *mysqlHairSoftProvider) RecentOrdersByCustomerID(id int64, limit int) ([]OrderDebugRow, error) {
+	if id <= 0 {
+		return nil, errors.New("HairSoft debug orders: neplatny zakaznik")
+	}
+	if limit < 1 || limit > 20 {
+		limit = 10
+	}
+	ctx, cancel, err := p.queryContext()
+	if err != nil {
+		return nil, err
+	}
+	defer cancel()
+
+	rows, err := p.db.QueryContext(ctx, `
+SELECT id,
+       COALESCE(id_customer,0),
+       COALESCE(CAST(order_date AS CHAR),''),
+       COALESCE(CAST(order_end_date AS CHAR),''),
+       COALESCE(valid,0),
+       COALESCE(Canceled,0),
+       COALESCE(Break,0),
+       COALESCE(CAST(inserted AS CHAR),''),
+       COALESCE(CAST(changed AS CHAR),'')
+FROM orders
+WHERE id_customer=?
+ORDER BY id DESC
+LIMIT ?`, id, limit)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	out := make([]OrderDebugRow, 0, limit)
+	for rows.Next() {
+		var r OrderDebugRow
+		if err := rows.Scan(&r.ID, &r.CustomerID, &r.OrderDate, &r.OrderEndDate, &r.Valid, &r.Canceled, &r.Break, &r.Inserted, &r.Changed); err != nil {
+			return nil, err
+		}
+		out = append(out, r)
+	}
+	return out, rows.Err()
+}
+
+func (p *mysqlHairSoftProvider) ProgramsSnapshot() (ProgramsSnapshot, error) {
+	out := ProgramsSnapshot{AsOf: time.Now().In(time.Local).Format("2006-01-02 15:04:05")}
+	ctx, cancel, err := p.queryContext()
+	if err != nil {
+		return out, err
+	}
+	defer cancel()
+
+	programRows, err := p.db.QueryContext(ctx, `
+SELECT id, COALESCE(name,''), COALESCE(id_centre,0), COALESCE(id_commodity,0), COALESCE(id_user,0)
+FROM programs
+WHERE valid=1
+ORDER BY id`)
+	if err != nil {
+		return out, err
+	}
+	for programRows.Next() {
+		var r ProgramDefinition
+		if err := programRows.Scan(&r.ID, &r.Name, &r.CentreID, &r.CommodityID, &r.UserID); err != nil {
+			programRows.Close()
+			return out, err
+		}
+		out.Programs = append(out.Programs, r)
+	}
+	if err := programRows.Err(); err != nil {
+		programRows.Close()
+		return out, err
+	}
+	programRows.Close()
+
+	payments, err := p.db.QueryContext(ctx, `
+SELECT pp.id, pp.id_program, pp.id_customer, pp.price, COALESCE(pp.price_vat,0),
+       COALESCE(pp.visits,0), COALESCE(CAST(pp.created AS CHAR),'')
+FROM program_payments pp
+JOIN programs p ON p.id=pp.id_program
+WHERE p.valid=1
+ORDER BY pp.id`)
+	if err != nil {
+		return out, err
+	}
+	for payments.Next() {
+		var r ProgramPaymentSnapshot
+		if err := payments.Scan(&r.ID, &r.ProgramID, &r.CustomerID, &r.Price, &r.PriceVAT, &r.Visits, &r.Created); err != nil {
+			payments.Close()
+			return out, err
+		}
+		out.Payments = append(out.Payments, r)
+	}
+	if err := payments.Err(); err != nil {
+		payments.Close()
+		return out, err
+	}
+	payments.Close()
+
+	visits, err := p.db.QueryContext(ctx, `
+SELECT pv.id, pv.id_program, pv.id_customer, COALESCE(CAST(pv.visit AS CHAR),''), COALESCE(pv.quantity,1)
+FROM program_visits pv
+JOIN programs p ON p.id=pv.id_program
+WHERE p.valid=1
+ORDER BY pv.id`)
+	if err != nil {
+		return out, err
+	}
+	for visits.Next() {
+		var r ProgramVisitSnapshot
+		if err := visits.Scan(&r.ID, &r.ProgramID, &r.CustomerID, &r.Visit, &r.Quantity); err != nil {
+			visits.Close()
+			return out, err
+		}
+		out.Visits = append(out.Visits, r)
+	}
+	if err := visits.Err(); err != nil {
+		visits.Close()
+		return out, err
+	}
+	visits.Close()
+
+	defs, err := p.db.QueryContext(ctx, `
+SELECT pv.id, pv.id_program, COALESCE(pv.name,'')
+FROM program_values pv
+JOIN programs p ON p.id=pv.id_program
+WHERE pv.valid=1 AND p.valid=1
+ORDER BY pv.id`)
+	if err != nil {
+		return out, err
+	}
+	for defs.Next() {
+		var r ProgramValueDefinition
+		if err := defs.Scan(&r.ID, &r.ProgramID, &r.Name); err != nil {
+			defs.Close()
+			return out, err
+		}
+		out.ValueDefinitions = append(out.ValueDefinitions, r)
+	}
+	if err := defs.Err(); err != nil {
+		defs.Close()
+		return out, err
+	}
+	defs.Close()
+
+	values, err := p.db.QueryContext(ctx, `
+SELECT pvc.id, pvc.id_program_value, pvc.id_customer, COALESCE(pvc.value,'')
+FROM program_values2customer pvc
+JOIN program_values pv ON pv.id=pvc.id_program_value
+JOIN programs p ON p.id=pv.id_program
+WHERE pv.valid=1 AND p.valid=1
+ORDER BY pvc.id`)
+	if err != nil {
+		return out, err
+	}
+	for values.Next() {
+		var r ProgramCustomerValue
+		if err := values.Scan(&r.ID, &r.ProgramValueID, &r.CustomerID, &r.Value); err != nil {
+			values.Close()
+			return out, err
+		}
+		out.Values = append(out.Values, r)
+	}
+	if err := values.Err(); err != nil {
+		values.Close()
+		return out, err
+	}
+	values.Close()
+
+	return out, nil
+}
