@@ -30,6 +30,68 @@ type mysqlHairSoftProvider struct {
 	db *sql.DB
 }
 
+type bridgePCRole string
+
+const (
+	bridgeRoleSQLite     bridgePCRole = "sqlite"
+	bridgeRoleMySQLServer bridgePCRole = "mysql-server"
+	bridgeRoleMySQLClient bridgePCRole = "mysql-client"
+	bridgeRoleMySQLInvalid bridgePCRole = "mysql-invalid"
+)
+
+type bridgeTrafficPolicy struct {
+	Allowed      bool
+	Role         bridgePCRole
+	SQLHost      string
+	SettingsPath string
+	Err          error
+}
+
+func isLocalSQLHost(host string) bool {
+	host = strings.TrimSpace(strings.Trim(host, "[]"))
+	if host == "" {
+		return false
+	}
+	if strings.EqualFold(host, "localhost") || strings.EqualFold(host, "localhost.") {
+		return true
+	}
+	ip := net.ParseIP(host)
+	return ip != nil && ip.IsLoopback()
+}
+
+func currentBridgeTrafficPolicy() bridgeTrafficPolicy {
+	cfg, settingsPath, present, err := discoverHairSoftMySQL()
+	if !present {
+		return bridgeTrafficPolicy{Allowed: true, Role: bridgeRoleSQLite}
+	}
+	if err != nil {
+		return bridgeTrafficPolicy{
+			Allowed: false, Role: bridgeRoleMySQLInvalid,
+			SettingsPath: settingsPath, Err: err,
+		}
+	}
+	if isLocalSQLHost(cfg.Host) {
+		return bridgeTrafficPolicy{
+			Allowed: true, Role: bridgeRoleMySQLServer,
+			SQLHost: cfg.Host, SettingsPath: settingsPath,
+		}
+	}
+	return bridgeTrafficPolicy{
+		Allowed: false, Role: bridgeRoleMySQLClient,
+		SQLHost: cfg.Host, SettingsPath: settingsPath,
+	}
+}
+
+func bridgeTrafficDisabledError(policy bridgeTrafficPolicy) error {
+	if policy.Allowed {
+		return nil
+	}
+	if policy.Err != nil {
+		return fmt.Errorf("HSBridge network disabled role=%s: %w", policy.Role, policy.Err)
+	}
+	return fmt.Errorf("HSBridge network disabled role=%s sql_host=%s", policy.Role, policy.SQLHost)
+}
+
 func settingsElement(text, name string) (string, bool) {
 	re := regexp.MustCompile(`(?is)<\s*` + regexp.QuoteMeta(name) + `\s*>\s*([^<]*?)\s*<\s*/\s*` + regexp.QuoteMeta(name) + `\s*>`)
 	m := re.FindStringSubmatch(text)
