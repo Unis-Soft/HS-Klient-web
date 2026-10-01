@@ -383,7 +383,7 @@ func (p *mysqlHairSoftProvider) ProgramsSnapshot() (ProgramsSnapshot, error) {
 	defer cancel()
 
 	programRows, err := p.db.QueryContext(ctx, `
-SELECT id, COALESCE(name,''), COALESCE(id_centre,0), COALESCE(id_commodity,0), COALESCE(id_user,0)
+SELECT id, COALESCE(name1,''), COALESCE(id_centre,0), COALESCE(id_commodity,0), COALESCE(id_user,0)
 FROM programs
 WHERE valid=1
 ORDER BY id`)
@@ -452,7 +452,7 @@ ORDER BY pv.id`)
 	visits.Close()
 
 	defs, err := p.db.QueryContext(ctx, `
-SELECT pv.id, pv.id_program, COALESCE(pv.name,'')
+SELECT pv.id, pv.id_program, COALESCE(pv.name1,'')
 FROM program_values pv
 JOIN programs p ON p.id=pv.id_program
 WHERE pv.valid=1 AND p.valid=1
