@@ -1,0 +1,57 @@
+name: HSBridge V009 MySQL Schema Diag
+
+on:
+  push:
+    branches:
+      - main
+      - hsbridge-v009-mysql-schema-diag
+    paths:
+      - 'bridge/windows/**'
+      - '.github/workflows/hsbridge-v009-mysql-schema-diag.yml'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: bridge/windows
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.x'
+          cache: false
+      - name: Download modules
+        shell: cmd
+        run: go mod download
+      - name: Test HSBridge
+        shell: cmd
+        run: go test ./...
+      - name: Build HSBridge
+        shell: cmd
+        run: |
+          set GOOS=windows
+          set GOARCH=amd64
+          set CGO_ENABLED=1
+          go build -trimpath -ldflags="-s -w -H=windowsgui" -o HSBridge.exe .
+      - name: Patch version resource
+        shell: cmd
+        run: python patch_version.py HSBridge.exe
+      - name: Verify build metadata
+        shell: powershell
+        run: |
+          $v = (Get-Item .\HSBridge.exe).VersionInfo
+          Write-Host "FileVersion=$($v.FileVersion)"
+          Write-Host "ProductVersion=$($v.ProductVersion)"
+          if ($v.ProductVersion -notmatch 'V009') { throw "Wrong product version" }
+      - name: Package
+        shell: powershell
+        run: |
+          Copy-Item README.md README_V009.md
+          Compress-Archive -Path HSBridge.exe, README_V009.md -DestinationPath HSBridge_V009_MYSQL_SCHEMA_DIAG.zip -Force
+      - uses: actions/upload-artifact@v4
+        with:
+          name: HSBridge_V009_MYSQL_SCHEMA_DIAG
+          path: bridge/windows/HSBridge_V009_MYSQL_SCHEMA_DIAG.zip
+          if-no-files-found: error
