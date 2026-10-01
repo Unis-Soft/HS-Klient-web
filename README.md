@@ -5,7 +5,7 @@ Webový HS Klient a související HSBridge.
 ## Aktuální verze
 
 - HS Klient: **V227**
-- HSBridge: **V008**
+- HSBridge: **V009 DIAG**
 - PROGRAMS synchronizace: **každých 15 minut**, snapshot se odesílá pouze při změně dat.
 - HairSoft databáze pro PROGRAMS: **SQLite i MySQL síťová verze**.
 
@@ -45,3 +45,19 @@ nadále řeší SoftKW / SoftSYS. Cooper voucher flow zůstává zachovaný. Na 
 klientském PC je však V008 centrálně pasivní, takže ani voucherová ani jiná
 Bridge komunikace z takového PC neprobíhá. Bonfero bude řešeno samostatným
 repozitářem.
+
+
+## V009 – MySQL PROGRAMS schema diagnostika
+
+Na aktivním MySQL server PC HSBridge při startu jednou načte metadata z
+`information_schema` a `SHOW CREATE TABLE` pro tabulky:
+
+- `programs`
+- `program_payments`
+- `program_visits`
+- `program_values`
+- `program_values2customer`
+
+Do logu se zapisují názvy a typy sloupců, indexy, cizí klíče a CREATE TABLE.
+Nečtou ani nelogují se řádky zákazníků, programová data ani MySQL heslo.
+Diagnostika slouží pouze k přesnému mapování MySQL schématu proti SQLite verzi.
