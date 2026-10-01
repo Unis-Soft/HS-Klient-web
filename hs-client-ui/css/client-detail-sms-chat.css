@@ -1,0 +1,385 @@
+/* HairSoft Klient V81 – moderní SMS Chat se zaobleným vnějším panelem. */
+
+.hs-client-profile-ui #SMSChat,
+.hs-client-profile-ui #SMSChat table,
+.hs-client-profile-ui #SMSChat button,
+.hs-client-profile-ui #SMSChat input {
+  font-family: Tahoma, Arial, sans-serif !important;
+}
+
+.hs-client-profile-ui #SMSChat {
+  box-sizing: border-box;
+  padding: 18px;
+  color: #334861;
+  border: 1px solid rgba(60, 83, 112, .08);
+  border-radius: 18px;
+  background: #f6f8fa;
+}
+
+.hs-client-profile-ui .hs-client-detail-tabs--sms-chat-active > .tab-content {
+  min-height: 0;
+  overflow: visible;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.hs-client-profile-ui #SMSChat > .table-responsive {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(60, 83, 112, .13);
+  border-radius: 17px;
+  background: #fff;
+  box-shadow: 0 10px 28px rgba(38, 53, 73, .065);
+}
+
+.hs-client-profile-ui #zakaznici_tabulka_chat_wrapper {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px 18px;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  padding: 14px;
+  overflow: hidden;
+}
+
+.hs-client-profile-ui #zakaznici_tabulka_chat {
+  grid-column: 1 / -1;
+  box-sizing: border-box;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  color: #34495f;
+  font-size: 13px;
+  line-height: 1.45;
+  border: 1px solid #dfe6eb !important;
+  border-radius: 14px;
+  border-collapse: separate !important;
+  border-spacing: 0;
+  table-layout: fixed;
+  background: #fff;
+}
+
+.hs-client-profile-ui #zakaznici_tabulka_chat thead td,
+.hs-client-profile-ui #zakaznici_tabulka_chat thead th {
+  box-sizing: border-box;
+  height: 52px;
+  padding: 0 18px !important;
+  color: #53657d;
+  font-family: Tahoma, Arial, sans-serif !important;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0;
+  text-align: center !important;
+  vertical-align: middle !important;
+  white-space: nowrap;
+  border: 0 !important;
+  border-bottom: 1px solid #dfe6eb !important;
+  background: #f4f7fa !important;
+}
+
+.hs-client-profile-ui #zakaznici_tabulka_chat thead td:first-child,
+.hs-client-profile-ui #zakaznici_tabulka_chat thead th:first-child {
+  width: 170px !important;
+  border-top-left-radius: 13px;
+}
+
+.hs-client-profile-ui #zakaznici_tabulka_chat thead td:last-child,
+.hs-client-profile-ui #zakaznici_tabulka_chat thead th:last-child {
+  border-top-right-radius: 13px;
+}
+
+.hs-client-profile-ui #zakaznici_tabulka_chat tbody tr {
+  background: #fff !important;
+  transition: background .14s ease;
+}
+
+.hs-client-profile-ui #zakaznici_tabulka_chat tbody tr:nth-child(even) {
+  background: #fbfcfd !important;
+}
+
+.hs-client-profile-ui #zakaznici_tabulka_chat tbody tr:hover {
+  background: #f3f9f9 !important;
+}
+
+.hs-client-profile-ui #zakaznici_tabulka_chat tbody td {
+  box-sizing: border-box;
+  min-height: 58px;
+  padding: 10px 14px !important;
+  color: #46566d;
+  font-family: Tahoma, Arial, sans-serif !important;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.45;
+  text-align: left;
+  vertical-align: middle;
+  white-space: normal !important;
+  overflow-wrap: anywhere;
+  border: 0 !important;
+  border-bottom: 1px solid #e7ecef !important;
+  background: transparent !important;
+}
+
+.hs-client-profile-ui #zakaznici_tabulka_chat tbody td:first-child {
+  width: 170px !important;
+  color: #50647a;
+  font-weight: 600;
+  white-space: nowrap !important;
+  font-variant-numeric: tabular-nums;
+}
+
+.hs-client-profile-ui #zakaznici_tabulka_chat tbody td i {
+  color: #5d7599;
+}
+
+.hs-client-profile-ui #zakaznici_tabulka_chat tbody tr:last-child td {
+  border-bottom: 0 !important;
+}
+
+.hs-client-profile-ui #zakaznici_tabulka_chat tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 13px;
+}
+
+.hs-client-profile-ui #zakaznici_tabulka_chat tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 13px;
+}
+
+.hs-client-profile-ui #zakaznici_tabulka_chat_wrapper .dataTables_info {
+  grid-column: 1;
+  float: none;
+  padding: 0 !important;
+  color: #77869a;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.hs-client-profile-ui #zakaznici_tabulka_chat_wrapper .dataTables_paginate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-column: 2;
+  justify-self: end;
+  float: none;
+  gap: 2px;
+  padding: 4px !important;
+  white-space: nowrap;
+  border: 1px solid #e0e7ed;
+  border-radius: 12px;
+  background: #f5f8fa;
+}
+
+.hs-client-profile-ui #zakaznici_tabulka_chat_wrapper .dataTables_paginate .paginate_button {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: 34px;
+  height: 34px;
+  margin: 0 !important;
+  padding: 0 10px !important;
+  color: #53657d !important;
+  -webkit-text-fill-color: #53657d !important;
+  font-family: Tahoma, Arial, sans-serif !important;
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1 !important;
+  border: 1px solid transparent !important;
+  border-radius: 8px !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+.hs-client-profile-ui #zakaznici_tabulka_chat_wrapper .dataTables_paginate .paginate_button:not(.current):not(.disabled):hover {
+  color: #405571 !important;
+  -webkit-text-fill-color: #405571 !important;
+  border-color: #d6e0e8 !important;
+  background: #fff !important;
+}
+
+.hs-client-profile-ui #zakaznici_tabulka_chat_wrapper .dataTables_paginate .paginate_button.current,
+.hs-client-profile-ui #zakaznici_tabulka_chat_wrapper .dataTables_paginate .paginate_button.current:hover {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+  border-color: #556b8d !important;
+  background: #556b8d !important;
+}
+
+.hs-client-profile-ui #zakaznici_tabulka_chat_wrapper .dataTables_paginate .paginate_button.disabled,
+.hs-client-profile-ui #zakaznici_tabulka_chat_wrapper .dataTables_paginate .paginate_button.disabled:hover {
+  color: #a5b0bd !important;
+  -webkit-text-fill-color: #a5b0bd !important;
+  border-color: transparent !important;
+  background: transparent !important;
+  cursor: default;
+}
+
+.hs-client-profile-ui #zakaznici_tabulka_chat_wrapper .dataTables_paginate > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.hs-client-profile-ui #zakaznici_tabulka_chat_wrapper .dataTables_paginate .ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 26px;
+  height: 34px;
+  color: #53657d;
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+@media (max-width: 767px) {
+  .hs-client-profile-ui #SMSChat {
+    padding: 10px;
+    border-radius: 16px;
+    background: #f3f6f7;
+  }
+
+  .hs-client-profile-ui #SMSChat > .table-responsive {
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .hs-client-profile-ui #zakaznici_tabulka_chat_wrapper {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 9px;
+    padding: 0;
+    overflow: visible;
+  }
+
+  .hs-client-profile-ui #zakaznici_tabulka_chat {
+    display: block;
+    grid-column: 1;
+    width: 100% !important;
+    margin: 0 !important;
+    border: 0 !important;
+    border-radius: 0;
+    background: transparent;
+  }
+
+  .hs-client-profile-ui #zakaznici_tabulka_chat thead {
+    display: none;
+  }
+
+  .hs-client-profile-ui #zakaznici_tabulka_chat tbody {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+    width: 100%;
+  }
+
+  .hs-client-profile-ui #zakaznici_tabulka_chat tbody tr {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 9px;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(60, 83, 112, .13);
+    border-radius: 15px;
+    background: #fff !important;
+    box-shadow: 0 7px 20px rgba(38, 53, 73, .055);
+  }
+
+  .hs-client-profile-ui #zakaznici_tabulka_chat tbody td {
+    display: block;
+    width: auto !important;
+    min-height: 0;
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+  }
+
+  .hs-client-profile-ui #zakaznici_tabulka_chat tbody td:first-child {
+    display: flex;
+    align-items: center;
+    width: auto !important;
+    color: #66778b;
+    font-size: 11.5px;
+    font-weight: 700;
+  }
+
+  .hs-client-profile-ui #zakaznici_tabulka_chat tbody td:first-child::before {
+    flex: 0 0 26px;
+    width: 26px;
+    height: 26px;
+    margin-right: 8px;
+    content: "";
+    border-radius: 8px;
+    background-color: #edf2f7;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235d7599' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M12 7v5l3 2'/%3E%3C/svg%3E");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 14px 14px;
+  }
+
+  .hs-client-profile-ui #zakaznici_tabulka_chat tbody td:nth-child(2),
+  .hs-client-profile-ui #zakaznici_tabulka_chat tbody td:nth-child(3) {
+    box-sizing: border-box;
+    width: fit-content !important;
+    max-width: 92%;
+    padding: 10px 12px !important;
+    color: #34495f;
+    font-size: 13px;
+    line-height: 1.5;
+    border-radius: 12px !important;
+  }
+
+  .hs-client-profile-ui #zakaznici_tabulka_chat tbody tr.hs-sms-chat-row--salon td:nth-child(2) {
+    justify-self: end;
+    border: 1px solid #d5eeec !important;
+    background: #eef9f8 !important;
+  }
+
+  .hs-client-profile-ui #zakaznici_tabulka_chat tbody tr.hs-sms-chat-row--customer td:nth-child(3) {
+    justify-self: start;
+    border: 1px solid #dce5ef !important;
+    background: #f2f6fa !important;
+  }
+
+  .hs-client-profile-ui #zakaznici_tabulka_chat tbody td.hs-sms-chat-empty {
+    display: none;
+  }
+
+  .hs-client-profile-ui #zakaznici_tabulka_chat_wrapper .dataTables_info,
+  .hs-client-profile-ui #zakaznici_tabulka_chat_wrapper .dataTables_paginate {
+    grid-column: 1;
+    justify-self: stretch;
+    text-align: center;
+  }
+
+  .hs-client-profile-ui #zakaznici_tabulka_chat_wrapper .dataTables_paginate {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 380px) {
+  .hs-client-profile-ui #SMSChat { padding: 8px; }
+
+  .hs-client-profile-ui #zakaznici_tabulka_chat_wrapper .dataTables_paginate .paginate_button {
+    min-width: 31px;
+    height: 31px;
+    padding-right: 8px !important;
+    padding-left: 8px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hs-client-profile-ui #zakaznici_tabulka_chat tbody tr {
+    transition: none;
+  }
+}

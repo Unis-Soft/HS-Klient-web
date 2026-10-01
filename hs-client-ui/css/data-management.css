@@ -1,0 +1,281 @@
+/* HairSoft Klient V212 – sjednocená Správa dat včetně stejného vnitřního prostoru. */
+
+#main-content .hs-data-management-unified {
+  box-sizing: border-box;
+  overflow: hidden;
+  border: 1px solid rgba(60, 83, 112, .13) !important;
+  border-radius: 18px !important;
+  background: #fff !important;
+  box-shadow: 0 10px 28px rgba(38, 53, 73, .065) !important;
+}
+
+#main-content details.hs-data-management-unified {
+  margin-bottom: 14px !important;
+}
+
+#main-content .hs-data-management-unified > summary,
+#main-content .hs-data-management-unified > .panel-heading {
+  position: relative;
+  display: flex !important;
+  align-items: center !important;
+  box-sizing: border-box;
+  min-height: 72px !important;
+  margin: 0 !important;
+  padding: 13px 52px 13px 15px !important;
+  border: 0 !important;
+  border-bottom: 0 !important;
+  background: linear-gradient(135deg, #fff 0%, #fbfcfd 100%) !important;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+
+#main-content .hs-data-management-unified > summary::-webkit-details-marker {
+  display: none;
+}
+
+#main-content .hs-data-management-unified > summary:focus,
+#main-content .hs-data-management-unified > .panel-heading:focus {
+  outline: 2px solid rgba(23, 167, 162, .18);
+  outline-offset: -2px;
+}
+
+#main-content .hs-data-management-unified > summary::after,
+#main-content .hs-data-management-unified > .panel-heading::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 22px;
+  width: 9px;
+  height: 9px;
+  margin-top: -6px;
+  border-right: 2px solid #8290a2;
+  border-bottom: 2px solid #8290a2;
+  transform: rotate(45deg);
+  transition: transform .16s ease, margin-top .16s ease;
+}
+
+#main-content details.hs-data-management-unified[open] > summary::after,
+#main-content .hs-data-management-unified[data-hs-dm-open="1"] > .panel-heading::after {
+  margin-top: -1px;
+  transform: rotate(225deg);
+}
+
+#main-content details.hs-data-management-unified[open] > summary,
+#main-content .hs-data-management-unified[data-hs-dm-open="1"] > .panel-heading {
+  border-bottom: 1px solid #e5eaef !important;
+}
+
+#main-content .hs-data-management-heading {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  margin: 0;
+  font-family: Tahoma, Arial, sans-serif !important;
+}
+
+#main-content .hs-data-management-heading__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 42px;
+  width: 42px;
+  height: 42px;
+  color: #168f8b;
+  border-radius: 12px;
+  background: #e8f6f5;
+}
+
+#main-content .hs-data-management-heading__icon svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+#main-content .hs-data-management-heading__copy {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+  font-family: Tahoma, Arial, sans-serif !important;
+}
+
+#main-content .hs-data-management-heading__copy strong {
+  margin: 0 !important;
+  color: #253a53 !important;
+  font-family: Tahoma, Arial, sans-serif !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  line-height: 1.3 !important;
+  letter-spacing: 0 !important;
+  text-transform: uppercase !important;
+}
+
+#main-content .hs-data-management-heading__copy small {
+  display: block !important;
+  margin: 3px 0 0 !important;
+  color: #8290a1 !important;
+  font-family: Tahoma, Arial, sans-serif !important;
+  font-size: 11.5px !important;
+  font-weight: 400 !important;
+  line-height: 1.35 !important;
+  letter-spacing: 0 !important;
+  text-transform: uppercase !important;
+}
+
+/*
+ * V212: všechny varianty mají skutečný BODY kontejner. U details se wrapper
+ * vytváří JS a obsahuje původní action blok. Tím mají Sklad, Seznam zákazníků
+ * a Karta zákazníka stejných 17 px jako správně vypadající Měsíční tržby.
+ */
+#main-content .hs-data-management-unified > .hs-data-management-body {
+  box-sizing: border-box;
+  display: none !important;
+  width: 100%;
+  margin: 0 !important;
+  padding: 17px !important;
+  color: #334861;
+  font-family: Tahoma, Arial, sans-serif !important;
+  font-size: 12px !important;
+  line-height: 1.45;
+  border: 0 !important;
+  background: #fff !important;
+}
+
+#main-content details.hs-data-management-unified[open] > .hs-data-management-body,
+#main-content .hs-data-management-unified[data-hs-dm-open="1"] > .hs-data-management-body {
+  display: block !important;
+}
+
+#main-content .hs-data-management-unified .hs-daily-options-intro,
+#main-content .hs-data-management-unified .hs-monthly-options-intro,
+#main-content .hs-data-management-unified .hs-annual-options-intro,
+#main-content .hs-data-management-unified .hs-lifetime-options-intro,
+#main-content .hs-data-management-unified p {
+  font-family: Tahoma, Arial, sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 400 !important;
+}
+
+#main-content .hs-data-management-unified button,
+#main-content .hs-data-management-unified .btn,
+#main-content .hs-data-management-unified input[type="button"],
+#main-content .hs-data-management-unified input[type="submit"] {
+  min-height: 42px;
+  padding: 9px 14px !important;
+  font-family: Tahoma, Arial, sans-serif !important;
+  font-size: 12.5px !important;
+  font-weight: 600 !important;
+  line-height: 1.2 !important;
+}
+
+/* Vnitřní action kontejnery – bez vlastního paddingu, ten zajišťuje společný body. */
+#main-content .hs-data-management-unified .hs-data-management-actions,
+#main-content .hs-data-management-unified .hs-stock-data-management-actions,
+#main-content .hs-data-management-unified .hs-client-data-management-actions,
+#main-content .hs-data-management-unified .hs-daily-options-actions,
+#main-content .hs-data-management-unified .hs-monthly-options-actions,
+#main-content .hs-data-management-unified .hs-annual-options-actions,
+#main-content .hs-data-management-unified .hs-lifetime-options-actions,
+#main-content .hs-data-management-unified .hs-voucher-actions {
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 100%;
+  gap: 10px 12px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#main-content .hs-data-management-unified .hs-data-management-actions .rada,
+#main-content .hs-data-management-unified .hs-stock-data-management-actions .hs-stock-management-action,
+#main-content .hs-data-management-unified .hs-client-data-management-actions > .rada,
+#main-content .hs-data-management-unified .hs-data-management-actions form,
+#main-content .hs-data-management-unified .hs-stock-data-management-actions form,
+#main-content .hs-data-management-unified .hs-client-data-management-actions form {
+  margin: 0 !important;
+}
+
+/* Stavové hlášky nesmí sahat k hraně karty a tvoří samostatný řádek. */
+#main-content .hs-data-management-unified .alert,
+#main-content .hs-data-management-unified .hs-stock-refresh-status {
+  box-sizing: border-box;
+  flex: 1 0 100%;
+  width: 100%;
+  margin: 0 0 8px !important;
+  padding: 13px 15px !important;
+  border-radius: 10px;
+}
+
+/* Detail zákazníka: dlouhé doprovodné texty mají vlastní prostor a nemačkají tlačítka. */
+#main-content .hs-data-management-unified .hs-copy-manual-option,
+#main-content .hs-data-management-unified .hs-copy-test-option {
+  gap: 9px 12px !important;
+}
+
+#main-content .hs-data-management-unified .hs-copy-test-hint {
+  margin: 0 !important;
+  line-height: 1.45 !important;
+}
+
+@media (max-width: 767px) {
+  #main-content .hs-data-management-unified > summary,
+  #main-content .hs-data-management-unified > .panel-heading {
+    min-height: 66px !important;
+    padding: 11px 46px 11px 13px !important;
+  }
+
+  #main-content .hs-data-management-heading { gap: 10px; }
+
+  #main-content .hs-data-management-heading__icon {
+    flex-basis: 40px;
+    width: 40px;
+    height: 40px;
+  }
+
+  #main-content .hs-data-management-heading__copy strong { font-size: 14px !important; }
+  #main-content .hs-data-management-heading__copy small { font-size: 10.5px !important; }
+
+  #main-content .hs-data-management-unified > .hs-data-management-body {
+    padding: 14px !important;
+  }
+
+  #main-content .hs-data-management-unified .hs-data-management-actions,
+  #main-content .hs-data-management-unified .hs-stock-data-management-actions,
+  #main-content .hs-data-management-unified .hs-client-data-management-actions,
+  #main-content .hs-data-management-unified .hs-daily-options-actions,
+  #main-content .hs-data-management-unified .hs-monthly-options-actions,
+  #main-content .hs-data-management-unified .hs-annual-options-actions,
+  #main-content .hs-data-management-unified .hs-lifetime-options-actions,
+  #main-content .hs-data-management-unified .hs-voucher-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #main-content .hs-data-management-unified button,
+  #main-content .hs-data-management-unified .btn,
+  #main-content .hs-data-management-unified input[type="button"],
+  #main-content .hs-data-management-unified input[type="submit"] {
+    width: 100%;
+  }
+
+  #main-content .hs-data-management-unified .hs-copy-manual-option,
+  #main-content .hs-data-management-unified .hs-copy-test-option {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #main-content .hs-data-management-unified .hs-copy-test-hint {
+    max-width: none;
+  }
+}

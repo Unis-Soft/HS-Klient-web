@@ -1,0 +1,29 @@
+HAIRSOFT KLIENT V225 - PROGRAMY PERFORMANCE FIX
+==============================================
+
+V225 NAVAZUJE PRIMO NA V224.
+
+OPRAVA:
+- Programy se uz NENACITAJI pri kazdem otevreni Karty osoby.
+- Ostatni zalozky detailu se vraci na puvodni rychlou cestu V223.
+- Programy se nacitaji az po otevreni zalozky Programy.
+- Prepinani programu v detailu probiha pouze uvnitr sekce Programy, bez bile stranky a bez plneho reloadu.
+- Seznam zakazniku pri zmene programu ponecha tabulku viditelnou a prekresli ji az po AJAX odpovedi.
+
+NOVY SOUBOR:
+- /hs-client-ui/js/client-detail-programs.js
+
+ZMENENE SOUBORY:
+- /hs-client-ui/php/strana/KartaOsoby.php
+- /hs-client-ui/php/index.php
+- /hs-client-ui/js/client-customers.js
+- /hs-client-ui/css/client-detail-programs.css
+- /hs-client-ui/VERSION.txt
+
+CACHE:
+- client-detail-programs.css?v=225
+- client-detail-programs.js?v=225
+- client-customers.js?v=225
+
+HSBridge ani hsbridge.php se nemeni.
+Po nahrani doporucen Ctrl+F5.

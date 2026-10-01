@@ -1,0 +1,2006 @@
+/* HairSoft Klient V173 – Uživatele. Klikací řádky/karty a výchozí sbalený archiv. */
+#main-content.hs-users-page,
+#main-content.hs-users-page input,
+#main-content.hs-users-page select,
+#main-content.hs-users-page button,
+#main-content.hs-users-page table,
+#main-content.hs-users-page font {
+  font-family: Tahoma, Arial, sans-serif !important;
+  color: #334861;
+}
+
+#main-content.hs-users-page { min-width: 0; }
+#main-content.hs-users-page > .pageheader { margin-bottom: 18px; }
+#main-content.hs-users-page .row { min-width: 0; }
+#main-content.hs-users-page .panel { margin-bottom: 18px; }
+
+/* Jednotná karta. */
+#main-content.hs-users-page .hs-users-card {
+  overflow: hidden;
+  border: 1px solid #dfe7ed;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 10px 28px rgba(38,53,73,.06);
+}
+#main-content.hs-users-page .hs-users-card > .panel-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 70px;
+  padding: 15px 18px;
+  border: 0;
+  border-bottom: 1px solid #e1e8ef;
+  background: #fbfcfd;
+}
+#main-content.hs-users-page .hs-users-card > .panel-heading .actions { display: none !important; }
+#main-content.hs-users-page .hs-users-card > .panel-heading .panel-title {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  margin: 0;
+  color: #253a53;
+  font: 700 15px/1.35 Tahoma, Arial, sans-serif !important;
+}
+#main-content.hs-users-page .hs-users-card > .panel-heading .panel-title font,
+#main-content.hs-users-page .hs-users-card > .panel-heading .panel-title b,
+#main-content.hs-users-page .hs-users-card > .panel-heading .panel-title i { font: inherit !important; color: inherit !important; }
+#main-content.hs-users-page .hs-users-card > .panel-body { padding: 18px; }
+
+.hs-users-heading-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  margin-right: 1px;
+  color: #15948f;
+  border-radius: 14px;
+  background: #eaf7f6;
+}
+.hs-users-heading-icon svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Informace / výsledky akcí. */
+#main-content.hs-users-page .hs-users-notice { border-color: #cde8e5; background: #f5fbfa; }
+#main-content.hs-users-page .hs-users-notice > .panel-heading { display: none; }
+#main-content.hs-users-page .hs-users-notice > .panel-body { padding: 14px 18px; color: #31576e; font-size: 13px; }
+#main-content.hs-users-page .hs-users-notice.hs-users-notice--error { border-color: #f0cbd0; background: #fff7f7; }
+#main-content.hs-users-page .hs-users-notice.hs-users-notice--error > .panel-body { color: #b44752; }
+
+/* Pobočka + import v jednom kompaktním řádku. */
+#main-content.hs-users-page .hs-users-branch {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-height: 82px;
+  padding: 14px 18px;
+}
+#main-content.hs-users-page .hs-users-branch > .panel-heading {
+  flex: 0 0 auto;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+#main-content.hs-users-page .hs-users-branch > .panel-body {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 0;
+}
+#main-content.hs-users-page .hs-users-branch .form-group {
+  flex: 1 1 auto;
+  min-width: 220px;
+  margin: 0;
+}
+#main-content.hs-users-page .hs-users-branch form { margin: 0; }
+#main-content.hs-users-page .hs-users-branch #ZmenaPobockyPravaForm { width: 100%; }
+#main-content.hs-users-page .hs-users-branch select.form-control {
+  width: 100%;
+  height: 46px !important;
+  margin: 0;
+  padding: 0 42px 0 14px;
+  color: #29445f;
+  border: 1px solid #d6e2ea;
+  border-radius: 12px;
+  outline: 0;
+  background: #f7fafb;
+  box-shadow: none;
+  font-size: 14px !important;
+}
+#main-content.hs-users-page .hs-users-branch select.form-control:focus {
+  border-color: #57bbb4;
+  box-shadow: 0 0 0 3px #eaf7f6;
+}
+#main-content.hs-users-page .hs-users-branch-import {
+  flex: 0 0 auto;
+  margin-left: 2px;
+}
+#main-content.hs-users-page .hs-users-branch-import form { margin: 0; }
+#main-content.hs-users-page .hs-users-branch-import button.btn-info {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 46px;
+  padding: 10px 17px;
+  color: #087d79 !important;
+  border: 1px solid #b9dfdc;
+  border-radius: 12px;
+  background: #eff9f8;
+  box-shadow: none;
+  white-space: nowrap;
+  font-size: 13px;
+  font-weight: 700;
+}
+#main-content.hs-users-page .hs-users-branch-import button.btn-info:hover { background: #e5f5f3; border-color: #94d0cb; }
+#main-content.hs-users-page .hs-users-branch-import button.btn-info:focus { outline: 0; box-shadow: 0 0 0 3px #eaf7f6; }
+#main-content.hs-users-page .hs-users-branch-import button.btn-info[disabled] { opacity: .52; cursor: not-allowed; }
+#main-content.hs-users-page .hs-users-actions-row--moved { display: none !important; }
+
+/* Detail vybrané obsluhy. V151: profil je součástí jedné společné karty, práva jsou pod ní přes celou šířku. */
+#main-content.hs-users-page .hs-users-detail-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 18px;
+  margin: 0 0 18px;
+  align-items: start;
+}
+#main-content.hs-users-page .hs-users-detail-row > [class*="col-"] { float: none; width: auto; padding: 0; }
+#main-content.hs-users-page .hs-users-detail-row .hs-users-card { height: auto; margin: 0; }
+#main-content.hs-users-page .hs-users-profile-col--merged { display: none !important; }
+#main-content.hs-users-page .hs-users-account-col--wide,
+#main-content.hs-users-page .hs-users-permissions-col--wide { grid-column: 1 / -1; }
+
+/* Kompaktní profil uvnitř karty Detail obsluhy. */
+#main-content.hs-users-page .hs-users-account > .panel-body { min-height: 0 !important; }
+#main-content.hs-users-page .hs-users-account > .panel-body.hs-users-account-body--merged {
+  display: grid;
+  grid-template-columns: 178px minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+  padding: 20px 22px;
+}
+#main-content.hs-users-page .hs-users-account-body--merged > .form-group { min-width: 0; margin: 0; }
+#main-content.hs-users-page .hs-users-account-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 204px;
+  padding: 14px 10px;
+  border: 1px solid #e2ebf0;
+  border-radius: 16px;
+  background: #f8fbfc;
+}
+#main-content.hs-users-page .hs-users-account-profile-photo { display: flex; align-items: center; justify-content: center; }
+#main-content.hs-users-page .hs-users-account-profile .OrizlaKulataFotkaObal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 126px;
+  height: 126px;
+  padding: 6px;
+  border: 1px solid #d7e4eb;
+  border-radius: 50%;
+  background: #fff;
+}
+#main-content.hs-users-page .hs-users-account-profile .OrizlaKulataFotka {
+  width: 112px !important;
+  height: 112px !important;
+  border-radius: 50%;
+  background-size: cover !important;
+  background-position: center !important;
+  box-shadow: 0 7px 18px rgba(38,53,73,.10);
+}
+#main-content.hs-users-page .hs-users-account-profile-name {
+  max-width: 100%;
+  margin-top: 11px;
+  overflow: hidden;
+  color: #263c54;
+  font-size: 14px;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+#main-content.hs-users-page .hs-users-account-profile-role { margin-top: 2px; color: #8092a3; font-size: 11px; font-weight: 600; }
+
+/* Přihlašovací údaje. */
+#main-content.hs-users-page .hs-users-account form.form-horizontal > .form-group {
+  display: grid;
+  grid-template-columns: minmax(145px, 180px) minmax(240px, 440px);
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 14px;
+  padding: 0;
+}
+#main-content.hs-users-page .hs-users-account form.form-horizontal > .form-group > [class*="col-"] { float: none; width: auto; padding: 0; }
+#main-content.hs-users-page .hs-users-account .control-label { padding: 0; color: #70859a; font-size: 12px; font-weight: 600; text-align: left; }
+#main-content.hs-users-page .hs-users-account .form-control {
+  width: 100%;
+  height: 44px !important;
+  border: 1px solid #d6e2ea;
+  border-radius: 12px;
+  background: #f7fafb;
+  box-shadow: none;
+  color: #29445f;
+  font-size: 14px !important;
+}
+#main-content.hs-users-page .hs-users-account .form-control:focus { border-color: #57bbb4; box-shadow: 0 0 0 3px #eaf7f6; }
+#main-content.hs-users-page .hs-users-account .form-control[disabled] { color: #687b8e; background: #f1f5f7; cursor: default; opacity: 1; }
+#main-content.hs-users-page .hs-users-account button.btn-primary,
+#main-content.hs-users-page .hs-users-actions button.btn-info {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 42px;
+  padding: 10px 16px;
+  color: #087d79 !important;
+  border: 1px solid #b9dfdc;
+  border-radius: 12px;
+  background: #eff9f8;
+  box-shadow: none;
+  font-size: 13px;
+  font-weight: 700;
+}
+#main-content.hs-users-page .hs-users-account button.btn-primary:hover,
+#main-content.hs-users-page .hs-users-actions button.btn-info:hover { background: #e5f5f3; border-color: #94d0cb; }
+#main-content.hs-users-page .hs-users-account button.btn-primary:focus,
+#main-content.hs-users-page .hs-users-actions button.btn-info:focus { outline: 0; box-shadow: 0 0 0 3px #eaf7f6; }
+#main-content.hs-users-page .hs-users-account button.btn-primary[disabled],
+#main-content.hs-users-page .hs-users-actions button.btn-info[disabled] { opacity: .52; cursor: not-allowed; }
+
+/* Přepínače hodnocení uvnitř stejné karty. */
+#main-content.hs-users-page .hs-users-rating-settings {
+  max-width: 760px;
+  margin: 14px 0 0 !important;
+  border: 1px solid #e1e8ef !important;
+  border-radius: 14px !important;
+  box-shadow: none !important;
+}
+#main-content.hs-users-page .hs-users-rating-settings > .panel-heading { display: none; }
+#main-content.hs-users-page .hs-users-rating-settings > .panel-body { min-height: 0 !important; padding: 4px 0; }
+#main-content.hs-users-page .hs-users-rating-settings .form-group { margin: 0; }
+#main-content.hs-users-page .hs-users-rating-settings table { width: 100% !important; margin: 0; border: 0; background: transparent; }
+#main-content.hs-users-page .hs-users-rating-settings tr { background: transparent !important; }
+#main-content.hs-users-page .hs-users-rating-settings td { padding: 12px 15px; border: 0; border-bottom: 1px solid #edf2f5; vertical-align: middle; font-size: 12px; }
+#main-content.hs-users-page .hs-users-rating-settings tr:last-child td { border-bottom: 0; }
+#main-content.hs-users-page .hs-users-rating-settings td:first-child { display: none; }
+#main-content.hs-users-page .hs-users-rating-settings td:last-child { width: 92px; text-align: right !important; }
+
+/* Práva jsou samostatná široká sekce pod detailem. */
+#main-content.hs-users-page .hs-users-permissions > .panel-body { min-height: 0 !important; padding: 4px 18px 14px; }
+#main-content.hs-users-page .hs-users-permissions .form-group { margin: 0; }
+#main-content.hs-users-page .hs-users-permissions table { width: 100% !important; margin: 0; border: 0; border-collapse: separate; border-spacing: 0; background: transparent; }
+#main-content.hs-users-page .hs-users-permissions tr { background: transparent !important; }
+#main-content.hs-users-page .hs-users-permissions td {
+  padding: 12px 10px !important;
+  border: 0 !important;
+  border-bottom: 1px solid #edf2f5 !important;
+  vertical-align: middle;
+  font-size: 12px;
+}
+#main-content.hs-users-page .hs-users-permissions tr:last-child td { border-bottom: 0 !important; }
+#main-content.hs-users-page .hs-users-permissions td:first-child { display: none; }
+#main-content.hs-users-page .hs-users-permissions td:nth-child(2) { color: #344b63; font-weight: 600; }
+#main-content.hs-users-page .hs-users-permissions td:nth-child(3) { width: 94px; text-align: right !important; }
+#main-content.hs-users-page .hs-users-permissions td:nth-child(4) { width: 150px; text-align: right !important; color: #7a8da0; }
+#main-content.hs-users-page .hs-users-permissions tr:first-child td { padding-top: 9px !important; padding-bottom: 9px !important; color: #7a8da0; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .035em; }
+#main-content.hs-users-page .hs-users-permissions tr:first-child td:nth-child(2),
+#main-content.hs-users-page .hs-users-permissions tr:first-child td:nth-child(3) { visibility: hidden; }
+#main-content.hs-users-page .hs-users-permissions .switchery,
+#main-content.hs-users-page .hs-users-rating-settings .switchery { margin: 0; vertical-align: middle; }
+
+/* Aktivní / archivovaní uživatelé. */
+#main-content.hs-users-page .hs-users-list > .panel-body { padding: 12px 18px 18px; }
+#main-content.hs-users-page .hs-users-list .table-responsive { overflow-x: auto; margin: 0; border: 0; padding-bottom: 22px; }
+#main-content.hs-users-page .hs-users-list .dataTables_wrapper { width: 100%; min-width: 0; }
+#main-content.hs-users-page .hs-users-table-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 42px;
+  margin: 0 0 12px;
+}
+#main-content.hs-users-page .hs-users-dt-top-row-hidden { display: none !important; }
+#main-content.hs-users-page .hs-users-list .dataTables_filter { float: none !important; width: min(100%, 420px); margin: 0 !important; text-align: left !important; }
+#main-content.hs-users-page .hs-users-list .dataTables_filter label { display: flex; align-items: center; position: relative; width: 100%; margin: 0; color: transparent; font-size: 0; }
+#main-content.hs-users-page .hs-users-list .dataTables_filter label::before {
+  content: "";
+  position: absolute;
+  left: 13px;
+  width: 17px;
+  height: 17px;
+  pointer-events: none;
+  background: no-repeat center/17px 17px url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23168f8b' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.5-3.5'/%3E%3C/svg%3E");
+}
+#main-content.hs-users-page .hs-users-list .dataTables_filter input {
+  box-sizing: border-box;
+  width: 100%;
+  height: 42px;
+  margin: 0;
+  padding: 10px 12px 10px 40px;
+  border: 1px solid #d6e2ea;
+  border-radius: 12px;
+  outline: 0;
+  background: #fbfcfd;
+  color: #334861;
+  font-size: 12px;
+}
+#main-content.hs-users-page .hs-users-list .dataTables_filter input:focus { border-color: #57bbb4; box-shadow: 0 0 0 3px #eaf7f6; }
+#main-content.hs-users-page .hs-users-list table.dataTable {
+  width: 100% !important;
+  min-width: 760px;
+  margin: 0 !important;
+  overflow: hidden;
+  border: 1px solid #dbe5ed;
+  border-collapse: separate !important;
+  border-spacing: 0;
+  border-radius: 14px;
+  font-size: 11.5px;
+}
+#main-content.hs-users-page .hs-users-list table.dataTable thead th {
+  padding: 12px 18px 12px 10px;
+  color: #28415b;
+  border: 0;
+  border-bottom: 1px solid #dbe5ed;
+  background: #f3f7f9;
+  font-size: 11px;
+  font-weight: 700;
+}
+#main-content.hs-users-page .hs-users-list table.dataTable tbody td {
+  padding: 11px 10px;
+  border: 0;
+  border-bottom: 1px solid #e5edf2;
+  background: transparent;
+  vertical-align: middle;
+  overflow-wrap: anywhere;
+}
+#main-content.hs-users-page .hs-users-list table.dataTable tbody tr:nth-child(odd) { background: #fff; }
+#main-content.hs-users-page .hs-users-list table.dataTable tbody tr:nth-child(even) { background: #f9fbfc; }
+#main-content.hs-users-page .hs-users-list table.dataTable tbody tr:last-child td { border-bottom: 0; }
+#main-content.hs-users-page .hs-users-list table.dataTable td:first-child,
+#main-content.hs-users-page .hs-users-list table.dataTable th:first-child { width: 70px !important; text-align: center; }
+#main-content.hs-users-page .hs-users-list table.dataTable td:nth-child(2) { font-weight: 700; color: #2f4660; }
+#main-content.hs-users-page .hs-users-list .imgdivMini { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; }
+#main-content.hs-users-page .hs-users-list .imgkolacmini { width: 42px !important; height: 42px !important; object-fit: cover; border: 2px solid #fff; border-radius: 50%; box-shadow: 0 0 0 1px #d7e2e9, 0 4px 12px rgba(38,53,73,.08); }
+#main-content.hs-users-page .hs-users-permission-chips { display: flex; flex-wrap: wrap; gap: 5px; }
+#main-content.hs-users-page .hs-users-permission-chip { display: inline-flex; align-items: center; min-height: 25px; padding: 4px 8px; color: #526b80; border: 1px solid #dce7ed; border-radius: 999px; background: #f7fafb; font-size: 10.5px; line-height: 1.25; }
+#main-content.hs-users-page .hs-users-actions-cell { white-space: nowrap; }
+#main-content.hs-users-page .hs-users-row-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  margin: 0 3px;
+  color: #55708a;
+  border: 1px solid #d9e4ea;
+  border-radius: 11px;
+  background: #fff;
+  text-decoration: none !important;
+  transition: .15s ease;
+}
+#main-content.hs-users-page .hs-users-row-action svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+#main-content.hs-users-page .hs-users-row-action:hover { color: #168f8b; border-color: #b8dedb; background: #f2fbfa; transform: translateY(-1px); }
+#main-content.hs-users-page .hs-users-row-action--delete { color: #c54d58; border-color: #efcfd3; background: #fff7f7; }
+#main-content.hs-users-page .hs-users-row-action--delete:hover { color: #b53b47; border-color: #e9b8bf; background: #fff0f1; }
+#main-content.hs-users-page .dataTables_info { float: left; padding-top: 16px; color: #7b8ca1; font-size: 11px; }
+#main-content.hs-users-page .dataTables_paginate { display: flex; align-items: center; justify-content: flex-end; gap: 5px; float: right; width: fit-content; max-width: 100%; margin-top: 12px; padding: 0; flex-wrap: wrap; font-size: 11px; }
+#main-content.hs-users-page .dataTables_paginate .paginate_button { display: inline-flex; align-items: center; justify-content: center; min-width: 32px; height: 32px; margin: 0; padding: 0 10px; color: #526b91 !important; border: 1px solid #dbe5ed !important; border-radius: 9px; background: #fff !important; box-shadow: none; text-decoration: none !important; }
+#main-content.hs-users-page .dataTables_paginate .paginate_button.current,
+#main-content.hs-users-page .dataTables_paginate .paginate_button.current:hover { color: #168f8b !important; border-color: #c1e3df !important; background: #e9f6f5 !important; }
+#main-content.hs-users-page .dataTables_paginate .paginate_button.disabled { opacity: .45; cursor: default; }
+#main-content.hs-users-page .dataTables_paginate .paginate_button:not(.current):not(.disabled):hover { color: #168f8b !important; border-color: #c1e3df !important; background: #f2faf9 !important; }
+
+
+/* V173: celý řádek / mobilní karta obsluhy otevírá detail, akční prvky zůstávají samostatné. */
+#main-content.hs-users-page .hs-users-list table.dataTable tbody tr.hs-users-row-clickable {
+  cursor: pointer;
+  transition: background-color .16s ease, border-color .16s ease, box-shadow .16s ease, transform .16s ease;
+}
+#main-content.hs-users-page .hs-users-list table.dataTable tbody tr.hs-users-row-clickable:hover {
+  background: #f2faf9 !important;
+}
+#main-content.hs-users-page .hs-users-list table.dataTable tbody tr.hs-users-row-clickable:focus {
+  outline: 0;
+  box-shadow: inset 0 0 0 2px #8bd3ce;
+}
+
+/* V173: archiv je po načtení sbalený a rozbalí se z jeho vlastní hlavičky. */
+#main-content.hs-users-page .hs-users-list--archive > .panel-heading {
+  cursor: pointer;
+}
+#main-content.hs-users-page .hs-users-list--archive > .panel-heading .panel-title {
+  flex: 1 1 auto;
+}
+#main-content.hs-users-page .hs-users-archive-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex: 0 0 auto;
+  min-height: 38px;
+  margin-left: auto;
+  padding: 0 12px 0 14px;
+  color: #526b80;
+  border: 1px solid #d7e4eb;
+  border-radius: 11px;
+  background: #fff;
+  box-shadow: 0 3px 10px rgba(38,53,73,.035);
+  font: 600 11.5px/1 Tahoma, Arial, sans-serif;
+  cursor: pointer;
+  transition: color .16s ease, border-color .16s ease, background-color .16s ease, box-shadow .16s ease;
+}
+#main-content.hs-users-page .hs-users-archive-toggle:hover,
+#main-content.hs-users-page .hs-users-archive-toggle:focus {
+  color: #168f8b;
+  border-color: #b8dedb;
+  background: #f4fbfa;
+  outline: 0;
+  box-shadow: 0 0 0 3px #eaf7f6;
+}
+#main-content.hs-users-page .hs-users-archive-toggle-icon {
+  display: inline-flex;
+  width: 18px;
+  height: 18px;
+  transition: transform .18s ease;
+}
+#main-content.hs-users-page .hs-users-archive-toggle-icon svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+#main-content.hs-users-page .hs-users-list--archive:not(.hs-users-list--collapsed) .hs-users-archive-toggle-icon {
+  transform: rotate(90deg);
+}
+#main-content.hs-users-page .hs-users-list--archive.hs-users-list--collapsed > .panel-heading {
+  border-bottom-color: transparent;
+}
+#main-content.hs-users-page .hs-users-list--archive.hs-users-list--collapsed > .panel-body {
+  display: none !important;
+}
+
+/* Původní samostatný blok importu je po přesunu do výběru pobočky skryt. */
+#main-content.hs-users-page .hs-users-actions .rada { margin: 0; }
+#main-content.hs-users-page .hs-users-actions form { margin: 0; }
+#main-content.hs-users-page .hs-users-actions center { text-align: left; }
+#main-content.hs-users-page .hs-users-actions button i,
+#main-content.hs-users-page .hs-users-branch-import button i { margin-right: 7px; }
+
+/* Legacy prázdný panel na konci není obsah. */
+#main-content.hs-users-page .hs-users-empty-panel { display: none !important; }
+
+@media (max-width: 1199px) {
+  #main-content.hs-users-page .hs-users-account > .panel-body.hs-users-account-body--merged { grid-template-columns: 158px minmax(0, 1fr); gap: 18px; }
+  #main-content.hs-users-page .hs-users-account-profile { min-height: 190px; padding: 12px 8px; }
+}
+
+@media (max-width: 767px) {
+  #main-content.hs-users-page .hs-users-card { border-radius: 16px; }
+  #main-content.hs-users-page .hs-users-branch { display: block; min-height: 0; padding: 14px; }
+  #main-content.hs-users-page .hs-users-branch > .panel-heading { margin-bottom: 12px; }
+  #main-content.hs-users-page .hs-users-branch > .panel-body { display: block; }
+  #main-content.hs-users-page .hs-users-branch .form-group { min-width: 0; }
+  #main-content.hs-users-page .hs-users-branch-import { margin: 10px 0 0; }
+  #main-content.hs-users-page .hs-users-branch-import button.btn-info { width: 100%; }
+  #main-content.hs-users-page .hs-users-table-toolbar { margin-bottom: 10px; }
+  #main-content.hs-users-page .hs-users-card > .panel-heading { min-height: 64px; padding: 13px 14px; }
+  #main-content.hs-users-page .hs-users-card > .panel-body { padding: 14px; }
+  #main-content.hs-users-page .hs-users-branch > .panel-heading { min-height: 0; padding: 0; margin-bottom: 12px; }
+  #main-content.hs-users-page .hs-users-branch > .panel-body { padding: 0; }
+  .hs-users-heading-icon { flex-basis: 40px; width: 40px; height: 40px; border-radius: 13px; }
+  .hs-users-heading-icon svg { width: 20px; height: 20px; }
+  #main-content.hs-users-page .hs-users-detail-row { display: block; margin: 0; }
+  #main-content.hs-users-page .hs-users-detail-row > [class*="col-"] { margin-bottom: 14px; }
+  #main-content.hs-users-page .hs-users-account > .panel-body.hs-users-account-body--merged { display: block; padding: 14px; }
+  #main-content.hs-users-page .hs-users-account-profile { display: grid; grid-template-columns: 76px minmax(0,1fr); grid-template-rows: auto auto; column-gap: 12px; align-items: center; justify-content: stretch; min-height: 0; margin-bottom: 16px; padding: 10px 12px; text-align: left; }
+  #main-content.hs-users-page .hs-users-account-profile-photo { grid-column: 1; grid-row: 1 / span 2; }
+  #main-content.hs-users-page .hs-users-account-profile .OrizlaKulataFotkaObal { width: 76px; height: 76px; padding: 4px; }
+  #main-content.hs-users-page .hs-users-account-profile .OrizlaKulataFotka { width: 66px !important; height: 66px !important; }
+  #main-content.hs-users-page .hs-users-account-profile-name { grid-column: 2; grid-row: 1; align-self: end; margin: 0; }
+  #main-content.hs-users-page .hs-users-account-profile-role { grid-column: 2; grid-row: 2; align-self: start; margin: 2px 0 0; }
+  #main-content.hs-users-page .hs-users-account form.form-horizontal > .form-group { grid-template-columns: 1fr; gap: 7px; }
+  #main-content.hs-users-page .hs-users-account button.btn-primary,
+  #main-content.hs-users-page .hs-users-actions button.btn-info { width: 100%; }
+  #main-content.hs-users-page .hs-users-permissions td:nth-child(4) { width: 95px; }
+  #main-content.hs-users-page .hs-users-list .dataTables_filter label { width: 100%; }
+  #main-content.hs-users-page .hs-users-list .table-responsive { overflow: visible; padding-bottom: 0; }
+  #main-content.hs-users-page .hs-users-list table.dataTable { display: block; min-width: 0; border: 0; background: transparent; }
+  #main-content.hs-users-page .hs-users-list table.dataTable thead { display: none; }
+  #main-content.hs-users-page .hs-users-list table.dataTable tbody { display: block; }
+  #main-content.hs-users-page .hs-users-list table.dataTable tbody tr { display: grid; grid-template-columns: 58px minmax(0,1fr) auto; gap: 7px 10px; margin: 0 0 10px; padding: 12px; border: 1px solid #dfe7ed; border-radius: 14px; background: #fff !important; box-shadow: 0 6px 18px rgba(38,53,73,.045); }
+  #main-content.hs-users-page .hs-users-list table.dataTable tbody tr.hs-users-row-clickable:hover { border-color: #b8dedb; background: #f7fcfb !important; box-shadow: 0 8px 20px rgba(38,53,73,.07); }
+  #main-content.hs-users-page .hs-users-list table.dataTable tbody tr.hs-users-row-clickable:active { transform: scale(.995); }
+  #main-content.hs-users-page .hs-users-archive-toggle { width: 40px; min-width: 40px; height: 40px; min-height: 40px; padding: 0; border-radius: 12px; }
+  #main-content.hs-users-page .hs-users-archive-toggle-label { display: none; }
+  #main-content.hs-users-page .hs-users-list table.dataTable tbody td { display: block; padding: 0 !important; border: 0 !important; background: transparent !important; }
+  #main-content.hs-users-page .hs-users-list table.dataTable tbody td:first-child { grid-row: 1 / span 2; grid-column: 1; width: auto !important; text-align: left; }
+  #main-content.hs-users-page .hs-users-list table.dataTable tbody td:nth-child(2) { grid-column: 2; align-self: center; font-size: 13px; }
+  #main-content.hs-users-page .hs-users-list table.dataTable tbody td:nth-child(3) { grid-column: 2 / 4; color: #718398; font-size: 10.5px; }
+  #main-content.hs-users-page .hs-users-list table.dataTable tbody td:nth-child(4) { grid-column: 3; grid-row: 1; align-self: center; text-align: right !important; }
+  #main-content.hs-users-page .hs-users-permission-chip { margin: 0 4px 4px 0; }
+  #main-content.hs-users-page .dataTables_info { float: none; padding-top: 12px; text-align: center; }
+  #main-content.hs-users-page .dataTables_paginate { float: none; justify-content: center; width: 100%; margin: 10px auto 0; }
+}
+#main-content.hs-users-page .hs-users-branch { height:auto !important; }
+
+/* === V152: kompaktní a deterministický detail obsluhy =================== */
+#main-content.hs-users-page .hs-users-detail-source-col {
+  display: none !important;
+}
+
+#main-content.hs-users-page .hs-users-detail-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 18px;
+  width: 100%;
+  margin: 0 0 18px;
+  clear: both;
+}
+
+#main-content.hs-users-page .hs-users-detail-shell > .hs-users-card {
+  width: 100%;
+  margin: 0;
+}
+
+#main-content.hs-users-page .hs-users-heading-person {
+  margin-left: .35em;
+}
+
+/* Detail: malý profil vlevo, formulář vpravo. Žádná samostatná obří karta. */
+#main-content.hs-users-page .hs-users-detail-shell .hs-users-account > .panel-body.hs-users-account-body--merged {
+  display: grid !important;
+  grid-template-columns: 150px minmax(0, 760px) !important;
+  justify-content: center;
+  align-items: start;
+  gap: 32px;
+  min-height: 0 !important;
+  padding: 24px 28px !important;
+}
+
+#main-content.hs-users-page .hs-users-detail-shell .hs-users-account-body--merged > .hs-users-account-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 4px 24px 4px 0;
+  border: 0;
+  border-right: 1px solid #e2eaf0;
+  border-radius: 0;
+  background: transparent;
+  text-align: center;
+}
+
+#main-content.hs-users-page .hs-users-detail-shell .hs-users-account-profile .OrizlaKulataFotkaObal {
+  width: 112px;
+  height: 112px;
+  padding: 5px;
+}
+
+#main-content.hs-users-page .hs-users-detail-shell .hs-users-account-profile .OrizlaKulataFotka {
+  width: 100px !important;
+  height: 100px !important;
+}
+
+#main-content.hs-users-page .hs-users-detail-shell .hs-users-account-profile-name {
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 1.3;
+}
+
+#main-content.hs-users-page .hs-users-detail-shell .hs-users-account-profile-role {
+  margin-top: 3px;
+  font-size: 11px;
+}
+
+/* Pravá část detailu – rovné řádky, plnohodnotná pole a přepínače. */
+#main-content.hs-users-page .hs-users-detail-shell .hs-users-account-body--merged > .form-group {
+  width: 100%;
+  min-width: 0;
+  margin: 0 !important;
+}
+
+#main-content.hs-users-page .hs-users-detail-shell .hs-users-account form.hs-users-account-form {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+#main-content.hs-users-page .hs-users-detail-shell .hs-users-account form.hs-users-account-form > .form-group {
+  display: grid;
+  grid-template-columns: 180px minmax(260px, 420px);
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  margin: 0 0 14px !important;
+}
+
+#main-content.hs-users-page .hs-users-detail-shell .hs-users-account form.hs-users-account-form > .form-group > [class*="col-"] {
+  float: none !important;
+  width: auto !important;
+  padding: 0 !important;
+}
+
+#main-content.hs-users-page .hs-users-detail-shell .hs-users-account .control-label {
+  width: auto !important;
+  padding: 0 !important;
+  color: #657b90;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.35;
+  text-align: left !important;
+}
+
+#main-content.hs-users-page .hs-users-detail-shell .hs-users-account .form-control {
+  width: 100% !important;
+  max-width: 420px;
+}
+
+#main-content.hs-users-page .hs-users-detail-shell .hs-users-account .hs-users-field-save .control-label {
+  visibility: hidden;
+}
+
+#main-content.hs-users-page .hs-users-detail-shell .hs-users-account .hs-users-field-save {
+  margin-bottom: 18px !important;
+}
+
+#main-content.hs-users-page .hs-users-detail-shell .hs-users-rating-settings {
+  width: 100%;
+  max-width: 650px;
+  margin: 6px 0 0 !important;
+  overflow: hidden;
+  border-radius: 14px !important;
+}
+
+#main-content.hs-users-page .hs-users-detail-shell .hs-users-rating-settings table {
+  width: 100% !important;
+  table-layout: auto;
+}
+
+#main-content.hs-users-page .hs-users-detail-shell .hs-users-rating-settings td {
+  padding: 13px 14px !important;
+  line-height: 1.35;
+}
+
+#main-content.hs-users-page .hs-users-detail-shell .hs-users-rating-settings td:nth-child(2) {
+  padding-right: 20px !important;
+}
+
+#main-content.hs-users-page .hs-users-detail-shell .hs-users-rating-settings td:last-child {
+  width: 72px;
+  text-align: right !important;
+}
+
+/* Oprávnění jsou samostatná plnohodnotná karta přes celou šířku. */
+#main-content.hs-users-page .hs-users-detail-shell .hs-users-permissions {
+  width: 100%;
+}
+
+#main-content.hs-users-page .hs-users-detail-shell .hs-users-permissions > .panel-body {
+  padding: 8px 22px 16px !important;
+}
+
+#main-content.hs-users-page .hs-users-detail-shell .hs-users-permissions table {
+  width: 100% !important;
+  max-width: 1120px;
+  margin: 0 auto !important;
+}
+
+#main-content.hs-users-page .hs-users-detail-shell .hs-users-permissions td {
+  padding: 11px 12px !important;
+}
+
+#main-content.hs-users-page .hs-users-detail-shell .hs-users-permissions td:nth-child(2) {
+  width: auto;
+}
+
+#main-content.hs-users-page .hs-users-detail-shell .hs-users-permissions td:nth-child(3) {
+  width: 110px;
+}
+
+#main-content.hs-users-page .hs-users-detail-shell .hs-users-permissions td:nth-child(4) {
+  width: 190px;
+}
+
+@media (max-width: 980px) {
+  #main-content.hs-users-page .hs-users-detail-shell .hs-users-account > .panel-body.hs-users-account-body--merged {
+    grid-template-columns: 120px minmax(0, 1fr) !important;
+    gap: 22px;
+    padding: 20px !important;
+  }
+
+  #main-content.hs-users-page .hs-users-detail-shell .hs-users-account-body--merged > .hs-users-account-profile {
+    padding-right: 18px;
+  }
+
+  #main-content.hs-users-page .hs-users-detail-shell .hs-users-account-profile .OrizlaKulataFotkaObal {
+    width: 94px;
+    height: 94px;
+  }
+
+  #main-content.hs-users-page .hs-users-detail-shell .hs-users-account-profile .OrizlaKulataFotka {
+    width: 84px !important;
+    height: 84px !important;
+  }
+
+  #main-content.hs-users-page .hs-users-detail-shell .hs-users-account form.hs-users-account-form > .form-group {
+    grid-template-columns: 160px minmax(220px, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  #main-content.hs-users-page .hs-users-detail-shell .hs-users-account > .panel-body.hs-users-account-body--merged {
+    display: block !important;
+    padding: 14px !important;
+  }
+
+  #main-content.hs-users-page .hs-users-detail-shell .hs-users-account-body--merged > .hs-users-account-profile {
+    display: grid;
+    grid-template-columns: 70px minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    column-gap: 12px;
+    align-items: center;
+    margin-bottom: 16px;
+    padding: 0 0 14px;
+    border-right: 0;
+    border-bottom: 1px solid #e2eaf0;
+    text-align: left;
+  }
+
+  #main-content.hs-users-page .hs-users-detail-shell .hs-users-account-profile-photo {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+  }
+
+  #main-content.hs-users-page .hs-users-detail-shell .hs-users-account-profile .OrizlaKulataFotkaObal {
+    width: 70px;
+    height: 70px;
+    padding: 4px;
+  }
+
+  #main-content.hs-users-page .hs-users-detail-shell .hs-users-account-profile .OrizlaKulataFotka {
+    width: 60px !important;
+    height: 60px !important;
+  }
+
+  #main-content.hs-users-page .hs-users-detail-shell .hs-users-account-profile-name {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: end;
+    margin: 0;
+  }
+
+  #main-content.hs-users-page .hs-users-detail-shell .hs-users-account-profile-role {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: start;
+  }
+
+  #main-content.hs-users-page .hs-users-detail-shell .hs-users-account form.hs-users-account-form > .form-group {
+    display: block;
+    margin-bottom: 13px !important;
+  }
+
+  #main-content.hs-users-page .hs-users-detail-shell .hs-users-account .control-label {
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  #main-content.hs-users-page .hs-users-detail-shell .hs-users-account .hs-users-field-save .control-label {
+    display: none;
+  }
+
+  #main-content.hs-users-page .hs-users-detail-shell .hs-users-account .form-control,
+  #main-content.hs-users-page .hs-users-detail-shell .hs-users-account button.btn-primary {
+    width: 100% !important;
+    max-width: none;
+  }
+
+  #main-content.hs-users-page .hs-users-detail-shell .hs-users-rating-settings {
+    max-width: none;
+  }
+
+  #main-content.hs-users-page .hs-users-detail-shell .hs-users-permissions > .panel-body {
+    padding: 5px 12px 12px !important;
+    overflow-x: auto;
+  }
+}
+
+/* === V153: nativní detail obsluhy ========================================
+   Detail je nyní součástí moderního PHP override. Žádné přesouvání legacy
+   Bootstrap sloupců v prohlížeči. Tři jasné zóny v jedné kompaktní kartě. */
+#main-content.hs-users-page .hs-users-detail-native-v153 {
+  margin: 0 0 18px !important;
+}
+#main-content.hs-users-page .hs-users-detail-native-v153 > .col-md-12 {
+  float: none;
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
+#main-content.hs-users-page .hs-users-account-native-v153 {
+  margin: 0;
+}
+#main-content.hs-users-page .hs-users-account-native-v153 > .panel-body.hs-users-detail-body-v153 {
+  display: grid !important;
+  grid-template-columns: 170px minmax(300px, .88fr) minmax(360px, 1.12fr) !important;
+  gap: 28px;
+  align-items: start;
+  min-height: 0 !important;
+  padding: 24px 26px !important;
+}
+
+/* Profil: malý, bez vlastní karty a bez hluché plochy. */
+#main-content.hs-users-page .hs-users-profile-native-v153 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-width: 0;
+  padding: 2px 26px 2px 0;
+  border-right: 1px solid #e2eaf0;
+  text-align: center;
+}
+#main-content.hs-users-page .hs-users-profile-native-v153 .OrizlaKulataFotkaObal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 108px;
+  height: 108px;
+  padding: 5px;
+  border: 1px solid #d7e4eb;
+  border-radius: 50%;
+  background: #fff;
+}
+#main-content.hs-users-page .hs-users-profile-native-v153 .OrizlaKulataFotka {
+  width: 96px !important;
+  height: 96px !important;
+  border-radius: 50%;
+  background-size: cover !important;
+  background-position: center !important;
+  box-shadow: 0 7px 18px rgba(38,53,73,.10);
+}
+#main-content.hs-users-page .hs-users-profile-name-v153 {
+  max-width: 100%;
+  margin-top: 10px;
+  overflow: hidden;
+  color: #263c54;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.3;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+#main-content.hs-users-page .hs-users-profile-role-v153 {
+  margin-top: 3px;
+  color: #8092a3;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* Přístupové údaje + hodnocení: dvě vyvážené pracovní zóny. */
+#main-content.hs-users-page .hs-users-access-native-v153,
+#main-content.hs-users-page .hs-users-rating-native-v153 {
+  min-width: 0;
+}
+#main-content.hs-users-page .hs-users-rating-native-v153 {
+  padding-left: 28px;
+  border-left: 1px solid #e2eaf0;
+}
+#main-content.hs-users-page .hs-users-detail-subtitle-v153 {
+  margin: 0 0 14px;
+  color: #2d455e;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .015em;
+}
+
+/* V153 má záměrně label nad polem – je to stabilní i pro delší DE/EN texty. */
+#main-content.hs-users-page .hs-users-account .hs-users-account-form-v153 > .form-group {
+  display: block !important;
+  width: 100%;
+  margin: 0 0 14px !important;
+  padding: 0 !important;
+}
+#main-content.hs-users-page .hs-users-account .hs-users-account-form-v153 > .form-group > div {
+  width: 100% !important;
+  padding: 0 !important;
+}
+#main-content.hs-users-page .hs-users-account .hs-users-account-form-v153 .control-label {
+  display: block;
+  width: 100% !important;
+  margin: 0 0 6px;
+  padding: 0 !important;
+  color: #667d92;
+  font-size: 11.5px;
+  font-weight: 600;
+  line-height: 1.35;
+  text-align: left !important;
+}
+#main-content.hs-users-page .hs-users-account .hs-users-account-form-v153 .form-control {
+  width: 100% !important;
+  max-width: 390px;
+  height: 44px !important;
+}
+#main-content.hs-users-page .hs-users-account .hs-users-save-row-v153 {
+  margin-top: 4px !important;
+  margin-bottom: 0 !important;
+}
+
+/* Hodnocení: žádná další panelová karta uvnitř karty detailu. */
+#main-content.hs-users-page .hs-users-rating-native-v153 form {
+  margin: 0;
+}
+#main-content.hs-users-page .hs-users-rating-native-v153 .hs-users-rating-table-v153 {
+  width: 100% !important;
+  margin: 0 !important;
+  overflow: hidden;
+  border: 1px solid #dfe8ee !important;
+  border-collapse: separate !important;
+  border-spacing: 0;
+  border-radius: 13px;
+  background: #fff;
+}
+#main-content.hs-users-page .hs-users-rating-native-v153 .hs-users-rating-table-v153 tr {
+  background: transparent !important;
+}
+#main-content.hs-users-page .hs-users-rating-native-v153 .hs-users-rating-table-v153 td {
+  padding: 13px 14px !important;
+  border: 0 !important;
+  border-bottom: 1px solid #edf2f5 !important;
+  color: #344b63;
+  font-size: 11.5px;
+  line-height: 1.4;
+  vertical-align: middle;
+}
+#main-content.hs-users-page .hs-users-rating-native-v153 .hs-users-rating-table-v153 tr:last-child td {
+  border-bottom: 0 !important;
+}
+#main-content.hs-users-page .hs-users-rating-native-v153 .hs-users-rating-table-v153 td:first-child {
+  display: none;
+}
+#main-content.hs-users-page .hs-users-rating-native-v153 .hs-users-rating-table-v153 td:last-child {
+  width: 68px;
+  padding-left: 8px !important;
+  text-align: right !important;
+}
+#main-content.hs-users-page .hs-users-rating-native-v153 .switchery {
+  margin: 0;
+  vertical-align: middle;
+}
+
+/* Oprávnění zůstávají pod detailem přes celou šířku. */
+#main-content.hs-users-page .hs-users-permissions-native-v153 {
+  float: none;
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+@media (max-width: 1180px) {
+  #main-content.hs-users-page .hs-users-account-native-v153 > .panel-body.hs-users-detail-body-v153 {
+    grid-template-columns: 150px minmax(0, 1fr) !important;
+    gap: 22px 26px;
+    padding: 22px !important;
+  }
+  #main-content.hs-users-page .hs-users-rating-native-v153 {
+    grid-column: 2;
+    padding: 18px 0 0;
+    border-left: 0;
+    border-top: 1px solid #e2eaf0;
+  }
+  #main-content.hs-users-page .hs-users-profile-native-v153 {
+    grid-row: 1 / span 2;
+    padding-right: 22px;
+  }
+}
+
+@media (max-width: 720px) {
+  #main-content.hs-users-page .hs-users-account-native-v153 > .panel-body.hs-users-detail-body-v153 {
+    display: block !important;
+    padding: 14px !important;
+  }
+  #main-content.hs-users-page .hs-users-profile-native-v153 {
+    display: grid;
+    grid-template-columns: 68px minmax(0,1fr);
+    grid-template-rows: auto auto;
+    column-gap: 12px;
+    align-items: center;
+    margin: 0 0 16px;
+    padding: 0 0 14px;
+    border-right: 0;
+    border-bottom: 1px solid #e2eaf0;
+    text-align: left;
+  }
+  #main-content.hs-users-page .hs-users-profile-native-v153 .OrizlaKulataFotkaObal {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    width: 68px;
+    height: 68px;
+    padding: 4px;
+  }
+  #main-content.hs-users-page .hs-users-profile-native-v153 .OrizlaKulataFotka {
+    width: 58px !important;
+    height: 58px !important;
+  }
+  #main-content.hs-users-page .hs-users-profile-name-v153 {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: end;
+    margin: 0;
+  }
+  #main-content.hs-users-page .hs-users-profile-role-v153 {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: start;
+  }
+  #main-content.hs-users-page .hs-users-rating-native-v153 {
+    margin-top: 18px;
+    padding: 18px 0 0;
+    border-left: 0;
+    border-top: 1px solid #e2eaf0;
+  }
+  #main-content.hs-users-page .hs-users-account .hs-users-account-form-v153 .form-control,
+  #main-content.hs-users-page .hs-users-account .hs-users-account-form-v153 button.btn-primary {
+    width: 100% !important;
+    max-width: none;
+  }
+}
+
+/* === V154: kompaktní profil + moderní oprávnění ==========================
+   Přístupové údaje z V153 zůstávají vizuálně zachované. V154 pouze přitahuje
+   profil k pracovním údajům a mění dlouhou tabulku práv na přehlednou mřížku. */
+#main-content.hs-users-page .hs-users-account-native-v153 > .panel-body.hs-users-detail-body-v154 {
+  display: grid !important;
+  grid-template-columns: 220px minmax(420px, 560px) minmax(320px, 410px) !important;
+  justify-content: center;
+  gap: 24px !important;
+  align-items: start;
+  padding: 26px 28px !important;
+}
+
+#main-content.hs-users-page .hs-users-profile-native-v154 {
+  align-self: start;
+  min-width: 0;
+  min-height: 0;
+  padding: 18px 16px !important;
+  border: 1px solid #e1eaf0 !important;
+  border-radius: 16px;
+  background: #f8fbfc;
+  text-align: center;
+}
+#main-content.hs-users-page .hs-users-profile-native-v154 .OrizlaKulataFotkaObal {
+  width: 94px;
+  height: 94px;
+  margin: 0 auto;
+  padding: 4px;
+}
+#main-content.hs-users-page .hs-users-profile-native-v154 .OrizlaKulataFotka {
+  width: 84px !important;
+  height: 84px !important;
+}
+#main-content.hs-users-page .hs-users-profile-native-v154 .hs-users-profile-name-v153 {
+  margin-top: 11px;
+  font-size: 15px;
+}
+#main-content.hs-users-page .hs-users-profile-native-v154 .hs-users-profile-role-v153 {
+  margin-top: 3px;
+  font-size: 11px;
+}
+
+#main-content.hs-users-page .hs-users-access-native-v154,
+#main-content.hs-users-page .hs-users-rating-native-v154 {
+  width: 100%;
+  min-width: 0;
+  padding: 0 !important;
+  border: 0 !important;
+}
+#main-content.hs-users-page .hs-users-rating-native-v154 {
+  margin: 0 !important;
+}
+#main-content.hs-users-page .hs-users-rating-native-v154 .hs-users-rating-table-v153 {
+  width: 100% !important;
+}
+
+/* Interní hash loginu je legacy pomocná hodnota a nesmí být zobrazen jako pole. */
+#main-content.hs-users-page .hs-users-account .hs-users-account-form-v153 > .form-group.hs-users-internal-login-v154 {
+  display: none !important;
+}
+
+/* Oprávnění: zrušení kilometrových řádků přes celý monitor. */
+#main-content.hs-users-page .hs-users-permissions-native-v154 {
+  margin-top: 18px;
+}
+#main-content.hs-users-page .hs-users-permissions-panel-v154 {
+  margin-bottom: 18px;
+}
+#main-content.hs-users-page .hs-users-permissions-panel-v154 > .hs-users-permissions-body-v154 {
+  min-height: 0 !important;
+  padding: 22px 24px 24px !important;
+}
+#main-content.hs-users-page .hs-users-permissions-panel-v154 .form-group,
+#main-content.hs-users-page .hs-users-permissions-panel-v154 form {
+  margin: 0 !important;
+}
+#main-content.hs-users-page .hs-users-permissions-grid-v154 {
+  display: block !important;
+  width: 100% !important;
+  margin: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+#main-content.hs-users-page .hs-users-permissions-grid-v154 > tbody {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 16px;
+  width: 100%;
+}
+#main-content.hs-users-page .hs-users-permissions-grid-v154 > tbody > tr {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  min-height: 64px;
+  overflow: hidden;
+  border: 1px solid #e1eaf0 !important;
+  border-radius: 14px;
+  background: #fbfcfd !important;
+}
+#main-content.hs-users-page .hs-users-permissions-grid-v154 > tbody > tr:first-child {
+  display: none !important;
+}
+#main-content.hs-users-page .hs-users-permissions-grid-v154 > tbody > tr > td {
+  display: block !important;
+  width: auto !important;
+  padding: 16px 18px !important;
+  border: 0 !important;
+  background: transparent !important;
+  vertical-align: middle;
+}
+#main-content.hs-users-page .hs-users-permissions-grid-v154 > tbody > tr > td:first-child {
+  display: none !important;
+}
+#main-content.hs-users-page .hs-users-permissions-grid-v154 > tbody > tr > td:nth-child(2) {
+  color: #2f475f;
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 1.35;
+}
+#main-content.hs-users-page .hs-users-permissions-grid-v154 > tbody > tr > td:nth-child(3) {
+  min-width: 78px;
+  padding-left: 8px !important;
+  text-align: right !important;
+}
+#main-content.hs-users-page .hs-users-permissions-grid-v154 > tbody > tr > td:nth-child(4) {
+  grid-column: 1 / -1;
+  padding: 0 18px 14px !important;
+  color: #6f8296;
+}
+#main-content.hs-users-page .hs-users-permissions-grid-v154 > tbody > tr > td:nth-child(4):empty {
+  display: none !important;
+}
+#main-content.hs-users-page .hs-users-sensitive-v154 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 12px;
+  border-top: 1px solid #e7eef3;
+}
+#main-content.hs-users-page .hs-users-sensitive-label-v154 {
+  color: #74879a;
+  font-size: 11.5px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+#main-content.hs-users-page .hs-users-permissions-grid-v154 .switchery {
+  margin: 0;
+  vertical-align: middle;
+}
+
+@media (max-width: 1260px) {
+  #main-content.hs-users-page .hs-users-account-native-v153 > .panel-body.hs-users-detail-body-v154 {
+    grid-template-columns: 190px minmax(380px, 1fr) minmax(300px, .8fr) !important;
+    gap: 20px !important;
+    padding: 22px !important;
+  }
+  #main-content.hs-users-page .hs-users-profile-native-v154 {
+    grid-row: auto !important;
+  }
+  #main-content.hs-users-page .hs-users-rating-native-v154 {
+    grid-column: auto !important;
+    padding-top: 0 !important;
+    border-top: 0 !important;
+  }
+}
+
+@media (max-width: 1040px) {
+  #main-content.hs-users-page .hs-users-account-native-v153 > .panel-body.hs-users-detail-body-v154 {
+    grid-template-columns: 190px minmax(0, 1fr) !important;
+  }
+  #main-content.hs-users-page .hs-users-rating-native-v154 {
+    grid-column: 2;
+    padding-top: 18px !important;
+    border-top: 1px solid #e2eaf0 !important;
+  }
+}
+
+@media (max-width: 760px) {
+  #main-content.hs-users-page .hs-users-account-native-v153 > .panel-body.hs-users-detail-body-v154 {
+    display: block !important;
+    padding: 14px !important;
+  }
+  #main-content.hs-users-page .hs-users-profile-native-v154 {
+    display: grid !important;
+    grid-template-columns: 68px minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    column-gap: 12px;
+    align-items: center;
+    margin: 0 0 18px;
+    padding: 12px !important;
+    text-align: left;
+  }
+  #main-content.hs-users-page .hs-users-profile-native-v154 .OrizlaKulataFotkaObal {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    width: 68px;
+    height: 68px;
+    margin: 0;
+  }
+  #main-content.hs-users-page .hs-users-profile-native-v154 .OrizlaKulataFotka {
+    width: 58px !important;
+    height: 58px !important;
+  }
+  #main-content.hs-users-page .hs-users-profile-native-v154 .hs-users-profile-name-v153 {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: end;
+    margin: 0;
+  }
+  #main-content.hs-users-page .hs-users-profile-native-v154 .hs-users-profile-role-v153 {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: start;
+  }
+  #main-content.hs-users-page .hs-users-rating-native-v154 {
+    margin-top: 18px !important;
+    padding-top: 18px !important;
+    border-top: 1px solid #e2eaf0 !important;
+  }
+  #main-content.hs-users-page .hs-users-permissions-panel-v154 > .hs-users-permissions-body-v154 {
+    padding: 14px !important;
+  }
+  #main-content.hs-users-page .hs-users-permissions-grid-v154 > tbody {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}
+
+/* === V155: vlastni kompozice detailu obsluhy ============================
+   Profil, pristupove udaje a hodnoceni jsou nativni moderni komponenta.
+   Bez presouvani legacy Bootstrap bloku a bez hluchych ploch. */
+#main-content.hs-users-page .hs-users-detail-native-v155 {
+  margin: 0 0 18px !important;
+}
+#main-content.hs-users-page .hs-users-detail-native-v155 > .col-md-12 {
+  float: none;
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
+#main-content.hs-users-page .hs-users-account-native-v155 {
+  margin: 0;
+}
+#main-content.hs-users-page .hs-users-account-native-v155 > .panel-body.hs-users-detail-body-v155 {
+  display: grid !important;
+  grid-template-columns: 250px minmax(0, 1fr) 340px !important;
+  gap: 28px;
+  align-items: start;
+  box-sizing: border-box;
+  width: min(100%, 1320px);
+  min-height: 0 !important;
+  margin: 0 auto;
+  padding: 30px 32px 34px !important;
+}
+
+/* Profil je pouze kompaktni identita, ne samostatna velka karta. */
+#main-content.hs-users-page .hs-users-profile-v155 {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  min-width: 0;
+  min-height: 98px;
+  padding: 8px 24px 8px 0;
+  border-right: 1px solid #e2eaf0;
+}
+#main-content.hs-users-page .hs-users-profile-photo-v155 {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 84px;
+  height: 84px;
+  margin: 0;
+  padding: 4px;
+  border: 1px solid #d7e4eb;
+  border-radius: 50%;
+  background: #fff;
+}
+#main-content.hs-users-page .hs-users-profile-photo-v155 .OrizlaKulataFotka {
+  width: 74px !important;
+  height: 74px !important;
+  border-radius: 50%;
+  background-position: center !important;
+  background-size: cover !important;
+  box-shadow: 0 6px 16px rgba(38,53,73,.10);
+}
+#main-content.hs-users-page .hs-users-profile-copy-v155 {
+  min-width: 0;
+}
+#main-content.hs-users-page .hs-users-profile-name-v155 {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  color: #263c54;
+  font-size: 16px;
+  font-weight: 750;
+  line-height: 1.3;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+#main-content.hs-users-page .hs-users-profile-role-v155 {
+  display: block;
+  margin-top: 4px;
+  color: #8092a3;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Pristupove udaje: dve pole vedle sebe, akce pod nimi. */
+#main-content.hs-users-page .hs-users-access-v155,
+#main-content.hs-users-page .hs-users-rating-v155 {
+  min-width: 0;
+}
+#main-content.hs-users-page .hs-users-detail-subtitle-v155 {
+  margin: 0 0 13px;
+  color: #2d455e;
+  font-size: 13px;
+  font-weight: 750;
+  letter-spacing: .01em;
+}
+#main-content.hs-users-page .hs-users-access-form-v155 {
+  margin: 0;
+}
+#main-content.hs-users-page .hs-users-access-fields-v155 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+#main-content.hs-users-page .hs-users-field-v155 {
+  min-width: 0;
+}
+#main-content.hs-users-page .hs-users-field-v155 > label {
+  display: block;
+  margin: 0 0 7px;
+  color: #70859a;
+  font-size: 11.5px;
+  font-weight: 650;
+  line-height: 1.3;
+}
+#main-content.hs-users-page .hs-users-access-v155 .form-control {
+  box-sizing: border-box;
+  width: 100% !important;
+  max-width: none !important;
+  height: 46px !important;
+  margin: 0;
+  padding: 10px 14px;
+  border: 1px solid #d6e2ea;
+  border-radius: 12px;
+  background: #f7fafb;
+  box-shadow: none;
+  color: #29445f;
+  font-size: 14px !important;
+}
+#main-content.hs-users-page .hs-users-access-v155 .form-control[disabled] {
+  color: #687b8e;
+  background: #f1f5f7;
+  cursor: default;
+  opacity: 1;
+}
+#main-content.hs-users-page .hs-users-access-v155 .form-control:focus {
+  border-color: #57bbb4;
+  box-shadow: 0 0 0 3px #eaf7f6;
+}
+#main-content.hs-users-page .hs-users-save-row-v155 {
+  margin-top: 14px;
+}
+#main-content.hs-users-page .hs-users-save-row-v155 .btn-primary {
+  min-height: 42px;
+  margin: 0;
+}
+
+/* Hodnoceni: jeden maly seskupeny blok se dvema radky. */
+#main-content.hs-users-page .hs-users-rating-list-v155 {
+  overflow: hidden;
+  border: 1px solid #e1eaf0;
+  border-radius: 14px;
+  background: #fbfcfd;
+}
+#main-content.hs-users-page .hs-users-rating-row-v155 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 62px;
+  padding: 12px 15px;
+  color: #344b63;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+#main-content.hs-users-page .hs-users-rating-row-v155 + .hs-users-rating-row-v155 {
+  border-top: 1px solid #e8eef3;
+}
+#main-content.hs-users-page .hs-users-rating-row-v155 > span:first-child {
+  min-width: 0;
+}
+#main-content.hs-users-page .hs-users-rating-row-v155 .switchery {
+  flex: 0 0 auto;
+  margin: 0;
+  vertical-align: middle;
+}
+
+@media (max-width: 1180px) {
+  #main-content.hs-users-page .hs-users-account-native-v155 > .panel-body.hs-users-detail-body-v155 {
+    grid-template-columns: 220px minmax(0, 1fr) !important;
+    gap: 22px 26px;
+    width: min(100%, 980px);
+    padding: 24px !important;
+  }
+  #main-content.hs-users-page .hs-users-profile-v155 {
+    grid-row: 1 / span 2;
+  }
+  #main-content.hs-users-page .hs-users-rating-v155 {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 900px) {
+  #main-content.hs-users-page .hs-users-account-native-v155 > .panel-body.hs-users-detail-body-v155 {
+    display: block !important;
+    width: 100%;
+    padding: 18px !important;
+  }
+  #main-content.hs-users-page .hs-users-profile-v155 {
+    margin-bottom: 20px;
+    padding: 0 0 18px;
+    border-right: 0;
+    border-bottom: 1px solid #e2eaf0;
+  }
+  #main-content.hs-users-page .hs-users-rating-v155 {
+    margin-top: 22px;
+  }
+}
+
+@media (max-width: 620px) {
+  #main-content.hs-users-page .hs-users-access-fields-v155 {
+    grid-template-columns: 1fr;
+  }
+  #main-content.hs-users-page .hs-users-profile-photo-v155 {
+    width: 68px;
+    height: 68px;
+  }
+  #main-content.hs-users-page .hs-users-profile-photo-v155 .OrizlaKulataFotka {
+    width: 58px !important;
+    height: 58px !important;
+  }
+  #main-content.hs-users-page .hs-users-profile-name-v155 {
+    font-size: 14px;
+  }
+}
+#main-content.hs-users-page .hs-users-access-v155 .hs-users-internal-login-v154 {
+  display: none !important;
+}
+
+/* === V156: novy kompaktní detail obsluhy ==================================
+   Jedna stabilni kompozice: profil je soucast uctu, hodnoceni je vedle nej.
+   Bez JS presouvani a bez legacy sloupcu. */
+#main-content.hs-users-page .hs-users-detail-native-v156 {
+  margin: 0 0 18px !important;
+}
+#main-content.hs-users-page .hs-users-detail-native-v156 > .col-md-12 {
+  float: none;
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
+#main-content.hs-users-page .hs-users-account-native-v156 {
+  margin: 0;
+}
+#main-content.hs-users-page .hs-users-account-native-v156 > .panel-body.hs-users-detail-body-v156 {
+  min-height: 0 !important;
+  padding: 26px 28px 30px !important;
+}
+#main-content.hs-users-page .hs-users-detail-layout-v156 {
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) minmax(300px, .85fr);
+  gap: 18px;
+  align-items: start;
+  width: min(100%, 1120px);
+  margin: 0 auto;
+}
+#main-content.hs-users-page .hs-users-account-card-v156,
+#main-content.hs-users-page .hs-users-rating-card-v156 {
+  box-sizing: border-box;
+  min-width: 0;
+  border: 1px solid #dfe8ee;
+  border-radius: 18px;
+  background: #fbfcfd;
+}
+#main-content.hs-users-page .hs-users-account-card-v156 {
+  padding: 20px 22px 22px;
+}
+#main-content.hs-users-page .hs-users-rating-card-v156 {
+  padding: 20px;
+}
+#main-content.hs-users-page .hs-users-identity-v156 {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+  margin-bottom: 18px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #e5edf2;
+}
+#main-content.hs-users-page .hs-users-avatar-v156 {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 74px;
+  height: 74px;
+  margin: 0;
+  padding: 4px;
+  border: 1px solid #d5e3ea;
+  border-radius: 50%;
+  background: #fff;
+}
+#main-content.hs-users-page .hs-users-avatar-v156 .OrizlaKulataFotka {
+  width: 64px !important;
+  height: 64px !important;
+  border-radius: 50%;
+  background-position: center !important;
+  background-size: cover !important;
+  box-shadow: 0 5px 14px rgba(38,53,73,.10);
+}
+#main-content.hs-users-page .hs-users-identity-copy-v156 {
+  min-width: 0;
+}
+#main-content.hs-users-page .hs-users-identity-name-v156 {
+  display: block;
+  overflow: hidden;
+  color: #263c54;
+  font-size: 17px;
+  font-weight: 750;
+  line-height: 1.25;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+#main-content.hs-users-page .hs-users-identity-role-v156 {
+  display: block;
+  margin-top: 4px;
+  color: #8092a3;
+  font-size: 12px;
+  font-weight: 600;
+}
+#main-content.hs-users-page .hs-users-detail-subtitle-v156 {
+  margin: 0 0 14px;
+  color: #2d455e;
+  font-size: 13px;
+  font-weight: 750;
+  line-height: 1.3;
+}
+#main-content.hs-users-page .hs-users-access-form-v156 {
+  margin: 0;
+}
+#main-content.hs-users-page .hs-users-access-fields-v156 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+#main-content.hs-users-page .hs-users-field-v156 {
+  min-width: 0;
+}
+#main-content.hs-users-page .hs-users-field-v156 > label {
+  display: block;
+  margin: 0 0 7px;
+  color: #70859a;
+  font-size: 11.5px;
+  font-weight: 650;
+  line-height: 1.3;
+}
+#main-content.hs-users-page .hs-users-account-card-v156 .form-control {
+  box-sizing: border-box;
+  width: 100% !important;
+  max-width: none !important;
+  height: 46px !important;
+  margin: 0;
+  padding: 10px 14px;
+  border: 1px solid #d6e2ea;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: none;
+  color: #29445f;
+  font-size: 14px !important;
+}
+#main-content.hs-users-page .hs-users-account-card-v156 .form-control[disabled] {
+  color: #687b8e;
+  background: #f2f6f8;
+  cursor: default;
+  opacity: 1;
+}
+#main-content.hs-users-page .hs-users-account-card-v156 .form-control:focus {
+  border-color: #57bbb4;
+  box-shadow: 0 0 0 3px #eaf7f6;
+}
+#main-content.hs-users-page .hs-users-save-row-v156 {
+  margin-top: 14px;
+}
+#main-content.hs-users-page .hs-users-save-row-v156 .btn-primary {
+  min-height: 42px;
+  margin: 0;
+}
+#main-content.hs-users-page .hs-users-rating-card-v156 form {
+  margin: 0;
+}
+#main-content.hs-users-page .hs-users-rating-list-v156 {
+  overflow: hidden;
+  border: 1px solid #e1eaf0;
+  border-radius: 14px;
+  background: #fff;
+}
+#main-content.hs-users-page .hs-users-rating-row-v156 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 62px;
+  margin: 0;
+  padding: 12px 14px;
+  color: #344b63;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.35;
+  cursor: pointer;
+}
+#main-content.hs-users-page .hs-users-rating-row-v156 + .hs-users-rating-row-v156 {
+  border-top: 1px solid #e8eef3;
+}
+#main-content.hs-users-page .hs-users-rating-row-v156 > span:first-child {
+  min-width: 0;
+}
+#main-content.hs-users-page .hs-users-rating-row-v156 .switchery {
+  flex: 0 0 auto;
+  margin: 0;
+  vertical-align: middle;
+}
+#main-content.hs-users-page .hs-users-account-card-v156 .hs-users-internal-login-v154 {
+  display: none !important;
+}
+
+@media (max-width: 1080px) {
+  #main-content.hs-users-page .hs-users-detail-layout-v156 {
+    grid-template-columns: minmax(0, 1fr) 300px;
+    width: min(100%, 920px);
+  }
+  #main-content.hs-users-page .hs-users-account-native-v156 > .panel-body.hs-users-detail-body-v156 {
+    padding: 22px !important;
+  }
+}
+
+@media (max-width: 820px) {
+  #main-content.hs-users-page .hs-users-detail-layout-v156 {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+  #main-content.hs-users-page .hs-users-rating-card-v156 {
+    padding: 18px;
+  }
+}
+
+@media (max-width: 620px) {
+  #main-content.hs-users-page .hs-users-account-native-v156 > .panel-body.hs-users-detail-body-v156 {
+    padding: 14px !important;
+  }
+  #main-content.hs-users-page .hs-users-account-card-v156,
+  #main-content.hs-users-page .hs-users-rating-card-v156 {
+    border-radius: 15px;
+  }
+  #main-content.hs-users-page .hs-users-account-card-v156 {
+    padding: 16px;
+  }
+  #main-content.hs-users-page .hs-users-rating-card-v156 {
+    padding: 16px;
+  }
+  #main-content.hs-users-page .hs-users-identity-v156 {
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+  }
+  #main-content.hs-users-page .hs-users-avatar-v156 {
+    width: 64px;
+    height: 64px;
+  }
+  #main-content.hs-users-page .hs-users-avatar-v156 .OrizlaKulataFotka {
+    width: 54px !important;
+    height: 54px !important;
+  }
+  #main-content.hs-users-page .hs-users-identity-name-v156 {
+    font-size: 15px;
+  }
+  #main-content.hs-users-page .hs-users-access-fields-v156 {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  #main-content.hs-users-page .hs-users-save-row-v156 .btn-primary {
+    width: 100%;
+  }
+  #main-content.hs-users-page .hs-users-rating-row-v156 {
+    min-height: 58px;
+    padding: 11px 12px;
+  }
+}
+
+/* === V157: detail obsluhy - plne vyuziti prostoru ======================
+   Stejny princip jako dvojice karet v SMS: oba bloky vyplni sirku,
+   na desktopu maji stejnou vysku, na mobilu se prirozene skladaji pod sebe.
+   Hodnoceni je rozdeleno na dve samostatne polozky. */
+#main-content.hs-users-page .hs-users-detail-layout-v156 {
+  grid-template-columns: minmax(0, 2fr) minmax(360px, 1fr);
+  gap: 22px;
+  align-items: stretch;
+  width: 100%;
+  max-width: none;
+}
+
+#main-content.hs-users-page .hs-users-account-card-v156,
+#main-content.hs-users-page .hs-users-rating-card-v156 {
+  height: 100%;
+}
+
+#main-content.hs-users-page .hs-users-rating-card-v156 {
+  display: flex;
+  flex-direction: column;
+}
+
+#main-content.hs-users-page .hs-users-rating-card-v156 form {
+  display: flex;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+#main-content.hs-users-page .hs-users-rating-list-v156 {
+  display: grid;
+  flex: 1 1 auto;
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  width: 100%;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+#main-content.hs-users-page .hs-users-rating-row-v156 {
+  box-sizing: border-box;
+  min-height: 84px;
+  padding: 16px 18px;
+  border: 1px solid #e1eaf0;
+  border-radius: 14px;
+  background: #fff;
+}
+
+#main-content.hs-users-page .hs-users-rating-row-v156 + .hs-users-rating-row-v156 {
+  border-top: 1px solid #e1eaf0;
+}
+
+@media (max-width: 1180px) {
+  #main-content.hs-users-page .hs-users-detail-layout-v156 {
+    grid-template-columns: minmax(0, 1.7fr) minmax(320px, 1fr);
+    gap: 18px;
+  }
+}
+
+@media (max-width: 820px) {
+  #main-content.hs-users-page .hs-users-detail-layout-v156 {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  #main-content.hs-users-page .hs-users-account-card-v156,
+  #main-content.hs-users-page .hs-users-rating-card-v156 {
+    height: auto;
+  }
+  #main-content.hs-users-page .hs-users-rating-card-v156 form {
+    display: block;
+  }
+  #main-content.hs-users-page .hs-users-rating-list-v156 {
+    display: grid;
+    grid-template-rows: none;
+    gap: 10px;
+  }
+  #main-content.hs-users-page .hs-users-rating-row-v156 {
+    min-height: 62px;
+    padding: 12px 14px;
+  }
+}
+
+@media (max-width: 620px) {
+  #main-content.hs-users-page .hs-users-detail-layout-v156 {
+    gap: 12px;
+  }
+  #main-content.hs-users-page .hs-users-rating-row-v156 {
+    min-height: 58px;
+    padding: 11px 12px;
+  }
+}
+
+/* V158 - staff avatar must stay a mathematically regular circle */
+#main-content.hs-users-page .hs-users-avatar-v156 {
+  box-sizing: border-box !important;
+  position: relative;
+  flex: 0 0 74px !important;
+  inline-size: 74px !important;
+  block-size: 74px !important;
+  width: 74px !important;
+  height: 74px !important;
+  min-width: 74px !important;
+  max-width: 74px !important;
+  min-height: 74px !important;
+  max-height: 74px !important;
+  aspect-ratio: 1 / 1 !important;
+  padding: 4px !important;
+  overflow: hidden;
+  border: 1px solid #d5e3ea !important;
+  border-radius: 50% !important;
+  background: #fff;
+}
+
+#main-content.hs-users-page .hs-users-avatar-v156 .OrizlaKulataFotka {
+  box-sizing: border-box !important;
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  max-width: none !important;
+  max-height: none !important;
+  aspect-ratio: 1 / 1 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 50% !important;
+  clip-path: circle(50% at 50% 50%);
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+}
+
+@media (max-width: 620px) {
+  #main-content.hs-users-page .hs-users-avatar-v156 {
+    flex-basis: 64px !important;
+    inline-size: 64px !important;
+    block-size: 64px !important;
+    width: 64px !important;
+    height: 64px !important;
+    min-width: 64px !important;
+    max-width: 64px !important;
+    min-height: 64px !important;
+    max-height: 64px !important;
+  }
+}
+
+/* V172 - access to staff switching from the selected staff detail */
+#main-content.hs-users-page .hs-users-switch-access-form-v172 {
+  margin: 18px 0 0;
+  padding-top: 18px;
+  border-top: 1px solid #e5edf2;
+}
+#main-content.hs-users-page .hs-users-switch-access-row-v172 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  min-height: 58px;
+  margin: 0;
+  padding: 12px 14px;
+  border: 1px solid #e1eaf0;
+  border-radius: 14px;
+  background: #fff;
+  cursor: pointer;
+}
+#main-content.hs-users-page .hs-users-switch-access-copy-v172 {
+  display: block;
+  min-width: 0;
+}
+#main-content.hs-users-page .hs-users-switch-access-copy-v172 strong {
+  display: block;
+  color: #344b63;
+  font-size: 12.5px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+#main-content.hs-users-page .hs-users-switch-access-copy-v172 small {
+  display: block;
+  margin-top: 4px;
+  color: #8496a7;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+#main-content.hs-users-page .hs-users-native-switch-v172 {
+  position: relative;
+  display: inline-flex;
+  flex: 0 0 auto;
+  width: 44px;
+  height: 24px;
+}
+#main-content.hs-users-page .hs-users-native-switch-v172 input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+#main-content.hs-users-page .hs-users-native-switch-track-v172 {
+  position: absolute;
+  inset: 0;
+  border: 1px solid #cbd9e2;
+  border-radius: 999px;
+  background: #e8eef2;
+  transition: background .18s ease, border-color .18s ease;
+}
+#main-content.hs-users-page .hs-users-native-switch-track-v172 > span {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(35,57,76,.18);
+  transition: transform .18s ease;
+}
+#main-content.hs-users-page .hs-users-native-switch-v172 input:checked + .hs-users-native-switch-track-v172 {
+  border-color: #23aaa3;
+  background: #29b7af;
+}
+#main-content.hs-users-page .hs-users-native-switch-v172 input:checked + .hs-users-native-switch-track-v172 > span {
+  transform: translateX(20px);
+}
+#main-content.hs-users-page .hs-users-native-switch-v172 input:focus-visible + .hs-users-native-switch-track-v172 {
+  box-shadow: 0 0 0 3px rgba(41,183,175,.18);
+}
+@media (max-width: 620px) {
+  #main-content.hs-users-page .hs-users-switch-access-form-v172 {
+    margin-top: 16px;
+    padding-top: 16px;
+  }
+  #main-content.hs-users-page .hs-users-switch-access-row-v172 {
+    min-height: 56px;
+    padding: 11px 12px;
+  }
+}

@@ -1,0 +1,94 @@
+/* HairSoft Klient V175 – číselník pojišťoven */
+#main-content.hs-insurance-page{display:block;min-width:0;padding-bottom:4px}
+#main-content.hs-insurance-page .hs-insurance-card{overflow:hidden;margin-bottom:24px;border:1px solid #dce6ed;border-radius:18px;background:#fff;box-shadow:0 10px 28px rgba(38,53,73,.045)}
+#main-content.hs-insurance-page .hs-insurance-card>.panel-heading{display:flex;align-items:center;gap:12px;min-height:74px;padding:16px 20px;border:0;border-bottom:1px solid #e4ebf0;background:#fff}
+#main-content.hs-insurance-page .hs-insurance-heading-icon{display:inline-flex;flex:0 0 42px;width:42px;height:42px;align-items:center;justify-content:center;border:1px solid #cce7e5;border-radius:13px;background:#edf8f7;color:#0b938e}
+#main-content.hs-insurance-page .hs-insurance-heading-icon svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+#main-content.hs-insurance-page .panel-title{margin:0;color:#273e58;font-size:16px;font-weight:700;line-height:1.25}
+#main-content.hs-insurance-page .hs-insurance-heading-note{display:block;margin-top:4px;color:#7b8fa4;font-size:11px;font-weight:500}
+#main-content.hs-insurance-page .hs-insurance-heading-copy{min-width:0;flex:1}
+#main-content.hs-insurance-page .hs-insurance-add{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:42px;margin-left:auto;padding:10px 15px;border:1px solid #b9dfdc;border-radius:12px;background:#eff9f8;color:#087d79!important;font-size:12px;font-weight:700;box-shadow:none;text-decoration:none}
+#main-content.hs-insurance-page .hs-insurance-add:hover{border-color:#9fd4d0;background:#e8f6f5;color:#076d69!important}
+#main-content.hs-insurance-page .hs-insurance-add svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+#main-content.hs-insurance-page .hs-insurance-card>.panel-body{min-width:0;padding:20px 24px 24px}
+
+#main-content.hs-insurance-page .hs-insurance-notice{display:flex;align-items:center;gap:11px;margin:0 0 18px;padding:13px 16px;border:1px solid #cce7e5;border-radius:13px;background:#f0faf9;color:#177f7b;font-size:12px}
+#main-content.hs-insurance-page .hs-insurance-notice-icon{display:inline-flex;width:28px;height:28px;align-items:center;justify-content:center;border-radius:9px;background:#dff3f1;color:#0a918b}
+#main-content.hs-insurance-page .hs-insurance-notice-icon svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+
+#main-content.hs-insurance-page .hs-insurance-form{display:grid;grid-template-columns:minmax(260px,1.8fr) minmax(150px,.75fr) minmax(150px,.75fr) minmax(110px,.5fr);gap:15px;align-items:end}
+#main-content.hs-insurance-page .hs-insurance-field{display:flex;min-width:0;flex-direction:column;gap:7px;margin:0}
+#main-content.hs-insurance-page .hs-insurance-field>span{color:#718499;font-size:11px;font-weight:700}
+#main-content.hs-insurance-page .hs-insurance-field .form-control{width:100%;height:44px;padding:9px 12px;border:1px solid #d6e2ea;border-radius:12px;background:#f8fafb;color:#29415b;font-size:13px;box-shadow:none}
+#main-content.hs-insurance-page .hs-insurance-field .form-control:focus{border-color:#57bbb4;background:#fff;box-shadow:0 0 0 3px #eaf7f6}
+#main-content.hs-insurance-page .hs-insurance-form-actions{grid-column:1/-1;display:flex;justify-content:flex-end;gap:10px;margin-top:3px}
+#main-content.hs-insurance-page .hs-insurance-btn{display:inline-flex;min-height:42px;align-items:center;justify-content:center;gap:8px;padding:10px 16px;border-radius:12px;font-size:12px;font-weight:700;box-shadow:none;text-decoration:none}
+#main-content.hs-insurance-page .hs-insurance-btn svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+#main-content.hs-insurance-page .hs-insurance-btn--primary{border:1px solid #168f8b;background:#168f8b;color:#fff!important}
+#main-content.hs-insurance-page .hs-insurance-btn--primary:hover{background:#117f7b;color:#fff!important}
+#main-content.hs-insurance-page .hs-insurance-btn--secondary{border:1px solid #d7e1e8;background:#f7f9fa;color:#5c7085!important}
+
+#main-content.hs-insurance-page .hs-insurance-table-toolbar{display:flex;min-height:46px;align-items:center;justify-content:flex-start;margin:0 0 14px}
+#main-content.hs-insurance-page .hs-insurance-table-toolbar:empty{display:none}
+#main-content.hs-insurance-page .dataTables_wrapper{width:100%;min-width:0}
+#main-content.hs-insurance-page .dataTables_filter{float:none!important;width:min(100%,420px);margin:0!important;text-align:left!important}
+#main-content.hs-insurance-page .dataTables_filter label{position:relative;display:flex;width:100%;align-items:center;margin:0;color:transparent;font-size:0}
+#main-content.hs-insurance-page .dataTables_filter label:before{content:"";position:absolute;left:15px;width:17px;height:17px;z-index:2;background:no-repeat center/17px 17px url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230a938e' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.5-3.5'/%3E%3C/svg%3E")}
+#main-content.hs-insurance-page .dataTables_filter input{width:100%!important;height:44px!important;margin:0!important;padding:9px 14px 9px 44px!important;border:1px solid #d6e2ea!important;border-radius:12px!important;background:#f8fafb!important;color:#29415b!important;font-size:13px!important;box-shadow:none!important;outline:none}
+#main-content.hs-insurance-page .dataTables_filter input:focus{border-color:#57bbb4!important;background:#fff!important;box-shadow:0 0 0 3px #eaf7f6!important}
+#main-content.hs-insurance-page .hs-insurance-table-scroll{position:relative;width:100%;max-width:100%;box-sizing:border-box;overflow-x:auto;overflow-y:hidden;padding:0 1px 18px 0;margin-bottom:8px}
+#main-content.hs-insurance-page .hs-insurance-table{width:100%!important;min-width:760px!important;margin:0!important;border:1px solid #dbe5ec!important;border-collapse:separate!important;border-spacing:0!important;border-radius:15px;overflow:hidden;background:#fff}
+#main-content.hs-insurance-page .hs-insurance-table thead th{padding:14px 16px!important;border:0!important;border-bottom:1px solid #dbe5ec!important;border-right:1px solid #e5ebf0!important;background:#f2f6f8!important;color:#314861!important;font-size:12px!important;font-weight:700!important;line-height:1.25;vertical-align:middle}
+#main-content.hs-insurance-page .hs-insurance-table thead th:last-child{border-right:1px solid #dbe5ec!important;border-top-right-radius:14px}
+#main-content.hs-insurance-page .hs-insurance-table tbody td{padding:13px 16px!important;border:0!important;border-bottom:1px solid #e3eaf0!important;border-right:1px solid #e8edf1!important;background:transparent;color:#526579;font-size:12px!important;vertical-align:middle}
+#main-content.hs-insurance-page .hs-insurance-table tbody td:last-child{border-right:1px solid #dbe5ec!important}
+#main-content.hs-insurance-page .hs-insurance-table tbody tr:nth-child(odd){background:#fff}
+#main-content.hs-insurance-page .hs-insurance-table tbody tr:nth-child(even){background:#f9fbfc}
+#main-content.hs-insurance-page .hs-insurance-table tbody tr:last-child td{border-bottom:0!important}
+#main-content.hs-insurance-page .hs-insurance-table tbody tr:last-child td:last-child{border-bottom-right-radius:14px}
+#main-content.hs-insurance-page .hs-insurance-table tbody td:nth-child(2){color:#2f4660;font-weight:700}
+#main-content.hs-insurance-page .hs-insurance-table th:first-child,#main-content.hs-insurance-page .hs-insurance-table td:first-child{width:76px;text-align:center}
+#main-content.hs-insurance-page .hs-insurance-table th:nth-child(3),#main-content.hs-insurance-page .hs-insurance-table td:nth-child(3),#main-content.hs-insurance-page .hs-insurance-table th:nth-child(4),#main-content.hs-insurance-page .hs-insurance-table td:nth-child(4),#main-content.hs-insurance-page .hs-insurance-table th:nth-child(5),#main-content.hs-insurance-page .hs-insurance-table td:nth-child(5),#main-content.hs-insurance-page .hs-insurance-table th:last-child,#main-content.hs-insurance-page .hs-insurance-table td:last-child{text-align:center}
+#main-content.hs-insurance-page .hs-insurance-table th:last-child,#main-content.hs-insurance-page .hs-insurance-table td:last-child{width:80px}
+#main-content.hs-insurance-page .hs-insurance-country{display:inline-flex;min-width:38px;height:28px;align-items:center;justify-content:center;padding:0 9px;border:1px solid #dbe5ed;border-radius:9px;background:#f7f9fb;color:#526b91;font-size:11px;font-weight:700}
+#main-content.hs-insurance-page .hs-insurance-row-action{display:inline-flex;width:36px;height:36px;align-items:center;justify-content:center;border:1px solid #cbd9e4;border-radius:11px;background:#fff;color:#526b91!important;text-decoration:none;transition:.15s ease}
+#main-content.hs-insurance-page .hs-insurance-row-action svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+#main-content.hs-insurance-page .hs-insurance-row-action--edit:hover{border-color:#b9d9e6;background:#f0f7fb;color:#367498!important}
+#main-content.hs-insurance-page .hs-insurance-row-action--delete{border-color:#efd1d5;background:#fff7f8;color:#bf4b58!important}
+#main-content.hs-insurance-page .hs-insurance-row-action--delete:hover{border-color:#e8b8be;background:#fff0f2;color:#ad3e4b!important}
+#main-content.hs-insurance-page .dataTables_info{float:left;padding-top:16px;color:#7b8ca1;font-size:11px}
+#main-content.hs-insurance-page .dataTables_paginate{display:flex;float:right;width:fit-content;max-width:100%;align-items:center;justify-content:flex-end;gap:5px;flex-wrap:wrap;margin-top:12px;padding:0;font-size:11px}
+#main-content.hs-insurance-page .dataTables_paginate .paginate_button{display:inline-flex;min-width:32px;height:32px;align-items:center;justify-content:center;margin:0;padding:0 10px;color:#526b91!important;border:1px solid #dbe5ed!important;border-radius:9px;background:#fff!important;box-shadow:none;text-decoration:none!important}
+#main-content.hs-insurance-page .dataTables_paginate .paginate_button.current,#main-content.hs-insurance-page .dataTables_paginate .paginate_button.current:hover{color:#168f8b!important;border-color:#c1e3df!important;background:#e9f6f5!important}
+#main-content.hs-insurance-page .dataTables_paginate .paginate_button.disabled{opacity:.45;cursor:default}
+#main-content.hs-insurance-page .dataTables_paginate .paginate_button:not(.current):not(.disabled):hover{color:#168f8b!important;border-color:#c1e3df!important;background:#f2faf9!important}
+#main-content.hs-insurance-page .hs-insurance-mobile-cards{display:none}
+
+@media(max-width:900px){
+  #main-content.hs-insurance-page .hs-insurance-form{grid-template-columns:1fr 1fr}
+  #main-content.hs-insurance-page .hs-insurance-field--wide{grid-column:1/-1}
+}
+@media(max-width:767px),(hover:none) and (pointer:coarse) and (max-width:1100px){
+  #main-content.hs-insurance-page .hs-insurance-card{margin-bottom:16px;border-radius:16px}
+  #main-content.hs-insurance-page .hs-insurance-card>.panel-heading{align-items:flex-start;min-height:0;padding:14px 15px}
+  #main-content.hs-insurance-page .hs-insurance-heading-icon{flex-basis:38px;width:38px;height:38px;border-radius:12px}
+  #main-content.hs-insurance-page .hs-insurance-add{min-height:38px;padding:8px 11px;font-size:0}
+  #main-content.hs-insurance-page .hs-insurance-add svg{width:18px;height:18px}
+  #main-content.hs-insurance-page .hs-insurance-card>.panel-body{padding:14px}
+  #main-content.hs-insurance-page .hs-insurance-form{grid-template-columns:1fr;gap:12px}
+  #main-content.hs-insurance-page .hs-insurance-field--wide{grid-column:auto}
+  #main-content.hs-insurance-page .hs-insurance-form-actions{grid-column:auto;flex-direction:column-reverse}
+  #main-content.hs-insurance-page .hs-insurance-form-actions .btn{width:100%}
+  #main-content.hs-insurance-page .hs-insurance-table-scroll{display:none}
+  #main-content.hs-insurance-page .hs-insurance-mobile-cards{display:grid;gap:10px}
+  #main-content.hs-insurance-page .hs-insurance-mobile-card{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px 12px;padding:14px;border:1px solid #dfe7ed;border-radius:14px;background:#fff;box-shadow:0 6px 18px rgba(38,53,73,.045)}
+  #main-content.hs-insurance-page .hs-insurance-mobile-card-name{grid-column:1;align-self:center;color:#2f4660;font-size:13px;font-weight:700}
+  #main-content.hs-insurance-page .hs-insurance-mobile-card-country{grid-column:2;grid-row:1;align-self:center}
+  #main-content.hs-insurance-page .hs-insurance-mobile-card-meta{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  #main-content.hs-insurance-page .hs-insurance-mobile-card-meta div{padding:9px 10px;border-radius:10px;background:#f6f9fa}
+  #main-content.hs-insurance-page .hs-insurance-mobile-card-meta span{display:block;margin-bottom:3px;color:#8495a8;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+  #main-content.hs-insurance-page .hs-insurance-mobile-card-meta strong{color:#455c74;font-size:11px}
+  #main-content.hs-insurance-page .hs-insurance-mobile-card-actions{grid-column:1/-1;display:flex;justify-content:flex-end;gap:8px;padding-top:2px}
+  #main-content.hs-insurance-page .dataTables_info{float:none;padding-top:12px;text-align:center}
+  #main-content.hs-insurance-page .dataTables_paginate{float:none;justify-content:center;width:100%;margin:10px auto 0}
+}

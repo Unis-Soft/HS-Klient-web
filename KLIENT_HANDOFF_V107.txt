@@ -1,0 +1,825 @@
+HAIRSOFT KLIENT – HANDOFF V107
+============================
+
+KRITICKÁ OPRAVA V107 – PRÁZDNÁ STRÁNKA MĚSÍČNÍCH TRŽEB
+------------------------------------------------------
+- opraveny relativní cesty čtyř require závislostí v override MesicniTrzby.php,
+- všech 20 polí typů plateb se inicializuje před podmíněným načítáním středisek,
+- odstraněn TypeError count() nad neexistujícím polem v PHP 8.3,
+- skutečný běhový test ověřil tabulky, canvas prvky i naplněná data grafů,
+- SQL, databáze, formuláře a výpočty zůstávají beze změny.
+
+NASAZENÍ V107
+-------------
+1. Nahrajte celý balíček se zachováním adresářové struktury.
+2. Ověřte, že vstup str/index.php definuje HS_CLIENT_UI_ROOT (součást balíčku).
+3. Proveďte tvrdé obnovení Ctrl + F5.
+4. Otevřete Měsíční tržby pro měsíc s daty a zkontrolujte obě tabulky a grafy.
+
+PŘEDCHOZÍ VERZE
+---------------
+
+HAIRSOFT KLIENT – HANDOFF V106
+============================
+
+NOVINKY V106 – PŘÍMÁ OPRAVA ZDROJOVÝCH GRAFŮ
+--------------------------------------------
+- přidán opravený zdroj hs-client-ui/php/strana/MesicniTrzby.php,
+- PHP data grafů se převádějí přes bezpečný json_encode,
+- Chart.js inicializuje pouze canvas prvky, které skutečně existují,
+- opraveny neplatné samouzavírací canvas tagy,
+- po změně responzivního rozložení se vynutí resize a update grafu,
+- SQL, dotazy, formuláře, výpočty a částky zůstávají beze změny.
+
+KONTROLA PO NASAZENÍ V106
+-------------------------
+1. Nahrajte celý balíček včetně hs-client-ui/php/strana/MesicniTrzby.php.
+2. Proveďte tvrdé obnovení stránky Ctrl + F5.
+3. Ověřte sloupcový graf Vývoj tržeb v průběhu měsíce.
+4. Ověřte grafy služeb, prodeje, dnů v týdnu a účtenek.
+5. Ověřte všechny zobrazené grafy plateb podle středisek.
+6. Změňte měsíc a zopakujte kontrolu na PC i mobilu.
+
+PŘEDCHOZÍ VERZE
+---------------
+
+HAIRSOFT KLIENT – HANDOFF V105
+============================
+
+NOVINKY V105 – OBNOVENÍ TABULEK A GRAFŮ
+---------------------------------------
+- moderní vrstva čeká na dokončení původních DataTables a Chart.js,
+- tabulky proto zachovají všechny původní řádky a částky,
+- každý existující graf má samostatnou bezpečnou inicializaci,
+- chybějící volitelný graf již nezastaví ostatní grafy,
+- cache verze měsíčních assetů je zvýšena na V105,
+- PHP, SQL, formuláře a výpočty se nemění.
+
+KONTROLA PO NASAZENÍ V105
+-------------------------
+1. Nahrajte celý balíček a proveďte tvrdé obnovení stránky.
+2. Otevřete Měsíční tržby a ověřte řádky v obou souhrnech.
+3. Ověřte sloupcový graf, čárový graf a všechny dostupné prstencové grafy.
+4. Změňte měsíc a zopakujte kontrolu.
+5. Ověřte PC i mobilní zobrazení.
+
+PŘEDCHOZÍ VERZE
+---------------
+
+HAIRSOFT KLIENT – HANDOFF V104
+============================
+
+NOVINKY V104 – MODERNÍ MĚSÍČNÍ TRŽBY
+------------------------------------
+- upraven je obsah Měsíčních tržeb pod horními KPI kartami,
+- měsíc a rok se ovládají v jedné centrální kartě,
+- oba souhrny mají moderní tabulky, mobilní karty a Export vpravo,
+- PDF je lokalizované a jednotlivé záznamy se nedělí mezi stránky,
+- prstencové grafy navazují na schválený styl Denních tržeb,
+- sloupcový a čárový graf mají čitelné osy, Open Sans a tooltipy,
+- Správa dat je před synchronizační patičkou,
+- nové prvky jsou přeložené do CZ, SK, EN a DE,
+- PHP, SQL, databáze, původní odkazy, formuláře a částky se nemění.
+
+UPRAVENÉ SOUBORY V104
+---------------------
+- hs-client-ui/css/monthly-revenue.css
+- hs-client-ui/js/monthly-revenue.js
+- hs-client-ui/js/monthly-revenue-pdf.js
+- hs-client-ui/js/i18n.js
+- hs-client-ui/php/index.php
+- hs-client-ui/data/changelog.php
+- hs-client-ui/VERSION.txt
+
+KONTROLA PO NASAZENÍ V104
+-------------------------
+1. Proveďte tvrdé obnovení stránky nebo vymažte cache webu.
+2. Otevřete Tržby → Měsíční tržby a změňte měsíc i rok oběma směry.
+3. Ověřte oba souhrny na PC a na telefonu v režimu na výšku i na šířku.
+4. Z obou tabulek vyzkoušejte Export → PDF v CZ, SK, EN a DE.
+5. Ověřte tooltipy všech grafů myší i klepnutím na telefonu.
+6. Ověřte, že Refresh a Smazat odesílají původní měsíční formuláře.
+7. Zkontrolujte, že Správa dat zůstává bezprostředně před synchronizační patičkou.
+
+PŘEDCHOZÍ VERZE
+---------------
+
+HAIRSOFT KLIENT – HANDOFF V103
+============================
+
+NOVINKY V103 – TELEFON NA VÝŠKU
+-------------------------------
+- opraveno přepisující pravidlo pro displeje do 420 px,
+- datum je přesně na středu celé karty také v režimu na výšku,
+- šipky se zarovnávají symetricky směrem k datu,
+- položený telefon i ostatní části Denních tržeb zůstávají beze změny.
+
+UPRAVENÉ SOUBORY V103
+--------------------
+- hs-client-ui/css/daily-revenue.css
+- hs-client-ui/php/index.php
+- hs-client-ui/data/changelog.php
+- hs-client-ui/VERSION.txt
+
+KONTROLA PO NASAZENÍ V103
+------------------------
+1. Proveďte tvrdé obnovení stránky nebo vymažte cache webu.
+2. Ověřte Denní tržby na telefonu při šířce 375 px.
+3. Ověřte přesný střed data a symetrické mezery k oběma šipkám.
+4. Otočte telefon na šířku a zkontrolujte zachování stejného středu.
+
+PŘEDCHOZÍ VERZE
+---------------
+
+NOVINKY V102 – PŘESNÝ STŘED MOBILNÍHO DATA
+------------------------------------------
+- datum je ukotvené v samostatném prostředním sloupci přesně na středu panelu,
+- oba krajní sloupce mají stejnou pružnou šířku,
+- šipky jsou symetricky zarovnané směrem k datu,
+- vnitřní šířka formuláře již nemůže datum posunout doleva,
+- ostatní rozložení, překlady, data a funkce se nemění.
+
+UPRAVENÉ SOUBORY V102
+--------------------
+- hs-client-ui/css/daily-revenue.css
+- hs-client-ui/php/index.php
+- hs-client-ui/data/changelog.php
+- hs-client-ui/VERSION.txt
+
+KONTROLA PO NASAZENÍ V102
+------------------------
+1. Proveďte tvrdé obnovení stránky nebo vymažte cache webu.
+2. Na telefonu otevřete Tržby → Denní tržby.
+3. Ověřte, že střed data leží přesně na středu celého panelu.
+4. Ověřte funkci obou šipek a otevření výběru data.
+
+NOVINKY V101 – JAZYKOVÉ MUTACE DENNÍCH TRŽEB
+---------------------------------
+- kompletní překlady stránky do CZ, SK, EN a DE,
+- přeložený popis stránky, KPI, datum, oba sumáře a všechny názvy sloupců,
+- přeložené grafové karty, stavy, upozornění a sekce Správa dat,
+- překlady fungují také po změně jazyka bez reloadu,
+- jazykovou mutaci respektuje i PDF export,
+- rozpoznání tabulek, součtů a akcí je nezávislé na jazyku,
+- data, funkce, PHP, SQL a databáze se nemění.
+
+UPRAVENÉ SOUBORY V101
+--------------------
+- hs-client-ui/js/i18n.js
+- hs-client-ui/js/daily-revenue.js
+- hs-client-ui/js/daily-revenue-pdf.js
+- hs-client-ui/php/index.php
+- hs-client-ui/data/changelog.php
+- hs-client-ui/VERSION.txt
+
+KONTROLA PO NASAZENÍ V101
+------------------------
+1. Proveďte tvrdé obnovení stránky nebo vymažte cache webu.
+2. Otevřete Denní tržby a postupně zvolte CZ, SK, EN a DE.
+3. V každém jazyce zkontrolujte KPI, datum, obě tabulky, grafy a Správu dat.
+4. Přepínejte jazyky bez reloadu a ověřte změnu dynamických nadpisů i grafů.
+5. V každém jazyce spusťte PDF export a zkontrolujte jeho texty.
+6. Ověřte funkci šipek data, Exportu a všech tří akcí Správy dat.
+
+NOVINKY V100 – VYSTŘEDĚNÍ MOBILNÍHO DATA
+---------------------------------
+- šipky a výběr data tvoří jeden vystředěný kompaktní celek.
+
+NOVINKY V99 – OPRAVA MOBILNÍCH DENNÍCH TRŽEB
+---------------------------------
+- opravena čitelnost horních ukazatelů a data obou mobilních sumářů.
+
+NOVINKY V98 – MOBILNÍ DENNÍ TRŽBY
+---------------------------------
+- široká tabulka se na telefonu skládá do samostatných souhrnných karet,
+- datum je mezi tlačítky předchozího a dalšího dne,
+- mobilní grafy zachovávají schválený styl V97.
+
+NOVINKY V97 – PRSTENCOVÉ GRAFY DENNÍCH TRŽEB
+---------------------------------
+- tenčí moderní prstenec s jemnou podkladovou stopou,
+- celková částka nebo počet účtenek přímo uprostřed grafu,
+- jednotná tlumená HairSoft paleta místo náhodných ostrých barev,
+- stejné položky mají napříč grafy stejnou barvu,
+- původní legendy jsou automaticky barevně synchronizované,
+- tooltip zobrazuje přesnou hodnotu a procentní podíl,
+- interakce funguje myší na PC i klepnutím na mobilu,
+- data, výpočty, tabulky, exporty, PHP, SQL a databáze se nemění.
+
+UPRAVENÉ SOUBORY V97
+--------------------
+- hs-client-ui/css/daily-revenue.css
+- hs-client-ui/js/daily-revenue.js
+- hs-client-ui/js/i18n.js
+- hs-client-ui/php/index.php
+- hs-client-ui/data/changelog.php
+- hs-client-ui/VERSION.txt
+
+KONTROLA PO NASAZENÍ V97
+------------------------
+1. Proveďte tvrdé obnovení stránky Ctrl+F5.
+2. Otevřete Tržby → Denní tržby a zkontrolujte všechny kruhové grafy.
+3. Uprostřed grafů musí být součet; u Účtenek počet bez Kč.
+4. Najeďte na každý segment a ověřte název, hodnotu a procentní podíl.
+5. Na telefonu klepněte na segment a ověřte stejný tooltip.
+6. Ověřte shodu barev segmentů a bodů v legendě.
+7. Ověřte, že tabulky, Export, PDF a sekce Správa dat zůstaly funkční.
+
+PŘEDCHOZÍ VERZE
+---------------
+
+OPRAVY V96 – PDF A EXPORT DENNÍCH TRŽEB
+---------------------------------
+- každý blok PDF tvoří jediný nedělitelný celek,
+- hlavička bloku a všech pět částek se již nerozdělí mezi dvě A4,
+- nevejde-li se Součet do zbytku stránky, přesune se celý na další list,
+- Export obou tabulek je přesunut do samostatné pravé lišty,
+- tlačítko Export má moderní bílý vzhled, jednotnou ikonu a Open Sans,
+- Copy, CSV, XLS, Tisk, hodnoty, grafy, PHP, SQL a databáze se nemění.
+
+UPRAVENÉ SOUBORY V96
+--------------------
+- hs-client-ui/css/daily-revenue.css
+- hs-client-ui/js/daily-revenue.js
+- hs-client-ui/js/daily-revenue-pdf.js
+- hs-client-ui/php/index.php
+- hs-client-ui/data/changelog.php
+- hs-client-ui/VERSION.txt
+
+KONTROLA PO NASAZENÍ V96
+------------------------
+1. Proveďte tvrdé obnovení stránky Ctrl+F5.
+2. Otevřete Tržby → Denní tržby a ověřte Export vpravo u obou tabulek.
+3. Exportujte PDF a ověřte, že žádný blok není rozdělen mezi dvě stránky.
+4. Zejména ověřte, že Součet obsahuje na stejné A4 hlavičku i všechny hodnoty.
+5. Ověřte Copy, CSV, XLS, Tisk a zobrazení grafů.
+
+PŘEDCHOZÍ VERZE
+---------------
+
+OPRAVY V95 – DENNÍ TRŽBY
+---------------------------------
+- výběr data je v moderní zaoblené kartě,
+- navigace Zpět a Další zůstává funkčně beze změny,
+- denní tabulky mají nové hlavičky, řádky a zvýrazněné součty,
+- Export je zarovnaný vpravo; Copy, CSV, XLS a Tisk zůstávají beze změny,
+- PDF má vlastní moderní výstup s hlavičkou HairSoft, datem, pobočkou, souhrnnými kartami a stránkováním,
+- mobil zobrazuje každý tabulkový řádek jako čitelnou kartu,
+- grafy mají zaoblené responzivní panely, moderní legendu a tooltipy,
+- opraven je skutečný rozměr rodiče canvasu, takže se koláče nesbalí na nulovou šířku,
+- původní hodnoty, popisky a barevné rozlišení grafů zůstávají zachované,
+- tři datové akce jsou přesunuty do samostatné sekce Správa dat,
+- sekce Správa dat je předposlední a patička stránky poslední,
+- všechny prvky Denních tržeb používají konstantní Open Sans,
+- měsíční, roční, celkové tržby, PHP výpočty, SQL a databáze se nemění.
+
+UPRAVENÉ SOUBORY V95
+--------------------
+- hs-client-ui/css/daily-revenue.css
+- hs-client-ui/js/daily-revenue.js
+- hs-client-ui/js/daily-revenue-pdf.js
+- hs-client-ui/js/i18n.js
+- hs-client-ui/php/index.php
+- hs-client-ui/data/changelog.php
+- hs-client-ui/VERSION.txt
+
+KONTROLA PO NASAZENÍ V95
+------------------------
+1. Otevřete Tržby → Denní tržby na PC a zvolte jiné datum.
+2. Ověřte Zpět, Další a všechny původní hodnoty v tabulkách i grafech.
+3. Ověřte Export vpravo; PDF musí být čitelný report HairSoft, poté vyzkoušejte také XLS.
+4. Dole ověřte sekci Správa dat; musí být před patičkou Strana načtena za.
+5. Každou datovou akci otestujte včetně zrušení potvrzení smazání.
+6. Na telefonu ověřte datum, obě navigační tlačítka, kartové řádky a grafy.
+7. Zkontrolujte, že Měsíční, Roční a Celkové tržby se nezměnily.
+
+TECHNICKÁ POZNÁMKA
+------------------
+Původní CelkoveTrzby.php zůstává na serveru beze změny. V95 je cílená
+prezentační vrstva aktivovaná pouze na Denních tržbách. Původní formuláře a
+tlačítka se přesouvají jako stejné DOM prvky, nekopírují se.
+
+PŘEDCHOZÍ VERZE
+---------------
+
+NOVINKY V93 – REZERVACE BONFERO UVNITŘ KLIENTA
+-----------------------------------------------
+- Rezervace → Administrace otevírá Bonfero uvnitř HairSoft Klient,
+- vložení používá HTTPS a responzivní iframe,
+- účty a přihlášení obou systémů zůstávají zcela oddělené,
+- přihlášení Bonfera si má pamatovat jeho vlastní relace v prohlížeči,
+- panel má stav načítání, tlačítko Obnovit a Otevřít zvlášť,
+- přímý přístup chrání původní oprávnění Rezervace,
+- Google kalendář, PHP, SQL a databáze zůstávají beze změny.
+
+UPRAVENÉ SOUBORY V93
+--------------------
+- hs-client-ui/php/strana/RezervaceBonfero.php
+- hs-client-ui/css/reservations-embed.css
+- hs-client-ui/js/reservations-embed.js
+- hs-client-ui/js/i18n.js
+- hs-client-ui/php/index.php
+- hs-client-ui/data/changelog.php
+- hs-client-ui/VERSION.txt
+
+KONTROLA PO NASAZENÍ V93
+------------------------
+1. Přihlaste se do HairSoft Klient jako uživatel s právem Rezervace.
+2. Otevřete Rezervace → Administrace a přihlaste se do Bonfera uvnitř panelu.
+3. Přejděte v HairSoft na jinou stránku a vraťte se do Rezervací.
+4. Ověřte, že Bonfero zůstalo přihlášené; totéž vyzkoušejte po obnovení stránky.
+5. Ověřte tlačítka Obnovit a Otevřít zvlášť na PC i telefonu.
+
+POZNÁMKA K PŘIHLÁŠENÍ
+----------------------
+Zapamatování samostatného přihlášení závisí na pravidlech cookies Bonfera a
+nastavení konkrétního prohlížeče pro vložený obsah. Pokud prohlížeč relaci ve
+vnořeném okně blokuje, stále funguje tlačítko Otevřít zvlášť; případná oprava
+se řeší pouze nastavením cookies na Bonferu, nikoli propojením účtů.
+
+PŘEDCHOZÍ VERZE
+---------------
+
+NOVINKY V92 – MOBILNÍ NÁHLED POZNÁMKY
+--------------------------------------
+- sbalená Poznámka ukazuje začátek textu také na mobilu,
+- náhled je jednořádkový a delší text končí třemi tečkami,
+- po rozbalení se náhled skryje,
+- prázdná poznámka ukazuje Bez poznámky,
+- PC rozložení V91 a ukládání poznámky beze změny.
+
+UPRAVENÉ SOUBORY V92
+--------------------
+- hs-client-ui/css/client-detail-profile.css
+- hs-client-ui/php/index.php
+- hs-client-ui/data/changelog.php
+- hs-client-ui/VERSION.txt
+
+KONTROLA PO NASAZENÍ V92
+------------------------
+1. Na telefonu otevřete kartu zákazníka s vyplněnou poznámkou.
+2. Ve sbaleném panelu musí být vidět její zkrácený začátek.
+3. Po rozbalení náhled zmizí a zobrazí se celé textové pole.
+
+PŘEDCHOZÍ VERZE
+---------------
+
+NOVINKY V91 – PRIORITNÍ MENU KARTY ZÁKAZNÍKA NA PC
+---------------------------------------------------
+- pořadí levého sloupce je Profil, navigace, Poznámka,
+- menu Informace až Soubory je dostupné bez odsunutí vysokou poznámkou,
+- Poznámka je na PC ve výchozím stavu sbalená,
+- sbalený panel ukazuje jeden řádek textu nebo Bez poznámky,
+- kliknutí na hlavičku poznámku rozbalí a opět sbalí,
+- levý sloupec je při rolování přichycený,
+- mobilní verze zůstává beze změny,
+- formulář, ukládání, PHP, SQL a databáze beze změny.
+
+UPRAVENÉ SOUBORY V91
+--------------------
+- hs-client-ui/js/client-detail-profile.js
+- hs-client-ui/css/client-detail-profile.css
+- hs-client-ui/js/i18n.js
+- hs-client-ui/php/index.php
+- hs-client-ui/data/changelog.php
+- hs-client-ui/VERSION.txt
+
+KONTROLA PO NASAZENÍ V91
+------------------------
+1. Na PC otevřete existující kartu zákazníka.
+2. Ověřte pořadí Profil, navigace, sbalená Poznámka.
+3. Kliknutím Poznámku rozbalte, upravte text a znovu ji sbalte.
+4. Na telefonu ověřte dosavadní pořadí a funkční sbalenou Poznámku.
+
+PŘEDCHOZÍ VERZE
+---------------
+
+NOVINKY V90 – VLASTNÍ INTERAKTIVNÍ TOOLTIP GRAFŮ
+-------------------------------------------------
+- odstraněn křížový kurzor, který nic nezobrazoval,
+- na PC se při najetí zobrazí vlastní karta s měsícem a hodnotami,
+- u každého střediska je barva a přesná částka s měnou,
+- na mobilu se karta otevře krátkým klepnutím na graf,
+- vodorovný posun mezi měsíci zůstává zachovaný,
+- karta se zavře mimo graf, při posunu stránky nebo změně velikosti,
+- data, PHP, SQL a databáze beze změny.
+
+UPRAVENÉ SOUBORY V90
+--------------------
+- hs-client-ui/js/dashboard-charts.js
+- hs-client-ui/css/dashboard-charts.css
+- hs-client-ui/js/i18n.js
+- hs-client-ui/php/index.php
+- hs-client-ui/data/changelog.php
+- hs-client-ui/VERSION.txt
+
+KONTROLA PO NASAZENÍ V90
+------------------------
+1. Na PC najeďte myší do plochy sloupcového grafu.
+2. Ověřte kartu s měsícem, středisky a přesnými částkami.
+3. Na telefonu na graf krátce klepněte a poté jej vodorovně posuňte.
+4. Ověřte, že klepnutí kartu otevře a tažení stále posouvá graf.
+
+PŘEDCHOZÍ VERZE
+---------------
+
+NOVINKY V89 – OPRAVA OS A INTERAKTIVITY GRAFŮ
+----------------------------------------------
+- grafy se vytvářejí rovnou se správnou konečnou velikostí,
+- canvas již není dodatečně rozměrově deformovaný,
+- nejvyšší hodnota osy Y není oříznutá ani rozmazaná,
+- osa Y používá kompaktní hodnoty v tisících a milionech včetně měny,
+- osa Y má jasný popisek Částka,
+- osa X vždy zobrazuje všech 12 měsíců,
+- hover nad měsícem zobrazí název měsíce, střediska a přesné částky,
+- tooltip lze otevřít také dotykem,
+- mobilní vodorovný posun zůstává zachovaný,
+- chybějící volitelný graf Kredit již nezpůsobí JavaScriptovou chybu,
+- částky, měsíce, střediska, barvy, SQL a databáze beze změny.
+
+UPRAVENÉ SOUBORY
+----------------
+- /hs-client-ui/css/dashboard-charts.css
+- /hs-client-ui/js/dashboard-charts.js
+- /hs-client-ui/php/strana/AktivniPlocha.php – pouze bezpečné vytvoření grafů
+- /hs-client-ui/js/i18n.js
+- /hs-client-ui/php/index.php
+
+KONTROLA V89
+------------
+Na PC ověřit viditelnou nejvyšší hodnotu osy Y a měsíce Leden až Prosinec. Přejet kurzorem přes každý měsíc; tooltip musí ukázat měsíc, všechna střediska a jejich přesné částky. Na mobilu graf vodorovně posunout až k prosinci a zkusit tooltip dotykem.
+
+PŘEDCHOZÍ VERZE V88
+-------------------
+
+NOVINKY V88 – MODERNÍ GRAFY DASHBOARDU
+---------------------------------------
+- společný moderní komponent pro grafy služeb, prodeje, voucherů a kreditu,
+- zaoblené karty s čistou hlavičkou a konstantním fontem Open Sans,
+- kompaktní ovládání předchozího a následujícího roku,
+- zachované původní barvy středisek doplněné jemným gradientem,
+- sloupce se zaoblenými vršky, čisté osy a jemná přerušovaná mřížka,
+- moderní tooltip s přehledně formátovanými částkami,
+- součty středisek jako přehledné barevné štítky,
+- mobilní vodorovný posun legendy i všech 12 měsíců,
+- žádná data se na mobilu neskrývají ani nezmenšují do nečitelné podoby,
+- data, odkazy roku, ovládání panelů, PHP, SQL a databáze beze změny.
+
+NOVÉ SOUBORY
+------------
+- /hs-client-ui/css/dashboard-charts.css
+- /hs-client-ui/js/dashboard-charts.js
+
+KONTROLA V88
+------------
+Na Dashboardu zkontrolovat všechny dostupné grafy, jejich součty, měsíce a tooltipy. Vyzkoušet šipky roku a ovládání panelu. Na mobilu vodorovně projít legendu i graf až k prosinci; všechny hodnoty musí zůstat dostupné.
+
+PŘEDCHOZÍ VERZE V87
+-------------------
+
+NOVINKY V87 – MODERNÍ SOUBORY
+-----------------------------
+- samostatný zaoblený panel Soubory ve vizuálním systému detailu zákazníka,
+- moderní hlavička s počtem uložených souborů,
+- výrazné pole pro přetažení i kliknutí s viditelným limitem 30 MB,
+- stav nahrávání po výběru souboru,
+- typové ikony, stavové štítky a vlastní SVG ikona odstranění,
+- kompaktní desktopová tabulka s vyváženými šířkami,
+- mobilní karty s názvem, velikostí, datem, stavem a akcí,
+- kompaktní prázdný stav bez vysoké nevyužité plochy,
+- upload, download, stavy, mazání, PHP, SQL a databáze beze změny.
+
+NOVÉ SOUBORY
+------------
+- /hs-client-ui/css/client-detail-files.css
+- /hs-client-ui/js/client-detail-files.js
+
+KONTROLA V87
+------------
+V detailu zákazníka otevřít Soubory. Na PC vyzkoušet kliknutí do nahrávacího pole i přetažení souboru. Ověřit stažení souboru, stavový štítek a odstranění přes moderní potvrzení. Na mobilu musí být každý soubor samostatná karta a nahrávání musí zůstat snadno dostupné.
+
+PŘEDCHOZÍ VERZE V86
+-------------------
+
+NOVINKY V86 – MODERNÍ PDF HODNOCENÍ
+-----------------------------------
+- vlastní PDF šablona ve stejném vizuálním systému jako Timeline,
+- hlavička HairSoft, zákazník, čas vytvoření a číslování stran,
+- každé hodnocení tvoří samostatný čitelný blok místo patnácti úzkých sloupců,
+- termín, datum hodnocení a obsluha jsou v horním souhrnu,
+- pod souhrnem jsou všechny vyplněné otázky a odpovědi až do otázky 10,
+- dlouhé textové odpovědi se zalamují v širokém sloupci,
+- export respektuje aktuální hledání a řazení a zahrnuje všechny odpovídající stránky,
+- vlastní název souboru HairSoft_Hodnoceni_Zakaznik_Datum,
+- Copy, CSV, XLS, Tisk, PHP, SQL a databáze beze změny.
+
+NOVÝ SOUBOR
+-----------
+- /hs-client-ui/js/client-ratings-pdf.js
+
+KONTROLA V86
+------------
+V detailu zákazníka otevřít Hodnocení > Export > PDF. Ověřit hlavičku, údaje zákazníka, všechny vyplněné otázky včetně textové odpovědi a číslování stran. Poté použít Hledat a ověřit, že export obsahuje jen vyfiltrované záznamy.
+
+PŘEDCHOZÍ VERZE V85
+-------------------
+
+NOVINKY V85 – OPRAVA MOBILNÍ ŠÍŘKY
+----------------------------------
+- základní buňky mobilní karty přepisují pevné desktopové šířky,
+- jméno zákazníka se již neláme po jednotlivých písmenech,
+- kontakty zůstávají vpravo a horní hlavička využívá celou šířku,
+- oba termíny a obsluha správně vyplňují souhrnnou mřížku,
+- PC zobrazení a všechny funkce beze změny.
+
+KONTROLA V85
+------------
+Na mobilu otevřít Hodnocení a ověřit, že jméno zákazníka je běžně čitelné na jednom nebo několika celých řádcích, nikoliv po písmenech. Kontakty mají být napravo a souhrnné údaje pod hlavičkou musí využívat celou šířku karty.
+
+PŘEDCHOZÍ VERZE V84
+-------------------
+
+NOVINKY V84 – TYPOGRAFIE A MOBILNÍ SOUHRN
+------------------------------------------
+- Open Sans je v Hodnocení sjednocený se stejnou sadou jako Dashboard,
+- shodné je pořadí náhradních fontů, vyhlazování i základní velikost 13 px,
+- desktopová hlavička, řádky, štítky a náhledy používají jednotné vykreslení,
+- mobilní jméno a kontakty tvoří jednu kompaktní hlavičku bez prázdného místa,
+- datum hodnocení, termín objednávky a obsluha jsou na běžném mobilu v jedné řadě,
+- na velmi úzkém telefonu zůstávají termíny vedle sebe a obsluha je pod nimi,
+- funkce, data, odkazy, export, stránkování, PHP, SQL a databáze beze změny.
+
+KONTROLA V84
+------------
+Na PC porovnat vykreslení písma s Dashboardem a seznamem zákazníků. Na mobilu ověřit kompaktní hlavičku s kontakty vpravo a tři informační dlaždice bez zbytečného prázdného prostoru. Při šířce do 380 px musí být oba termíny vedle sebe a obsluha pod nimi.
+
+PŘEDCHOZÍ VERZE V83
+-------------------
+
+NOVINKY V83 – DOLADĚNÍ HODNOCENÍ
+---------------------------------
+- moderní kontaktní náhled po najetí na jméno zákazníka,
+- kliknutí na jméno stále vede do karty zákazníka,
+- moderní náhled skutečné odpovědi po najetí na hodnotu Text,
+- odstranění původních hranatých a systémových tooltipů,
+- opravená plná šířka otázek v mobilních kartách,
+- dlouhé otázky se již nelámou po písmenech,
+- textová odpověď je na mobilu pod otázkou přes celou šířku,
+- kontaktní údaje jsou na mobilu dostupné přímo pod jménem,
+- PHP, SQL, databáze a hodnoty hodnocení beze změny.
+
+KONTROLA V83
+------------
+Na PC najeďte na jméno zákazníka a na štítek Text. Oba náhledy musí být moderní a celé čitelné; kliknutí na jméno musí otevřít kartu zákazníka. Na mobilu musí být otázky přes celou šířku karty, bez lámání po jednotlivých písmenech, a textová odpověď musí být pod otázkou.
+
+PŘEDCHOZÍ VERZE V82
+-------------------
+
+ZÁKLAD
+------
+V82 navazuje na V81 a modernizuje pouze Hodnocení:
+- /hs-client-ui/css/client-detail-ratings.css
+- /hs-client-ui/js/client-detail-ratings.js
+- /hs-client-ui/js/i18n.js
+- /hs-client-ui/php/index.php
+
+UPRAVENO VE V82
+---------------
+- moderní vnější panel, nadpis a dvouřádková hlavička Hodnocení,
+- všech 10 otázkových sloupců zůstává na PC dostupných,
+- vodorovný posuv je omezený pouze na tabulku,
+- Hledat vlevo, Export vpravo bez doplňkového textu,
+- zapnuté stránkování po 25 záznamech ve vzhledu Timeline,
+- číselná hodnocení jako štítky s hvězdou,
+- mobilní karty se zákazníkem, oběma termíny, obsluhou a otázkami,
+- skutečné textové odpovědi dostupné přímo v mobilní kartě,
+- nevyplněné otázky s pomlčkou se na mobilu nezobrazují,
+- překlady nových prvků CZ, SK, EN a DE.
+
+NEMĚNÍ SE VE V82
+----------------
+- původních 5 základních a 10 otázkových datových sloupců,
+- SQL dotaz, hodnoty odpovědí a jejich pořadí,
+- odkaz zákazníka a data v informační bublině,
+- formáty exportu Copy, CSV, XLS, PDF a Tisk,
+- databáze, Galerie, SMS Chat, Timeline a ostatní části detailu.
+
+KONTROLA V82 PO NASAZENÍ
+------------------------
+Na PC otevřít Hodnocení a vodorovným posuvníkem ověřit Otázku 1 až 10. Zkontrolovat Hledat vlevo, Export vpravo a stránkování při více než 25 záznamech. Na mobilu ověřit kartu s termíny, obsluhou a všemi vyplněnými odpověďmi, zejména textovou odpověď.
+
+PŘEDCHOZÍ V81
+-------------
+V81 upravuje pouze zaoblení SMS Chatu:
+- /hs-client-ui/css/client-detail-sms-chat.css
+- /hs-client-ui/php/index.php
+
+UPRAVENO VE V81
+---------------
+- zaoblení celého vnějšího panelu SMS Chat,
+- radius 18 px na PC a 16 px na mobilu,
+- jemné ohraničení celé sekce,
+- zvýšená cache verze CSS na 81.
+
+NEMĚNÍ SE VE V81
+----------------
+- vnitřní tabulka, hlavička a stránkování,
+- mobilní zprávové karty,
+- texty a pořadí zpráv,
+- PHP, SQL a databáze,
+- Galerie a ostatní části detailu.
+
+KONTROLA V81 PO NASAZENÍ
+------------------------
+Na PC i mobilu otevřít SMS Chat a ověřit zaoblené rohy celého světle šedého panelu. Tabulka, zprávy a případné stránkování musí zůstat rozměrově i funkčně stejné jako ve V80.
+
+PŘEDCHOZÍ V80
+-------------
+V80 doplňuje navigaci zvětšených fotografií:
+- /hs-client-ui/css/client-detail-gallery.css
+- /hs-client-ui/js/client-detail-gallery.js
+- /hs-client-ui/js/i18n.js
+- /hs-client-ui/php/index.php
+
+UPRAVENO VE V80
+---------------
+- navigační šipky ve velkém náhledu při více fotografiích,
+- ovládání klávesami vlevo a vpravo,
+- cyklický přechod mezi prvním a posledním snímkem,
+- mobilní dotyková tlačítka,
+- zaoblení a jemné ohraničení celého bloku Galerie,
+- překlady nových ovládacích prvků CZ, SK, EN a DE.
+
+KONTROLA V80 PO NASAZENÍ
+------------------------
+Otevřít zákazníka se dvěma nebo více fotografiemi. Ve velkém náhledu vyzkoušet obě tlačítka i klávesy vlevo/vpravo. U zákazníka s jedinou fotografií se šipky nesmějí zobrazit. Na PC i mobilu zkontrolovat zaoblené rohy celé sekce.
+
+PŘEDCHOZÍ V79
+-------------
+V79 opravuje pouze posuv po otevření fotografie:
+- /hs-client-ui/js/client-detail-gallery.js
+- /hs-client-ui/php/index.php
+
+UPRAVENO VE V79
+---------------
+- kliknutí na fotografii nepoužívá původní opakované scrollToTop(),
+- stránka se po pokusu o posun nevrací automaticky nahoru,
+- otevření a zavření velkého náhledu zachovává normální rolování,
+- vzhled a funkce Galerie z V78 zůstávají beze změny.
+
+KONTROLA V79 PO NASAZENÍ
+------------------------
+Otevřít Galerii u zákazníka, kliknout na fotografii, zavřít ji a několikrát posunout stránku dolů i nahoru. Stránka se nesmí samovolně vracet nahoru. Poté ověřit pravé menu fotografie.
+
+PŘEDCHOZÍ V78
+-------------
+V78 modernizuje pouze Galerii:
+- /hs-client-ui/css/client-detail-gallery.css
+- /hs-client-ui/js/client-detail-gallery.js
+- /hs-client-ui/js/i18n.js
+- /hs-client-ui/php/index.php
+
+UPRAVENO VE V78
+---------------
+- moderní responzivní mřížka fotografií na PC,
+- kompaktní mobilní mřížka 2 × 2,
+- jednotné oříznutí snímků bez deformace,
+- moderní celoobrazovkový náhled po kliknutí,
+- jedno společné menu pro všechny fotografie,
+- pravý klik na PC a tlačítko se třemi tečkami na dotykovém zařízení,
+- funkce Profilovka, otočení doprava, otočení doleva a smazání zůstávají zachované,
+- prázdný stav bez zbytečně vysokého prostoru,
+- překlady nových textů CZ, SK, EN a DE.
+
+NEMĚNÍ SE VE V78
+----------------
+- PHP a SQL Galerie,
+- ukládání, načítání a mazání fotografií,
+- adresy původních akcí,
+- horní karty, profil, poznámka a navigace,
+- Informace, Timeline, SMS Chat, Hodnocení a Soubory,
+- seznam zákazníků a databáze.
+
+KONTROLA V78 PO NASAZENÍ
+------------------------
+Na PC otevřít Galerii, kliknutím zobrazit velký náhled a pravým tlačítkem vyzkoušet menu každé fotografie. Na mobilu ověřit mřížku, otevření snímku a nabídku pod třemi tečkami. Smazání nejprve bezpečně zrušit v potvrzovacím dialogu.
+
+PŘEDCHOZÍ V77
+-------------
+V77 modernizuje pouze SMS Chat:
+- /hs-client-ui/css/client-detail-profile.css
+- /hs-client-ui/js/client-detail-profile.js
+- /hs-client-ui/css/client-detail-desktop.css
+- /hs-client-ui/js/client-detail-desktop.js
+- /hs-client-ui/css/client-detail-timeline.css
+- /hs-client-ui/css/client-detail-sms-chat.css
+- /hs-client-ui/js/client-detail-sms-chat.js
+- /hs-client-ui/css/client-export-menu.css
+- /hs-client-ui/js/client-timeline-pdf.js
+- /hs-client-ui/js/client-export-menu.js
+- /hs-client-ui/css/client-confirm.css
+- /hs-client-ui/js/client-confirm.js
+
+UPRAVENO
+--------
+- SMS Chat je bezpečně inicializován jako samostatná DataTables tabulka,
+- moderní zaoblený panel a hlavička podle Timeline,
+- kompaktní Datum a široké textové sloupce,
+- stránkování po 25 záznamech ve vzhledu Timeline,
+- přepočet šířek po otevření původně skryté záložky,
+- mobilní zprávové karty s datem a pouze vyplněnou stranou komunikace,
+- odstraněn konflikt `paging: true` a `bPaginate: false`; stránkování Timeline je skutečně zapnuté,
+- vzhled Předešlá, čísel, tří teček a Další odpovídá seznamu zákazníků,
+- aktivní stránka má modré pozadí a bílý text,
+- sjednocený font, výška, mezery, zaoblení, hover a zakázaný stav,
+- tabulka a její hlavička mají stejné zaoblené zakončení jako seznam zákazníků,
+- Datum má pevnou šířku 150 px a Obsluha 165 px,
+- Detail a Akce mají kompaktní šířku 64 px,
+- Poznámka využívá celý zbývající prostor,
+- rozměry mají vyšší prioritu než automatické inline šířky DataTables,
+- mobilní karty zůstávají rozměrově i obsahově beze změny,
+- tabulka už nepřetéká mimo šířku panelu ani monitoru,
+- šířky sloupců jsou pevně řízené a Poznámka využívá zbývající prostor,
+- hlavička má výšku 52 px a font seznamu zákazníků,
+- názvy sloupců jsou přesně vycentrované svisle i vodorovně,
+- Detail a Akce jsou bez řadicích šipek,
+- pořadí je Datum, Poznámka, Obsluha, Detail, Akce,
+- Detail a odstranění používají vlastní moderní SVG ikony,
+- mobilní karty jsou přemapované na nové pořadí,
+- PDF export používá nové indexy, ale zachovává stejný obsah,
+- nativní potvrzení prohlížeče nahrazeno dialogem HairSoft,
+- společný design pro osobu, Timeline, soubor, fotografii a sklad,
+- bezpečné výchozí zaměření na Zrušit,
+- zavření přes Zrušit, kliknutí mimo dialog nebo Escape,
+- ovládání klávesnicí a uzamčení fokusu uvnitř dialogu,
+- mobilní spodní panel s velkými dotykovými tlačítky,
+- překlady CZ, SK, EN a DE,
+- opraveny staré překlepy v potvrzovacích textech,
+- Hledat je v liště Timeline vlevo,
+- Export je v liště Timeline vpravo,
+- tlačítko obsahuje pouze ikonu a text Export,
+- font a obsah tlačítka jsou přesně vycentrované,
+- na mobilu jsou Hledat a Export pod sebou v plné šířce,
+- výběr Copy, CSV, XLS, PDF nebo Tisk globálně zavře nabídku,
+- PDF z Timeline exportuje jen Datum, Poznámku a Obsluhu,
+- vlastní hlavička HairSoft se jménem zákazníka,
+- čitelné šířky sloupců a zalamování dlouhých poznámek,
+- moderní tabulka s jemnými linkami a střídáním řádků,
+- datum vytvoření a čísla stran v patičce,
+- bezpečný název souboru s klientem a datem,
+- globální moderní nabídka Copy, CSV, XLS, PDF a Tisk,
+- kompaktní ukotvené menu na PC,
+- širší vycentrovaný panel na mobilu,
+- jednotné ikony, font, mezery, hover a focus stavy,
+- jemné ztmavení a rozostření pozadí,
+- moderní tabulka Timeline na PC,
+- mobilní kartové zobrazení stejných řádků bez kopírování dat,
+- moderní Export, vyhledávání a formulář poznámky,
+- samostatná tlačítka editace a odstranění,
+- odstraněna pevná výška původního obalu Poznámky,
+- prázdná a jednořádková Poznámka je skutečně kompaktní,
+- prázdná SMS karta používá moderní komponent stejně jako Volat,
+- prázdná SMS zobrazuje Číslo nezadáno,
+- mezera mezi hlavičkou Poznámky a rámečkem textového pole,
+- automatická výška podle skutečného počtu řádků,
+- průběžné zvětšování při psaní,
+- maximální výška 220 px a posuvník pouze u dlouhého textu,
+- pevný kruhový rozměr fotografie 74 × 74 px,
+- bílá linka, jemný stín a přesné vystředění,
+- přepsání starých rozměrů a transformací, které mohly avatar deformovat,
+- mobilní fotografie přesunuta do pravé části horního panelu,
+- samostatná profilová karta na mobilu skryta,
+- navigace je hned pod horními čtyřmi kartami,
+- Poznámka je ve výchozím stavu sbalená a kliknutím se rozbalí,
+- bloky Informací využívají celou mobilní šířku,
+- původní pole, hodnoty a ukládání beze změny.
+
+NEMĚNÍ SE
+---------
+- SQL dotaz a pořadí zpráv SMS Chatu,
+- texty zpráv a jejich stavové ikony,
+- řadicí šipky v názvech sloupců,
+- ikony Detail a Koš,
+- seznam zákazníků a ostatní tabulky,
+- obsah a pořadí informací v mobilních kartách,
+- PDF obsah Datum, Poznámka a Obsluha,
+- odkazy detailu a odstranění záznamu,
+- cílové odkazy a adresy mazacích akcí,
+- formuláře, POST hodnoty a PHP zpracování smazání,
+- původní akce Copy, CSV, XLS, PDF a Tisk,
+- moderní PDF Timeline z V69,
+- PHP a databázová logika Timeline,
+- odkazy editace a odstranění včetně potvrzení,
+- DataTables vyhledávání, řazení a export,
+- desktopový vzhled V62,
+- vnitřní obsah a funkce záložek Timeline až Soubory,
+- fotografie, Volat a Bonusové body v horních kartách,
+- sekce Možnosti a patička,
+- seznam zákazníků na PC i mobilu,
+- původní názvy a hodnoty polí,
+- formuláře, odkazy, fotoaparát, galerie a nahrávání souborů,
+- databáze, oprávnění a synchronizace s HairSoft.
+
+KONTROLA PO NASAZENÍ
+--------------------
+Na PC otevřít Timeline s delší poznámkou a ověřit, že tabulka nepřetéká, hlavička odpovídá seznamu zákazníků a pořadí končí Detail, Akce. Vyzkoušet řazení data, vlastní ikonu Detail a bezpečné zrušení koše. Na mobilu ověřit datum, poznámku, obsluhu a obě akce v jedné kartě. Nakonec zkontrolovat PDF se třemi obsahovými sloupci.

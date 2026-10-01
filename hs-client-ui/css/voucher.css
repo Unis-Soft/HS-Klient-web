@@ -1,0 +1,208 @@
+/* HairSoft V125 – shared warehouse appearance. */
+#main-content.hs-voucher-page,#main-content.hs-voucher-page input,#main-content.hs-voucher-page select,#main-content.hs-voucher-page button,#main-content.hs-voucher-page table,#main-content.hs-voucher-page font {font-family:Tahoma,Arial,sans-serif!important;color:#334861;}
+#main-content.hs-voucher-page .hs-voucher-panel{border:1px solid #dfe7ed;border-radius:18px;background:#fff;overflow:hidden;box-shadow:0 10px 28px rgba(38,53,73,.06);margin-bottom:18px;}
+#main-content.hs-voucher-page .hs-voucher-panel>.panel-heading{display:flex;align-items:center;gap:12px;padding:16px 18px;background:#fbfcfd;border-bottom:1px solid #e1e8ef;min-height:72px;}
+#main-content.hs-voucher-page .hs-voucher-panel .panel-title{font-family:inherit;font-size:15px;font-weight:700;color:#253a53;line-height:1.35;margin:0;}
+#main-content.hs-voucher-page .hs-voucher-heading-icon{display:flex;align-items:center;justify-content:center;flex:0 0 42px;height:42px;border-radius:14px;background:#e7f5f4;color:#168f8b;}
+#main-content.hs-voucher-page svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+#main-content.hs-voucher-page .hs-voucher-panel>.panel-body{padding:16px;}
+#main-content.hs-voucher-page .table-responsive{border:0;overflow:visible;}
+#main-content.hs-voucher-page .hs-voucher-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;}
+#main-content.hs-voucher-page .dataTables_filter{float:none;margin:0;flex:1;min-width:0;text-align:left;}
+#main-content.hs-voucher-page .dataTables_filter label{display:flex;align-items:center;position:relative;width:100%;margin:0;}
+#main-content.hs-voucher-page .dataTables_filter label>span{position:absolute;left:12px;display:flex;color:#168f8b;pointer-events:none;}
+#main-content.hs-voucher-page .dataTables_filter input{box-sizing:border-box;width:100%;min-width:0;margin:0;padding:11px 12px 11px 40px;height:42px;border:1px solid #d6e2ea;border-radius:12px;background:#fbfcfd;outline:0;font-size:12px;}
+#main-content.hs-voucher-page .dataTables_filter input:focus{border-color:#57bbb4;box-shadow:0 0 0 3px #eaf7f6;}
+#main-content.hs-voucher-page .dt-buttons{float:none;flex:none;}
+#main-content.hs-voucher-page .buttons-collection{display:inline-flex;align-items:center;justify-content:center;gap:9px;margin:0;padding:10px 15px;min-height:42px;border:1px solid #b9dfdc;border-radius:12px;background:#f1fbfa;color:#087d79;font-size:13px;box-shadow:none;}
+#main-content.hs-voucher-page table.dataTable{width:100%!important;border:1px solid #dbe5ed;border-collapse:separate!important;border-spacing:0;border-radius:14px;overflow:hidden;font-size:11.5px;}
+#main-content.hs-voucher-page table.dataTable thead td,#main-content.hs-voucher-page table.dataTable thead th{background:#f3f7f9;color:#28415b;font-size:11px;font-weight:700;border:0;border-bottom:1px solid #dbe5ed;padding:12px 18px 12px 8px;}
+#main-content.hs-voucher-page table.dataTable tbody td{padding:12px 8px;border:0;border-bottom:1px solid #e5edf2;vertical-align:middle;overflow-wrap:anywhere;}
+#main-content.hs-voucher-page table.dataTable tbody tr:last-child td{border-bottom:0;}
+#main-content.hs-voucher-page table.dataTable tbody tr:nth-child(odd){background:#fff;}
+#main-content.hs-voucher-page table.dataTable tbody tr:nth-child(even){background:#f9fbfc;}
+#main-content.hs-voucher-page .dataTables_info{font-size:11px;color:#7b8ca1;padding-top:12px;}
+#main-content.hs-voucher-page .hs-voucher-picker form{max-width:400px;margin:0 auto;}
+#main-content.hs-voucher-page .hs-voucher-picker select{width:100%;height:44px;border:1px solid #d8e4eb;border-radius:12px;background:#f7fafb;padding:8px 12px;font-size:14px;}
+#main-content.hs-voucher-page .hs-voucher-options .form-group,#main-content.hs-voucher-page .hs-voucher-options .rada{margin:0;}
+#main-content.hs-voucher-page .hs-voucher-options button{display:inline-flex;align-items:center;justify-content:center;gap:9px;white-space:normal;background:#fff4f5;color:#c14c58;border:1px solid #f0cbd0;border-radius:12px;padding:12px 16px;font-size:12px;}
+#main-content.hs-voucher-page .hs-voucher-options button:hover{background:#fde9ec;}
+#main-content.hs-voucher-page .hs-voucher-cards{display:none;}
+@media(max-width:767px),(hover:none) and (pointer:coarse) and (max-width:1100px){
+ #main-content.hs-voucher-page .hs-voucher-table-panel table.dataTable{display:none;}
+ #main-content.hs-voucher-page .hs-voucher-cards{display:grid;gap:12px;width:100%;}
+ #main-content.hs-voucher-page .hs-voucher-toolbar{flex-direction:column;align-items:stretch;}
+ #main-content.hs-voucher-page .dt-buttons,#main-content.hs-voucher-page .buttons-collection{width:100%;}
+ #main-content.hs-voucher-page .hs-voucher-product{border:1px solid #d8e3eb;border-radius:15px;overflow:hidden;background:white;}
+ #main-content.hs-voucher-page .hs-voucher-product header{padding:14px;background:#f6f9fb;border-bottom:1px solid #dfe7ed;}
+ #main-content.hs-voucher-page .hs-voucher-product header span{display:block;color:#7b8ca1;font-size:10px;margin-bottom:4px;}
+ #main-content.hs-voucher-page .hs-voucher-product header strong{font-size:14px;color:#183250;overflow-wrap:anywhere;}
+ #main-content.hs-voucher-page .hs-voucher-product-values{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:10px;}
+ #main-content.hs-voucher-page .hs-voucher-product-values>div{padding:10px;background:#f7fafb;border:1px solid #e1e9ef;border-radius:12px;}
+ #main-content.hs-voucher-page .hs-voucher-product-values>div:last-child{background:#edf8f7;border-color:#cce7e5;}
+ #main-content.hs-voucher-page .hs-voucher-product-values span{display:block;color:#7b8ca1;font-size:10px;margin-bottom:4px;}
+ #main-content.hs-voucher-page .hs-voucher-product-values strong{font-size:15px;color:#28415b;}
+ #main-content.hs-voucher-page .hs-voucher-options button{width:100%;}
+}
+
+#main-content.hs-voucher-page .dataTables_paginate{display:flex;align-items:center;justify-content:flex-end;gap:5px;padding-top:12px;font-size:11px;}
+#main-content.hs-voucher-page .dataTables_paginate .paginate_button{display:inline-flex;align-items:center;justify-content:center;min-width:32px;height:32px;padding:0 10px;margin:0;border:1px solid #dbe5ed!important;border-radius:9px;background:#fff!important;color:#526b91!important;text-decoration:none;box-shadow:none;}
+#main-content.hs-voucher-page .dataTables_paginate .paginate_button.current{background:#e9f6f5!important;border-color:#c1e3df!important;color:#168f8b!important;}
+#main-content.hs-voucher-page .dataTables_paginate .paginate_button.disabled{opacity:.45;cursor:default;}
+#main-content.hs-voucher-page .hs-voucher-product-values>div:last-child:nth-child(odd){grid-column:1/-1;}
+@media(max-width:767px){#main-content.hs-voucher-page .dataTables_paginate{justify-content:center;}}
+
+/* V126: pagination matches the customer directory. */
+#main-content.hs-voucher-page .dataTables_paginate {
+  display: flex;
+  align-items: center;
+  float: none;
+  gap: 2px;
+  padding: 4px !important;
+  border: 1px solid #e0e7ed;
+  border-radius: 12px;
+  background: #f5f8fa;
+}
+
+#main-content.hs-voucher-page .dataTables_paginate .paginate_button {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: 34px;
+  height: 34px;
+  margin: 0 !important;
+  padding: 0 10px !important;
+  color: #53657d !important;
+  font-family: Tahoma, Arial, sans-serif !important;
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1 !important;
+  border: 1px solid transparent !important;
+  border-radius: 8px !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+#main-content.hs-voucher-page .dataTables_paginate .paginate_button:hover {
+  color: #405571 !important;
+  border-color: #d6e0e8 !important;
+  background: #f4f7fa !important;
+}
+
+#main-content.hs-voucher-page .dataTables_wrapper .dataTables_paginate .paginate_button:not(.current):not(.disabled):hover {
+  color: #405571 !important;
+  -webkit-text-fill-color: #405571 !important;
+  border-color: #d6e0e8 !important;
+  background: #fff !important;
+}
+
+#main-content.hs-voucher-page .dataTables_paginate .paginate_button.current,
+#main-content.hs-voucher-page .dataTables_paginate .paginate_button.current:hover {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+  border-color: #556b8d !important;
+  background: #556b8d !important;
+}
+
+#main-content.hs-voucher-page .dataTables_paginate .paginate_button.disabled,
+#main-content.hs-voucher-page .dataTables_paginate .paginate_button.disabled:hover {
+  color: #a5b0bd !important;
+  border-color: transparent !important;
+  background: transparent !important;
+  cursor: default;
+}
+
+#main-content.hs-voucher-page .dataTables_paginate > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+
+#main-content.hs-voucher-page .dataTables_paginate{width:fit-content;max-width:100%;margin-left:auto;flex-wrap:wrap;}
+#main-content.hs-voucher-page .hs-voucher-negative{color:#c84c59!important;font-weight:600;}
+@media(max-width:767px){#main-content.hs-voucher-page .dataTables_paginate{margin-right:auto;}}
+
+/* V127: voucher-specific fields and protected form layout. */
+#main-content.hs-voucher-page .panel-body{min-width:0;}
+#main-content.hs-voucher-page .panel-heading .actions{display:none;}
+#main-content.hs-voucher-page .hs-voucher-panel{width:100%;}
+#main-content.hs-voucher-page .dataTables_wrapper{width:100%;min-width:0;}
+#main-content.hs-voucher-page .hs-voucher-scroll{overflow-x:auto;width:100%;border-radius:14px;}
+#main-content.hs-voucher-page .hs-voucher-scroll table{min-width:1350px;}
+#main-content.hs-voucher-page .hs-voucher-scroll table td{overflow-wrap:normal;}
+#main-content.hs-voucher-page .hs-voucher-scroll table td:nth-child(2){font-weight:600;}
+#main-content.hs-voucher-page .hs-voucher-table-panel .dataTables_paginate{float:right;margin-top:14px;max-width:100%;flex-wrap:wrap;}
+#main-content.hs-voucher-page .hs-voucher-toolbar{clear:both;}
+#main-content.hs-voucher-page .hs-voucher-filter .form-group{display:grid;grid-template-columns:90px minmax(0,1fr) 90px minmax(0,1fr);align-items:center;gap:12px;margin:0 0 14px;padding:0;border:0;}
+#main-content.hs-voucher-page .hs-voucher-filter .form-group>*{width:auto;float:none;padding:0;margin:0;text-align:left;}
+#main-content.hs-voucher-page .hs-voucher-filter label{font-size:12px;font-weight:600;color:#70859a;}
+#main-content.hs-voucher-page .form-control{height:44px!important;min-width:0;width:100%;border:1px solid #d6e2ea;border-radius:12px;box-shadow:none;background:#f7fafb;font-size:14px!important;}
+#main-content.hs-voucher-page .form-control:focus{border-color:#57bbb4;box-shadow:0 0 0 3px #eaf7f6;}
+#main-content.hs-voucher-page button.btn,#main-content.hs-voucher-page .hs-voucher-detail{display:inline-flex;align-items:center;justify-content:center;gap:9px;white-space:normal;min-height:42px;padding:11px 16px;border:1px solid #b9dfdc;border-radius:12px;background:#eff9f8;color:#087d79!important;font-size:13px;font-weight:600;line-height:1.4;box-shadow:none;}
+#main-content.hs-voucher-page button.btn-danger{border-color:#f0cbd0;background:#fff4f5;color:#bf4755!important;}
+#main-content.hs-voucher-page button.close{min-height:0;padding:0;}
+#main-content.hs-voucher-page button.btn:hover{filter:brightness(.97);}
+#main-content.hs-voucher-page .hs-voucher-edit .form-group{margin:0;display:flex;flex-direction:column;gap:12px;padding:18px;}
+#main-content.hs-voucher-page .hs-voucher-edit .form-group>*{float:none;width:100%;padding:0;text-align:left;}
+#main-content.hs-voucher-page .hs-voucher-edit .form-control{max-width:480px;}
+#main-content.hs-voucher-page .hs-voucher-edit label{font-size:13px;}
+#main-content.hs-voucher-page .hs-voucher-actions{display:flex;flex-wrap:wrap;gap:10px;padding:14px 0;align-items:center;}
+#main-content.hs-voucher-page .hs-voucher-actions form{margin:0;}
+#main-content.hs-voucher-page .hs-voucher-actions br{display:none;}
+#main-content.hs-voucher-page .hs-voucher-product-values strong{font-size:13px;overflow-wrap:anywhere;}
+#main-content.hs-voucher-page .hs-voucher-product-values>div:last-child{background:#f7fafb;border-color:#e1e9ef;}
+#main-content.hs-voucher-page .hs-voucher-product-values>div.hs-voucher-balance{background:#edf8f7;border-color:#cce7e5;}
+#main-content.hs-voucher-page .hs-voucher-product header{display:flex;align-items:center;justify-content:space-between;gap:12px;}
+#main-content.hs-voucher-page .hs-voucher-product header strong{min-width:0;}
+#main-content.hs-voucher-page .hs-voucher-detail{white-space:nowrap;flex-shrink:0;text-decoration:none;}
+#main-content.hs-voucher-page .hs-voucher-chart-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:24px;max-width:900px;margin:auto;}
+#main-content.hs-voucher-page .hs-voucher-chart-plot{position:relative;width:100%;max-width:320px;aspect-ratio:1;margin:auto;}
+#main-content.hs-voucher-page .hs-voucher-chart-plot canvas{width:100%!important;height:100%!important;}
+#main-content.hs-voucher-page .hs-voucher-chart-total{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:62%;text-align:center;pointer-events:none;font-size:19px;font-weight:700;color:#253c57;}
+#main-content.hs-voucher-page .hs-voucher-chart-total small{display:block;font-size:10px;font-weight:600;color:#7d8fa2;margin-top:6px;}
+#main-content.hs-voucher-page .hs-voucher-chart-legend{border-collapse:separate;border-spacing:0 8px;width:100%;}
+#main-content.hs-voucher-page .hs-voucher-chart-legend td{padding:12px 6px;background:#f5f8fa;font-size:12px;}
+#main-content.hs-voucher-page .hs-voucher-chart-legend td:first-child{border-radius:12px 0 0 12px;padding-left:12px;}
+#main-content.hs-voucher-page .hs-voucher-chart-legend td:last-child{border-radius:0 12px 12px 0;padding-right:12px;}
+#main-content.hs-voucher-page .hs-voucher-empty-ring{border:34px solid #edf3f6;border-radius:50%;height:100%;width:100%;}
+#main-content.hs-voucher-page .hs-voucher-negative{color:#c74452!important;}
+#main-content.hs-voucher-page .hs-voucher-filter .form-group:before,#main-content.hs-voucher-page .hs-voucher-filter .form-group:after{display:none;content:none;}
+#main-content.hs-voucher-page .hs-voucher-filter .panel-body{padding:20px;}
+#main-content.hs-voucher-page .hs-voucher-scroll td>div{width:100%!important;white-space:nowrap;}
+#main-content.hs-voucher-page .hs-voucher-chart-layout{display:flex;flex-wrap:wrap;justify-content:center;}
+#main-content.hs-voucher-page .hs-voucher-chart-legend{flex:1 1 240px;}
+#main-content.hs-voucher-page .hs-voucher-chart-plot{flex:1 1 240px;max-width:280px;}
+#main-content.hs-voucher-page .hs-voucher-status{display:inline-block;padding:5px 9px;border-radius:8px;background:#edf6f5;color:#087d79;font-weight:600;}
+#main-content.hs-voucher-page .hs-voucher-status[data-state="Neplatný"]{background:#fff1f3;color:#bd4053;}
+#main-content.hs-voucher-page .hs-voucher-status[data-state="Vyčerpaný"]{background:#edf2f8;color:#526b91;}
+@media(max-width:767px),(hover:none) and (pointer:coarse) and (max-width:1100px){
+ #main-content.hs-voucher-page .hs-voucher-scroll{display:none;}
+ #main-content.hs-voucher-page .hs-voucher-filter .form-group{grid-template-columns:65px minmax(0,1fr);gap:10px;}
+ #main-content.hs-voucher-page .hs-voucher-filter button{width:100%;}
+ #main-content.hs-voucher-page .hs-voucher-actions{flex-direction:column;align-items:stretch;}
+ #main-content.hs-voucher-page .hs-voucher-actions form,#main-content.hs-voucher-page .hs-voucher-actions button{width:100%;}
+ #main-content.hs-voucher-page .hs-voucher-chart-layout{grid-template-columns:minmax(0,1fr);gap:14px;}
+ #main-content.hs-voucher-page .hs-voucher-table-panel .dataTables_paginate{float:none;justify-content:center;}
+}
+
+/* V128: double scrollbar, whole status labels and distinct edit actions. */
+#main-content.hs-voucher-page .hs-voucher-scroll table{table-layout:auto!important;}
+#main-content.hs-voucher-page .hs-voucher-status{white-space:nowrap!important;overflow-wrap:normal!important;word-break:normal!important;max-width:none!important;width:max-content;}
+#main-content.hs-voucher-page td:has(>.hs-voucher-status){white-space:nowrap!important;width:1%;}
+#main-content.hs-voucher-page .hs-voucher-scroll-top{height:18px;overflow-x:auto;overflow-y:hidden;width:100%;margin:0 0 9px;scrollbar-color:#8196b0 #edf2f6;}
+#main-content.hs-voucher-page .hs-voucher-scroll-top>div{height:1px;}
+#main-content.hs-voucher-page .hs-voucher-scroll-top::-webkit-scrollbar{height:12px;}
+#main-content.hs-voucher-page .hs-voucher-scroll-top::-webkit-scrollbar-track{background:#edf2f6;border-radius:8px;}
+#main-content.hs-voucher-page .hs-voucher-scroll-top::-webkit-scrollbar-thumb{background:#8196b0;border-radius:8px;border:2px solid #edf2f6;}
+#main-content.hs-voucher-page .hs-voucher-detail-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:18px;}
+#main-content.hs-voucher-page .hs-voucher-detail-actions form{margin:0;}
+#main-content.hs-voucher-page .hs-voucher-scroll-top.hs-voucher-scroll-unneeded{display:none;}
+#main-content.hs-voucher-page .hs-voucher-toolbar:empty{display:none;}
+#main-content.hs-voucher-page button.hs-voucher-edit-amount{background:#edf2fb;border-color:#bacce5;color:#425f8c!important;}
+#main-content.hs-voucher-page button.hs-voucher-edit-validity{background:#fff7e9;border-color:#edd5a6;color:#93621b!important;}
+#main-content.hs-voucher-page .hs-voucher-delete-section .hs-voucher-heading-icon{background:#fff0f2;color:#bd4053;}
+#main-content.hs-voucher-page .hs-voucher-delete-section .panel-body{margin:0;}
+@media(max-width:767px),(hover:none) and (pointer:coarse) and (max-width:1100px){#main-content.hs-voucher-page .hs-voucher-scroll-top{display:none;}#main-content.hs-voucher-page .hs-voucher-detail-actions{flex-direction:column;align-items:stretch;}#main-content.hs-voucher-page .hs-voucher-detail-actions button{width:100%;}}

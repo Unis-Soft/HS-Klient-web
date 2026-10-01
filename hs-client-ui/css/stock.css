@@ -1,0 +1,293 @@
+/* HairSoft V125 – shared warehouse appearance. */
+#main-content.hs-stock-page,#main-content.hs-stock-page input,#main-content.hs-stock-page select,#main-content.hs-stock-page button,#main-content.hs-stock-page table,#main-content.hs-stock-page font {font-family:Tahoma,Arial,sans-serif!important;color:#334861;}
+.hs-stock-page:not(.hs-stock-ready) #sklad1,.hs-stock-page:not(.hs-stock-ready) #sklad2{visibility:hidden;}
+#main-content.hs-stock-page .hs-stock-panel{border:1px solid #dfe7ed;border-radius:18px;background:#fff;overflow:hidden;box-shadow:0 10px 28px rgba(38,53,73,.06);margin-bottom:18px;}
+#main-content.hs-stock-page .hs-stock-panel>.panel-heading{display:flex;align-items:center;gap:12px;padding:16px 18px;background:#fbfcfd;border-bottom:1px solid #e1e8ef;min-height:72px;}
+#main-content.hs-stock-page .hs-stock-panel .panel-title{font-family:inherit;font-size:15px;font-weight:700;color:#253a53;line-height:1.35;margin:0;}
+#main-content.hs-stock-page .hs-stock-heading-icon{display:flex;align-items:center;justify-content:center;flex:0 0 42px;height:42px;border-radius:14px;background:#e7f5f4;color:#168f8b;}
+#main-content.hs-stock-page svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+#main-content.hs-stock-page .hs-stock-panel>.panel-body{padding:16px;}
+#main-content.hs-stock-page .table-responsive{border:0;overflow:visible;}
+#main-content.hs-stock-page .hs-stock-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;}
+#main-content.hs-stock-page .dataTables_filter{float:none;margin:0;flex:1;min-width:0;text-align:left;}
+#main-content.hs-stock-page .dataTables_filter label{display:flex;align-items:center;position:relative;width:100%;margin:0;}
+#main-content.hs-stock-page .dataTables_filter label>span{position:absolute;left:12px;display:flex;color:#168f8b;pointer-events:none;}
+#main-content.hs-stock-page .dataTables_filter input{box-sizing:border-box;width:100%;min-width:0;margin:0;padding:11px 12px 11px 40px;height:42px;border:1px solid #d6e2ea;border-radius:12px;background:#fbfcfd;outline:0;font-size:12px;}
+#main-content.hs-stock-page .dataTables_filter input:focus{border-color:#57bbb4;box-shadow:0 0 0 3px #eaf7f6;}
+#main-content.hs-stock-page .dt-buttons{float:none;flex:none;}
+#main-content.hs-stock-page .buttons-collection{display:inline-flex;align-items:center;justify-content:center;gap:9px;margin:0;padding:10px 15px;min-height:42px;border:1px solid #b9dfdc;border-radius:12px;background:#f1fbfa;color:#087d79;font-size:13px;box-shadow:none;}
+#main-content.hs-stock-page table.dataTable{width:100%!important;border:1px solid #dbe5ed;border-collapse:separate!important;border-spacing:0;border-radius:14px;overflow:hidden;font-size:11.5px;}
+#main-content.hs-stock-page table.dataTable thead td,#main-content.hs-stock-page table.dataTable thead th{background:#f3f7f9;color:#28415b;font-size:11px;font-weight:700;border:0;border-bottom:1px solid #dbe5ed;padding:12px 18px 12px 8px;}
+#main-content.hs-stock-page table.dataTable tbody td{padding:12px 8px;border:0;border-bottom:1px solid #e5edf2;vertical-align:middle;overflow-wrap:anywhere;}
+#main-content.hs-stock-page table.dataTable tbody tr:last-child td{border-bottom:0;}
+#main-content.hs-stock-page table.dataTable tbody tr:nth-child(odd){background:#fff;}
+#main-content.hs-stock-page table.dataTable tbody tr:nth-child(even){background:#f9fbfc;}
+#main-content.hs-stock-page .dataTables_info{font-size:11px;color:#7b8ca1;padding-top:12px;}
+#main-content.hs-stock-page .hs-stock-picker form{max-width:400px;margin:0 auto;}
+#main-content.hs-stock-page .hs-stock-picker select{width:100%;height:44px;border:1px solid #d8e4eb;border-radius:12px;background:#f7fafb;padding:8px 12px;font-size:14px;}
+#main-content.hs-stock-page .hs-stock-options .form-group,#main-content.hs-stock-page .hs-stock-options .rada{margin:0;}
+#main-content.hs-stock-page .hs-stock-options button{display:inline-flex;align-items:center;justify-content:center;gap:9px;white-space:normal;background:#fff4f5;color:#c14c58;border:1px solid #f0cbd0;border-radius:12px;padding:12px 16px;font-size:12px;}
+#main-content.hs-stock-page .hs-stock-options button:hover{background:#fde9ec;}
+#main-content.hs-stock-page .hs-stock-cards{display:none;}
+@media(max-width:767px),(hover:none) and (pointer:coarse) and (max-width:1100px){
+ #main-content.hs-stock-page .hs-stock-table-panel table.dataTable{display:none;}
+ #main-content.hs-stock-page .hs-stock-cards{display:grid;gap:12px;width:100%;}
+ #main-content.hs-stock-page .hs-stock-toolbar{flex-direction:column;align-items:stretch;}
+ #main-content.hs-stock-page .dt-buttons,#main-content.hs-stock-page .buttons-collection{width:100%;}
+ #main-content.hs-stock-page .hs-stock-product{border:1px solid #d8e3eb;border-radius:15px;overflow:hidden;background:white;}
+ #main-content.hs-stock-page .hs-stock-product header{padding:14px;background:#f6f9fb;border-bottom:1px solid #dfe7ed;}
+ #main-content.hs-stock-page .hs-stock-product header span{display:block;color:#7b8ca1;font-size:10px;margin-bottom:4px;}
+ #main-content.hs-stock-page .hs-stock-product header strong{font-size:14px;color:#183250;overflow-wrap:anywhere;}
+ #main-content.hs-stock-page .hs-stock-product-values{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:10px;}
+ #main-content.hs-stock-page .hs-stock-product-values>div{padding:10px;background:#f7fafb;border:1px solid #e1e9ef;border-radius:12px;}
+ #main-content.hs-stock-page .hs-stock-product-values>div:last-child{background:#edf8f7;border-color:#cce7e5;}
+ #main-content.hs-stock-page .hs-stock-product-values span{display:block;color:#7b8ca1;font-size:10px;margin-bottom:4px;}
+ #main-content.hs-stock-page .hs-stock-product-values strong{font-size:15px;color:#28415b;}
+ #main-content.hs-stock-page .hs-stock-options button{width:100%;}
+}
+
+#main-content.hs-stock-page .dataTables_paginate{display:flex;align-items:center;justify-content:flex-end;gap:5px;padding-top:12px;font-size:11px;}
+#main-content.hs-stock-page .dataTables_paginate .paginate_button{display:inline-flex;align-items:center;justify-content:center;min-width:32px;height:32px;padding:0 10px;margin:0;border:1px solid #dbe5ed!important;border-radius:9px;background:#fff!important;color:#526b91!important;text-decoration:none;box-shadow:none;}
+#main-content.hs-stock-page .dataTables_paginate .paginate_button.current{background:#e9f6f5!important;border-color:#c1e3df!important;color:#168f8b!important;}
+#main-content.hs-stock-page .dataTables_paginate .paginate_button.disabled{opacity:.45;cursor:default;}
+#main-content.hs-stock-page .hs-stock-product-values>div:last-child:nth-child(odd){grid-column:1/-1;}
+@media(max-width:767px){#main-content.hs-stock-page .dataTables_paginate{justify-content:center;}}
+
+/* V126: pagination matches the customer directory. */
+#main-content.hs-stock-page .dataTables_paginate {
+  display: flex;
+  align-items: center;
+  float: none;
+  gap: 2px;
+  padding: 4px !important;
+  border: 1px solid #e0e7ed;
+  border-radius: 12px;
+  background: #f5f8fa;
+}
+
+#main-content.hs-stock-page .dataTables_paginate .paginate_button {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: 34px;
+  height: 34px;
+  margin: 0 !important;
+  padding: 0 10px !important;
+  color: #53657d !important;
+  font-family: Tahoma, Arial, sans-serif !important;
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1 !important;
+  border: 1px solid transparent !important;
+  border-radius: 8px !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+#main-content.hs-stock-page .dataTables_paginate .paginate_button:hover {
+  color: #405571 !important;
+  border-color: #d6e0e8 !important;
+  background: #f4f7fa !important;
+}
+
+#main-content.hs-stock-page .dataTables_wrapper .dataTables_paginate .paginate_button:not(.current):not(.disabled):hover {
+  color: #405571 !important;
+  -webkit-text-fill-color: #405571 !important;
+  border-color: #d6e0e8 !important;
+  background: #fff !important;
+}
+
+#main-content.hs-stock-page .dataTables_paginate .paginate_button.current,
+#main-content.hs-stock-page .dataTables_paginate .paginate_button.current:hover {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+  border-color: #556b8d !important;
+  background: #556b8d !important;
+}
+
+#main-content.hs-stock-page .dataTables_paginate .paginate_button.disabled,
+#main-content.hs-stock-page .dataTables_paginate .paginate_button.disabled:hover {
+  color: #a5b0bd !important;
+  border-color: transparent !important;
+  background: transparent !important;
+  cursor: default;
+}
+
+#main-content.hs-stock-page .dataTables_paginate > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+
+#main-content.hs-stock-page .dataTables_paginate{width:fit-content;max-width:100%;margin-left:auto;flex-wrap:wrap;}
+#main-content.hs-stock-page .hs-stock-negative{color:#c84c59!important;font-weight:600;}
+@media(max-width:767px){#main-content.hs-stock-page .dataTables_paginate{margin-right:auto;}}
+
+
+/* V199 – Sklad: sbalená Správa dat a stabilní KPI bez přetékání vpravo. */
+#main-content.hs-stock-page .hs-stock-kpis {
+  clear: both;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Legacy Sklad má čtyři KPI; všechny mají na desktopu stejnou šířku. */
+#main-content.hs-stock-page .hs-system-kpi-row.hs-stock-kpis.hs-system-kpi-count-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+#main-content.hs-stock-page .hs-system-kpi-row.hs-stock-kpis.hs-system-kpi-count-4 .hs-system-kpi-item {
+  grid-column: span 1 !important;
+}
+
+#main-content.hs-stock-page .hs-stock-management-row {
+  clear: both;
+  margin-top: 2px;
+}
+
+#main-content.hs-stock-page .hs-stock-data-management {
+  margin: 0 0 18px;
+  border: 1px solid #e2e8ee;
+  border-radius: 13px;
+  background: #f9fbfc;
+  overflow: hidden;
+}
+
+#main-content.hs-stock-page .hs-stock-data-management summary {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 44px;
+  padding: 0 14px;
+  color: #68778b;
+  font-family: Tahoma, Arial, sans-serif !important;
+  font-size: 11.5px;
+  font-weight: 700;
+  line-height: 1.2;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+
+#main-content.hs-stock-page .hs-stock-data-management summary::-webkit-details-marker {
+  display: none;
+}
+
+#main-content.hs-stock-page .hs-stock-data-management summary::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  margin-left: auto;
+  border-right: 2px solid #8290a2;
+  border-bottom: 2px solid #8290a2;
+  transform: rotate(45deg) translateY(-2px);
+  transition: transform .16s ease;
+}
+
+#main-content.hs-stock-page .hs-stock-data-management[open] summary::after {
+  transform: rotate(225deg) translate(-2px, -2px);
+}
+
+#main-content.hs-stock-page .hs-stock-data-management-icon {
+  display: inline-flex;
+  width: 18px;
+  height: 18px;
+  color: #718198;
+}
+
+#main-content.hs-stock-page .hs-stock-data-management-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+#main-content.hs-stock-page .hs-stock-data-management-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding: 0 14px 14px;
+}
+
+#main-content.hs-stock-page .hs-stock-management-action,
+#main-content.hs-stock-page .hs-stock-management-action form {
+  margin: 0;
+}
+
+#main-content.hs-stock-page .hs-stock-refresh-status {
+  flex: 1 0 100%;
+  width: 100%;
+  margin: 0;
+}
+
+#main-content.hs-stock-page .hs-stock-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 40px;
+  margin: 0;
+  padding: 0 14px;
+  border-radius: 10px;
+  box-shadow: none;
+  font-family: Tahoma, Arial, sans-serif !important;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.2;
+  white-space: normal;
+}
+
+#main-content.hs-stock-page .hs-stock-action--refresh {
+  border: 1px solid #b8dff0;
+  background: #eef8fd;
+  color: #157dad;
+}
+#main-content.hs-stock-page .hs-stock-action--refresh:hover,
+#main-content.hs-stock-page .hs-stock-action--refresh:focus {
+  border-color: #9fcfe4;
+  background: #e3f4fb;
+  color: #126f9b;
+}
+
+#main-content.hs-stock-page .hs-stock-action--delete {
+  border: 1px solid #f0cbd0;
+  background: #fff4f5;
+  color: #c14c58;
+}
+#main-content.hs-stock-page .hs-stock-action--delete:hover,
+#main-content.hs-stock-page .hs-stock-action--delete:focus {
+  border-color: #edbdc4;
+  background: #fde9ec;
+  color: #b84451;
+}
+
+#main-content.hs-stock-page .hs-stock-action svg {
+  width: 16px;
+  height: 16px;
+}
+
+@media (max-width: 1100px) {
+  #main-content.hs-stock-page .hs-system-kpi-row.hs-stock-kpis.hs-system-kpi-count-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  #main-content.hs-stock-page .hs-stock-data-management {
+    background: #fff;
+  }
+  #main-content.hs-stock-page .hs-stock-data-management-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  #main-content.hs-stock-page .hs-stock-management-action,
+  #main-content.hs-stock-page .hs-stock-management-action form,
+  #main-content.hs-stock-page .hs-stock-action {
+    width: 100%;
+  }
+  #main-content.hs-stock-page .hs-system-kpi-row.hs-stock-kpis.hs-system-kpi-count-4 {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+}

@@ -1,0 +1,360 @@
+/* HairSoft Klient V104 – Měsíční tržby pod horními KPI kartami. */
+#main-content.hs-annual-revenue,
+#main-content.hs-annual-revenue button,
+#main-content.hs-annual-revenue input,
+#main-content.hs-annual-revenue select,
+#main-content.hs-annual-revenue table,
+#main-content.hs-annual-revenue a,
+#main-content.hs-annual-revenue p,
+#main-content.hs-annual-revenue h1,
+#main-content.hs-annual-revenue h2,
+#main-content.hs-annual-revenue h3,
+#main-content.hs-annual-revenue h4,
+#main-content.hs-annual-revenue label,
+#main-content.hs-annual-revenue font,
+#main-content.hs-annual-revenue td,
+#main-content.hs-annual-revenue th,
+#main-content.hs-annual-revenue td *,
+.hs-annual-revenue-page .pageheader,
+.hs-annual-revenue-page .pageheader * {
+  font-family: Tahoma, Arial, sans-serif !important;
+  font-kerning: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "kern" 1, "tnum" 1;
+}
+
+#main-content.hs-annual-revenue { color: #334861; }
+#main-content.hs-annual-revenue > .row { margin-right: -7px; margin-left: -7px; }
+#main-content.hs-annual-revenue > .row > [class*="col-"] { padding-right: 7px; padding-left: 7px; }
+
+#main-content.hs-annual-revenue .hs-annual-card {
+  box-sizing: border-box;
+  width: 100%;
+  margin-bottom: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(60, 83, 112, .13);
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 10px 28px rgba(38, 53, 73, .065);
+}
+#main-content.hs-annual-revenue .hs-annual-card > .panel-heading {
+  display: flex;
+  align-items: center;
+  min-height: 72px;
+  padding: 13px 15px;
+  border: 0;
+  border-bottom: 1px solid #e5eaef;
+  background: linear-gradient(135deg, #fff 0%, #fbfcfd 100%);
+}
+#main-content.hs-annual-revenue .hs-annual-heading { display: flex; align-items: center; flex: 1 1 auto; gap: 12px; min-width: 0; margin: 0; }
+#main-content.hs-annual-revenue .hs-annual-heading__icon {
+  display: inline-flex; align-items: center; justify-content: center; flex: 0 0 42px; width: 42px; height: 42px;
+  color: #168f8b; border-radius: 12px; background: #e8f6f5;
+}
+#main-content.hs-annual-revenue .hs-annual-heading__icon svg,
+#main-content.hs-annual-revenue .hs-annual-period-nav svg,
+#main-content.hs-annual-revenue .hs-annual-export-icon svg,
+#main-content.hs-annual-revenue .hs-annual-action-icon svg {
+  width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+}
+#main-content.hs-annual-revenue .hs-annual-heading__copy { display: flex; flex: 1 1 auto; flex-direction: column; min-width: 0; }
+#main-content.hs-annual-revenue .hs-annual-heading__copy strong { color: #253a53; font-size: 15px; font-weight: 700; line-height: 1.3; }
+#main-content.hs-annual-revenue .hs-annual-heading__copy small { margin-top: 3px; color: #8290a1; font-size: 11.5px; font-weight: 400; line-height: 1.35; }
+#main-content.hs-annual-revenue .hs-annual-panel-actions { position: static; display: flex; align-items: center; margin-left: auto; }
+#main-content.hs-annual-revenue .hs-annual-legacy-period { display: none !important; }
+
+/* Jediné ovládání měsíce a roku */
+#main-content.hs-annual-revenue .hs-annual-period-body { display: flex; justify-content: center; padding: 16px 18px 18px; }
+#main-content.hs-annual-revenue .hs-annual-period-groups { display: grid; grid-template-columns: repeat(2, minmax(260px, 340px)); gap: 14px; justify-content: center; width: 100%; }
+#main-content.hs-annual-revenue .hs-annual-period-group { padding: 10px 12px 12px; border: 1px solid #e1e8ee; border-radius: 14px; background: #f8fafb; }
+#main-content.hs-annual-revenue .hs-annual-period-label { display: block; margin: 0 0 7px; color: #7b8ca1; font-size: 10px; font-weight: 700; letter-spacing: .04em; text-align: center; text-transform: uppercase; }
+#main-content.hs-annual-revenue .hs-annual-period-controls { display: grid; grid-template-columns: 42px minmax(110px, 1fr) 42px; align-items: center; gap: 9px; }
+#main-content.hs-annual-revenue .hs-annual-period-nav { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; color: #168f8b; border: 1px solid #b9dfdc; border-radius: 12px; background: #f1fbfa; transition: .18s ease; }
+#main-content.hs-annual-revenue .hs-annual-period-nav:hover { color: #fff; border-color: #17a7a2; background: #17a7a2; transform: translateY(-1px); }
+#main-content.hs-annual-revenue .hs-annual-period-value { overflow: hidden; color: #203852; font-size: 14px; font-weight: 700; text-align: center; text-overflow: ellipsis; white-space: nowrap; }
+
+/* Tabulky a export */
+#main-content.hs-annual-revenue .hs-annual-table-card > .panel-body { padding: 14px; }
+#main-content.hs-annual-revenue .hs-annual-table-wrapper { overflow: visible; }
+#main-content.hs-annual-revenue .hs-annual-table-toolbar { display: flex; justify-content: flex-end; min-height: 44px; margin-bottom: 10px; }
+#main-content.hs-annual-revenue .hs-annual-table-toolbar .dt-buttons { float: none; margin: 0; }
+#main-content.hs-annual-revenue .hs-annual-table-toolbar .dt-button.buttons-collection {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 42px; margin: 0; padding: 9px 15px;
+  color: #087d79 !important; font-size: 13px; font-weight: 600; line-height: 1; border: 1px solid #b9dfdc !important;
+  border-radius: 12px !important; background: #f1fbfa !important; box-shadow: 0 5px 14px rgba(31, 63, 87, .055) !important;
+}
+#main-content.hs-annual-revenue .hs-annual-export-icon { display: inline-flex; }
+#main-content.hs-annual-revenue .hs-annual-table-scroll { width: 100%; overflow-x: auto; border: 1px solid #dbe4eb; border-radius: 14px; -webkit-overflow-scrolling: touch; }
+#main-content.hs-annual-revenue table.hs-annual-table { width: 100% !important; margin: 0 !important; border: 0 !important; border-collapse: separate !important; border-spacing: 0 !important; color: #334861; font-size: 12px; }
+#main-content.hs-annual-revenue table.hs-annual-table thead th,
+#main-content.hs-annual-revenue table.hs-annual-table thead td { padding: 13px 10px !important; color: #203852; font-size: 11px; font-weight: 700; text-align: center; vertical-align: middle; border: 0 !important; border-bottom: 1px solid #d5e0e8 !important; background: #f3f7f9 !important; white-space: nowrap; }
+#main-content.hs-annual-revenue table.hs-annual-table tbody td { padding: 12px 10px !important; vertical-align: middle; border: 0 !important; border-bottom: 1px solid #e5ebf0 !important; background: #fff; white-space: nowrap; }
+#main-content.hs-annual-revenue table.hs-annual-table tbody tr:nth-child(even) td { background: #fafcfd; }
+#main-content.hs-annual-revenue table.hs-annual-table tbody tr:hover td { background: #eef8f7; }
+#main-content.hs-annual-revenue table.hs-annual-table td div { width: auto !important; text-align: right !important; }
+#main-content.hs-annual-revenue table.hs-annual-table .hs-annual-total-row td { color: #15324f; font-weight: 700; border-top: 2px solid #17a7a2 !important; background: #eaf7f6 !important; }
+#main-content.hs-annual-revenue .hs-annual-mobile-cards { display: none; }
+
+/* Grafy */
+#main-content.hs-annual-revenue .hs-annual-chart-card > .panel-body { min-height: 300px; padding: 18px; }
+#main-content.hs-annual-revenue .hs-annual-chart-card .panel-body > .row { display: flex; align-items: center; }
+#main-content.hs-annual-revenue .hs-annual-chart-plot { position: relative; box-sizing: border-box; width: 100% !important; min-height: 260px; }
+#main-content.hs-annual-revenue .hs-annual-donut-card .hs-annual-chart-plot { display: flex; align-items: center; justify-content: center; }
+#main-content.hs-annual-revenue .hs-annual-donut-card .panel-body > .row { flex-wrap: wrap; margin: 0 -6px; }
+#main-content.hs-annual-revenue .hs-annual-donut-card .panel-body > .row > div { float: none; box-sizing: border-box; flex: 1 1 220px; min-width: 0; padding: 6px; }
+#main-content.hs-annual-revenue .hs-annual-donut-card .panel-body > .row > div > [class*="col-"] { float: none; width: 100%; padding: 0; }
+#main-content.hs-annual-revenue .hs-annual-donut-card .hs-annual-chart-plot-wrap { display: flex; align-items: center; justify-content: center; }
+#main-content.hs-annual-revenue .hs-annual-donut-card .hs-annual-chart-plot { display: block; width: 100% !important; max-width: 360px; min-height: 0; aspect-ratio: 1 / 1; margin: 0 auto; padding: 0; }
+#main-content.hs-annual-revenue .hs-annual-donut-card canvas { display: block; width: 100% !important; height: 100% !important; max-width: 100%; cursor: pointer; filter: drop-shadow(0 10px 15px rgba(34,61,84,.08)); }
+#main-content.hs-annual-revenue .hs-annual-cartesian-card .hs-annual-chart-plot { min-width: 900px; height: 360px; }
+#main-content.hs-annual-revenue .hs-annual-chart-scroll { width: 100%; overflow-x: auto; padding-bottom: 5px; -webkit-overflow-scrolling: touch; }
+#main-content.hs-annual-revenue table.hs-annual-chart-legend { width: 100%; max-width: 330px; border-collapse: separate; border-spacing: 0 7px; }
+#main-content.hs-annual-revenue .hs-annual-chart-legend__item td { padding: 7px 8px; border: 0; background: #f5f8fa; }
+#main-content.hs-annual-revenue .hs-annual-chart-legend__item td:first-child { width: 27px; border-radius: 10px 0 0 10px; }
+#main-content.hs-annual-revenue .hs-annual-chart-legend__item td:last-child { color: #203852; font-weight: 700; border-radius: 0 10px 10px 0; }
+#main-content.hs-annual-revenue .hs-annual-chart-legend__color > div { width: 10px !important; height: 10px !important; border: 2px solid #fff; box-shadow: 0 0 0 1px rgba(44,64,87,.18); }
+
+/* Správa dat je před synchronizačním blokem */
+#main-content.hs-annual-revenue .hs-annual-options-card > .panel-body { padding: 17px; }
+#main-content.hs-annual-revenue .hs-annual-options-intro { margin: 0 0 13px; color: #74869b; font-size: 12px; }
+#main-content.hs-annual-revenue .hs-annual-options-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+#main-content.hs-annual-revenue .hs-annual-action-block { margin: 0; }
+#main-content.hs-annual-revenue .hs-annual-action-form { margin: 0; }
+#main-content.hs-annual-revenue .hs-annual-action { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 42px; padding: 9px 14px; font-size: 12.5px; font-weight: 600; border-radius: 12px; box-shadow: none; }
+#main-content.hs-annual-revenue .hs-annual-action--refresh { color: #087d79; border: 1px solid #b9dfdc; background: #f1fbfa; }
+#main-content.hs-annual-revenue .hs-annual-action--delete { color: #bf4351; border: 1px solid #f0c6cc; background: #fff4f5; }
+#main-content.hs-annual-revenue .hs-annual-action-icon { display: inline-flex; }
+
+@media (max-width: 767px) {
+  #main-content.hs-annual-revenue > .row { margin-right: 0; margin-left: 0; }
+  #main-content.hs-annual-revenue > .row > [class*="col-"] { padding-right: 0; padding-left: 0; }
+  #main-content.hs-annual-revenue .hs-annual-card { border-radius: 16px; }
+  #main-content.hs-annual-revenue .hs-annual-card > .panel-heading { min-height: 66px; padding: 11px 13px; }
+  #main-content.hs-annual-revenue .hs-annual-heading__icon { flex-basis: 40px; width: 40px; height: 40px; }
+  #main-content.hs-annual-revenue .hs-annual-heading__copy strong { font-size: 14px; white-space: normal; }
+  #main-content.hs-annual-revenue .hs-annual-heading__copy small { font-size: 10.5px; }
+  #main-content.hs-annual-revenue .hs-annual-panel-actions .fa-expand,
+  #main-content.hs-annual-revenue .hs-annual-panel-actions .fa-times { display: none; }
+  #main-content.hs-annual-revenue .hs-annual-period-body { padding: 12px; }
+  #main-content.hs-annual-revenue .hs-annual-period-groups { grid-template-columns: 1fr; gap: 10px; }
+  #main-content.hs-annual-revenue .hs-annual-period-controls { grid-template-columns: 42px minmax(0, 1fr) 42px; }
+  #main-content.hs-annual-revenue .hs-annual-table-card > .panel-body { padding: 10px; }
+  #main-content.hs-annual-revenue .hs-annual-table-toolbar { width: 100%; }
+  #main-content.hs-annual-revenue .hs-annual-table-toolbar .dt-buttons,
+  #main-content.hs-annual-revenue .hs-annual-table-toolbar .dt-button.buttons-collection { width: 100%; }
+  #main-content.hs-annual-revenue .hs-annual-table-scroll { display: none; }
+  #main-content.hs-annual-revenue .hs-annual-mobile-cards { display: grid; gap: 10px; }
+  #main-content.hs-annual-revenue .hs-annual-mobile-card { overflow: hidden; border: 1px solid #dbe4eb; border-radius: 14px; background: #fff; }
+  #main-content.hs-annual-revenue .hs-annual-mobile-card__head { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; padding: 12px; border-bottom: 1px solid #dfe7ed; background: #f8fafb; }
+  #main-content.hs-annual-revenue .hs-annual-mobile-card__head > div { display: flex; flex-direction: column; min-width: 0; }
+  #main-content.hs-annual-revenue .hs-annual-mobile-card__kicker { color: #7b8ca1; font-size: 9px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+  #main-content.hs-annual-revenue .hs-annual-mobile-card__title { margin-top: 3px; color: #183250; font-size: 14px; line-height: 1.3; }
+  #main-content.hs-annual-revenue .hs-annual-mobile-card__subtitle { margin-top: 2px; color: #74869b; font-size: 10.5px; }
+  #main-content.hs-annual-revenue .hs-annual-mobile-card__badge { min-width: 30px; padding: 6px 8px; color: #526b91; font-size: 11px; font-weight: 700; text-align: center; border: 1px solid #d8e2ea; border-radius: 9px; background: #fff; }
+  #main-content.hs-annual-revenue .hs-annual-mobile-card__metrics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; padding: 9px; }
+  #main-content.hs-annual-revenue .hs-annual-mobile-metric { display: flex; flex-direction: column; min-width: 0; padding: 10px; border: 1px solid #e1e8ee; border-radius: 11px; background: #f8fafb; }
+  #main-content.hs-annual-revenue .hs-annual-mobile-metric--primary { grid-column: 1 / -1; background: #eaf7f6; border-color: #c4e5e2; }
+  #main-content.hs-annual-revenue .hs-annual-mobile-metric__label { color: #7b8ca1; font-size: 9px; font-weight: 700; text-transform: uppercase; }
+  #main-content.hs-annual-revenue .hs-annual-mobile-metric__value { margin-top: 4px; overflow-wrap: anywhere; color: #183250; font-size: 13px; }
+  #main-content.hs-annual-revenue .hs-annual-mobile-metric--primary .hs-annual-mobile-metric__value { color: #088f89; font-size: 16px; }
+  #main-content.hs-annual-revenue .hs-annual-mobile-metric__net { margin-top: 3px; color: #74869b; font-size: 9px; overflow-wrap: anywhere; }
+  #main-content.hs-annual-revenue .hs-annual-mobile-card--total { border-color: #a9d9d5; }
+  #main-content.hs-annual-revenue .hs-annual-mobile-card--total .hs-annual-mobile-card__head { background: #eaf7f6; }
+  #main-content.hs-annual-revenue .hs-annual-chart-card > .panel-body { min-height: 0; padding: 12px; }
+  #main-content.hs-annual-revenue .hs-annual-chart-card .panel-body > .row { display: block; }
+  #main-content.hs-annual-revenue .hs-annual-donut-card .panel-body [class*="col-"] { float: none; width: 100%; }
+  #main-content.hs-annual-revenue .hs-annual-donut-card .hs-annual-chart-plot { max-width: 300px; }
+  #main-content.hs-annual-revenue .hs-annual-cartesian-card .hs-annual-chart-plot { min-width: 760px; height: 330px; }
+  #main-content.hs-annual-revenue table.hs-annual-chart-legend { max-width: none; }
+  #main-content.hs-annual-revenue .hs-annual-options-actions { display: grid; grid-template-columns: 1fr; }
+  #main-content.hs-annual-revenue .hs-annual-action-form,
+  #main-content.hs-annual-revenue .hs-annual-action-block,
+  #main-content.hs-annual-revenue .hs-annual-action { width: 100%; }
+}
+
+@media (max-width: 390px) {
+  #main-content.hs-annual-revenue .hs-annual-heading__copy small { display: none; }
+  #main-content.hs-annual-revenue .hs-annual-mobile-card__metrics { grid-template-columns: 1fr; }
+  #main-content.hs-annual-revenue .hs-annual-mobile-metric--primary { grid-column: auto; }
+}
+
+/* V109: stejné popisky jako v denních tržbách. */
+#main-content.hs-annual-revenue .hs-annual-chart-legend {
+  width: 100%;
+  border: 0;
+  border-collapse: separate;
+  border-spacing: 0 6px;
+}
+
+#main-content.hs-annual-revenue .hs-annual-chart-legend__item td {
+  padding: 7px 4px;
+  color: #52667e;
+  font-size: 11.5px;
+  line-height: 1.3;
+  border: 0;
+  background: #f6f9fb;
+  transition: background-color .16s ease, color .16s ease;
+}
+
+#main-content.hs-annual-revenue .hs-annual-chart-legend__item:hover td {
+  color: #203852;
+  background: #eef7f6;
+}
+
+#main-content.hs-annual-revenue .hs-annual-chart-legend__item td:first-child {
+  width: 28px;
+  padding-left: 8px;
+  border-radius: 9px 0 0 9px;
+}
+
+#main-content.hs-annual-revenue .hs-annual-chart-legend__item td:last-child {
+  padding-right: 8px;
+  color: #273f58;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  text-align: right;
+  border-radius: 0 9px 9px 0;
+  white-space: nowrap;
+}
+
+#main-content.hs-annual-revenue .hs-annual-chart-legend__color > div {
+  width: 10px !important;
+  height: 10px !important;
+  border: 2px solid rgba(255, 255, 255, .95);
+  box-shadow: 0 0 0 1px rgba(60, 83, 112, .12);
+}
+
+
+#main-content.hs-annual-revenue .hs-annual-chart-legend__item td * { font-size: inherit; line-height: inherit; }
+#main-content.hs-annual-revenue .hs-annual-options-card .hs-annual-action-block { display: inline-block; margin-right: 10px; margin-bottom: 10px; }
+@media (max-width: 767px) {
+  #main-content.hs-annual-revenue .hs-annual-options-card .hs-annual-action-block { margin-right: 0; }
+}
+
+/* V111: kompaktní výběr období, společná osa nadpisu a ovládání. */
+#main-content.hs-annual-revenue .hs-annual-period-card > .panel-heading {
+  justify-content: center;
+  min-height: 0;
+  padding: 22px 20px 16px;
+  border-bottom: 0;
+  background: transparent;
+}
+#main-content.hs-annual-revenue .hs-annual-period-card .hs-annual-heading {
+  flex: 0 1 auto;
+  justify-content: center;
+  gap: 10px;
+  text-transform: none;
+}
+#main-content.hs-annual-revenue .hs-annual-period-card .hs-annual-heading__icon {
+  flex: 0 0 36px;
+  width: 36px;
+  height: 36px;
+  border-radius: 11px;
+}
+#main-content.hs-annual-revenue .hs-annual-period-card .hs-annual-heading__copy {
+  flex: 0 1 auto;
+}
+#main-content.hs-annual-revenue .hs-annual-period-card .hs-annual-heading__copy strong {
+  font-size: 16px;
+  letter-spacing: -.2px;
+  text-transform: none;
+}
+#main-content.hs-annual-revenue .hs-annual-period-card .hs-annual-heading__copy small {
+  display: block;
+  font-size: 11px;
+  text-transform: none;
+}
+#main-content.hs-annual-revenue .hs-annual-period-body { padding: 0 24px 24px; }
+#main-content.hs-annual-revenue .hs-annual-period-groups {
+  width: 100%;
+  max-width: 580px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  overflow: hidden;
+  border: 1px solid #dfe8ed;
+  border-radius: 16px;
+  background: #f7fafb;
+  box-shadow: inset 0 1px 0 #fff;
+}
+#main-content.hs-annual-revenue .hs-annual-period-group {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) 42px;
+  grid-template-rows: auto auto;
+  align-items: center;
+  gap: 3px 10px;
+  min-width: 0;
+  padding: 16px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+#main-content.hs-annual-revenue .hs-annual-period-group + .hs-annual-period-group { border-left: 1px solid #dfe8ed; }
+#main-content.hs-annual-revenue .hs-annual-period-label {
+  grid-column: 2;
+  grid-row: 1;
+  margin: 0;
+  font-size: 10px;
+  line-height: 14px;
+  letter-spacing: .08em;
+}
+#main-content.hs-annual-revenue .hs-annual-period-controls { display: contents; }
+#main-content.hs-annual-revenue .hs-annual-period-value {
+  grid-column: 2;
+  grid-row: 2;
+  font-size: 19px;
+  line-height: 25px;
+  letter-spacing: -.3px;
+}
+#main-content.hs-annual-revenue .hs-annual-period-nav {
+  grid-row: 1 / 3;
+  border-color: #e0e9ee;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(38,53,73,.04);
+}
+#main-content.hs-annual-revenue .hs-annual-period-nav--previous { grid-column: 1; }
+#main-content.hs-annual-revenue .hs-annual-period-nav--next { grid-column: 3; }
+#main-content.hs-annual-revenue .hs-annual-period-nav:hover { background: #17a7a2; border-color: #17a7a2; }
+#main-content.hs-annual-revenue .hs-annual-period-nav:focus-visible { outline: 3px solid #8ed4cf; outline-offset: 2px; }
+@media (max-width: 600px) {
+  #main-content.hs-annual-revenue .hs-annual-period-card > .panel-heading { padding: 18px 16px 14px; }
+  #main-content.hs-annual-revenue .hs-annual-period-body { padding: 0 16px 18px; }
+  #main-content.hs-annual-revenue .hs-annual-period-groups { max-width: 340px; grid-template-columns: minmax(0, 1fr); }
+  #main-content.hs-annual-revenue .hs-annual-period-group { padding: 12px 14px; }
+  #main-content.hs-annual-revenue .hs-annual-period-group + .hs-annual-period-group { border-left: 0; border-top: 1px solid #dfe8ed; }
+  #main-content.hs-annual-revenue .hs-annual-period-value { font-size: 18px; }
+}
+
+/* V112: two independent controls, no redundant headings or visible labels. */
+/* The legacy Bootstrap wrapper must not frame or clip the modern cards/toolbar.
+   Horizontal table scrolling is owned by hs-annual-table-scroll. */
+#main-content.hs-annual-revenue .hs-annual-table-card > .panel-body > .table-responsive {
+  border: 0;
+  overflow: visible;
+  margin-bottom: 0;
+}
+#main-content.hs-annual-revenue .hs-annual-period-body { padding: 20px 24px; }
+#main-content.hs-annual-revenue .hs-annual-period-groups { max-width: 600px; gap: 20px; border: 0; border-radius: 0; overflow: visible; background: transparent; box-shadow: none; }
+#main-content.hs-annual-revenue .hs-annual-period-group { display: block; padding: 10px; border: 1px solid #dfe8ed; border-radius: 15px; background: #f7fafb; }
+#main-content.hs-annual-revenue .hs-annual-period-group + .hs-annual-period-group { border: 1px solid #dfe8ed; }
+#main-content.hs-annual-revenue .hs-annual-period-controls { display: grid; grid-template-columns: 42px minmax(0, 1fr) 42px; align-items: center; gap: 12px; }
+#main-content.hs-annual-revenue .hs-annual-period-value { grid-column: 2; grid-row: 1; }
+#main-content.hs-annual-revenue .hs-annual-period-nav { grid-row: 1; }
+#main-content.hs-annual-revenue .hs-annual-table-row:not(.hs-annual-table-ready) { visibility: hidden; }
+@media (max-width: 600px) {
+ #main-content.hs-annual-revenue .hs-annual-period-body { padding: 16px; }
+ #main-content.hs-annual-revenue .hs-annual-period-groups { max-width: 340px; gap: 12px; }
+}
+
+#main-content.hs-annual-revenue .hs-annual-period-groups { grid-template-columns:minmax(0,1fr);max-width:280px; }
+#main-content.hs-annual-revenue .hs-annual-period-nav { font-size:28px;line-height:1;text-decoration:none; }
+#main-content.hs-annual-revenue .hs-annual-staff-picker { display:flex;align-items:center;justify-content:center;gap:12px;margin:0 0 20px; }
+#main-content.hs-annual-revenue .hs-annual-staff-picker select { padding:10px 14px;max-width:100%;min-width:0;border:1px solid #dfe8ed;border-radius:12px;background:#f7fafb; }
+@media(max-width:767px){#main-content.hs-annual-revenue .hs-annual-staff-picker {flex-direction:column;align-items:stretch;} }
+#main-content.hs-annual-revenue .hs-annual-empty-legend { display:none !important; }
+#main-content.hs-annual-revenue .hs-annual-empty-chart .hs-annual-chart-plot-wrap { flex-basis:100% !important; }
+#main-content.hs-annual-revenue .hs-annual-empty-chart canvas { cursor:default; }
+
+/* V120: geometric centering independent of font baseline. */
+#main-content.hs-annual-revenue .hs-annual-period-nav svg { display:block;flex:0 0 20px;width:20px;height:20px; }

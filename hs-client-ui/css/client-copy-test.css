@@ -1,0 +1,588 @@
+/* HairSoft Klient V195 - izolovana TEST kopie zakaznika mezi firmami. */
+.hs-copy-test-option,
+.hs-copy-test-option *,
+.hs-copy-test-history,
+.hs-copy-test-history *,
+.hs-copy-test-modal,
+.hs-copy-test-modal * {
+  font-family: Tahoma, Arial, sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.hs-copy-test-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.hs-copy-test-open {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 8px;
+  min-height: 34px;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+}
+
+.hs-copy-test-open.is-disabled {
+  opacity: .58;
+}
+
+.hs-copy-test-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 18px;
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.2);
+  border: 1px solid rgba(255,255,255,.45);
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: .04em;
+  line-height: 1;
+}
+
+.hs-copy-test-open.is-disabled .hs-copy-test-badge {
+  background: #f4f6f8;
+  border-color: #d9dee4;
+}
+
+.hs-copy-test-hint {
+  max-width: 390px;
+  font-size: 12px !important;
+  font-weight: 400 !important;
+  color: #78838f;
+  line-height: 1.45;
+}
+
+.hs-copy-test-history {
+  clear: both;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid #e8edf2;
+}
+
+.hs-copy-test-history-title {
+  margin-bottom: 9px;
+  color: #334155;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+}
+
+.hs-copy-test-history-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  margin-top: 7px;
+  border: 1px solid #e5eaf0;
+  border-radius: 9px;
+  background: #fbfcfd;
+}
+
+.hs-copy-test-history-main {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.hs-copy-test-history-main strong {
+  display: block;
+  color: #24364b;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  line-height: 1.35;
+}
+
+.hs-copy-test-history-main small {
+  display: block;
+  margin-top: 2px;
+  color: #7a8795;
+  font-size: 11px !important;
+  font-weight: 400 !important;
+  line-height: 1.35;
+}
+
+.hs-copy-test-status {
+  flex: 0 0 auto;
+  padding: 4px 9px;
+  border-radius: 999px;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  white-space: nowrap;
+  background: #fff6dc;
+  color: #8d6500;
+  border: 1px solid #f4d977;
+}
+
+.hs-copy-test-status.is-synced {
+  background: #e8f7ee;
+  color: #237a45;
+  border-color: #b9e3c8;
+}
+
+.hs-copy-test-status.is-delete {
+  background: #fff0f0;
+  color: #ad3a3a;
+  border-color: #f1c0c0;
+}
+
+.hs-copy-test-status.is-removed {
+  background: #f1f3f5;
+  color: #727b84;
+  border-color: #dce1e5;
+}
+
+.hs-copy-test-cleanup-form {
+  margin: 0;
+  flex: 0 0 auto;
+}
+
+.hs-copy-test-cleanup {
+  min-height: 30px;
+  padding: 5px 10px;
+  border: 1px solid #d7dde3;
+  border-radius: 6px;
+  background: #fff;
+  color: #596573;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  line-height: 1.2;
+  transition: border-color .15s ease, color .15s ease, background .15s ease;
+}
+
+.hs-copy-test-cleanup:hover,
+.hs-copy-test-cleanup:focus {
+  border-color: #e1a4a4;
+  background: #fff7f7;
+  color: #a43f3f;
+}
+
+.hs-copy-test-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 20050;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.hs-copy-test-modal.is-open {
+  display: flex;
+}
+
+.hs-copy-test-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(22, 35, 50, .56);
+  backdrop-filter: blur(2px);
+}
+
+.hs-copy-test-dialog {
+  position: relative;
+  z-index: 1;
+  width: min(600px, 100%);
+  max-height: calc(100vh - 48px);
+  overflow: auto;
+  padding: 28px 30px 26px;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 24px 70px rgba(19, 35, 53, .24);
+  color: #314255;
+}
+
+.hs-copy-test-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #7c8793;
+  font-size: 16px;
+}
+
+.hs-copy-test-close:hover,
+.hs-copy-test-close:focus {
+  background: #f2f5f7;
+  color: #394a5c;
+}
+
+.hs-copy-test-icon {
+  width: 54px;
+  height: 54px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 13px;
+  border-radius: 50%;
+  background: #eaf7fb;
+  color: #2094b6;
+  font-size: 22px;
+}
+
+.hs-copy-test-icon span {
+  position: absolute;
+  right: -13px;
+  bottom: -2px;
+  padding: 3px 6px;
+  border-radius: 999px;
+  background: #f2b84b;
+  color: #5c4307;
+  border: 2px solid #fff;
+  font-size: 9px !important;
+  font-weight: 700 !important;
+  letter-spacing: .03em;
+}
+
+.hs-copy-test-dialog h3 {
+  margin: 0;
+  text-align: center;
+  color: #24364b;
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  line-height: 1.3;
+}
+
+.hs-copy-test-person {
+  margin: 5px 0 18px;
+  text-align: center;
+  color: #758291;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+}
+
+.hs-copy-test-safety {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-bottom: 19px;
+  padding: 11px 13px;
+  border-radius: 9px;
+  background: #f3f9fc;
+  border: 1px solid #d9edf5;
+  color: #456276;
+  font-size: 12px !important;
+  font-weight: 400 !important;
+  line-height: 1.45;
+}
+
+.hs-copy-test-safety i {
+  margin-top: 2px;
+  color: #2997b7;
+}
+
+.hs-copy-test-dialog label {
+  display: block;
+  margin: 14px 0 6px;
+  color: #415164;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+}
+
+.hs-copy-test-dialog .form-control {
+  width: 100%;
+  height: 40px;
+  border-radius: 7px;
+  border-color: #dbe1e7;
+  box-shadow: none;
+  color: #314255;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+}
+
+.hs-copy-test-dialog .form-control:focus {
+  border-color: #55aac2;
+  box-shadow: 0 0 0 2px rgba(62, 161, 190, .12);
+}
+
+.hs-copy-test-scope {
+  margin-top: 19px;
+  padding: 13px 15px;
+  border: 1px solid #e4e9ee;
+  border-radius: 9px;
+  background: #fbfcfd;
+}
+
+.hs-copy-test-scope strong {
+  display: block;
+  margin-bottom: 7px;
+  color: #35475a;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+}
+
+.hs-copy-test-scope div {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 3px 0;
+  color: #5d6976;
+  font-size: 12px !important;
+  font-weight: 400 !important;
+  line-height: 1.4;
+}
+
+.hs-copy-test-scope i {
+  margin-top: 2px;
+  color: #35a266;
+}
+
+.hs-copy-test-not-copy {
+  margin-top: 10px;
+  color: #818c97;
+  font-size: 11px !important;
+  font-weight: 400 !important;
+  line-height: 1.45;
+}
+
+.hs-copy-test-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 9px;
+  margin-top: 22px;
+}
+
+.hs-copy-test-actions .btn {
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  justify-content: center;
+  padding: 7px 14px;
+  border-radius: 7px;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+}
+
+body.hs-copy-test-lock {
+  overflow: hidden;
+}
+
+@media (max-width: 700px) {
+  .hs-copy-test-modal {
+    padding: 12px;
+    align-items: flex-start;
+  }
+
+  .hs-copy-test-dialog {
+    width: 100%;
+    max-height: calc(100vh - 24px);
+    margin-top: 12px;
+    padding: 24px 18px 20px;
+    border-radius: 12px;
+  }
+
+  .hs-copy-test-history-row {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .hs-copy-test-history-main {
+    flex-basis: 100%;
+  }
+
+  .hs-copy-test-status,
+  .hs-copy-test-cleanup-form {
+    flex: 0 0 auto;
+  }
+
+  .hs-copy-test-actions {
+    flex-direction: column-reverse;
+  }
+
+  .hs-copy-test-actions .btn {
+    width: 100%;
+  }
+}
+
+
+/* V200 – vlastní SVG ikony, aby modal nebyl závislý na verzi Font Awesome. */
+.hs-copy-test-svg,
+.hs-copy-test-inline-icon svg {
+  display: block;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.hs-copy-test-inline-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 17px;
+  height: 17px;
+}
+.hs-copy-test-inline-icon svg { width: 17px; height: 17px; }
+
+.hs-copy-test-close .hs-copy-test-svg { width: 18px; height: 18px; }
+.hs-copy-test-icon > .hs-copy-test-svg { width: 25px; height: 25px; }
+
+.hs-copy-test-safety-icon,
+.hs-copy-test-label-icon,
+.hs-copy-test-scope-title-icon,
+.hs-copy-test-scope-icon,
+.hs-copy-test-not-copy-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+.hs-copy-test-safety-icon {
+  width: 19px;
+  height: 19px;
+  margin-top: 1px;
+  color: #2997b7;
+}
+.hs-copy-test-safety-icon .hs-copy-test-svg { width: 19px; height: 19px; }
+
+.hs-copy-test-dialog label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.hs-copy-test-label-icon { width: 16px; height: 16px; color: #6d7f92; }
+.hs-copy-test-label-icon .hs-copy-test-svg { width: 16px; height: 16px; }
+
+.hs-copy-test-scope strong {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.hs-copy-test-scope-title-icon { width: 17px; height: 17px; color: #4c667e; }
+.hs-copy-test-scope-title-icon .hs-copy-test-svg { width: 17px; height: 17px; }
+.hs-copy-test-scope-icon { width: 17px; height: 17px; margin-top: 1px; color: #35a266; }
+.hs-copy-test-scope-icon .hs-copy-test-svg { width: 17px; height: 17px; }
+
+.hs-copy-test-not-copy {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+}
+.hs-copy-test-not-copy-icon { width: 15px; height: 15px; margin-top: 1px; color: #8995a1; }
+.hs-copy-test-not-copy-icon .hs-copy-test-svg { width: 15px; height: 15px; }
+
+.hs-copy-test-actions .hs-copy-test-svg { width: 16px; height: 16px; }
+
+/* V203 - citelny loader bez ikonoveho fontu pri vytvareni testovaci kopie. */
+.hs-copy-test-loader {
+  display: inline-block;
+  flex: 0 0 auto;
+  width: 15px;
+  height: 15px;
+  box-sizing: border-box;
+  border: 2px solid rgba(255,255,255,.42);
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: hs-copy-test-spin .7s linear infinite;
+}
+
+@keyframes hs-copy-test-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hs-copy-test-loader { animation-duration: 1.4s; }
+}
+
+/* V205 – ruční dokončení TEST kopie po založení zákazníka v HairSoft. */
+.hs-copy-manual-option,
+.hs-copy-manual-option *,
+.hs-copy-manual-modal,
+.hs-copy-manual-modal * {
+  font-family: Tahoma, Arial, sans-serif !important;
+}
+
+.hs-copy-manual-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.hs-copy-manual-open {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 8px;
+  min-height: 34px;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+}
+
+.hs-copy-manual-ready {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 34px;
+  padding: 7px 11px;
+  border: 1px solid #bfe5d4;
+  border-radius: 9px;
+  background: #eefaf4;
+  color: #356b55;
+  font-size: 12px !important;
+  font-weight: 400 !important;
+  line-height: 1.35;
+}
+
+.hs-copy-manual-ready strong {
+  font-weight: 600 !important;
+}
+
+.hs-copy-manual-ready a {
+  margin-left: 4px;
+  color: #168f8b;
+  font-weight: 600 !important;
+  text-decoration: none;
+}
+
+.hs-copy-manual-ready a:hover,
+.hs-copy-manual-ready a:focus {
+  text-decoration: underline;
+}
+
+.hs-copy-manual-ready-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  color: #2d9b68;
+}
+
+.hs-copy-manual-ready-icon svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.hs-copy-manual-dialog {
+  width: min(540px, 100%);
+}
+
+.hs-copy-manual-icon {
+  color: #168f8b;
+  background: #eaf7f6;
+}
+
+#hsCustomerCopyHairSoftId {
+  font-variant-numeric: tabular-nums;
+}

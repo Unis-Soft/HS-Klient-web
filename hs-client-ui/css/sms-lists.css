@@ -1,0 +1,296 @@
+/* HairSoft V145 – shared table layer for Incoming calls / Incoming SMS / Outgoing SMS. */
+#main-content.hs-sms-list-page .hs-sms-list-panel,
+#main-content.hs-sms-list-page .hs-sms-list-panel input,
+#main-content.hs-sms-list-page .hs-sms-list-panel button,
+#main-content.hs-sms-list-page .hs-sms-list-panel table {
+  font-family:Tahoma,Arial,sans-serif!important;
+  color:#334861;
+}
+
+#main-content.hs-sms-list-page .hs-sms-list-column {
+  width:100%!important;
+  float:none!important;
+}
+
+#main-content.hs-sms-list-page .hs-sms-list-panel {
+  width:100%;
+  border:1px solid #dfe7ed;
+  border-radius:18px;
+  background:#fff;
+  overflow:hidden;
+  box-shadow:0 10px 28px rgba(38,53,73,.06);
+  margin-bottom:18px;
+}
+
+#main-content.hs-sms-list-page .hs-sms-list-panel>.panel-heading {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-height:72px;
+  padding:16px 18px;
+  background:#fbfcfd;
+  border-bottom:1px solid #e1e8ef;
+}
+
+#main-content.hs-sms-list-page .hs-sms-list-panel .panel-title {
+  margin:0;
+  font-family:inherit;
+  font-size:15px;
+  font-weight:700;
+  line-height:1.35;
+  color:#253a53;
+}
+
+#main-content.hs-sms-list-page .hs-sms-list-panel .panel-heading .actions {display:none!important;}
+#main-content.hs-sms-list-page .hs-sms-list-panel>.panel-body {padding:16px;min-width:0;}
+
+#main-content.hs-sms-list-page .hs-sms-list-heading-icon {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex:0 0 42px;
+  height:42px;
+  border-radius:14px;
+  background:#e7f5f4;
+  color:#168f8b;
+}
+
+#main-content.hs-sms-list-page .hs-sms-list-heading-icon svg,
+#main-content.hs-sms-list-page .hs-sms-list-toolbar svg {
+  width:20px;
+  height:20px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  flex-shrink:0;
+}
+
+#main-content.hs-sms-list-page .dataTables_wrapper {width:100%;min-width:0;}
+#main-content.hs-sms-list-page .hs-sms-list-toolbar {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:14px;
+  clear:both;
+}
+
+#main-content.hs-sms-list-page .dataTables_filter {
+  float:none;
+  flex:1;
+  min-width:0;
+  margin:0;
+  text-align:left;
+}
+
+#main-content.hs-sms-list-page .dataTables_filter label {
+  position:relative;
+  display:flex;
+  align-items:center;
+  width:100%;
+  margin:0;
+}
+
+#main-content.hs-sms-list-page .dataTables_filter label>.hs-sms-list-search-icon {
+  position:absolute;
+  left:12px;
+  display:flex;
+  color:#168f8b;
+  pointer-events:none;
+}
+
+#main-content.hs-sms-list-page .dataTables_filter input {
+  box-sizing:border-box;
+  width:100%;
+  min-width:0;
+  height:42px;
+  margin:0;
+  padding:11px 12px 11px 40px;
+  border:1px solid #d6e2ea;
+  border-radius:12px;
+  background:#fbfcfd;
+  outline:0;
+  font-size:12px;
+}
+
+#main-content.hs-sms-list-page .dataTables_filter input:focus {
+  border-color:#57bbb4;
+  box-shadow:0 0 0 3px #eaf7f6;
+}
+
+#main-content.hs-sms-list-page .dt-buttons {float:none;flex:none;margin:0;}
+#main-content.hs-sms-list-page .buttons-collection {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  min-height:42px;
+  margin:0;
+  padding:10px 15px;
+  border:1px solid #b9dfdc;
+  border-radius:12px;
+  background:#f1fbfa;
+  color:#087d79;
+  font-size:13px;
+  font-weight:600;
+  box-shadow:none;
+}
+
+#main-content.hs-sms-list-page .hs-sms-list-scroll-top {
+  height:18px;
+  width:100%;
+  margin:0 0 9px;
+  overflow-x:auto;
+  overflow-y:hidden;
+  scrollbar-color:#8196b0 #edf2f6;
+}
+#main-content.hs-sms-list-page .hs-sms-list-scroll-top>div {height:1px;}
+#main-content.hs-sms-list-page .hs-sms-list-scroll-top::-webkit-scrollbar {height:12px;}
+#main-content.hs-sms-list-page .hs-sms-list-scroll-top::-webkit-scrollbar-track {background:#edf2f6;border-radius:8px;}
+#main-content.hs-sms-list-page .hs-sms-list-scroll-top::-webkit-scrollbar-thumb {background:#8196b0;border-radius:8px;border:2px solid #edf2f6;}
+#main-content.hs-sms-list-page .hs-sms-list-scroll-top.hs-sms-list-scroll-unneeded {display:none;}
+
+#main-content.hs-sms-list-page .hs-sms-list-scroll {
+  width:100%;
+  overflow-x:auto;
+  border-radius:14px;
+  margin-bottom:0;
+}
+
+#main-content.hs-sms-list-page table.dataTable {
+  width:100%!important;
+  margin:0!important;
+  border:1px solid #dbe5ed;
+  border-collapse:separate!important;
+  border-spacing:0;
+  border-radius:14px;
+  overflow:hidden;
+  font-size:11.5px;
+  table-layout:auto!important;
+}
+
+#main-content.hs-sms-list-page[data-hs-sms-list="OdchoziSMS"] .hs-sms-list-scroll table.dataTable {min-width:1420px;}
+#main-content.hs-sms-list-page[data-hs-sms-list="PrichoziSMS"] .hs-sms-list-scroll table.dataTable {min-width:900px;}
+
+#main-content.hs-sms-list-page table.dataTable thead td,
+#main-content.hs-sms-list-page table.dataTable thead th {
+  padding:12px 18px 12px 8px;
+  border:0;
+  border-bottom:1px solid #dbe5ed;
+  background:#f3f7f9;
+  color:#28415b;
+  font-size:11px;
+  font-weight:700;
+  white-space:nowrap;
+}
+
+#main-content.hs-sms-list-page table.dataTable tbody td {
+  padding:12px 8px;
+  border:0;
+  border-bottom:1px solid #e5edf2;
+  vertical-align:middle;
+  overflow-wrap:anywhere;
+}
+
+#main-content.hs-sms-list-page table.dataTable tbody tr:last-child td {border-bottom:0;}
+#main-content.hs-sms-list-page table.dataTable tbody tr:nth-child(odd) {background:#fff;}
+#main-content.hs-sms-list-page table.dataTable tbody tr:nth-child(even) {background:#f9fbfc;}
+#main-content.hs-sms-list-page table.dataTable tbody a {color:#168f8b;text-decoration:none;}
+
+#main-content.hs-sms-list-page .dataTables_info {
+  float:left;
+  padding-top:18px;
+  color:#7b8ca1;
+  font-size:11px;
+}
+
+/* Exact shared pagination style used by Vouchers / directory. */
+#main-content.hs-sms-list-page .dataTables_paginate {
+  display:flex;
+  align-items:center;
+  float:right;
+  width:fit-content;
+  max-width:100%;
+  gap:2px;
+  margin:14px 0 0 auto;
+  padding:4px!important;
+  border:1px solid #e0e7ed;
+  border-radius:12px;
+  background:#f5f8fa;
+  flex-wrap:wrap;
+}
+
+#main-content.hs-sms-list-page .dataTables_paginate .paginate_button {
+  display:inline-flex!important;
+  align-items:center;
+  justify-content:center;
+  box-sizing:border-box;
+  min-width:34px;
+  height:34px;
+  margin:0!important;
+  padding:0 10px!important;
+  color:#53657d!important;
+  -webkit-text-fill-color:#53657d!important;
+  font-family:Tahoma,Arial,sans-serif!important;
+  font-size:12.5px;
+  font-weight:600;
+  line-height:1!important;
+  border:1px solid transparent!important;
+  border-radius:8px!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  text-shadow:none!important;
+}
+
+#main-content.hs-sms-list-page .dataTables_paginate .paginate_button:not(.current):not(.disabled):hover {
+  color:#405571!important;
+  -webkit-text-fill-color:#405571!important;
+  border-color:#d6e0e8!important;
+  background:#fff!important;
+}
+
+#main-content.hs-sms-list-page .dataTables_paginate .paginate_button.current,
+#main-content.hs-sms-list-page .dataTables_paginate .paginate_button.current:hover {
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  border-color:#556b8d!important;
+  background:#556b8d!important;
+}
+
+#main-content.hs-sms-list-page .dataTables_paginate .paginate_button.disabled,
+#main-content.hs-sms-list-page .dataTables_paginate .paginate_button.disabled:hover {
+  color:#a5b0bd!important;
+  -webkit-text-fill-color:#a5b0bd!important;
+  border-color:transparent!important;
+  background:transparent!important;
+  cursor:default;
+}
+#main-content.hs-sms-list-page .dataTables_paginate>span {display:inline-flex;align-items:center;gap:2px;}
+
+#main-content.hs-sms-list-page .hs-sms-list-cards {display:none;}
+
+@media(max-width:767px),(hover:none) and (pointer:coarse) and (max-width:1100px) {
+  #main-content.hs-sms-list-page .hs-sms-list-panel {border-radius:16px;margin-bottom:14px;}
+  #main-content.hs-sms-list-page .hs-sms-list-panel>.panel-heading {min-height:62px;padding:12px 14px;}
+  #main-content.hs-sms-list-page .hs-sms-list-panel>.panel-body {padding:14px;}
+  #main-content.hs-sms-list-page .hs-sms-list-toolbar {flex-direction:column;align-items:stretch;}
+  #main-content.hs-sms-list-page .dt-buttons,
+  #main-content.hs-sms-list-page .buttons-collection {width:100%;}
+  #main-content.hs-sms-list-page .hs-sms-list-scroll,
+  #main-content.hs-sms-list-page .hs-sms-list-scroll-top {display:none!important;}
+  #main-content.hs-sms-list-page .hs-sms-list-cards {display:grid;gap:12px;width:100%;}
+  #main-content.hs-sms-list-page .hs-sms-list-card {overflow:hidden;border:1px solid #d8e3eb;border-radius:15px;background:#fff;}
+  #main-content.hs-sms-list-page .hs-sms-list-card header {padding:14px;background:#f6f9fb;border-bottom:1px solid #dfe7ed;}
+  #main-content.hs-sms-list-page .hs-sms-list-card header span {display:block;margin-bottom:4px;color:#7b8ca1;font-size:10px;}
+  #main-content.hs-sms-list-page .hs-sms-list-card header strong {display:block;color:#183250;font-size:14px;overflow-wrap:anywhere;}
+  #main-content.hs-sms-list-page .hs-sms-list-card-values {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:10px;}
+  #main-content.hs-sms-list-page .hs-sms-list-card-values>div {padding:10px;border:1px solid #e1e9ef;border-radius:12px;background:#f7fafb;min-width:0;}
+  #main-content.hs-sms-list-page .hs-sms-list-card-values>div.hs-sms-list-card-wide {grid-column:1/-1;}
+  #main-content.hs-sms-list-page .hs-sms-list-card-values span {display:block;margin-bottom:4px;color:#7b8ca1;font-size:10px;}
+  #main-content.hs-sms-list-page .hs-sms-list-card-values strong {display:block;color:#28415b;font-size:13px;overflow-wrap:anywhere;white-space:pre-wrap;}
+  #main-content.hs-sms-list-page .hs-sms-list-card-values strong a {color:#168f8b!important;text-decoration:none;}
+  #main-content.hs-sms-list-page .dataTables_info {float:none;padding-top:14px;text-align:center;}
+  #main-content.hs-sms-list-page .dataTables_paginate {float:none;justify-content:center;margin-left:auto;margin-right:auto;}
+}

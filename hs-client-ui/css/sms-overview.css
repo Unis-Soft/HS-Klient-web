@@ -1,0 +1,494 @@
+/* HairSoft Klient V144 – SMS and calls overview. */
+#main-content.hs-sms-page,
+#main-content.hs-sms-page input,
+#main-content.hs-sms-page select,
+#main-content.hs-sms-page button,
+#main-content.hs-sms-page table,
+#main-content.hs-sms-page font {
+  font-family:Tahoma,Arial,sans-serif!important;
+  color:#334861;
+}
+
+#main-content.hs-sms-page { padding-bottom:8px; }
+#main-content.hs-sms-page > .row { margin-left:-9px; margin-right:-9px; }
+#main-content.hs-sms-page > .row > [class*="col-"] { padding-left:9px; padding-right:9px; }
+
+#main-content.hs-sms-page .panel:not(.widget-mini) {
+  margin-bottom:18px;
+  border:1px solid #dfe7ed;
+  border-radius:18px;
+  background:#fff;
+  overflow:hidden;
+  box-shadow:0 10px 28px rgba(38,53,73,.06);
+}
+#main-content.hs-sms-page .panel:not(.widget-mini) > .panel-heading {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-height:68px;
+  padding:14px 18px;
+  border:0;
+  border-bottom:1px solid #e1e8ef;
+  background:#fbfcfd;
+}
+#main-content.hs-sms-page .panel:not(.widget-mini) > .panel-heading .panel-title {
+  margin:0;
+  color:#253a53;
+  font-size:14px;
+  font-weight:700;
+  line-height:1.4;
+}
+#main-content.hs-sms-page .panel-title font,
+#main-content.hs-sms-page .panel-title b { font:inherit!important; color:inherit!important; }
+#main-content.hs-sms-page .hs-sms-heading-note { margin-left:auto; color:#8392a4; font-size:10.5px; font-weight:600; text-align:right; }
+#main-content.hs-sms-page .panel > .panel-heading .actions { display:none!important; }
+#main-content.hs-sms-page .panel:not(.widget-mini) > .panel-body { padding:18px; }
+
+#main-content.hs-sms-page .hs-sms-heading-icon {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  flex:0 0 42px;
+  width:42px;
+  height:42px;
+  border-radius:14px;
+  background:#eaf7f6;
+  color:#168f8b;
+}
+#main-content.hs-sms-page svg {
+  width:20px;
+  height:20px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+/* Filters */
+#main-content.hs-sms-page .hs-sms-filter-row {
+  display:grid;
+  grid-template-columns:minmax(250px,.78fr) minmax(500px,1.45fr);
+  gap:18px;
+  margin:0 0 18px;
+}
+#main-content.hs-sms-page .hs-sms-filter-row::before,
+#main-content.hs-sms-page .hs-sms-filter-row::after { display:none; }
+#main-content.hs-sms-page .hs-sms-filter-row > [class*="col-"] { float:none; width:auto; padding:0; }
+#main-content.hs-sms-page .hs-sms-filter-row .panel { height:100%; margin:0; }
+#main-content.hs-sms-page #ZmenaPobockyPravaForm,
+#main-content.hs-sms-page #VoucherOdDo { margin:0; }
+#main-content.hs-sms-page #ZmenaPobockyPravaForm .form-group { margin:0; }
+#main-content.hs-sms-page #VybranaPobockaID,
+#main-content.hs-sms-page #VoucherOdDo select {
+  width:100%;
+  height:44px!important;
+  min-height:44px;
+  padding:8px 38px 8px 12px;
+  border:1px solid #d7e3eb;
+  border-radius:12px;
+  background:#f8fafb;
+  color:#334861;
+  font-size:13px;
+  outline:0;
+  box-shadow:none;
+}
+#main-content.hs-sms-page #VybranaPobockaID:focus,
+#main-content.hs-sms-page #VoucherOdDo select:focus { border-color:#61bbb6; box-shadow:0 0 0 3px #eaf7f6; }
+#main-content.hs-sms-page #VoucherOdDo .panel-body { padding:18px; }
+#main-content.hs-sms-page #VoucherOdDo .form-group {
+  display:grid;
+  grid-template-columns:minmax(120px,.8fr) minmax(110px,.7fr) minmax(185px,1.25fr);
+  align-items:center;
+  gap:10px;
+  margin:0;
+}
+#main-content.hs-sms-page #VoucherOdDo .form-group::before,
+#main-content.hs-sms-page #VoucherOdDo .form-group::after { display:none; }
+#main-content.hs-sms-page #VoucherOdDo .form-group > [class*="col-sm-"] { float:none; width:auto; padding:0; }
+#main-content.hs-sms-page #VoucherOdDo .control-label:empty { display:none; }
+#main-content.hs-sms-page #VoucherOdDo .hs-sms-filter-actions {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  margin-top:14px;
+  padding-top:14px;
+  border-top:1px solid #e8eef2;
+}
+#main-content.hs-sms-page #VoucherOdDo .hs-sms-filter-result {
+  display:flex;
+  align-items:baseline;
+  gap:10px;
+  min-width:0;
+  color:#718399;
+  line-height:1.35;
+}
+#main-content.hs-sms-page #VoucherOdDo .hs-sms-filter-result__label { font-size:11.5px; font-weight:600; }
+#main-content.hs-sms-page #VoucherOdDo .hs-sms-filter-result__value { color:#253a53; font-size:18px; font-weight:700; white-space:nowrap; }
+#main-content.hs-sms-page #VoucherOdDo .btn-primary {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  height:44px;
+  padding:0 18px;
+  border:1px solid #b7deda;
+  border-radius:12px;
+  background:#edf9f8;
+  color:#087d79;
+  font-size:12.5px;
+  font-weight:700;
+  box-shadow:none;
+  white-space:nowrap;
+}
+#main-content.hs-sms-page #VoucherOdDo .btn-primary:hover { background:#e3f5f3; }
+
+/* Charts – same visual language as Annual revenue. */
+#main-content.hs-sms-page .hs-sms-charts {
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  gap:18px;
+  margin:0 0 18px;
+}
+#main-content.hs-sms-page .hs-sms-charts::before,
+#main-content.hs-sms-page .hs-sms-charts::after { display:none; }
+#main-content.hs-sms-page .hs-sms-charts > [class*="col-"] { float:none; width:auto; padding:0; }
+#main-content.hs-sms-page .hs-sms-charts .panel { height:100%; margin:0; }
+#main-content.hs-sms-page .hs-sms-chart-card > .panel-body { min-height:300px; padding:18px; }
+#main-content.hs-sms-page .hs-sms-chart-card .panel-body > .row { display:flex; align-items:center; }
+#main-content.hs-sms-page .hs-sms-chart-plot { position:relative; box-sizing:border-box; width:100%!important; min-height:260px; }
+#main-content.hs-sms-page .hs-sms-cartesian-card .hs-sms-chart-plot { min-width:900px; height:360px; }
+#main-content.hs-sms-page .hs-sms-chart-scroll {
+  width:100%;
+  overflow-x:auto;
+  margin-bottom:8px;
+  padding:0 0 12px;
+  -webkit-overflow-scrolling:touch;
+}
+#main-content.hs-sms-page .hs-sms-donut-card .panel-body > .row { flex-wrap:wrap; margin:0 -6px; }
+#main-content.hs-sms-page .hs-sms-donut-card .panel-body > .row::before,
+#main-content.hs-sms-page .hs-sms-donut-card .panel-body > .row::after { display:none; }
+#main-content.hs-sms-page .hs-sms-donut-card .panel-body > .row > div { float:none; box-sizing:border-box; flex:1 1 220px; min-width:0; padding:6px; }
+#main-content.hs-sms-page .hs-sms-donut-card .panel-body > .row > div > [class*="col-"] { float:none; width:100%; padding:0; }
+#main-content.hs-sms-page .hs-sms-donut-card .hs-sms-chart-plot { display:block; width:100%!important; max-width:360px; min-height:0; aspect-ratio:1/1; margin:0 auto; padding:0; }
+#main-content.hs-sms-page .hs-sms-donut-card canvas { display:block; width:100%!important; height:100%!important; max-width:100%; cursor:pointer; filter:drop-shadow(0 10px 15px rgba(34,61,84,.08)); }
+#main-content.hs-sms-page table.hs-sms-chart-legend {
+  width:100%;
+  max-width:330px;
+  margin:0;
+  border:0;
+  border-collapse:separate;
+  border-spacing:0 6px;
+}
+#main-content.hs-sms-page .hs-sms-chart-legend__item td {
+  padding:7px 4px!important;
+  color:#52667e;
+  font-size:11.5px!important;
+  line-height:1.3;
+  border:0!important;
+  background:#f6f9fb!important;
+  transition:background-color .16s ease,color .16s ease;
+}
+#main-content.hs-sms-page .hs-sms-chart-legend__item:hover td { color:#203852; background:#eef7f6!important; }
+#main-content.hs-sms-page .hs-sms-chart-legend__item td:first-child { width:28px; padding-left:8px!important; border-radius:9px 0 0 9px; }
+#main-content.hs-sms-page .hs-sms-chart-legend__item td:last-child {
+  padding-right:8px!important;
+  color:#273f58;
+  font-variant-numeric:tabular-nums;
+  font-weight:700;
+  text-align:right;
+  border-radius:0 9px 9px 0;
+  white-space:nowrap;
+}
+#main-content.hs-sms-page .hs-sms-chart-legend__color > div {
+  width:10px!important;
+  height:10px!important;
+  border:2px solid rgba(255,255,255,.95);
+  box-shadow:0 0 0 1px rgba(60,83,112,.12);
+}
+#main-content.hs-sms-page .hs-sms-chart-legend__item td * { font-size:inherit!important; line-height:inherit; }
+#main-content.hs-sms-page .hs-sms-empty { display:flex; align-items:center; justify-content:center; min-height:220px; width:100%; color:#8b99aa; font-size:12px; text-align:center; }
+
+/* Tables and lower summaries */
+#main-content.hs-sms-page .hs-sms-details-grid {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:18px;
+  margin:0 0 18px;
+}
+#main-content.hs-sms-page .hs-sms-details-grid::before,
+#main-content.hs-sms-page .hs-sms-details-grid::after { display:none; }
+#main-content.hs-sms-page .hs-sms-details-grid > [class*="col-"] {
+  float:none;
+  width:auto;
+  padding:0;
+}
+#main-content.hs-sms-page .hs-sms-details-grid > .hs-sms-incoming-col { grid-column:1/-1; }
+#main-content.hs-sms-page .hs-sms-details-grid .panel { margin:0; height:100%; }
+#main-content.hs-sms-page .table-responsive { border:0; overflow-x:auto; }
+#main-content.hs-sms-page table.table {
+  width:100%!important;
+  margin:0;
+  border:1px solid #dce6ed!important;
+  border-collapse:separate!important;
+  border-spacing:0;
+  border-radius:14px;
+  overflow:hidden;
+  background:#fff;
+  font-size:11.5px;
+}
+#main-content.hs-sms-page table.table thead td,
+#main-content.hs-sms-page table.table thead th {
+  padding:11px 10px;
+  border:0!important;
+  border-bottom:1px solid #dce6ed!important;
+  background:#f3f7f9!important;
+  color:#28415b;
+  font-size:10.8px;
+  font-weight:700;
+}
+#main-content.hs-sms-page table.table tbody td {
+  padding:11px 10px;
+  border:0!important;
+  border-bottom:1px solid #e7edf2!important;
+  vertical-align:middle;
+  background:#fff!important;
+}
+#main-content.hs-sms-page table.table tbody tr:nth-child(even) td { background:#fafcfd!important; }
+#main-content.hs-sms-page table.table tbody tr:last-child td { border-bottom:0!important; }
+#main-content.hs-sms-page table.table td div[align="right"] { width:auto!important; text-align:right; }
+#main-content.hs-sms-page .hs-sms-summary-table tbody tr.hs-sms-separator td {
+  height:10px;
+  padding:0;
+  border:0!important;
+  background:#f5f8fa!important;
+}
+#main-content.hs-sms-page .hs-sms-summary-table tbody tr.hs-sms-total td {
+  background:#f0f8f7!important;
+  font-weight:700;
+}
+#main-content.hs-sms-page .hs-sms-summary-table font[color] { color:#c4515d!important; }
+
+#main-content.hs-sms-page a.hs-sms-topup {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  width:100%;
+  min-height:44px;
+  margin-top:16px;
+  padding:10px 16px;
+  border:1px solid #f0cbd0;
+  border-radius:12px;
+  background:#fff4f5;
+  color:#b94755;
+  font-size:12.5px;
+  font-weight:700;
+  text-decoration:none;
+  transition:background .16s ease,border-color .16s ease;
+}
+#main-content.hs-sms-page a.hs-sms-topup:hover { background:#fdebed; border-color:#e8bcc3; }
+#main-content.hs-sms-page a.hs-sms-topup svg { width:18px; height:18px; }
+
+#main-content.hs-sms-page .hs-sms-mobile-list { display:none; }
+#main-content.hs-sms-page .hs-sms-status {
+  display:flex;
+  align-items:center;
+  gap:9px;
+  margin:0 0 10px;
+  padding:11px 14px;
+  border:1px solid #dfe8ee;
+  border-radius:12px;
+  background:#f8fafb;
+  color:#6e8198;
+  font-size:10.8px;
+}
+#main-content.hs-sms-page .hs-sms-status__dot {
+  flex:0 0 8px;
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#5ca19e;
+  box-shadow:0 0 0 3px rgba(92,161,158,.12);
+}
+#main-content.hs-sms-page .hs-sms-status__time { margin-left:auto; white-space:nowrap; }
+
+@media (max-width:1100px) {
+  #main-content.hs-sms-page .hs-sms-filter-row { grid-template-columns:1fr; }
+  #main-content.hs-sms-page .hs-sms-charts { grid-template-columns:1fr; }
+}
+
+@media (max-width:767px), (hover:none) and (pointer:coarse) and (max-width:1100px) {
+  #main-content.hs-sms-page > .row { margin-left:0; margin-right:0; }
+  #main-content.hs-sms-page > .row > [class*="col-"] { padding-left:0; padding-right:0; }
+  #main-content.hs-sms-page .panel:not(.widget-mini) { border-radius:16px; margin-bottom:14px; }
+  #main-content.hs-sms-page .panel:not(.widget-mini) > .panel-heading { min-height:62px; padding:12px 14px; flex-wrap:wrap; }
+  #main-content.hs-sms-page .hs-sms-heading-note { width:100%; margin:-3px 0 0 50px; text-align:left; }
+  #main-content.hs-sms-page .panel:not(.widget-mini) > .panel-body { padding:14px; }
+  #main-content.hs-sms-page .hs-sms-heading-icon { flex-basis:38px; width:38px; height:38px; border-radius:12px; }
+  #main-content.hs-sms-page .hs-sms-filter-row,
+  #main-content.hs-sms-page .hs-sms-charts,
+  #main-content.hs-sms-page .hs-sms-details-grid { display:block; margin-bottom:14px; }
+  #main-content.hs-sms-page .hs-sms-filter-row > [class*="col-"] + [class*="col-"],
+  #main-content.hs-sms-page .hs-sms-charts > [class*="col-"] + [class*="col-"],
+  #main-content.hs-sms-page .hs-sms-details-grid > [class*="col-"] + [class*="col-"] { margin-top:14px; }
+  #main-content.hs-sms-page #VoucherOdDo .form-group { grid-template-columns:1fr 1fr; gap:10px; }
+  #main-content.hs-sms-page #VoucherOdDo .form-group > [class*="col-sm-"]:nth-of-type(3) { grid-column:1/-1; }
+  #main-content.hs-sms-page #VoucherOdDo .hs-sms-filter-actions { align-items:stretch; }
+  #main-content.hs-sms-page #VoucherOdDo .hs-sms-filter-result { flex-direction:column; justify-content:center; gap:2px; }
+  #main-content.hs-sms-page #VoucherOdDo .btn-primary { height:100%; min-height:44px; }
+  #main-content.hs-sms-page .hs-sms-cartesian-card .hs-sms-chart-plot { min-width:720px; height:330px; }
+  #main-content.hs-sms-page .hs-sms-donut-card .panel-body > .row { display:block; margin:0; }
+  #main-content.hs-sms-page .hs-sms-donut-card .panel-body > .row > div { padding:0; }
+  #main-content.hs-sms-page table.hs-sms-chart-legend { max-width:none; margin-bottom:12px; }
+  #main-content.hs-sms-page .hs-sms-donut-card .hs-sms-chart-plot { max-width:290px; }
+  #main-content.hs-sms-page .hs-sms-desktop-table { display:none!important; }
+  #main-content.hs-sms-page .hs-sms-mobile-list { display:grid; gap:10px; }
+  #main-content.hs-sms-page .hs-sms-mobile-card { border:1px solid #dce6ed; border-radius:14px; background:#fff; overflow:hidden; }
+  #main-content.hs-sms-page .hs-sms-mobile-card__title { padding:11px 12px; border-bottom:1px solid #e3eaf0; background:#f5f8fa; color:#29425d; font-size:11px; font-weight:700; }
+  #main-content.hs-sms-page .hs-sms-mobile-card__grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; padding:10px; }
+  #main-content.hs-sms-page .hs-sms-mobile-card__item { min-width:0; padding:9px 10px; border:1px solid #e2eaf0; border-radius:11px; background:#fafcfd; }
+  #main-content.hs-sms-page .hs-sms-mobile-card__item span { display:block; margin-bottom:3px; color:#8796a8; font-size:9.5px; }
+  #main-content.hs-sms-page .hs-sms-mobile-card__item strong { display:block; color:#314a65; font-size:12px; overflow-wrap:anywhere; }
+  #main-content.hs-sms-page .hs-sms-status { align-items:flex-start; flex-wrap:wrap; }
+  #main-content.hs-sms-page .hs-sms-status__time { width:100%; margin-left:17px; white-space:normal; }
+}
+
+@media (max-width:430px) {
+  #main-content.hs-sms-page #VoucherOdDo .form-group { grid-template-columns:1fr; }
+  #main-content.hs-sms-page #VoucherOdDo .form-group > [class*="col-sm-"] { grid-column:1; }
+  #main-content.hs-sms-page #VoucherOdDo .hs-sms-filter-actions { flex-direction:column; }
+  #main-content.hs-sms-page #VoucherOdDo .btn-primary { width:100%; }
+}
+
+/* V143: credit table follows Voucher tables, without a search field. */
+#main-content.hs-sms-page .hs-sms-credit-card .dataTables_wrapper { width:100%; min-width:0; }
+#main-content.hs-sms-page .hs-sms-credit-card .dataTables_filter { display:none!important; }
+#main-content.hs-sms-page .hs-sms-credit-card .hs-sms-credit-toolbar { display:flex; justify-content:flex-end; width:100%; float:none; margin:0 0 14px; }
+#main-content.hs-sms-page .hs-sms-credit-card .buttons-collection {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  min-height:42px;
+  margin:0;
+  padding:10px 15px;
+  border:1px solid #b9dfdc!important;
+  border-radius:12px!important;
+  background:#f1fbfa!important;
+  color:#087d79!important;
+  font-size:13px!important;
+  font-weight:600;
+  box-shadow:none!important;
+}
+#main-content.hs-sms-page .hs-sms-credit-card .buttons-collection svg { width:20px; height:20px; }
+#main-content.hs-sms-page .hs-sms-credit-card table.dataTable {
+  width:100%!important;
+  margin:0!important;
+  border:1px solid #dbe5ed!important;
+  border-collapse:separate!important;
+  border-spacing:0!important;
+  border-radius:14px;
+  overflow:hidden;
+  font-size:11.5px;
+}
+#main-content.hs-sms-page .hs-sms-credit-card table.dataTable thead td,
+#main-content.hs-sms-page .hs-sms-credit-card table.dataTable thead th {
+  padding:12px 18px 12px 8px!important;
+  color:#28415b!important;
+  font-size:11px!important;
+  font-weight:700!important;
+  border:0!important;
+  border-bottom:1px solid #dbe5ed!important;
+  background:#f3f7f9!important;
+}
+#main-content.hs-sms-page .hs-sms-credit-card table.dataTable tbody td {
+  padding:12px 8px!important;
+  border:0!important;
+  border-bottom:1px solid #e5edf2!important;
+  vertical-align:middle;
+  overflow-wrap:anywhere;
+}
+#main-content.hs-sms-page .hs-sms-credit-card table.dataTable tbody tr:nth-child(odd) td { background:#fff!important; }
+#main-content.hs-sms-page .hs-sms-credit-card table.dataTable tbody tr:nth-child(even) td { background:#f9fbfc!important; }
+#main-content.hs-sms-page .hs-sms-credit-card table.dataTable tbody tr:last-child td { border-bottom:0!important; }
+#main-content.hs-sms-page .hs-sms-credit-card .dataTables_info { float:left; padding-top:12px; color:#7b8ca1; font-size:11px; }
+#main-content.hs-sms-page .hs-sms-credit-card .dataTables_paginate {
+  display:flex;
+  align-items:center;
+  float:right;
+  width:fit-content;
+  max-width:100%;
+  gap:2px;
+  margin-top:14px;
+  margin-left:auto;
+  padding:4px!important;
+  border:1px solid #e0e7ed;
+  border-radius:12px;
+  background:#f5f8fa;
+  flex-wrap:wrap;
+}
+#main-content.hs-sms-page .hs-sms-credit-card .dataTables_paginate .paginate_button {
+  display:inline-flex!important;
+  align-items:center;
+  justify-content:center;
+  box-sizing:border-box;
+  min-width:34px;
+  height:34px;
+  margin:0!important;
+  padding:0 10px!important;
+  color:#53657d!important;
+  -webkit-text-fill-color:#53657d!important;
+  font-family:Tahoma,Arial,sans-serif!important;
+  font-size:12.5px;
+  font-weight:600;
+  line-height:1!important;
+  border:1px solid transparent!important;
+  border-radius:8px!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  text-shadow:none!important;
+}
+#main-content.hs-sms-page .hs-sms-credit-card .dataTables_paginate .paginate_button:not(.current):not(.disabled):hover {
+  color:#405571!important;
+  -webkit-text-fill-color:#405571!important;
+  border-color:#d6e0e8!important;
+  background:#fff!important;
+}
+#main-content.hs-sms-page .hs-sms-credit-card .dataTables_paginate .paginate_button.current,
+#main-content.hs-sms-page .hs-sms-credit-card .dataTables_paginate .paginate_button.current:hover {
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  border-color:#556b8d!important;
+  background:#556b8d!important;
+}
+#main-content.hs-sms-page .hs-sms-credit-card .dataTables_paginate .paginate_button.disabled,
+#main-content.hs-sms-page .hs-sms-credit-card .dataTables_paginate .paginate_button.disabled:hover {
+  color:#a5b0bd!important;
+  -webkit-text-fill-color:#a5b0bd!important;
+  border-color:transparent!important;
+  background:transparent!important;
+  cursor:default;
+}
+#main-content.hs-sms-page .hs-sms-credit-card .dataTables_paginate > span { display:inline-flex; align-items:center; gap:2px; }
+@media(max-width:767px),(hover:none) and (pointer:coarse) and (max-width:1100px) {
+  #main-content.hs-sms-page .hs-sms-credit-card .hs-sms-credit-toolbar,
+  #main-content.hs-sms-page .hs-sms-credit-card .dt-buttons,
+  #main-content.hs-sms-page .hs-sms-credit-card .buttons-collection { width:100%; }
+  #main-content.hs-sms-page .hs-sms-credit-card .dataTables_info { float:none; width:100%; text-align:left; }
+  #main-content.hs-sms-page .hs-sms-credit-card .dataTables_paginate { float:none; margin-right:auto; }
+}
+
+
+/* V144: scrollbars must never contain or overlap DataTables pagination. */
+#main-content.hs-sms-page .hs-sms-credit-card .dataTables_wrapper.table-responsive,
+#main-content.hs-sms-page .hs-sms-credit-card .dataTables_wrapper {
+  overflow:visible!important;
+  padding-bottom:2px;
+}
+#main-content.hs-sms-page .hs-sms-credit-card table.dataTable { max-width:100%!important; }
+#main-content.hs-sms-page .hs-sms-credit-card .dataTables_info,
+#main-content.hs-sms-page .hs-sms-credit-card .dataTables_paginate { margin-bottom:8px; }
+@media (max-width:767px),(hover:none) and (pointer:coarse) and (max-width:1100px) {
+  #main-content.hs-sms-page .hs-sms-chart-scroll { margin-bottom:10px; padding-bottom:16px; }
+}

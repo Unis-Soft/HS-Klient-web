@@ -1,0 +1,208 @@
+/* HairSoft Klient V71 – společné moderní potvrzení destruktivních akcí. */
+
+body.hs-confirm-open {
+  overflow: hidden !important;
+}
+
+.hs-confirm-root[hidden] {
+  display: none !important;
+}
+
+.hs-confirm-root {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 24px;
+  font-family: Tahoma, Arial, sans-serif;
+  z-index: 12000;
+}
+
+.hs-confirm-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(24, 40, 57, .48);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  opacity: 0;
+  transition: opacity .18s ease;
+}
+
+.hs-confirm-dialog {
+  position: relative;
+  box-sizing: border-box;
+  width: min(100%, 440px);
+  overflow: hidden;
+  color: #31465d;
+  border: 1px solid rgba(60, 83, 112, .12);
+  border-radius: 20px;
+  outline: 0;
+  background: #fff;
+  box-shadow: 0 28px 80px rgba(19, 34, 50, .3), 0 4px 14px rgba(19, 34, 50, .12);
+  opacity: 0;
+  transform: translateY(10px) scale(.975);
+  transition: opacity .18s ease, transform .18s ease;
+}
+
+.hs-confirm-root--open .hs-confirm-backdrop,
+.hs-confirm-root--open .hs-confirm-dialog {
+  opacity: 1;
+}
+
+.hs-confirm-root--open .hs-confirm-dialog {
+  transform: translateY(0) scale(1);
+}
+
+.hs-confirm-content {
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr);
+  gap: 0 15px;
+  padding: 24px 24px 20px;
+}
+
+.hs-confirm-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  grid-row: 1 / span 2;
+  width: 52px;
+  height: 52px;
+  color: #df5558;
+  border-radius: 16px;
+  background: #fff0f0;
+}
+
+.hs-confirm-icon svg {
+  width: 25px;
+  height: 25px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.hs-confirm-title {
+  align-self: end;
+  margin: 1px 0 7px;
+  color: #193451;
+  font: 700 18px/1.3 Tahoma, Arial, sans-serif;
+}
+
+.hs-confirm-message {
+  margin: 0;
+  color: #66788b;
+  font: 400 13px/1.55 Tahoma, Arial, sans-serif;
+  white-space: pre-line;
+}
+
+.hs-confirm-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 15px 24px;
+  border-top: 1px solid #e7edf1;
+  background: #f8fafb;
+}
+
+.hs-confirm-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: 108px;
+  min-height: 42px;
+  margin: 0;
+  padding: 10px 17px;
+  font: 600 13px/1.3 Tahoma, Arial, sans-serif;
+  border-radius: 11px;
+  outline: 0;
+  cursor: pointer;
+  transition: border-color .15s ease, background .15s ease, box-shadow .15s ease, transform .15s ease;
+}
+
+.hs-confirm-button--cancel {
+  color: #536a80;
+  border: 1px solid #d8e1e8;
+  background: #fff;
+}
+
+.hs-confirm-button--cancel:hover,
+.hs-confirm-button--cancel:focus {
+  color: #29445f;
+  border-color: #b9c8d4;
+  background: #f4f7f9;
+  box-shadow: 0 0 0 3px rgba(93, 117, 153, .1);
+}
+
+.hs-confirm-button--delete {
+  color: #fff;
+  border: 1px solid #df5558;
+  background: #df5558;
+  box-shadow: 0 7px 16px rgba(223, 85, 88, .2);
+}
+
+.hs-confirm-button--delete:hover,
+.hs-confirm-button--delete:focus {
+  color: #fff;
+  border-color: #c94347;
+  background: #c94347;
+  box-shadow: 0 9px 20px rgba(201, 67, 71, .25), 0 0 0 3px rgba(223, 85, 88, .12);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 480px) {
+  .hs-confirm-root {
+    align-items: flex-end;
+    padding: 12px;
+  }
+
+  .hs-confirm-dialog {
+    width: 100%;
+    border-radius: 20px;
+    transform: translateY(18px) scale(.985);
+  }
+
+  .hs-confirm-content {
+    grid-template-columns: 46px minmax(0, 1fr);
+    gap: 0 13px;
+    padding: 21px 18px 18px;
+  }
+
+  .hs-confirm-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+  }
+
+  .hs-confirm-title {
+    font-size: 17px;
+  }
+
+  .hs-confirm-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 13px 18px calc(13px + env(safe-area-inset-bottom));
+  }
+
+  .hs-confirm-button {
+    width: 100%;
+    min-width: 0;
+    min-height: 46px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hs-confirm-backdrop,
+  .hs-confirm-dialog,
+  .hs-confirm-button {
+    transition: none !important;
+  }
+}
+
+/* V147: neutrální potvrzení pro archivaci/obnovení. */
+.hs-confirm-icon--primary { color:#168f8b; background:#eaf7f6; }
+.hs-confirm-button--primary { color:#fff; border:1px solid #168f8b; background:#168f8b; box-shadow:0 7px 16px rgba(22,143,139,.18); }
+.hs-confirm-button--primary:hover,.hs-confirm-button--primary:focus { color:#fff; border-color:#0f7f7b; background:#0f7f7b; box-shadow:0 9px 20px rgba(15,127,123,.22),0 0 0 3px rgba(22,143,139,.12); transform:translateY(-1px); }

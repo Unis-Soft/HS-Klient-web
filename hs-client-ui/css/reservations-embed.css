@@ -1,0 +1,311 @@
+/* HairSoft Klient V93 – vložená administrace rezervací Bonfero. */
+
+.hs-reservations-page,
+.hs-reservations-page button,
+.hs-reservations-page a,
+.hs-reservations-page iframe {
+  font-family: Tahoma, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.hs-reservations-page .hs-reservations-content {
+  box-sizing: border-box;
+  padding: 18px;
+}
+
+.hs-reservations-card {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  height: calc(100vh - 178px);
+  height: calc(100dvh - 178px);
+  min-height: 560px;
+  overflow: hidden;
+  border: 1px solid rgba(60, 83, 112, .14);
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 12px 34px rgba(38, 53, 73, .08);
+}
+
+.hs-reservations-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 0 0 auto;
+  gap: 18px;
+  min-height: 76px;
+  padding: 12px 14px 12px 16px;
+  border-bottom: 1px solid #dfe7ee;
+  background: linear-gradient(180deg, #fff 0%, #fbfcfd 100%);
+}
+
+.hs-reservations-heading,
+.hs-reservations-actions,
+.hs-reservations-button {
+  display: flex;
+  align-items: center;
+}
+
+.hs-reservations-heading {
+  min-width: 0;
+  gap: 12px;
+}
+
+.hs-reservations-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  color: #119d98;
+  border-radius: 13px;
+  background: #e7f7f6;
+}
+
+.hs-reservations-icon svg,
+.hs-reservations-button svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.hs-reservations-icon svg {
+  width: 23px;
+  height: 23px;
+}
+
+.hs-reservations-heading-copy {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.hs-reservations-heading-copy strong {
+  color: #233a54;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.hs-reservations-heading-copy small {
+  margin-top: 3px;
+  overflow: hidden;
+  color: #8190a2;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hs-reservations-actions {
+  flex: 0 0 auto;
+  gap: 9px;
+}
+
+.hs-reservations-button {
+  justify-content: center;
+  gap: 8px;
+  box-sizing: border-box;
+  min-height: 42px;
+  padding: 0 14px;
+  color: #465e7d;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none !important;
+  border: 1px solid #d7e2eb;
+  border-radius: 12px;
+  background: #f7fafc;
+  box-shadow: none;
+  cursor: pointer;
+  transition: color .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease, transform .18s ease;
+}
+
+.hs-reservations-button svg {
+  width: 17px;
+  height: 17px;
+}
+
+.hs-reservations-button:hover,
+.hs-reservations-button:focus {
+  color: #138f8a;
+  outline: 0;
+  border-color: #a8d9d5;
+  background: #eff9f8;
+  box-shadow: 0 0 0 3px rgba(34, 170, 164, .1);
+}
+
+.hs-reservations-button:active {
+  transform: translateY(1px);
+}
+
+.hs-reservations-button--primary {
+  color: #fff;
+  border-color: #18a7a1;
+  background: #18a7a1;
+}
+
+.hs-reservations-button--primary:hover,
+.hs-reservations-button--primary:focus {
+  color: #fff;
+  border-color: #118f8a;
+  background: #118f8a;
+}
+
+.hs-reservations-frame-wrap {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  background: #f4f7f8;
+}
+
+.hs-reservations-frame {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #fff;
+}
+
+.hs-reservations-loading {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 7px;
+  color: #2b4058;
+  background: linear-gradient(145deg, #f8fbfc 0%, #edf5f5 100%);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .2s ease, visibility .2s ease;
+}
+
+.hs-reservations-frame-wrap.is-loading .hs-reservations-loading {
+  opacity: 1;
+  visibility: visible;
+}
+
+.hs-reservations-loading strong {
+  margin-top: 5px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.hs-reservations-loading small {
+  color: #8391a2;
+  font-size: 12px;
+}
+
+.hs-reservations-spinner {
+  width: 34px;
+  height: 34px;
+  border: 3px solid #cfe9e7;
+  border-top-color: #18a7a1;
+  border-radius: 50%;
+  animation: hs-reservations-spin .75s linear infinite;
+}
+
+.hs-reservations-noscript {
+  margin: 0;
+  padding: 14px 16px;
+  color: #4b5f77;
+  font-size: 13px;
+  border-top: 1px solid #dfe7ee;
+  background: #fff7e9;
+}
+
+@keyframes hs-reservations-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 767px) {
+  .hs-reservations-page .hs-reservations-page-header {
+    padding-bottom: 10px;
+  }
+
+  .hs-reservations-page .hs-reservations-content {
+    padding: 10px;
+  }
+
+  .hs-reservations-card {
+    height: calc(100vh - 126px);
+    height: calc(100dvh - 126px);
+    min-height: 520px;
+    border-radius: 16px;
+  }
+
+  .hs-reservations-toolbar {
+    min-height: 68px;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .hs-reservations-icon {
+    flex-basis: 40px;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+  }
+
+  .hs-reservations-heading-copy small,
+  .hs-reservations-button--quiet span {
+    display: none;
+  }
+
+  .hs-reservations-actions {
+    gap: 7px;
+  }
+
+  .hs-reservations-button {
+    min-width: 42px;
+    min-height: 42px;
+    padding: 0 11px;
+    border-radius: 11px;
+  }
+
+  .hs-reservations-button--primary span {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 390px) {
+  .hs-reservations-heading-copy strong {
+    font-size: 14px;
+  }
+
+  .hs-reservations-button--primary {
+    min-width: 42px;
+    padding: 0;
+  }
+
+  .hs-reservations-button--primary span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hs-reservations-spinner {
+    animation-duration: 1.5s;
+  }
+
+  .hs-reservations-button,
+  .hs-reservations-loading {
+    transition: none;
+  }
+}
