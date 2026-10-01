@@ -5,7 +5,7 @@ Webový HS Klient a související HSBridge.
 ## Aktuální verze
 
 - HS Klient: **V227**
-- HSBridge: **V009 DIAG**
+- HSBridge: **V010**
 - PROGRAMS synchronizace: **každých 15 minut**, snapshot se odesílá pouze při změně dat.
 - HairSoft databáze pro PROGRAMS: **SQLite i MySQL síťová verze**.
 
@@ -47,17 +47,13 @@ Bridge komunikace z takového PC neprobíhá. Bonfero bude řešeno samostatným
 repozitářem.
 
 
-## V009 – MySQL PROGRAMS schema diagnostika
+## V010 – MySQL PROGRAMS
 
-Na aktivním MySQL server PC HSBridge při startu jednou načte metadata z
-`information_schema` a `SHOW CREATE TABLE` pro tabulky:
+Podle diagnostiky reálné MySQL databáze HairSoft používají tabulky
+`programs` a `program_values` pro název sloupec `name1`.
+V010 proto používá:
+- `programs.name1`
+- `program_values.name1`
 
-- `programs`
-- `program_payments`
-- `program_visits`
-- `program_values`
-- `program_values2customer`
-
-Do logu se zapisují názvy a typy sloupců, indexy, cizí klíče a CREATE TABLE.
-Nečtou ani nelogují se řádky zákazníků, programová data ani MySQL heslo.
-Diagnostika slouží pouze k přesnému mapování MySQL schématu proti SQLite verzi.
+Ostatní MySQL PROGRAMS tabulky a vazby zůstávají beze změny.
+Dočasná V009 schema diagnostika byla odstraněna.
