@@ -4,7 +4,7 @@ Webový HS Klient a související HSBridge.
 
 ## Aktuální verze
 
-- HS Klient: **V228**
+- HS Klient: **V229**
 - HSBridge: **V010**
 - PROGRAMS synchronizace: **každých 15 minut**, snapshot se odesílá pouze při změně dat.
 - HairSoft databáze pro PROGRAMS: **SQLite i MySQL síťová verze**.
@@ -64,3 +64,11 @@ Při přechodu mezi sekcemi z levého menu zůstává horní hlavička a levé m
 viditelné. Načítání se signalizuje pouze v hlavní obsahové části. Globální
 `hs-ui-preparing` maska byla odstraněna; page-specific ochrany jako Vouchery
 zůstávají zachované.
+
+
+## V229 – stabilní přechody mezi moduly
+
+Při klasické PHP navigaci se v podporovaných Chromium prohlížečích drží na
+obrazovce předchozí horní hlavička a levé menu až do připravení dalšího
+dokumentu. Hlavní obsah už nepoužívá legacy `fadeInUp`, takže odpadá druhé
+probliknutí po načtení.
