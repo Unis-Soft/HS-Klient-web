@@ -216,15 +216,12 @@ Neúplná nebo chybná MySQL konfigurace se chová fail-closed: Bridge komunikac
 nepovolí, aby omylem nezačal používat starou SQLite databázi a neduplikoval data.
 
 
-## V009 DIAG – skutečné MySQL schéma PROGRAMS
+## V010 – oprava MySQL PROGRAMS
 
-Na MySQL serverovém PC se jednou při startu zapíše do HSBridge logu struktura
-pěti programových tabulek. Log obsahuje:
-- sloupce v pořadí včetně `COLUMN_TYPE`, NULL, klíče, defaultu a extra,
-- indexy,
-- foreign keys,
-- normalizovaný výstup `SHOW CREATE TABLE`.
+V reálném MySQL schématu HairSoft se názvy programů ukládají do `name1`,
+nikoli do `name`. V010 opravuje MySQL provider na:
+- `programs.name1`
+- `program_values.name1`
 
-Diagnostika nečte obsah tabulek a neloguje zákaznické řádky ani SQL heslo.
-Na MySQL klientském PC se nespustí, protože V008 server-only pravidlo zůstává
-beze změny.
+Dočasná V009 schema diagnostika byla odstraněna. V008 pravidlo jednoho aktivního
+Bridge na jednu databázi a 15minutová frekvence PROGRAMS zůstávají beze změny.
