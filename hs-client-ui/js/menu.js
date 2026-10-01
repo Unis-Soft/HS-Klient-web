@@ -1,4 +1,4 @@
-/* HairSoft Klient – společné rozhraní aplikace, verze 24 */
+/* HairSoft Klient – společné rozhraní aplikace, verze 25 */
 (function () {
   "use strict";
 
@@ -507,70 +507,6 @@
     }
   }
 
-  function isPlainNavigationClick(event) {
-    return event.button === 0 &&
-      !event.ctrlKey &&
-      !event.metaKey &&
-      !event.shiftKey &&
-      !event.altKey;
-  }
-
-  function isInternalContentNavigation(anchor) {
-    var rawHref;
-    var target;
-    var current;
-
-    if (!anchor || anchor.hasAttribute("download") || anchor.hasAttribute("data-hs-staff-switch-launch")) {
-      return false;
-    }
-
-    if (anchor.target && anchor.target.toLowerCase() !== "_self") {
-      return false;
-    }
-
-    rawHref = anchor.getAttribute("href") || "";
-    if (!rawHref || rawHref === "#" || /^javascript:/i.test(rawHref)) {
-      return false;
-    }
-
-    try {
-      target = new URL(rawHref, window.location.href);
-      current = new URL(window.location.href);
-    } catch (error) {
-      return false;
-    }
-
-    if (target.origin !== current.origin || target.pathname !== current.pathname) {
-      return false;
-    }
-
-    return target.searchParams.has("strana");
-  }
-
-  function startContentNavigation(anchor, event) {
-    var content;
-
-    if (!isPlainNavigationClick(event) || !isInternalContentNavigation(anchor)) {
-      return false;
-    }
-
-    event.preventDefault();
-    event.stopImmediatePropagation();
-
-    saveState();
-    document.documentElement.classList.add("hs-nav-loading");
-    content = document.querySelector("#main-wrapper > section.main-content-wrapper");
-    if (content) {
-      content.setAttribute("aria-busy", "true");
-    }
-
-    window.requestAnimationFrame(function () {
-      window.location.assign(anchor.href);
-    });
-
-    return true;
-  }
-
   function prepareMenu() {
     var wrapper = getWrapper();
     var sidebar = document.querySelector("aside.sidebar-left");
@@ -579,7 +515,7 @@
 
     preparePageHeaders();
     prepareSystemKpis();
-    document.documentElement.classList.remove("hs-nav-loading");
+    document.documentElement.classList.remove("hs-ui-preparing");
 
     if (!wrapper || !sidebar) {
       return;
@@ -615,9 +551,6 @@
         if (isDesktop() && isCollapsed()) {
           saveState();
         }
-        if (startContentNavigation(anchor, event)) {
-          return;
-        }
         return;
       }
 
@@ -638,14 +571,6 @@
     document.addEventListener("keydown", function (event) {
       if (event.key === "Escape" || event.keyCode === 27) {
         closeSubmenus();
-      }
-    });
-
-    window.addEventListener("pageshow", function () {
-      var content = document.querySelector("#main-wrapper > section.main-content-wrapper");
-      document.documentElement.classList.remove("hs-nav-loading");
-      if (content) {
-        content.removeAttribute("aria-busy");
       }
     });
 
