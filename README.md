@@ -5,9 +5,21 @@ Webový HS Klient a související HSBridge.
 ## Aktuální verze
 
 - HS Klient: **V227**
-- HSBridge: **V007 PROGRAMS**
+- HSBridge: **V008**
 - PROGRAMS synchronizace: **každých 15 minut**, snapshot se odesílá pouze při změně dat.
 - HairSoft databáze pro PROGRAMS: **SQLite i MySQL síťová verze**.
+
+## Síťové pravidlo V008
+
+HSBridge je aktivní pouze na jednom PC pro jednu HairSoft databázi:
+
+- SQLite instalace → aktivní Bridge,
+- MySQL server PC → `SQLHost=localhost` nebo loopback → aktivní Bridge,
+- MySQL klient PC → vzdálená IP/hostname v `SQLHost` → **pasivní Bridge**.
+
+Pasivní MySQL klientské PC neposílá ani nepřijímá žádnou HSBridge komunikaci.
+Pravidlo platí globálně pro současné i budoucí Bridge moduly, tedy nejen pro
+PROGRAMS.
 
 ## MySQL HairSoft
 
@@ -16,11 +28,9 @@ HSBridge pozná síťovou instalaci podle SQL parametrů v `HairSoft\Settings.xm
 
 Pokud jsou SQL parametry přítomné, PROGRAMS používá MySQL přes TCP. Pokud chybí,
 zůstává původní SQLite detekce přes `DatabaseFile` / `data.sdb`.
-Hodnota `OpenSQLsettings` se jako přepínač nepoužívá, protože reálná síťová
-konfigurace může mít hodnotu 0.
+Hodnota `OpenSQLsettings` se jako přepínač nepoužívá.
 
-MySQL heslo se nekopíruje do HSBridge `config.json` a neloguje se. Bridge čte
-SQL připojení při synchronizaci přímo ze `Settings.xml`.
+MySQL heslo se nekopíruje do HSBridge `config.json` a neloguje se.
 
 ## Struktura
 
@@ -31,6 +41,7 @@ SQL připojení při synchronizaci přímo ze `Settings.xml`.
 - `bridge/directory/` – Bridge Directory / identita a párování
 
 CUSTOMER / STATISTICS / TIMELINE zůstávají v HSBridge neaktivní; tyto oblasti
-nadále řeší SoftKW / SoftSYS. Cooper voucher flow zůstává zachovaný a jeho
-SQLite zápisová větev se ve V007 nemění. Bonfero bude řešeno samostatným
+nadále řeší SoftKW / SoftSYS. Cooper voucher flow zůstává zachovaný. Na MySQL
+klientském PC je však V008 centrálně pasivní, takže ani voucherová ani jiná
+Bridge komunikace z takového PC neprobíhá. Bonfero bude řešeno samostatným
 repozitářem.
