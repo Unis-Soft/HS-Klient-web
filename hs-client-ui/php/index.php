@@ -495,7 +495,7 @@ window.addEventListener('load',function(){setTimeout(function(){document.querySe
 
     <!-- Custom styles for this theme -->
     <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="/hs-client-ui/css/client-ui.css?v=228">
+    <link rel="stylesheet" href="/hs-client-ui/css/client-ui.css?v=229">
     <link rel="stylesheet" href="/hs-client-ui/css/company-switch.css?v=221">
     <link rel="stylesheet" href="/hs-client-ui/css/dashboard-charts.css?v=197">
     <link rel="stylesheet" href="/hs-client-ui/css/client-form.css?v=196">
@@ -545,7 +545,7 @@ window.addEventListener('load',function(){setTimeout(function(){document.querySe
         );
       ?>;
     </script>
-    <script src="/hs-client-ui/js/menu.js?v=228" defer></script>
+    <script src="/hs-client-ui/js/menu.js?v=229" defer></script>
     <script src="/hs-client-ui/js/company-switch.js?v=196" defer></script>
     <script src="/hs-client-ui/js/customer-sync-hold.js?v=202" defer></script>
     <script src="/hs-client-ui/js/dashboard-charts.js?v=197" defer></script>
