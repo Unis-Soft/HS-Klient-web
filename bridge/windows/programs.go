@@ -94,7 +94,9 @@ func syncHSKlientPrograms(c Config) error {
 	return nil
 }
 
-const programsPollInterval = 15 * time.Minute\n\nfunc runProgramsModule() {
+const programsPollInterval = 15 * time.Minute
+
+func runProgramsModule() {
 	var lastErr string
 	for {
 		c, err := loadConfig()
