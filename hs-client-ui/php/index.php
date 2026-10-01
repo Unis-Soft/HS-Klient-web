@@ -448,7 +448,7 @@ function hsClientUiPagePath($relativePath)
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
-<html class="no-js hs-ui-preparing<?php if (isset($_GET['strana']) && is_string($_GET['strana']) && in_array($_GET['strana'], array('CelkoveTrzby', 'MesicniTrzby', 'TrzbyDleObsluhy', 'TrzbyOdPocatku'), true)) { echo ' hs-revenue-page'; } ?>" lang="cs">
+<html class="no-js<?php if (isset($_GET['strana']) && is_string($_GET['strana']) && in_array($_GET['strana'], array('CelkoveTrzby', 'MesicniTrzby', 'TrzbyDleObsluhy', 'TrzbyOdPocatku'), true)) { echo ' hs-revenue-page'; } ?>" lang="cs">
 <!--<html class="no-js" lang="<?php echo $selectedLanguage; ?>">-->
 <!--<![endif]-->
 
@@ -495,7 +495,7 @@ window.addEventListener('load',function(){setTimeout(function(){document.querySe
 
     <!-- Custom styles for this theme -->
     <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="/hs-client-ui/css/client-ui.css?v=203">
+    <link rel="stylesheet" href="/hs-client-ui/css/client-ui.css?v=228">
     <link rel="stylesheet" href="/hs-client-ui/css/company-switch.css?v=221">
     <link rel="stylesheet" href="/hs-client-ui/css/dashboard-charts.css?v=197">
     <link rel="stylesheet" href="/hs-client-ui/css/client-form.css?v=196">
@@ -516,12 +516,6 @@ window.addEventListener('load',function(){setTimeout(function(){document.querySe
     <link rel="stylesheet" href="/hs-client-ui/css/daily-revenue.css?v=196">
     <link rel="stylesheet" href="/hs-client-ui/css/monthly-revenue.css?v=196">
     <link rel="stylesheet" href="/hs-client-ui/css/i18n.css?v=196">
-    <script>
-      /* Bezpečnostní pojistka: obsah nezůstane skrytý ani při chybě dalšího skriptu. */
-      window.addEventListener("load", function () {
-        document.documentElement.classList.remove("hs-ui-preparing");
-      });
-    </script>
       
     <!-- C3 Chart-->
     <link rel="stylesheet" href="../plugins/c3Chart/css/c3.css">
@@ -551,7 +545,7 @@ window.addEventListener('load',function(){setTimeout(function(){document.querySe
         );
       ?>;
     </script>
-    <script src="/hs-client-ui/js/menu.js?v=199" defer></script>
+    <script src="/hs-client-ui/js/menu.js?v=228" defer></script>
     <script src="/hs-client-ui/js/company-switch.js?v=196" defer></script>
     <script src="/hs-client-ui/js/customer-sync-hold.js?v=202" defer></script>
     <script src="/hs-client-ui/js/dashboard-charts.js?v=197" defer></script>
