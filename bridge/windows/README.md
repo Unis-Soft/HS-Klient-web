@@ -192,3 +192,25 @@ heslo se nekopíruje do HSBridge `config.json` a nevypisuje se do logu.
 MySQL podpora je ve V007 přidána pouze do read-only PROGRAMS datové vrstvy.
 Cooper voucher flow a jeho stávající SQLite zápisová větev se nemění.
 CUSTOMER / STATISTICS / TIMELINE zůstávají neaktivní.
+
+
+## V008 – jeden aktivní Bridge pro jednu HairSoft databázi
+
+V síťové MySQL instalaci je aktivní pouze serverový PC:
+
+- `SQLHost=localhost` nebo loopback (`127.0.0.1`, `::1`) = **MySQL server PC**, Bridge je aktivní,
+- vzdálená IP nebo hostname v `SQLHost` = **MySQL klient PC**, Bridge je pasivní,
+- bez SQL parametrů = **SQLite PC**, Bridge je aktivní.
+
+Na pasivním MySQL klientském PC se po startu nespustí žádný síťový modul:
+neproběhne registrace Directory, PROGRAMS, voucher pairing, čtení jobů ani
+odesílání výsledků. Společný HTTP transport má navíc druhou ochranu a odmítne
+síťový požadavek, pokud by jej budoucí modul zkusil spustit mimo hlavní startovní
+bránu.
+
+Pravidlo je záměrně globální pro veškerou současnou i budoucí HSBridge
+komunikaci oběma směry. Lokální instalace Bridge a autostart na klientském PC
+zůstávají zachované; proces pouze běží v pasivním režimu.
+
+Neúplná nebo chybná MySQL konfigurace se chová fail-closed: Bridge komunikaci
+nepovolí, aby omylem nezačal používat starou SQLite databázi a neduplikoval data.
