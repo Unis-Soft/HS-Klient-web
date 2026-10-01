@@ -48,6 +48,14 @@ function hsClientUiPagePath($relativePath)
 
   // MIGRACE PHP 7.4 -> 8.3: odstraněn UTF-8 BOM před PHP tagem, který mohl způsobit warning "headers already sent".
   session_start();
+
+  // V230: allow progressive rendering of the permanent application shell.
+  if (!headers_sent()) {
+    header('X-Accel-Buffering: no');
+  }
+  @ini_set('output_buffering', '0');
+  @ini_set('zlib.output_compression', '0');
+
   /* MIGRACE PHP 5.5 -> 8.3
      Duvod:
      Starsi nebo rozpracovana session muze obsahovat prazdny string misto seznamu.
@@ -495,7 +503,7 @@ window.addEventListener('load',function(){setTimeout(function(){document.querySe
 
     <!-- Custom styles for this theme -->
     <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="/hs-client-ui/css/client-ui.css?v=229">
+    <link rel="stylesheet" href="/hs-client-ui/css/client-ui.css?v=230">
     <link rel="stylesheet" href="/hs-client-ui/css/company-switch.css?v=221">
     <link rel="stylesheet" href="/hs-client-ui/css/dashboard-charts.css?v=197">
     <link rel="stylesheet" href="/hs-client-ui/css/client-form.css?v=196">
@@ -512,7 +520,7 @@ window.addEventListener('load',function(){setTimeout(function(){document.querySe
     <link rel="stylesheet" href="/hs-client-ui/css/client-copy-test.css?v=205">
     <link rel="stylesheet" href="/hs-client-ui/css/client-export-menu.css?v=196">
     <link rel="stylesheet" href="/hs-client-ui/css/client-confirm.css?v=196">
-    <link rel="stylesheet" href="/hs-client-ui/css/reservations-embed.css?v=196">
+    <link rel="stylesheet" href="/hs-client-ui/css/reservations-embed.css?v=230">
     <link rel="stylesheet" href="/hs-client-ui/css/daily-revenue.css?v=196">
     <link rel="stylesheet" href="/hs-client-ui/css/monthly-revenue.css?v=196">
     <link rel="stylesheet" href="/hs-client-ui/css/i18n.css?v=196">
@@ -545,7 +553,7 @@ window.addEventListener('load',function(){setTimeout(function(){document.querySe
         );
       ?>;
     </script>
-    <script src="/hs-client-ui/js/menu.js?v=229" defer></script>
+    <script src="/hs-client-ui/js/menu.js?v=230" defer></script>
     <script src="/hs-client-ui/js/company-switch.js?v=196" defer></script>
     <script src="/hs-client-ui/js/customer-sync-hold.js?v=202" defer></script>
     <script src="/hs-client-ui/js/dashboard-charts.js?v=197" defer></script>
@@ -565,7 +573,7 @@ window.addEventListener('load',function(){setTimeout(function(){document.querySe
     <script src="/hs-client-ui/js/monthly-revenue-pdf.js?v=196" defer></script>
     <script src="/hs-client-ui/js/client-export-menu.js?v=196" defer></script>
     <script src="/hs-client-ui/js/client-confirm.js?v=196" defer></script>
-    <script src="/hs-client-ui/js/reservations-embed.js?v=196" defer></script>
+    <script src="/hs-client-ui/js/reservations-embed.js?v=230" defer></script>
     <script src="/hs-client-ui/js/daily-revenue.js?v=197" defer></script>
     <script src="/hs-client-ui/js/monthly-revenue.js?v=196" defer></script>
     
@@ -1634,8 +1642,21 @@ div.dt-buttons {
 
         <!--sidebar left end-->
         <!--main content start-->
+
+        <div class="hs-route-loader" id="hsRouteLoader" role="status" aria-live="polite">
+          <div class="hs-route-loader-card">
+            <span class="hs-route-loader-spinner" aria-hidden="true"></span>
+            <strong>Načítám obsah</strong>
+          </div>
+        </div>
               
          <?php
+            // V230: header + sidebar are complete. Send them to the browser now,
+            // before the selected module starts its slower SQL/render work.
+            if (function_exists('ob_flush')) {
+              @ob_flush();
+            }
+            @flush();
                if ($strana!="") {
                  $filename = 'strana/'.$strana.'.php';
 
@@ -1805,6 +1826,14 @@ div.dt-buttons {
                }  
           ?>
         
+        <script>
+          (function () {
+            var routeLoader = document.getElementById('hsRouteLoader');
+            if (routeLoader && routeLoader.parentNode) {
+              routeLoader.parentNode.removeChild(routeLoader);
+            }
+          }());
+        </script>
                
         
         <!--main content end-->
