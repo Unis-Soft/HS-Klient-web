@@ -1,0 +1,57 @@
+name: HSBridge V008 Server Only
+
+on:
+  push:
+    branches:
+      - main
+      - hsbridge-v008-server-only
+    paths:
+      - 'bridge/windows/**'
+      - '.github/workflows/hsbridge-v008-server-only.yml'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: bridge/windows
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.x'
+          cache: false
+      - name: Download modules
+        shell: cmd
+        run: go mod download
+      - name: Test HSBridge
+        shell: cmd
+        run: go test ./...
+      - name: Build HSBridge
+        shell: cmd
+        run: |
+          set GOOS=windows
+          set GOARCH=amd64
+          set CGO_ENABLED=1
+          go build -trimpath -ldflags="-s -w -H=windowsgui" -o HSBridge.exe .
+      - name: Patch version resource
+        shell: cmd
+        run: python patch_version.py HSBridge.exe
+      - name: Verify build metadata
+        shell: powershell
+        run: |
+          $v = (Get-Item .\HSBridge.exe).VersionInfo
+          Write-Host "FileVersion=$($v.FileVersion)"
+          Write-Host "ProductVersion=$($v.ProductVersion)"
+          if ($v.ProductVersion -notmatch 'V008') { throw "Wrong product version" }
+      - name: Package
+        shell: powershell
+        run: |
+          Copy-Item README.md README_V008.md
+          Compress-Archive -Path HSBridge.exe, README_V008.md -DestinationPath HSBridge_V008_SERVER_ONLY.zip -Force
+      - uses: actions/upload-artifact@v4
+        with:
+          name: HSBridge_V008_SERVER_ONLY
+          path: bridge/windows/HSBridge_V008_SERVER_ONLY.zip
+          if-no-files-found: error
