@@ -1,4 +1,4 @@
-/* HairSoft Klient V230 – vložená administrace rezervací Bonfero. */
+/* HairSoft Klient V93 – vložená administrace rezervací Bonfero. */
 
 .hs-reservations-page,
 .hs-reservations-page button,
@@ -158,63 +158,6 @@
   background: #118f8a;
 }
 
-
-.hs-reservations-security-block {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  flex: 1 1 auto;
-  box-sizing: border-box;
-  margin: 22px;
-  padding: 24px;
-  color: #5a3b12;
-  border: 1px solid #edc780;
-  border-radius: 16px;
-  background: #fff8e8;
-}
-
-.hs-reservations-security-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex: 0 0 46px;
-  width: 46px;
-  height: 46px;
-  color: #b87816;
-  border-radius: 13px;
-  background: #fff0c8;
-}
-
-.hs-reservations-security-icon svg {
-  width: 25px;
-  height: 25px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.8;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.hs-reservations-security-block strong {
-  display: block;
-  margin: 1px 0 8px;
-  color: #734a10;
-  font-size: 15px;
-}
-
-.hs-reservations-security-block p {
-  max-width: 900px;
-  margin: 0 0 8px;
-  color: #68512f;
-  font-size: 13px;
-  line-height: 1.55;
-}
-
-.hs-reservations-security-block small {
-  color: #8b6a39;
-  font-size: 12px;
-}
-
 .hs-reservations-frame-wrap {
   position: relative;
   flex: 1 1 auto;
@@ -322,11 +265,6 @@
 
   .hs-reservations-actions {
     gap: 7px;
-  }
-
-  .hs-reservations-security-block {
-    margin: 12px;
-    padding: 18px;
   }
 
   .hs-reservations-button {

@@ -1,4 +1,4 @@
-/* HairSoft Klient – modernizace aplikace, verze 41 */
+/* HairSoft Klient – modernizace aplikace, verze 38 */
 
 /* V196: globalni textovy font HS Klient - Tahoma. Ikonove fonty nejsou prepisovany. */
 html,
@@ -12,65 +12,25 @@ table {
 }
 
 
-/* V230: shell (horní lišta + levé menu) se posílá z PHP do prohlížeče
-   dříve než se dopočítá obsah zvoleného modulu. Po dobu čekání se proto
-   překrývá pouze pracovní plocha, nikoliv celý dokument. */
-.hs-route-loader {
-  position: fixed;
-  top: 64px;
-  right: 0;
-  bottom: 0;
-  left: 250px;
-  z-index: 35;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  box-sizing: border-box;
-  padding-top: 145px;
-  background: #f4f7f9;
+/* Při plném přechodu mezi stránkami neukazujeme původní komponenty
+   dříve, než je společné rozhraní synchronně připraví. */
+html.hs-ui-preparing #main-wrapper > section.main-content-wrapper {
+  position: relative;
+  min-height: calc(100vh - 64px);
+  visibility: visible;
 }
 
-#main-wrapper.sidebar-mini .hs-route-loader {
-  left: 70px;
+html.hs-ui-preparing #main-wrapper > section.main-content-wrapper > * {
+  visibility: hidden;
 }
 
-.hs-route-loader-card {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  min-width: 170px;
-  padding: 16px 20px;
-  border: 1px solid rgba(85, 107, 141, .13);
-  border-radius: 16px;
-  background: rgba(255, 255, 255, .97);
-  box-shadow: 0 16px 36px rgba(38, 53, 73, .10);
-  color: #334861;
-  font-size: 13px;
-}
-
-.hs-route-loader-spinner {
-  width: 25px;
-  height: 25px;
-  flex: 0 0 25px;
-  box-sizing: border-box;
-  border: 3px solid #dce8eb;
-  border-top-color: #28b3ad;
-  border-radius: 50%;
-  animation: hs-page-loader-spin .75s linear infinite;
-}
-
-/* Legacy animate.css vytvářelo po dokončení PHP ještě druhé probliknutí. */
-#main-wrapper > section.main-content-wrapper #main-content.animated.fadeInUp {
-  animation: none !important;
-}
-
-/* Voucher má vlastní ochranu proti probliknutí starého layoutu. */
+html.hs-ui-preparing #main-wrapper > section.main-content-wrapper::before,
 html.hs-voucher-boot:not(:has(.hs-voucher-load-error)) #main-wrapper > section.main-content-wrapper.hs-voucher-shell:not(.hs-voucher-shell-ready)::before {
   content: "";
   position: absolute;
   top: 150px;
   left: 50%;
-  z-index: 50;
+  z-index: 2;
   box-sizing: border-box;
   width: 68px;
   height: 68px;
@@ -82,12 +42,13 @@ html.hs-voucher-boot:not(:has(.hs-voucher-load-error)) #main-wrapper > section.m
   visibility: visible;
 }
 
+html.hs-ui-preparing #main-wrapper > section.main-content-wrapper::after,
 html.hs-voucher-boot:not(:has(.hs-voucher-load-error)) #main-wrapper > section.main-content-wrapper.hs-voucher-shell:not(.hs-voucher-shell-ready)::after {
   content: "";
   position: absolute;
   top: 168px;
   left: 50%;
-  z-index: 51;
+  z-index: 3;
   box-sizing: border-box;
   width: 32px;
   height: 32px;
@@ -106,24 +67,20 @@ html.hs-voucher-boot:not(:has(.hs-voucher-load-error)) #main-wrapper > section.m
 }
 
 @media (max-width: 767px) {
-  .hs-route-loader {
-    top: 56px;
-    left: 0;
-    padding-top: 110px;
-  }
-
-  html.hs-voucher-boot:not(:has(.hs-voucher-load-error)) #main-wrapper > section.main-content-wrapper.hs-voucher-shell:not(.hs-voucher-shell-ready)::before {
+  html.hs-ui-preparing #main-wrapper > section.main-content-wrapper::before,
+html.hs-voucher-boot:not(:has(.hs-voucher-load-error)) #main-wrapper > section.main-content-wrapper.hs-voucher-shell:not(.hs-voucher-shell-ready)::before {
     top: 120px;
   }
 
-  html.hs-voucher-boot:not(:has(.hs-voucher-load-error)) #main-wrapper > section.main-content-wrapper.hs-voucher-shell:not(.hs-voucher-shell-ready)::after {
+  html.hs-ui-preparing #main-wrapper > section.main-content-wrapper::after,
+html.hs-voucher-boot:not(:has(.hs-voucher-load-error)) #main-wrapper > section.main-content-wrapper.hs-voucher-shell:not(.hs-voucher-shell-ready)::after {
     top: 138px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hs-route-loader-spinner,
-  html.hs-voucher-boot:not(:has(.hs-voucher-load-error)) #main-wrapper > section.main-content-wrapper.hs-voucher-shell:not(.hs-voucher-shell-ready)::after {
+  html.hs-ui-preparing #main-wrapper > section.main-content-wrapper::after,
+html.hs-voucher-boot:not(:has(.hs-voucher-load-error)) #main-wrapper > section.main-content-wrapper.hs-voucher-shell:not(.hs-voucher-shell-ready)::after {
     animation-duration: 1.5s;
   }
 }

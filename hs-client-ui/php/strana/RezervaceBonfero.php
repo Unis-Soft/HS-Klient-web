@@ -22,20 +22,6 @@ $pobocka_jmeno = isset($_SESSION['pobocka_jmeno']) && $_SESSION['pobocka_jmeno']
 $sw_id = isset($_SESSION['pobocka_id']) ? $_SESSION['pobocka_id'] : '';
 // V210: po docasnem testu vracena produkcni administrace Bonfero.
 $hsBonferoAdminUrl = 'https://app.bonfero.com/';
-
-// V230 SECURITY: Bonfero auth zije ve vlastni cookie/session na app.bonfero.com.
-// Pri vice ulozenych HairSoft firmach tedy nelze bez explicitniho SSO mapovani
-// zarucit, ze iframe patri aktualne vybrane firme. V multi-firma rezimu se
-// Bonfero proto vubec nenacita, dokud nebude zavedeno company-bound SSO.
-$hsBonferoMultiCompanyBlocked =
-    isset($hsMultiAccounts)
-    && is_array($hsMultiAccounts)
-    && count($hsMultiAccounts) > 1;
-
-$hsBonferoCurrentCompanyLabel =
-    isset($hsMultiActiveAccount['label']) && is_string($hsMultiActiveAccount['label'])
-        ? $hsMultiActiveAccount['label']
-        : $pobocka_jmeno;
 ?>
 
 <section class="main-content-wrapper hs-reservations-page">
@@ -77,7 +63,6 @@ $hsBonferoCurrentCompanyLabel =
           </span>
         </div>
 
-        <?php if (!$hsBonferoMultiCompanyBlocked) { ?>
         <div class="hs-reservations-actions">
           <button class="hs-reservations-button hs-reservations-button--quiet" type="button" data-hs-reservations-reload title="Znovu načíst Bonfero">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8.1 8.1 0 1 0 .5 3"/><path d="M20 4v7h-7"/></svg>
@@ -88,27 +73,8 @@ $hsBonferoCurrentCompanyLabel =
             <span>Otevřít zvlášť</span>
           </a>
         </div>
-        <?php } ?>
       </header>
 
-      <?php if ($hsBonferoMultiCompanyBlocked) { ?>
-      <div class="hs-reservations-security-block" role="alert">
-        <span class="hs-reservations-security-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.4 8.4 8 9 4.6-.6 8-4 8-9V6Z"/><path d="M9 12l2 2 4-4"/></svg>
-        </span>
-        <div>
-          <strong>Bonfero je pro více firem dočasně zablokováno</strong>
-          <p>
-            Aktuálně vybraná firma v HairSoft Klientu je
-            <b><?php echo htmlspecialchars($hsBonferoCurrentCompanyLabel, ENT_COMPAT, 'UTF-8'); ?></b>.
-            Přihlášení do app.bonfero.com ale používá samostatnou prohlížečovou relaci a není zatím
-            bezpečně svázané s vybranou HairSoft firmou. Z tohoto důvodu se Bonfero v multi-firma režimu
-            nenačte ani uvnitř stránky, ani přes přímé tlačítko.
-          </p>
-          <small>Další verze integrace musí používat company-bound SSO/token pro konkrétní firmu.</small>
-        </div>
-      </div>
-      <?php } else { ?>
       <div class="hs-reservations-frame-wrap is-loading" data-hs-reservations-wrap>
         <div class="hs-reservations-loading" data-hs-reservations-loading role="status" aria-live="polite">
           <span class="hs-reservations-spinner" aria-hidden="true"></span>
@@ -126,7 +92,6 @@ $hsBonferoCurrentCompanyLabel =
           allow="clipboard-read; clipboard-write"
           allowfullscreen></iframe>
       </div>
-      <?php } ?>
 
       <noscript>
         <p class="hs-reservations-noscript">Pro zobrazení Bonfera uvnitř HairSoft Klient je potřeba povolit JavaScript. <a href="<?php echo htmlspecialchars($hsBonferoAdminUrl, ENT_QUOTES, 'UTF-8'); ?>" target="_blank" rel="noopener noreferrer">Otevřít Bonfero samostatně</a>.</p>

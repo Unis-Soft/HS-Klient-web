@@ -1,4 +1,4 @@
-/* HairSoft Klient – společné rozhraní aplikace, verze 25 */
+/* HairSoft Klient – společné rozhraní aplikace, verze 23 */
 (function () {
   "use strict";
 
