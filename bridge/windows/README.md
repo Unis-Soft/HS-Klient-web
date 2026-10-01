@@ -214,3 +214,17 @@ zůstávají zachované; proces pouze běží v pasivním režimu.
 
 Neúplná nebo chybná MySQL konfigurace se chová fail-closed: Bridge komunikaci
 nepovolí, aby omylem nezačal používat starou SQLite databázi a neduplikoval data.
+
+
+## V009 DIAG – skutečné MySQL schéma PROGRAMS
+
+Na MySQL serverovém PC se jednou při startu zapíše do HSBridge logu struktura
+pěti programových tabulek. Log obsahuje:
+- sloupce v pořadí včetně `COLUMN_TYPE`, NULL, klíče, defaultu a extra,
+- indexy,
+- foreign keys,
+- normalizovaný výstup `SHOW CREATE TABLE`.
+
+Diagnostika nečte obsah tabulek a neloguje zákaznické řádky ani SQL heslo.
+Na MySQL klientském PC se nespustí, protože V008 server-only pravidlo zůstává
+beze změny.
