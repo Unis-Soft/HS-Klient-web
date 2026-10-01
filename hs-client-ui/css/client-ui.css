@@ -1,4 +1,4 @@
-/* HairSoft Klient – modernizace aplikace, verze 38 */
+/* HairSoft Klient – modernizace aplikace, verze 39 */
 
 /* V196: globalni textovy font HS Klient - Tahoma. Ikonove fonty nejsou prepisovany. */
 html,
@@ -12,25 +12,27 @@ table {
 }
 
 
-/* Při plném přechodu mezi stránkami neukazujeme původní komponenty
-   dříve, než je společné rozhraní synchronně připraví. */
-html.hs-ui-preparing #main-wrapper > section.main-content-wrapper {
+/* V228: při navigaci z levého menu zůstává aplikační shell viditelný.
+   Načítání se signalizuje pouze nad hlavním obsahem; horní hlavička ani
+   levé menu se nezakrývají a nevzniká celostránkový bílý přechod. */
+html.hs-nav-loading #main-wrapper > section.main-content-wrapper {
   position: relative;
   min-height: calc(100vh - 64px);
-  visibility: visible;
 }
 
-html.hs-ui-preparing #main-wrapper > section.main-content-wrapper > * {
-  visibility: hidden;
+html.hs-nav-loading #main-wrapper > section.main-content-wrapper > * {
+  opacity: .32;
+  pointer-events: none;
+  transition: opacity .12s ease;
 }
 
-html.hs-ui-preparing #main-wrapper > section.main-content-wrapper::before,
+html.hs-nav-loading #main-wrapper > section.main-content-wrapper::before,
 html.hs-voucher-boot:not(:has(.hs-voucher-load-error)) #main-wrapper > section.main-content-wrapper.hs-voucher-shell:not(.hs-voucher-shell-ready)::before {
   content: "";
   position: absolute;
   top: 150px;
   left: 50%;
-  z-index: 2;
+  z-index: 50;
   box-sizing: border-box;
   width: 68px;
   height: 68px;
@@ -42,13 +44,13 @@ html.hs-voucher-boot:not(:has(.hs-voucher-load-error)) #main-wrapper > section.m
   visibility: visible;
 }
 
-html.hs-ui-preparing #main-wrapper > section.main-content-wrapper::after,
+html.hs-nav-loading #main-wrapper > section.main-content-wrapper::after,
 html.hs-voucher-boot:not(:has(.hs-voucher-load-error)) #main-wrapper > section.main-content-wrapper.hs-voucher-shell:not(.hs-voucher-shell-ready)::after {
   content: "";
   position: absolute;
   top: 168px;
   left: 50%;
-  z-index: 3;
+  z-index: 51;
   box-sizing: border-box;
   width: 32px;
   height: 32px;
@@ -67,20 +69,24 @@ html.hs-voucher-boot:not(:has(.hs-voucher-load-error)) #main-wrapper > section.m
 }
 
 @media (max-width: 767px) {
-  html.hs-ui-preparing #main-wrapper > section.main-content-wrapper::before,
-html.hs-voucher-boot:not(:has(.hs-voucher-load-error)) #main-wrapper > section.main-content-wrapper.hs-voucher-shell:not(.hs-voucher-shell-ready)::before {
+  html.hs-nav-loading #main-wrapper > section.main-content-wrapper::before,
+  html.hs-voucher-boot:not(:has(.hs-voucher-load-error)) #main-wrapper > section.main-content-wrapper.hs-voucher-shell:not(.hs-voucher-shell-ready)::before {
     top: 120px;
   }
 
-  html.hs-ui-preparing #main-wrapper > section.main-content-wrapper::after,
-html.hs-voucher-boot:not(:has(.hs-voucher-load-error)) #main-wrapper > section.main-content-wrapper.hs-voucher-shell:not(.hs-voucher-shell-ready)::after {
+  html.hs-nav-loading #main-wrapper > section.main-content-wrapper::after,
+  html.hs-voucher-boot:not(:has(.hs-voucher-load-error)) #main-wrapper > section.main-content-wrapper.hs-voucher-shell:not(.hs-voucher-shell-ready)::after {
     top: 138px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html.hs-ui-preparing #main-wrapper > section.main-content-wrapper::after,
-html.hs-voucher-boot:not(:has(.hs-voucher-load-error)) #main-wrapper > section.main-content-wrapper.hs-voucher-shell:not(.hs-voucher-shell-ready)::after {
+  html.hs-nav-loading #main-wrapper > section.main-content-wrapper > * {
+    transition: none;
+  }
+
+  html.hs-nav-loading #main-wrapper > section.main-content-wrapper::after,
+  html.hs-voucher-boot:not(:has(.hs-voucher-load-error)) #main-wrapper > section.main-content-wrapper.hs-voucher-shell:not(.hs-voucher-shell-ready)::after {
     animation-duration: 1.5s;
   }
 }
