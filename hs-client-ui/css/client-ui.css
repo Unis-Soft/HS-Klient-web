@@ -1,4 +1,4 @@
-/* HairSoft Klient – modernizace aplikace, verze 39 */
+/* HairSoft Klient – modernizace aplikace, verze 40 */
 
 /* V196: globalni textovy font HS Klient - Tahoma. Ikonove fonty nejsou prepisovany. */
 html,
@@ -12,21 +12,60 @@ table {
 }
 
 
-/* V228: při navigaci z levého menu zůstává aplikační shell viditelný.
-   Načítání se signalizuje pouze nad hlavním obsahem; horní hlavička ani
-   levé menu se nezakrývají a nevzniká celostránkový bílý přechod. */
-html.hs-nav-loading #main-wrapper > section.main-content-wrapper {
-  position: relative;
-  min-height: calc(100vh - 64px);
+/* V229: klasické PHP routování zůstává zachované, ale moderní prohlížeče
+   drží během stejno-originového přechodu předchozí shell na obrazovce.
+   Tím nevzniká bílá mezistránka ani druhé probliknutí obsahu. */
+@view-transition {
+  navigation: auto;
 }
 
-html.hs-nav-loading #main-wrapper > section.main-content-wrapper > * {
-  opacity: .32;
-  pointer-events: none;
-  transition: opacity .12s ease;
+#header {
+  view-transition-name: hs-header;
 }
 
-html.hs-nav-loading #main-wrapper > section.main-content-wrapper::before,
+aside.sidebar-left {
+  view-transition-name: hs-sidebar;
+}
+
+#main-wrapper > section.main-content-wrapper {
+  view-transition-name: hs-content;
+}
+
+::view-transition-old(root),
+::view-transition-new(root),
+::view-transition-old(hs-header),
+::view-transition-new(hs-header),
+::view-transition-old(hs-sidebar),
+::view-transition-new(hs-sidebar) {
+  animation: none;
+}
+
+::view-transition-old(hs-content) {
+  animation: hs-content-out .08s ease both;
+}
+
+::view-transition-new(hs-content) {
+  animation: hs-content-in .12s ease both;
+}
+
+@keyframes hs-content-out {
+  from { opacity: 1; }
+  to { opacity: .92; }
+}
+
+@keyframes hs-content-in {
+  from { opacity: .92; }
+  to { opacity: 1; }
+}
+
+/* Legacy animate.css dávalo každému novému modulu ještě druhý fadeInUp.
+   V shellu HS Klientu je tento vstupní efekt nežádoucí; ostatní animace
+   mimo hlavní obsah zůstávají nedotčené. */
+#main-wrapper > section.main-content-wrapper #main-content.animated.fadeInUp {
+  animation: none !important;
+}
+
+/* Voucher má vlastní ochranu proti probliknutí starého layoutu. */
 html.hs-voucher-boot:not(:has(.hs-voucher-load-error)) #main-wrapper > section.main-content-wrapper.hs-voucher-shell:not(.hs-voucher-shell-ready)::before {
   content: "";
   position: absolute;
@@ -44,7 +83,6 @@ html.hs-voucher-boot:not(:has(.hs-voucher-load-error)) #main-wrapper > section.m
   visibility: visible;
 }
 
-html.hs-nav-loading #main-wrapper > section.main-content-wrapper::after,
 html.hs-voucher-boot:not(:has(.hs-voucher-load-error)) #main-wrapper > section.main-content-wrapper.hs-voucher-shell:not(.hs-voucher-shell-ready)::after {
   content: "";
   position: absolute;
@@ -69,23 +107,21 @@ html.hs-voucher-boot:not(:has(.hs-voucher-load-error)) #main-wrapper > section.m
 }
 
 @media (max-width: 767px) {
-  html.hs-nav-loading #main-wrapper > section.main-content-wrapper::before,
   html.hs-voucher-boot:not(:has(.hs-voucher-load-error)) #main-wrapper > section.main-content-wrapper.hs-voucher-shell:not(.hs-voucher-shell-ready)::before {
     top: 120px;
   }
 
-  html.hs-nav-loading #main-wrapper > section.main-content-wrapper::after,
   html.hs-voucher-boot:not(:has(.hs-voucher-load-error)) #main-wrapper > section.main-content-wrapper.hs-voucher-shell:not(.hs-voucher-shell-ready)::after {
     top: 138px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html.hs-nav-loading #main-wrapper > section.main-content-wrapper > * {
-    transition: none;
+  ::view-transition-old(hs-content),
+  ::view-transition-new(hs-content) {
+    animation: none;
   }
 
-  html.hs-nav-loading #main-wrapper > section.main-content-wrapper::after,
   html.hs-voucher-boot:not(:has(.hs-voucher-load-error)) #main-wrapper > section.main-content-wrapper.hs-voucher-shell:not(.hs-voucher-shell-ready)::after {
     animation-duration: 1.5s;
   }
