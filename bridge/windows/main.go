@@ -12,7 +12,7 @@ import (
 	"time"
 )
 
-const bridgeVersion = "V007"
+const bridgeVersion = "V008"
 
 var codeRe = regexp.MustCompile(`^[A-Z0-9-]{1,20}$`)
 var errUserExit = errors.New("user exit")
@@ -24,7 +24,7 @@ func main() {
 		if errors.Is(err, errorAlreadyExists) {
 			return
 		}
-		showMessageBox("HSBridge V007", "Bridge nelze spustit: "+err.Error())
+		showMessageBox("HSBridge V008", "Bridge nelze spustit: "+err.Error())
 		return
 	}
 	defer release()
@@ -34,16 +34,16 @@ func main() {
 		if os.IsNotExist(err) {
 			c = defaultConfig()
 		} else {
-			showMessageBox("HSBridge V007", "Nelze nacist config.json: "+err.Error())
+			showMessageBox("HSBridge V008", "Nelze nacist config.json: "+err.Error())
 			return
 		}
 	}
 	if err := ensureBridgeIdentity(&c); err != nil {
-		showMessageBox("HSBridge V007", "Nelze vytvorit identitu Bridge: "+err.Error())
+		showMessageBox("HSBridge V008", "Nelze vytvorit identitu Bridge: "+err.Error())
 		return
 	}
 	if err := saveConfig(c); err != nil {
-		showMessageBox("HSBridge V007", "Nelze ulozit config.json: "+err.Error())
+		showMessageBox("HSBridge V008", "Nelze ulozit config.json: "+err.Error())
 		return
 	}
 
@@ -58,6 +58,30 @@ func main() {
 			c.StartupInstalled = true
 			_ = saveConfig(c)
 		}
+	}
+
+	// V008: one active Bridge per HairSoft dataset.
+	// SQLite installations are standalone and remain active. In a MySQL
+	// network installation only the server PC (SQLHost=localhost/loopback)
+	// may send or receive Bridge traffic. Client PCs are intentionally passive
+	// so the same shared MySQL data are never synchronized by multiple PCs.
+	traffic := currentBridgeTrafficPolicy()
+	if !traffic.Allowed {
+		if traffic.Err != nil {
+			logf("[BRIDGE] PASSIVE role=%s settings=%s err=%v - ALL SEND/RECEIVE DISABLED",
+				traffic.Role, traffic.SettingsPath, traffic.Err)
+		} else {
+			logf("[BRIDGE] PASSIVE role=%s sql_host=%s settings=%s - ALL SEND/RECEIVE DISABLED",
+				traffic.Role, traffic.SQLHost, traffic.SettingsPath)
+		}
+		for {
+			time.Sleep(time.Hour)
+		}
+	}
+	if traffic.Role == bridgeRoleMySQLServer {
+		logf("[BRIDGE] ACTIVE role=%s sql_host=%s settings=%s", traffic.Role, traffic.SQLHost, traffic.SettingsPath)
+	} else {
+		logf("[BRIDGE] ACTIVE role=%s", traffic.Role)
 	}
 
 	if backend, detail, err := quickHairSoftBackend(c); err == nil {
@@ -102,7 +126,7 @@ func main() {
 	if err != nil {
 		if !errors.Is(err, errUserExit) {
 			logf("PAIR ERROR %v", err)
-			showMessageBox("HSBridge V007", "Propojeni se nepodarilo: "+err.Error())
+			showMessageBox("HSBridge V008", "Propojeni se nepodarilo: "+err.Error())
 		}
 		return
 	}
