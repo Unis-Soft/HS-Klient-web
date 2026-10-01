@@ -4,7 +4,7 @@ Webový HS Klient a související HSBridge.
 
 ## Aktuální verze
 
-- HS Klient: **V227**
+- HS Klient: **V228**
 - HSBridge: **V010**
 - PROGRAMS synchronizace: **každých 15 minut**, snapshot se odesílá pouze při změně dat.
 - HairSoft databáze pro PROGRAMS: **SQLite i MySQL síťová verze**.
@@ -57,3 +57,10 @@ V010 proto používá:
 
 Ostatní MySQL PROGRAMS tabulky a vazby zůstávají beze změny.
 Dočasná V009 schema diagnostika byla odstraněna.
+
+## V228 – plynulá navigace shellu
+
+Při přechodu mezi sekcemi z levého menu zůstává horní hlavička a levé menu
+viditelné. Načítání se signalizuje pouze v hlavní obsahové části. Globální
+`hs-ui-preparing` maska byla odstraněna; page-specific ochrany jako Vouchery
+zůstávají zachované.
