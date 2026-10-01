@@ -12,7 +12,7 @@ import (
 	"time"
 )
 
-const bridgeVersion = "V009"
+const bridgeVersion = "V010"
 
 var codeRe = regexp.MustCompile(`^[A-Z0-9-]{1,20}$`)
 var errUserExit = errors.New("user exit")
@@ -24,7 +24,7 @@ func main() {
 		if errors.Is(err, errorAlreadyExists) {
 			return
 		}
-		showMessageBox("HSBridge V009", "Bridge nelze spustit: "+err.Error())
+		showMessageBox("HSBridge V010", "Bridge nelze spustit: "+err.Error())
 		return
 	}
 	defer release()
@@ -34,16 +34,16 @@ func main() {
 		if os.IsNotExist(err) {
 			c = defaultConfig()
 		} else {
-			showMessageBox("HSBridge V009", "Nelze nacist config.json: "+err.Error())
+			showMessageBox("HSBridge V010", "Nelze nacist config.json: "+err.Error())
 			return
 		}
 	}
 	if err := ensureBridgeIdentity(&c); err != nil {
-		showMessageBox("HSBridge V009", "Nelze vytvorit identitu Bridge: "+err.Error())
+		showMessageBox("HSBridge V010", "Nelze vytvorit identitu Bridge: "+err.Error())
 		return
 	}
 	if err := saveConfig(c); err != nil {
-		showMessageBox("HSBridge V009", "Nelze ulozit config.json: "+err.Error())
+		showMessageBox("HSBridge V010", "Nelze ulozit config.json: "+err.Error())
 		return
 	}
 
@@ -99,15 +99,6 @@ func main() {
 		logf("DB QUICK DISCOVERY ERROR backend=%s detail=%s err=%v", backend, detail, err)
 	}
 
-	// V009 DIAG: on the active MySQL server, dump only schema metadata for
-	// the five PROGRAMS tables. No customer rows, passwords or business data
-	// are logged. This runs once per Bridge process start.
-	if traffic.Role == bridgeRoleMySQLServer {
-		if err := logMySQLProgramsSchema(); err != nil {
-			logf("[MYSQL DIAG] ERROR %v", err)
-		}
-	}
-
 	// Register/refresh SoftRC identity before any HS Klient request.
 	// This is independent from the Cooper voucher target pairing.
 	if _, regErr := directoryRegister(c); regErr != nil {
@@ -135,7 +126,7 @@ func main() {
 	if err != nil {
 		if !errors.Is(err, errUserExit) {
 			logf("PAIR ERROR %v", err)
-			showMessageBox("HSBridge V009", "Propojeni se nepodarilo: "+err.Error())
+			showMessageBox("HSBridge V010", "Propojeni se nepodarilo: "+err.Error())
 		}
 		return
 	}
