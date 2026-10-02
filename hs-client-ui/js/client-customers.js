@@ -190,8 +190,12 @@
   }
 
 
+  function programDisplayName(value) {
+    return translate(String(value || "").replace(/\s+/g, " ").trim());
+  }
+
   function shortenProgramName(value, maxLength) {
-    var text = String(value || "").replace(/\s+/g, " ").trim();
+    var text = programDisplayName(value);
     var limit = maxLength || PROGRAM_NAME_MAX;
     if (text.length <= limit) return text;
     return text.slice(0, Math.max(1, limit - 1)).replace(/\s+$/, "") + "…";
@@ -204,11 +208,18 @@
     programs = programs.map(function (program, index) {
       var id = program && typeof program === "object" ? (program.id ?? program.programId ?? index) : index;
       var name = program && typeof program === "object" ? (program.name ?? program.title ?? "") : String(program || "");
-      return { id: String(id), name: String(name || "").trim() };
+      var remaining = program && typeof program === "object" ? Number(program.remaining ?? 0) : 0;
+      if (!Number.isFinite(remaining) || remaining < 0) remaining = 0;
+      return { id: String(id), name: String(name || "").trim(), remaining: Math.round(remaining) };
     }).filter(function (program) { return program.name !== ""; });
+    var totalRemaining = Number(meta.totalRemaining);
+    if (!Number.isFinite(totalRemaining) || totalRemaining < 0) {
+      totalRemaining = programs.reduce(function (sum, program) { return sum + program.remaining; }, 0);
+    }
     return {
       programs: programs,
-      selectedProgramId: String(meta.selectedProgramId ?? meta.selectedId ?? "")
+      selectedProgramId: String(meta.selectedProgramId ?? meta.selectedId ?? ""),
+      totalRemaining: Math.round(totalRemaining)
     };
   }
 
@@ -252,14 +263,14 @@
     }
 
     if (programs.length === 1) {
-      programColumnLabel = programs[0].name;
+      programColumnLabel = programDisplayName(programs[0].name);
       cells.forEach(function (cell) {
         makeHeaderStatic(cell);
         cell.innerHTML = '<span class="hs-program-column-label"></span>';
         var label = cell.querySelector(".hs-program-column-label");
         label.textContent = shortenProgramName(programs[0].name, PROGRAM_NAME_MAX);
-        label.title = programs[0].name;
-        cell.title = programs[0].name;
+        label.title = programDisplayName(programs[0].name);
+        cell.title = programDisplayName(programs[0].name);
       });
       selectedProgramId = programs[0].id;
       return;
@@ -269,7 +280,7 @@
     if (!programs.some(function (program) { return program.id === selected; })) selected = programs[0].id;
     selectedProgramId = selected;
     var selectedProgram = programs.find(function (program) { return program.id === selectedProgramId; }) || programs[0];
-    programColumnLabel = selectedProgram.name;
+    programColumnLabel = programDisplayName(selectedProgram.name);
 
     cells.forEach(function (cell) {
       var select = document.createElement("select");
@@ -282,7 +293,7 @@
         var option = document.createElement("option");
         option.value = program.id;
         option.textContent = shortenProgramName(program.name, 24);
-        option.title = program.name;
+        option.title = programDisplayName(program.name);
         option.selected = program.id === selectedProgramId;
         select.appendChild(option);
       });
@@ -292,7 +303,7 @@
         if (!value || value === selectedProgramId) return;
         selectedProgramId = value;
         var selectedMeta = programs.find(function (program) { return program.id === value; });
-        programColumnLabel = selectedMeta ? selectedMeta.name : "Programy";
+        programColumnLabel = selectedMeta ? programDisplayName(selectedMeta.name) : translate("Programy");
         api.ajax.reload(null, false);
       });
       cell.appendChild(select);
@@ -306,6 +317,78 @@
   window.hsCustomersProgramColumnVisible = function () {
     return Boolean(programColumnEnabled);
   };
+
+  function programsKpiSourceColumn() {
+    var link = document.querySelector('#main-content a[href*="strana=Zakaznici"][href*="AkceTab=Vsechny"]');
+    return link ? (link.closest('[class*="col-"]') || link.parentElement) : null;
+  }
+
+  function removeProgramsKpi() {
+    var existing = document.querySelector("#main-content .hs-programs-kpi-column");
+    if (existing && existing.parentNode) existing.parentNode.removeChild(existing);
+  }
+
+  function renderProgramsKpi(normalized) {
+    var sourceColumn = programsKpiSourceColumn();
+    var row = sourceColumn ? sourceColumn.parentElement : null;
+    var column;
+    var card;
+    var label;
+    var value;
+    var detail;
+    var total;
+    var breakdown;
+
+    if (!sourceColumn || !row || !normalized || !normalized.programs.length) {
+      removeProgramsKpi();
+      return;
+    }
+
+    column = row.querySelector(":scope > .hs-programs-kpi-column");
+    if (!column) {
+      column = document.createElement("div");
+      column.className = String(sourceColumn.className || "").trim() + " hs-programs-kpi-column";
+      card = document.createElement("div");
+      card.className = "hs-programs-kpi-card";
+      card.innerHTML = '' +
+        '<div class="hs-programs-kpi-card__head">' +
+          '<span class="hs-programs-kpi-card__label"></span>' +
+          '<span class="hs-programs-kpi-card__icon" aria-hidden="true">' +
+            '<svg viewBox="0 0 24 24"><path d="M5 5h14v14H5z"></path><path d="M8 9h8M8 13h5M8 17h3"></path></svg>' +
+          '</span>' +
+        '</div>' +
+        '<strong class="hs-programs-kpi-card__value">0</strong>' +
+        '<span class="hs-programs-kpi-card__detail"></span>';
+      column.appendChild(card);
+      row.appendChild(column);
+    }
+
+    row.classList.add("hs-customers-kpi-row");
+    card = column.querySelector(".hs-programs-kpi-card");
+    label = column.querySelector(".hs-programs-kpi-card__label");
+    value = column.querySelector(".hs-programs-kpi-card__value");
+    detail = column.querySelector(".hs-programs-kpi-card__detail");
+    total = Number(normalized.totalRemaining) || 0;
+
+    if (label) {
+      if (typeof window.hsSetTranslatedText === "function") window.hsSetTranslatedText(label, "Programy");
+      else label.textContent = translate("Programy");
+    }
+    if (value) value.textContent = String(total);
+
+    breakdown = normalized.programs.map(function (program) {
+      return programDisplayName(program.name) + ": " + program.remaining;
+    }).join(" • ");
+
+    if (detail) {
+      detail.textContent = normalized.programs.length > 1 ? breakdown : "";
+      detail.title = breakdown;
+      detail.classList.toggle("is-hidden", normalized.programs.length <= 1);
+    }
+    if (card) {
+      card.title = breakdown ? translate("Zbývající vstupy celkem") + " — " + breakdown : translate("Zbývající vstupy celkem");
+    }
+  }
 
   function prepareTopScrollbar(wrapper) {
     var scroll = wrapper.querySelector(":scope > .dataTables_scroll");
@@ -754,6 +837,7 @@
     var normalizedProgramMeta = syncProgramVisibility(api);
     decorateHeaders(api, wrapper);
     renderProgramHeader(api, wrapper, normalizedProgramMeta);
+    renderProgramsKpi(normalizedProgramMeta);
     decorateRows(api);
     prepareToolbar(table, wrapper, panelBody);
     prepareTopScrollbar(wrapper);
@@ -792,6 +876,13 @@
 
     enhance(table, api);
     window.setTimeout(function () { enhance(table, api); }, 0);
+
+    if (document.documentElement.getAttribute("data-hs-program-language-bound") !== "1") {
+      document.documentElement.setAttribute("data-hs-program-language-bound", "1");
+      document.addEventListener("hs:languagechange", function () {
+        window.setTimeout(function () { enhance(table, api); }, 0);
+      });
+    }
   }
 
   if (document.readyState === "loading") {
