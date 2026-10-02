@@ -194,7 +194,7 @@
     ["Poslední návštěva", "Posledná návšteva", "Last visit", "Letzter Besuch"],
     ["Programy", "Programy", "Programs", "Programme"],
     ["Programy zákazníka", "Programy zákazníka", "Customer programs", "Kundenprogramme"],
-    ["ZÓNY TĚLA", "Zóny tela", "Body zones", "Körperzonen"],
+    ["Zóny těla", "Zóny tela", "Body zones", "Körperzonen"],
     ["Zbývající vstupy celkem", "Zostávajúce vstupy celkom", "Total remaining entries", "Verbleibende Eintritte gesamt"],
     ["Programová data se zatím nezobrazují.", "Programové dáta sa zatiaľ nezobrazujú.", "Program data are not displayed yet.", "Programmdaten werden derzeit noch nicht angezeigt."],
     ["Sekce je připravena pro napojení dat z HairSoft.", "Sekcia je pripravená na napojenie dát z HairSoft.", "The section is ready for HairSoft data integration.", "Der Bereich ist für die Anbindung von HairSoft-Daten vorbereitet."],
@@ -824,7 +824,11 @@
 
   function translated(source, language) {
     var normalized = key(source);
-    var exact = dictionaries[language][normalized];
+    var aliases = {
+      "ZÓNY TĚLA": "Zóny těla"
+    };
+    var lookup = aliases[normalized] || normalized;
+    var exact = dictionaries[language][lookup];
     if (exact) return exact;
     var yearKpi = normalized.match(/^(TOP rok za (?:služby|prodej)) (\d{4})$/);
     if (yearKpi) return (dictionaries[language][yearKpi[1]] || yearKpi[1]) + " " + yearKpi[2];
