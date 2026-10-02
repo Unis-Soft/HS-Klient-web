@@ -4,7 +4,7 @@ Webový HS Klient a související HSBridge.
 
 ## Aktuální verze
 
-- HS Klient: **V227**
+- HS Klient: **V231**
 - HSBridge: **V010**
 - PROGRAMS synchronizace: **každých 15 minut**, snapshot se odesílá pouze při změně dat.
 - HairSoft databáze pro PROGRAMS: **SQLite i MySQL síťová verze**.
@@ -57,3 +57,10 @@ V010 proto používá:
 
 Ostatní MySQL PROGRAMS tabulky a vazby zůstávají beze změny.
 Dočasná V009 schema diagnostika byla odstraněna.
+
+
+## V231 – Programy vizuální opravy
+
+V231 vychází ze stabilní V227. Odstraňuje pouze druhý `fadeInUp` flash,
+opravuje šířku/typografii názvu Programu a odstraňuje deformaci SVG textů
+v obou grafech Programů. HSBridge V010 zůstává beze změny.
