@@ -4764,7 +4764,20 @@ if ($osoba_guid!="" && isset($hsMultiReady) && $hsMultiReady) {
                                                   <div class="hs-programs-panel__heading">
                                                     <div class="hs-programs-panel__heading-copy">
                                                       <span class="hs-programs-eyebrow">Programy zákazníka</span>
-                                                      <h3 id="hs-programs-title">Programy</h3>
+                                                      <h3 id="hs-programs-title"><?php
+                                                        if (
+                                                          isset($hsProgramDetail)
+                                                          && isset($hsProgramDetail['programs'])
+                                                          && is_array($hsProgramDetail['programs'])
+                                                          && count($hsProgramDetail['programs']) === 1
+                                                          && isset($hsProgramSelected)
+                                                          && is_array($hsProgramSelected)
+                                                        ) {
+                                                          echo htmlspecialchars($hsProgramSelected['name'], ENT_QUOTES, 'UTF-8');
+                                                        } else {
+                                                          echo 'Programy';
+                                                        }
+                                                      ?></h3>
                                                     </div>
 
                                                     <?php if (isset($hsProgramDetail) && count($hsProgramDetail['programs']) > 1) { ?>
@@ -4779,10 +4792,6 @@ if ($osoba_guid!="" && isset($hsMultiReady) && $hsMultiReady) {
                                                           <?php } ?>
                                                         </select>
                                                       </form>
-                                                    <?php } elseif (isset($hsProgramSelected) && is_array($hsProgramSelected)) { ?>
-                                                      <div class="hs-programs-single-name" title="<?php echo htmlspecialchars($hsProgramSelected['name'], ENT_QUOTES, 'UTF-8'); ?>">
-                                                        <?php echo htmlspecialchars($hsProgramSelected['name'], ENT_QUOTES, 'UTF-8'); ?>
-                                                      </div>
                                                     <?php } ?>
                                                   </div>
 
