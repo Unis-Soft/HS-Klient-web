@@ -1,11 +1,16 @@
-Windows Bridge: HSBridge V010
+Windows Bridge: HSBridge V014
 Voucher compatibility baseline: HSVoucherBridge V016
 Directory: Bonfero HairSoft Bridge Directory V002
-HS Klient endpoint: V003 PROGRAMS
+HS Klient endpoint: V004 PROGRAMS persistent local auth
 Protocol: 2
-Programs sync interval: 15 minutes
+Programs sync interval: 10 minutes
 Programs database backends: SQLite + MySQL
 MySQL source: Settings.xml (SQLHost, SQLPort, SQLDatabase, SQLUser, SQLPasword)
 Network rule: SQLite=active, MySQL server localhost/loopback=active, MySQL client remote SQLHost=passive
 Passive MySQL client: all HSBridge send/receive traffic disabled
 V010 MySQL PROGRAMS fix: programs.name1 and program_values.name1
+V011 PROGRAMS write queue: consume quantity from HS Klient; SQLite busy_timeout=0; HairSoft always has priority
+V012 PROGRAMS photos: authenticated temporary photo batches -> HairSoft gallery; cloud files deleted after confirmed transfer
+V013 PROGRAMS photos folder fix: customer directory is zero-padded to 10 digits (e.g. ID 12 -> 0000000012)
+
+V014 PROGRAMS fast refresh: confirmed consume mirrors only the affected customer immediately; full PROGRAMS sync every 10 minutes

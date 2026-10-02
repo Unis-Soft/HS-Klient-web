@@ -196,6 +196,49 @@
     ["Programy zákazníka", "Programy zákazníka", "Customer programs", "Kundenprogramme"],
     ["Zóny těla", "Zóny tela", "Body zones", "Körperzonen"],
     ["Zbývající vstupy celkem", "Zostávajúce vstupy celkom", "Total remaining entries", "Verbleibende Eintritte gesamt"],
+    ["zbývá", "zostáva", "remaining", "verbleibend"],
+    ["Událostí", "Udalostí", "Events", "Ereignisse"],
+    ["Intervalů", "Intervalov", "Intervals", "Intervalle"],
+    ["dní", "dní", "days", "Tage"],
+    ["do", "do", "to", "bis"],
+    ["Vývoj zůstatku vstupů v čase", "Vývoj zostatku vstupov v čase", "Remaining entries over time", "Verlauf der verbleibenden Eintritte"],
+    ["Čerpat", "Čerpať", "Redeem", "Einlösen"],
+    ["Čerpat program", "Čerpať program", "Redeem program", "Programm einlösen"],
+    ["Zavřít", "Zavrieť", "Close", "Schließen"],
+    ["Aktuální zůstatek", "Aktuálny zostatok", "Current balance", "Aktueller Restbestand"],
+    ["Snížit množství", "Znížiť množstvo", "Decrease quantity", "Menge verringern"],
+    ["Zvýšit množství", "Zvýšiť množstvo", "Increase quantity", "Menge erhöhen"],
+    ["Zadejte množství větší než 0.", "Zadajte množstvo väčšie ako 0.", "Enter a quantity greater than 0.", "Geben Sie eine Menge größer als 0 ein."],
+    ["Čerpání se nepodařilo připravit. Obnovte stránku a zkuste to znovu.", "Čerpanie sa nepodarilo pripraviť. Obnovte stránku a skúste to znova.", "The redemption could not be prepared. Refresh the page and try again.", "Die Einlösung konnte nicht vorbereitet werden. Aktualisieren Sie die Seite und versuchen Sie es erneut."],
+    ["Předávám požadavek do HairSoft…", "Odosielam požiadavku do HairSoft…", "Sending request to HairSoft…", "Anfrage wird an HairSoft gesendet…"],
+    ["Požadavek na čerpání byl zařazen do fronty pro HairSoft.", "Požiadavka na čerpanie bola zaradená do fronty pre HairSoft.", "The redemption request was queued for HairSoft.", "Die Einlösungsanforderung wurde für HairSoft in die Warteschlange gestellt."],
+    ["Čerpání se nepodařilo předat.", "Čerpanie sa nepodarilo odovzdať.", "The redemption request could not be sent.", "Die Einlösungsanforderung konnte nicht übermittelt werden."],
+    ["Fotografie programu", "Fotografie programu", "Program photos", "Programmfotos"],
+    ["Odesláno fotografií celkem", "Odoslaných fotografií celkom", "Total photos sent", "Gesendete Fotos insgesamt"],
+    ["Odesílání fotografií", "Odosielanie fotografií", "Sending photos", "Fotos werden gesendet"],
+    ["Odesílám fotografie do HairSoft. Vyčkejte prosím na dokončení.", "Odosielam fotografie do HairSoft. Počkajte prosím na dokončenie.", "Sending photos to HairSoft. Please wait until the upload is complete.", "Fotos werden an HairSoft gesendet. Bitte warten Sie, bis der Upload abgeschlossen ist."],
+    ["Složka", "Priečinok", "Folder", "Ordner"],
+    ["Podsložka", "Podpriečinok", "Subfolder", "Unterordner"],
+    ["Např. Záda", "Napr. Chrbát", "E.g. Back", "Z. B. Rücken"],
+    ["Vybrat fotografie", "Vybrať fotografie", "Select photos", "Fotos auswählen"],
+    ["Z galerie nebo souborů zařízení. Můžete vybrat více fotografií najednou.", "Z galérie alebo súborov zariadenia. Môžete vybrať viac fotografií naraz.", "From the device gallery or files. You can select multiple photos at once.", "Aus der Galerie oder den Dateien des Geräts. Sie können mehrere Fotos gleichzeitig auswählen."],
+    ["Vyfotit", "Odfotiť", "Take photo", "Foto aufnehmen"],
+    ["Každým kliknutím můžete přidat další fotografii.", "Každým kliknutím môžete pridať ďalšiu fotografiu.", "Tap again to add another photo.", "Mit jedem Tippen können Sie ein weiteres Foto hinzufügen."],
+    ["Zatím není vyfocena žádná fotografie.", "Zatiaľ nie je odfotená žiadna fotografia.", "No photos have been taken yet.", "Es wurden noch keine Fotos aufgenommen."],
+    ["fotografií", "fotografií", "photos", "Fotos"],
+    ["Odeslat do HairSoft", "Odoslať do HairSoft", "Send to HairSoft", "An HairSoft senden"],
+    ["Odebrat fotografii", "Odobrať fotografiu", "Remove photo", "Foto entfernen"],
+    ["Fotografie", "Fotografia", "Photo", "Foto"],
+    ["Zpracovávám fotografii…", "Spracúvam fotografiu…", "Processing photo…", "Foto wird verarbeitet…"],
+    ["Fotografii se nepodařilo zpracovat.", "Fotografiu sa nepodarilo spracovať.", "The photo could not be processed.", "Das Foto konnte nicht verarbeitet werden."],
+    ["Fotografii se nepodařilo načíst.", "Fotografiu sa nepodarilo načítať.", "The photo could not be loaded.", "Das Foto konnte nicht geladen werden."],
+    ["V jednom odeslání lze přidat nejvýše 20 fotografií.", "V jednom odoslaní možno pridať najviac 20 fotografií.", "You can add up to 20 photos in one batch.", "Pro Sendung können höchstens 20 Fotos hinzugefügt werden."],
+    ["Fotografie se nepodařilo připravit. Obnovte stránku a zkuste to znovu.", "Fotografie sa nepodarilo pripraviť. Obnovte stránku a skúste to znova.", "The photos could not be prepared. Refresh the page and try again.", "Die Fotos konnten nicht vorbereitet werden. Aktualisieren Sie die Seite und versuchen Sie es erneut."],
+    ["Připravuji fotografie k odeslání…", "Pripravujem fotografie na odoslanie…", "Preparing photos for upload…", "Fotos werden zum Senden vorbereitet…"],
+    ["Odesílám fotografie do fronty pro HairSoft…", "Odosielam fotografie do frontu pre HairSoft…", "Sending photos to the HairSoft queue…", "Fotos werden an die HairSoft-Warteschlange gesendet…"],
+    ["Fotografie byly zařazeny do fronty pro HairSoft.", "Fotografie boli zaradené do frontu pre HairSoft.", "The photos were queued for HairSoft.", "Die Fotos wurden für HairSoft in die Warteschlange gestellt."],
+    ["Fotografie se nepodařilo odeslat.", "Fotografie sa nepodarilo odoslať.", "The photos could not be sent.", "Die Fotos konnten nicht gesendet werden."],
+
     ["Program", "Program", "Program", "Programm"],
     ["Vybrat program", "Vybrať program", "Select program", "Programm auswählen"],
     ["Souhrn programu", "Súhrn programu", "Program summary", "Programmübersicht"],
@@ -207,6 +250,15 @@
     ["Zatím bez docházky.", "Zatiaľ bez návštev.", "No attendance yet.", "Noch keine Besuche."],
     ["Zatím bez předplacených vstupů.", "Zatiaľ bez predplatených vstupov.", "No prepaid entries yet.", "Noch keine vorausbezahlten Eintritte."],
     ["Údaje programu", "Údaje programu", "Program data", "Programmdaten"],
+    ["DPH", "DPH", "VAT", "MwSt."],
+    ["Programy se načtou po otevření této sekce.", "Programy sa načítajú po otvorení tejto sekcie.", "Programs load when you open this section.", "Programme werden beim Öffnen dieses Bereichs geladen."],
+    ["Ostatní části detailu zákazníka se kvůli Programům už nenačítají znovu.", "Ostatné časti detailu zákazníka sa kvôli Programom už nenačítavajú znova.", "Other parts of the customer detail are not reloaded because of Programs.", "Andere Bereiche der Kundendetails werden wegen der Programme nicht erneut geladen."],
+    ["Zákazník nemá žádný program.", "Zákazník nemá žiadny program.", "The customer has no program.", "Der Kunde hat kein Programm."],
+    ["Jakmile HairSoft eviduje předplacené vstupy, docházku nebo vlastní hodnoty programu, zobrazí se zde automaticky.", "Keď HairSoft eviduje predplatené vstupy, dochádzku alebo vlastné hodnoty programu, zobrazia sa tu automaticky.", "As soon as HairSoft records prepaid entries, attendance or custom program values, they appear here automatically.", "Sobald HairSoft vorausbezahlte Eintritte, Besuche oder eigene Programmwerte erfasst, werden sie hier automatisch angezeigt."],
+    ["Programy se nepodařilo načíst.", "Programy sa nepodarilo načítať.", "Programs could not be loaded.", "Programme konnten nicht geladen werden."],
+    ["Zkuste sekci otevřít znovu.", "Skúste sekciu otvoriť znova.", "Try opening the section again.", "Versuchen Sie, den Bereich erneut zu öffnen."],
+    ["Odpověď neobsahuje sekci Programy.", "Odpoveď neobsahuje sekciu Programy.", "The response does not contain the Programs section.", "Die Antwort enthält den Bereich Programme nicht."],
+    ["Neznámá chyba.", "Neznáma chyba.", "Unknown error.", "Unbekannter Fehler."],
     ["Frekvence docházky", "Frekvencia návštev", "Attendance frequency", "Besuchsfrequenz"],
     ["Počet dní mezi jednotlivými čerpáními programu.", "Počet dní medzi jednotlivými čerpaniami programu.", "Days between individual program uses.", "Tage zwischen einzelnen Programmnutzungen."],
     ["Pro výpočet frekvence jsou potřeba alespoň 2 čerpání.", "Na výpočet frekvencie sú potrebné aspoň 2 čerpania.", "At least 2 uses are required to calculate frequency.", "Für die Frequenzberechnung sind mindestens 2 Nutzungen erforderlich."],
@@ -297,6 +349,8 @@
     ["Obsluha", "Obsluha", "Staff member", "Mitarbeiter"],
     ["Zrušené", "Zrušené", "Cancelled", "Storniert"],
     ["Body", "Body", "Points", "Punkte"],
+    ["Ano", "Áno", "Yes", "Ja"],
+    ["Ne", "Nie", "No", "Nein"],
     ["Akce", "Akcie", "Actions", "Aktionen"],
     ["Export", "Export", "Export", "Export"],
     ["Hledat", "Hľadať", "Search", "Suchen"],
@@ -347,6 +401,9 @@
     ["Přehled Vašich denních tržeb za pobočku:", "Prehľad vašich denných tržieb za pobočku:", "Overview of your daily revenue for branch:", "Übersicht Ihrer Tagesumsätze für die Filiale:"],
     ["TOP obsluha za služby", "TOP obsluha za služby", "Top staff member for services", "Top-Mitarbeiter Dienstleistungen"],
     ["TOP obsluha za prodej", "TOP obsluha za predaj", "Top staff member for retail", "Top-Mitarbeiter Verkauf"],
+    ["TOP den za služby", "TOP deň za služby", "Top day for services", "Bester Tag für Dienstleistungen"],
+    ["TOP den za prodej", "TOP deň za predaj", "Top day for retail", "Bester Tag für Verkauf"],
+    ["Počet účtenek za měsíc", "Počet účteniek za mesiac", "Number of receipts this month", "Anzahl Belege im Monat"],
     ["Tržby pro datum", "Tržby pre dátum", "Revenue by date", "Umsatz nach Datum"],
     ["Denní sumář za střediska | firmy", "Denný súhrn za strediská | firmy", "Daily summary by branches | companies", "Tagesübersicht nach Filialen | Firmen"],
     ["Denní sumář za střediska a firmy", "Denný súhrn za strediská a firmy", "Daily summary by branches and companies", "Tagesübersicht nach Filialen und Firmen"],
@@ -556,6 +613,38 @@
     ["Prosinec", "December", "December", "Dezember"],
     ["Změnit jazyk", "Zmeniť jazyk", "Change language", "Sprache ändern"]
   ];
+
+  // V245: kompletní export detailu zákazníka (PDF + Excel).
+  rows = rows.concat([
+    ["Export zákazníka", "Export zákazníka", "Customer export", "Kundenexport"],
+    ["Zákaznický spis", "Zákaznícky spis", "Customer file", "Kundenakte"],
+    ["Informace o zákazníkovi", "Informácie o zákazníkovi", "Customer information", "Kundeninformationen"],
+    ["Přehled evidovaných údajů", "Prehľad evidovaných údajov", "Overview of recorded information", "Übersicht der gespeicherten Angaben"],
+    ["Přehled čerpání a předplacených vstupů", "Prehľad čerpania a predplatených vstupov", "Redemptions and prepaid entries", "Einlösungen und vorausbezahlte Eintritte"],
+    ["Přehled zpětné vazby zákazníka", "Prehľad spätnej väzby zákazníka", "Customer feedback overview", "Übersicht der Kundenrückmeldungen"],
+    ["Seznam souborů evidovaných u zákazníka", "Zoznam súborov evidovaných pri zákazníkovi", "Files recorded for the customer", "Beim Kunden hinterlegte Dateien"],
+    ["Fotografií programu", "Fotografií programu", "Program photos", "Programmfotos"],
+    ["Název souboru", "Názov súboru", "File name", "Dateiname"],
+    ["Bez záznamů", "Bez záznamov", "No records", "Keine Einträge"],
+    ["Bez vyplněných otázek", "Bez vyplnených otázok", "No completed questions", "Keine beantworteten Fragen"],
+    ["Připravuji export…", "Pripravujem export…", "Preparing export…", "Export wird vorbereitet…"],
+    ["Načítám kompletní data zákazníka.", "Načítavam kompletné údaje zákazníka.", "Loading complete customer data.", "Vollständige Kundendaten werden geladen."],
+    ["Připravuji PDF…", "Pripravujem PDF…", "Preparing PDF…", "PDF wird vorbereitet…"],
+    ["Připravuji Excel…", "Pripravujem Excel…", "Preparing Excel…", "Excel wird vorbereitet…"],
+    ["PDF dokument", "PDF dokument", "PDF document", "PDF-Dokument"],
+    ["Kompletní zákaznický spis", "Kompletný zákaznícky spis", "Complete customer file", "Vollständige Kundenakte"],
+    ["Více listů podle typu dat", "Viac hárkov podľa typu údajov", "Multiple sheets by data type", "Mehrere Tabellenblätter nach Datentyp"],
+    ["Excel export není dostupný.", "Excel export nie je dostupný.", "Excel export is not available.", "Excel-Export ist nicht verfügbar."],
+    ["PDF export není dostupný.", "PDF export nie je dostupný.", "PDF export is not available.", "PDF-Export ist nicht verfügbar."],
+    ["Export se nepodařilo vytvořit.", "Export sa nepodarilo vytvoriť.", "The export could not be created.", "Der Export konnte nicht erstellt werden."],
+    ["Souhrn", "Súhrn", "Summary", "Zusammenfassung"],
+    ["Sekce", "Sekcia", "Section", "Abschnitt"],
+    ["Záznam", "Záznam", "Entry", "Eintrag"],
+    ["Excel", "Excel", "Excel", "Excel"],
+    ["Přehled návštěv a poznámek zákazníka", "Prehľad návštev a poznámok zákazníka", "Customer visits and notes overview", "Übersicht der Kundenbesuche und Notizen"],
+    ["Vytvořeno", "Vytvorené", "Created", "Erstellt"],
+    ["Adresa", "Adresa", "Address", "Adresse"]
+  ]);
 
   // Annual revenue labels.
   rows = rows.concat([["Celkové roční tržby dle obsluhy","Celkové ročné tržby podľa obsluhy","Annual revenue by staff member","Jahresumsatz nach Mitarbeitern"],["Přehled Vašich celkových ročních tržeb dle obsluhy za pobočku:","Prehľad celkových ročných tržieb podľa obsluhy za pobočku:","Overview of annual staff revenue for branch:","Übersicht der jährlichen Mitarbeiterumsätze für die Filiale:"],["Roční celkové tržby za obsluhu","Ročné celkové tržby za obsluhu","Annual revenue by staff member","Jahresumsatz nach Mitarbeitern"],["Přehled tržeb za vybraný rok","Prehľad tržieb za vybraný rok","Revenue for the selected year","Umsatz im ausgewählten Jahr"],["Rozdělení za vybraný rok","Rozdelenie za vybraný rok","Breakdown for the selected year","Verteilung im ausgewählten Jahr"],["Pro vybraný rok nejsou k dispozici žádné záznamy.","Pre vybraný rok nie sú k dispozícii žiadne záznamy.","No records are available for the selected year.","Für das ausgewählte Jahr sind keine Einträge vorhanden."],["Služby a prodej po měsících","Služby a predaj po mesiacoch","Services and sales by month","Dienstleistungen und Verkäufe nach Monat"],["Historie v čase za jednotlivce","Vývoj v čase za jednotlivcov","Monthly revenue for selected staff member","Monatlicher Umsatz des ausgewählten Mitarbeiters"],["Historie tržeb za služby v čase","Vývoj tržieb za služby v čase","Service revenue by month","Dienstleistungsumsatz nach Monat"],["Historie prodeje v čase","Vývoj predaja v čase","Sales revenue by month","Verkaufsumsatz nach Monat"],["Počty účtenek za jednotlivá střediska","Počty účteniek za jednotlivé strediská","Receipts by business unit","Belege nach Betrieb"],["Celkem služby","Služby celkom","Total services","Dienstleistungen gesamt"],["Celkem prodej","Predaj celkom","Total sales","Verkäufe gesamt"],["Účtenky celkem","Účtenky celkom","Total receipts","Belege gesamt"],["Žádná obsluha","Žiadna obsluha","No staff members","Keine Mitarbeiter"],["Refresh dat pro tento rok","Obnoviť údaje pre tento rok","Refresh data for this year","Daten für dieses Jahr aktualisieren"],["Smazat data pro tento rok","Vymazať údaje pre tento rok","Delete data for this year","Daten für dieses Jahr löschen"],["Opravdu chcete SMAZAT data středisek a jednotlivců pro tento rok?","Naozaj chcete VYMAZAŤ údaje stredísk a jednotlivcov pre tento rok?","Do you really want to DELETE business unit and staff data for this year?","Möchten Sie die Betriebs- und Mitarbeiterdaten für dieses Jahr wirklich LÖSCHEN?"],["Váš požadavek na refresh dat pro tento rok byl zadán","Vaša požiadavka na obnovenie údajov pre tento rok bola zadaná","Your data refresh request for this year has been submitted","Ihre Anfrage zur Datenaktualisierung für dieses Jahr wurde übermittelt"],["TOP za služby","TOP za služby","Top month for services","Bester Monat für Dienstleistungen"],["TOP za prodej","TOP za predaj","Top month for sales","Bester Monat für Verkäufe"]]);
@@ -834,6 +923,23 @@
     dictionaries.de[source] = row[3];
   });
 
+  function canonicalKnownProgramLabel(value) {
+    var normalized = key(value);
+    var repaired;
+    var folded;
+
+    if (!normalized) return normalized;
+    repaired = normalized
+      .replace(/Ã“/g, "Ó").replace(/Ã³/g, "ó")
+      .replace(/Äš/g, "Ě").replace(/Ä›/g, "ě");
+    folded = repaired.normalize ? repaired.normalize("NFD").replace(/[\u0300-\u036f]/g, "") : repaired;
+    folded = folded.toUpperCase().replace(/[^A-Z0-9]+/g, " ").replace(/\s+/g, " ").trim();
+    if (folded === "ZONY TELA" || folded === "ZONY TILA") return "Zóny těla";
+    return normalized;
+  }
+
+  window.hsCanonicalProgramName = canonicalKnownProgramLabel;
+
   function getLanguage() {
     try {
       var stored = window.localStorage.getItem(STORAGE_KEY);
@@ -844,10 +950,7 @@
 
   function translated(source, language) {
     var normalized = key(source);
-    var aliases = {
-      "ZÓNY TĚLA": "Zóny těla"
-    };
-    var lookup = aliases[normalized] || normalized;
+    var lookup = canonicalKnownProgramLabel(normalized);
     var exact = dictionaries[language][lookup];
     if (exact) return exact;
     var yearKpi = normalized.match(/^(TOP rok za (?:služby|prodej)) (\d{4})$/);
@@ -895,256 +998,3 @@
     if (revenueTotalMatch) {
       var revenueTotalTemplates = {
         cs: "Celkem ({currency}):",
-        sk: "Celkom ({currency}):",
-        en: "Total ({currency}):",
-        de: "Gesamt ({currency}):"
-      };
-      return revenueTotalTemplates[language].replace("{currency}", revenueTotalMatch[1]);
-    }
-    return source;
-  }
-
-  function preserveWhitespace(original, replacement) {
-    var leading = original.match(/^\s*/)[0];
-    var trailing = original.match(/\s*$/)[0];
-    return leading + replacement + trailing;
-  }
-
-  function isProtectedContent(element) {
-    if (element.closest("[data-hs-i18n-force]")) return false;
-    return !!element.closest("script,style,noscript,textarea,code,pre,#ui-datepicker-div,.ui-datepicker-inline,.hs-client-language-switcher,[data-hs-i18n-ignore],.profile-body,#contact-list,.nadpis1,.c3-legend-item,.c3-tooltip-name");
-  }
-
-  function translateTextNode(node, language) {
-    var parent = node.parentElement;
-    if (!parent || isProtectedContent(parent)) return;
-    var original = textSources.has(node) ? textSources.get(node) : node.nodeValue;
-    if (!textSources.has(node)) textSources.set(node, original);
-    var normalized = key(original);
-    if (!normalized) return;
-    var replacement = translated(normalized, language);
-    var next = replacement === normalized ? original : preserveWhitespace(original, replacement);
-    if (node.nodeValue !== next) node.nodeValue = next;
-  }
-
-  function sourceAttributes(element) {
-    var sources = attributeSources.get(element);
-    if (!sources) {
-      sources = Object.create(null);
-      attributeSources.set(element, sources);
-    }
-    return sources;
-  }
-
-  function translateAttribute(element, attribute, language) {
-    if (!element.hasAttribute(attribute) || isProtectedContent(element)) return;
-    var sources = sourceAttributes(element);
-    if (!(attribute in sources)) sources[attribute] = element.getAttribute(attribute);
-    var replacement = translated(sources[attribute], language);
-    if (element.getAttribute(attribute) !== replacement) element.setAttribute(attribute, replacement);
-  }
-
-  function translateActionValue(element, language) {
-    if (element.tagName !== "INPUT" || ["submit", "button", "reset"].indexOf((element.type || "").toLowerCase()) === -1) return;
-    var sources = sourceAttributes(element);
-    if (!("value" in sources)) sources.value = element.value;
-    var replacement = translated(sources.value, language);
-    element.dataset.hsI18nOriginalValue = sources.value;
-    if (element.value !== replacement) element.value = replacement;
-  }
-
-  function translateElement(element, language) {
-    ["placeholder", "title", "aria-label", "data-label"].forEach(function (attribute) {
-      translateAttribute(element, attribute, language);
-    });
-    translateActionValue(element, language);
-  }
-
-  function translateTree(root, language) {
-    if (root.nodeType === Node.TEXT_NODE) {
-      translateTextNode(root, language);
-      return;
-    }
-    if (root.nodeType !== Node.ELEMENT_NODE && root.nodeType !== Node.DOCUMENT_NODE) return;
-    if (root.nodeType === Node.ELEMENT_NODE) translateElement(root, language);
-    var walker = document.createTreeWalker(root, NodeFilter.SHOW_ELEMENT | NodeFilter.SHOW_TEXT);
-    var node;
-    while ((node = walker.nextNode())) {
-      if (node.nodeType === Node.TEXT_NODE) translateTextNode(node, language);
-      else translateElement(node, language);
-    }
-  }
-
-  function mountSwitcher(switcher) {
-    var loginShell = document.querySelector(".login-page #login-wrapper");
-    if (loginShell) {
-      switcher.classList.add("hs-client-language-switcher--login");
-      loginShell.appendChild(switcher);
-      return;
-    }
-
-    var headerNav = document.querySelector("#header .navbar-right");
-    if (headerNav) {
-      var slot = document.createElement("li");
-      slot.className = "hs-client-language-slot hidden-xs";
-      slot.appendChild(switcher);
-      var rightToggle = headerNav.querySelector("li.toggle-right");
-      headerNav.insertBefore(slot, rightToggle || null);
-      return;
-    }
-
-    switcher.classList.add("hs-client-language-switcher--floating");
-    document.body.appendChild(switcher);
-  }
-
-  function createSwitcher(language) {
-    var switcher = document.createElement("div");
-    switcher.className = "hs-client-language-switcher";
-    switcher.setAttribute("data-hs-language", language);
-
-    var toggle = document.createElement("button");
-    toggle.type = "button";
-    toggle.className = "hs-client-language-toggle";
-    toggle.setAttribute("aria-haspopup", "true");
-    toggle.setAttribute("aria-expanded", "false");
-
-    var activeFlag = document.createElement("img");
-    activeFlag.className = "hs-client-language-active-flag";
-    activeFlag.alt = "";
-    toggle.appendChild(activeFlag);
-    switcher.appendChild(toggle);
-
-    var menu = document.createElement("div");
-    menu.className = "hs-client-language-menu";
-    menu.setAttribute("role", "menu");
-    SUPPORTED.forEach(function (code) {
-      var option = document.createElement("button");
-      option.type = "button";
-      option.className = "hs-client-language-option";
-      option.dataset.language = code;
-      option.setAttribute("role", "menuitemradio");
-
-      var flag = document.createElement("img");
-      flag.src = flagsBase + FLAG_FILES[code] + ".svg";
-      flag.alt = "";
-      var label = document.createElement("span");
-      label.textContent = languageNames[code];
-      option.appendChild(flag);
-      option.appendChild(label);
-      menu.appendChild(option);
-    });
-    switcher.appendChild(menu);
-
-    toggle.addEventListener("click", function () {
-      var expanded = toggle.getAttribute("aria-expanded") === "true";
-      toggle.setAttribute("aria-expanded", expanded ? "false" : "true");
-      switcher.classList.toggle("hs-client-language-open", !expanded);
-    });
-    menu.addEventListener("click", function (event) {
-      var option = event.target.closest(".hs-client-language-option");
-      if (!option) return;
-      setLanguage(option.dataset.language);
-      toggle.setAttribute("aria-expanded", "false");
-      switcher.classList.remove("hs-client-language-open");
-    });
-    document.addEventListener("pointerdown", function (event) {
-      if (!switcher.contains(event.target)) {
-        toggle.setAttribute("aria-expanded", "false");
-        switcher.classList.remove("hs-client-language-open");
-      }
-    });
-    document.addEventListener("keydown", function (event) {
-      if (event.key === "Escape") {
-        toggle.setAttribute("aria-expanded", "false");
-        switcher.classList.remove("hs-client-language-open");
-      }
-    });
-
-    mountSwitcher(switcher);
-    updateSwitcher(language);
-  }
-
-  function updateSwitcher(language) {
-    var switcher = document.querySelector(".hs-client-language-switcher");
-    if (!switcher) return;
-    switcher.dataset.hsLanguage = language;
-    var activeFlag = switcher.querySelector(".hs-client-language-active-flag");
-    if (activeFlag) activeFlag.src = flagsBase + FLAG_FILES[language] + ".svg";
-    var toggle = switcher.querySelector(".hs-client-language-toggle");
-    if (toggle) toggle.setAttribute("aria-label", languageNames[language] + " – " + changeLanguageLabels[language]);
-    Array.prototype.forEach.call(switcher.querySelectorAll(".hs-client-language-option"), function (option) {
-      var active = option.dataset.language === language;
-      option.classList.toggle("hs-client-language-option-active", active);
-      option.setAttribute("aria-checked", active ? "true" : "false");
-    });
-  }
-
-  function setLanguage(language) {
-    if (SUPPORTED.indexOf(language) === -1) language = DEFAULT_LANGUAGE;
-    try { window.localStorage.setItem(STORAGE_KEY, language); } catch (error) {}
-    document.documentElement.lang = language;
-    document.title = translated(originalDocumentTitle, language);
-    applying = true;
-    translateTree(document.body, language);
-    applying = false;
-    updateSwitcher(language);
-    try {
-      document.dispatchEvent(new CustomEvent("hs:languagechange", { detail: { language: language } }));
-    } catch (error) {}
-  }
-
-  var nativeConfirm = window.confirm.bind(window);
-  var nativeAlert = window.alert.bind(window);
-  window.hsTranslate = function (source) { return translated(String(source), getLanguage()); };
-  window.hsSetTranslatedText = function (element, source) {
-    var sourceText;
-    var node;
-    if (!element) return;
-    sourceText = String(source == null ? "" : source);
-    while (element.firstChild) element.removeChild(element.firstChild);
-    node = document.createTextNode(sourceText);
-    textSources.set(node, sourceText);
-    node.nodeValue = translated(sourceText, getLanguage());
-    element.appendChild(node);
-  };
-  window.hsSetTranslatedAttribute = function (element, attribute, source) {
-    var sources;
-    if (!element || !attribute) return;
-    sources = sourceAttributes(element);
-    sources[attribute] = String(source == null ? "" : source);
-    element.setAttribute(attribute, translated(sources[attribute], getLanguage()));
-  };
-  window.confirm = function (message) { return nativeConfirm(translated(String(message), getLanguage())); };
-  window.alert = function (message) { return nativeAlert(translated(String(message), getLanguage())); };
-
-  document.addEventListener("submit", function (event) {
-    var submitter = event.submitter;
-    if (!submitter || !submitter.dataset.hsI18nOriginalValue) return;
-    var localizedValue = submitter.value;
-    submitter.value = submitter.dataset.hsI18nOriginalValue;
-    window.setTimeout(function () {
-      if (document.documentElement.contains(submitter)) submitter.value = localizedValue;
-    }, 0);
-  }, true);
-
-  function initialize() {
-    var language = getLanguage();
-    createSwitcher(language);
-    setLanguage(language);
-    var observer = new MutationObserver(function (mutations) {
-      if (applying) return;
-      var current = getLanguage();
-      applying = true;
-      mutations.forEach(function (mutation) {
-        Array.prototype.forEach.call(mutation.addedNodes, function (node) {
-          translateTree(node, current);
-        });
-      });
-      applying = false;
-    });
-    observer.observe(document.body, { childList: true, subtree: true });
-  }
-
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", initialize, { once: true });
-  else initialize();
-})();

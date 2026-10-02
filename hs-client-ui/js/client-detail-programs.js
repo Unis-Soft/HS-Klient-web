@@ -1,4 +1,4 @@
-/* HairSoft Klient V227 - lazy PROGRAMS detail with balance and attendance-frequency charts. */
+/* HairSoft Klient V244 - PROGRAMS detail, immediate consume refresh and fast local photo previews. */
 (function () {
   "use strict";
 
@@ -8,6 +8,10 @@
   var requestId = 0;
   var controller = null;
   var loading = false;
+
+  function t(source) {
+    return typeof window.hsTranslate === "function" ? window.hsTranslate(source) : source;
+  }
 
   function programsSection() {
     return pane.querySelector(".hs-client-programs");
@@ -25,13 +29,13 @@
       '<div class="hs-programs-panel">' +
         '<div class="hs-programs-panel__heading">' +
           '<div class="hs-programs-panel__heading-copy">' +
-            '<span class="hs-programs-eyebrow">Programy zákazníka</span>' +
-            '<h3>Programy</h3>' +
+            '<span class="hs-programs-eyebrow">' + escapeHtml(t('Programy zákazníka')) + '</span>' +
+            '<h3>' + escapeHtml(t('Programy')) + '</h3>' +
           '</div>' +
         '</div>' +
         '<div class="hs-programs-empty hs-programs-empty--error">' +
-          '<strong>Programy se nepodařilo načíst.</strong>' +
-          '<span>' + String(message || "Zkuste sekci otevřít znovu.") + '</span>' +
+          '<strong>' + escapeHtml(t('Programy se nepodařilo načíst.')) + '</strong>' +
+          '<span>' + escapeHtml(t(String(message || "Zkuste sekci otevřít znovu."))) + '</span>' +
         '</div>' +
       '</div>';
   }
@@ -66,6 +70,7 @@
     current.replaceWith(document.importNode(fresh, true));
     pane.setAttribute("data-hs-programs-loaded", "1");
     renderProgramsChart();
+    refreshVisiblePhotoTotal();
   }
 
   function parseDate(dateText) {
@@ -158,7 +163,7 @@
         date: paymentDate,
         delta: paymentVisits,
         type: 'payment',
-        label: 'Předplaceno +' + paymentVisits,
+        label: t('Předplaceno') + ' +' + paymentVisits,
         sortWeight: 0
       });
     }
@@ -174,7 +179,7 @@
         date: visitDate,
         delta: -visitQuantity,
         type: 'visit',
-        label: 'Docházka -' + visitQuantity,
+        label: t('Docházka') + ' -' + visitQuantity,
         sortWeight: 1
       });
     }
@@ -248,6 +253,39 @@
     return Math.max(420, Math.min(1400, width));
   }
 
+  function chartScrollableWidth(viewportWidth, itemCount, slotWidth) {
+    var viewport = Math.max(420, Number(viewportWidth) || 760);
+    var count = Math.max(1, Number(itemCount) || 1);
+    var slot = Math.max(70, Number(slotWidth) || 92);
+    // V241: graf je záměrně širší než viewport i na PC, aby byl vždy vodorovně posuvný.
+    return Math.min(5200, Math.max(viewport + 260, 860, 82 + (count * slot)));
+  }
+
+  function applyProgramTableScroll(content) {
+    if (!content) return;
+    var wraps = content.querySelectorAll('[data-hs-program-table-limit]');
+    for (var w = 0; w < wraps.length; w += 1) {
+      var wrap = wraps[w];
+      var table = wrap.querySelector('.hs-programs-table');
+      var rows = table ? table.querySelectorAll('tbody tr') : [];
+      var limit = parseInt(wrap.getAttribute('data-hs-program-table-limit') || '10', 10);
+      if (!Number.isFinite(limit) || limit < 1) limit = 10;
+      wrap.classList.remove('hs-programs-table-wrap--limited');
+      wrap.style.maxHeight = '';
+      if (!table || rows.length <= limit) continue;
+
+      var height = 0;
+      var thead = table.querySelector('thead');
+      if (thead && typeof thead.getBoundingClientRect === 'function') height += thead.getBoundingClientRect().height;
+      for (var i = 0; i < limit && i < rows.length; i += 1) {
+        if (typeof rows[i].getBoundingClientRect === 'function') height += rows[i].getBoundingClientRect().height;
+      }
+      if (!Number.isFinite(height) || height <= 0) height = 410;
+      wrap.style.maxHeight = Math.ceil(height + 2) + 'px';
+      wrap.classList.add('hs-programs-table-wrap--limited');
+    }
+  }
+
   function buildAttendanceChartSvg(intervals, maxY, chartWidth) {
     var width = Math.max(420, Number(chartWidth) || 760);
     var height = 240;
@@ -262,11 +300,13 @@
     var gridMarkup = '';
     var barMarkup = '';
     var tickMarkup = '';
-    var tickValues = [0, maxY * 0.25, maxY * 0.5, maxY * 0.75, maxY];
+    var minY = 0;
+    var rangeY = Math.max(1, maxY - minY);
+    var tickValues = [minY, minY + rangeY * 0.25, minY + rangeY * 0.5, minY + rangeY * 0.75, maxY];
     var i;
 
     function getY(value) {
-      return padTop + innerHeight - ((value / maxY) * innerHeight);
+      return padTop + innerHeight - (((value - minY) / rangeY) * innerHeight);
     }
 
     for (i = 0; i < tickValues.length; i += 1) {
@@ -283,7 +323,7 @@
       var y = getY(interval.days);
       var barHeight = Math.max(1, padTop + innerHeight - y);
       var x = xCenter - barWidth / 2;
-      var label = formatShortDate(interval.previousDate) + ' → ' + formatShortDate(interval.date) + ': ' + interval.days + ' dní';
+      var label = formatShortDate(interval.previousDate) + ' → ' + formatShortDate(interval.date) + ': ' + interval.days + ' ' + t('dní');
       barMarkup += '' +
         '<rect x="' + x.toFixed(2) + '" y="' + y.toFixed(2) + '" width="' + barWidth.toFixed(2) + '" height="' + barHeight.toFixed(2) + '" rx="4" class="hs-programs-attendance-chart__bar">' +
           '<title>' + escapeHtml(label) + '</title>' +
@@ -314,7 +354,7 @@
     }
 
     return '' +
-      '<svg class="hs-programs-chart__svg" viewBox="0 0 ' + width + ' ' + height + '" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Počet dní mezi jednotlivými čerpáními programu">' +
+      '<svg class="hs-programs-chart__svg" style="width:' + width + 'px;min-width:' + width + 'px;max-width:none" viewBox="0 0 ' + width + ' ' + height + '" preserveAspectRatio="xMidYMid meet" role="img" aria-label="' + escapeHtml(t('Počet dní mezi jednotlivými čerpáními programu.')) + '">' +
         gridMarkup + barMarkup + tickMarkup +
       '</svg>';
   }
@@ -328,16 +368,16 @@
     var chartHtml;
     var chartEl;
     var valuesSection;
-    var chartWidth = chartViewportWidth(content);
+    var chartWidth = chartScrollableWidth(chartViewportWidth(content), Math.max(1, intervals.length), 104);
 
     if (!intervals.length) {
       chartHtml = '' +
         '<section class="hs-programs-chart hs-programs-attendance-chart" data-hs-program-attendance-graph="1">' +
           '<div class="hs-programs-chart__heading">' +
-            '<div><span>Frekvence docházky</span><strong>—</strong></div>' +
-            '<p>Počet dní mezi jednotlivými čerpáními programu.</p>' +
+            '<div><span>' + escapeHtml(t('Frekvence docházky')) + '</span><strong>—</strong></div>' +
+            '<p>' + escapeHtml(t('Počet dní mezi jednotlivými čerpáními programu.')) + '</p>' +
           '</div>' +
-          '<div class="hs-programs-attendance-chart__empty">Pro výpočet frekvence jsou potřeba alespoň 2 čerpání.</div>' +
+          '<div class="hs-programs-attendance-chart__empty">' + escapeHtml(t('Pro výpočet frekvence jsou potřeba alespoň 2 čerpání.')) + '</div>' +
         '</section>';
     } else {
       var sum = 0;
@@ -358,20 +398,20 @@
         '<section class="hs-programs-chart hs-programs-attendance-chart" data-hs-program-attendance-graph="1">' +
           '<div class="hs-programs-chart__heading">' +
             '<div>' +
-              '<span>Frekvence docházky</span>' +
-              '<strong>Ø ' + escapeHtml(formatAverageDays(average)) + ' dní</strong>' +
+              '<span>' + escapeHtml(t('Frekvence docházky')) + '</span>' +
+              '<strong>Ø ' + escapeHtml(formatAverageDays(average)) + ' ' + escapeHtml(t('dní')) + '</strong>' +
             '</div>' +
-            '<p>Graf ukazuje počet dní mezi každými dvěma po sobě jdoucími čerpáními programu.</p>' +
+            '<p>' + escapeHtml(t('Graf ukazuje počet dní mezi každými dvěma po sobě jdoucími čerpáními programu.')) + '</p>' +
           '</div>' +
           '<div class="hs-programs-chart__legend">' +
-            '<div class="hs-programs-chart__legend-item hs-programs-chart__legend-item--accent"><span>Průměr</span><strong>' + escapeHtml(formatAverageDays(average)) + ' dní</strong></div>' +
-            '<div class="hs-programs-chart__legend-item"><span>Nejkratší</span><strong>' + shortest + ' dní</strong></div>' +
-            '<div class="hs-programs-chart__legend-item"><span>Nejdelší</span><strong>' + longest + ' dní</strong></div>' +
+            '<div class="hs-programs-chart__legend-item hs-programs-chart__legend-item--accent"><span>' + escapeHtml(t('Průměr')) + '</span><strong>' + escapeHtml(formatAverageDays(average)) + ' ' + escapeHtml(t('dní')) + '</strong></div>' +
+            '<div class="hs-programs-chart__legend-item"><span>' + escapeHtml(t('Nejkratší')) + '</span><strong>' + shortest + ' ' + escapeHtml(t('dní')) + '</strong></div>' +
+            '<div class="hs-programs-chart__legend-item"><span>' + escapeHtml(t('Nejdelší')) + '</span><strong>' + longest + ' ' + escapeHtml(t('dní')) + '</strong></div>' +
           '</div>' +
           '<div class="hs-programs-chart__canvas">' + buildAttendanceChartSvg(intervals, maxDays, chartWidth) + '</div>' +
           '<div class="hs-programs-chart__meta">' +
-            '<span>Od ' + escapeHtml(formatShortDate(attendance.visits[0].date)) + ' do ' + escapeHtml(formatShortDate(attendance.visits[attendance.visits.length - 1].date)) + '</span>' +
-            '<span>Intervalů: ' + intervals.length + '</span>' +
+            '<span>' + escapeHtml(t('Od')) + ' ' + escapeHtml(formatShortDate(attendance.visits[0].date)) + ' ' + escapeHtml(t('do')) + ' ' + escapeHtml(formatShortDate(attendance.visits[attendance.visits.length - 1].date)) + '</span>' +
+            '<span>' + escapeHtml(t('Intervalů')) + ': ' + intervals.length + '</span>' +
           '</div>' +
         '</section>';
     }
@@ -385,7 +425,7 @@
     else content.appendChild(chartEl);
   }
 
-  function buildChartSvg(points, maxY, chartWidth) {
+  function buildChartSvg(points, minY, maxY, chartWidth) {
     var width = Math.max(420, Number(chartWidth) || 760);
     var height = 240;
     var padLeft = 42;
@@ -402,7 +442,8 @@
     var areaPoints = [];
     var pointMarkup = '';
     var gridMarkup = '';
-    var tickValues = [0, maxY * 0.25, maxY * 0.5, maxY * 0.75, maxY];
+    var rangeY = Math.max(1, maxY - minY);
+    var tickValues = [minY, minY + rangeY * 0.25, minY + rangeY * 0.5, minY + rangeY * 0.75, maxY];
     var xTicks = [];
 
     function getX(point, index) {
@@ -414,7 +455,7 @@
     }
 
     function getY(value) {
-      return padTop + innerHeight - ((value / maxY) * innerHeight);
+      return padTop + innerHeight - (((value - minY) / rangeY) * innerHeight);
     }
 
     for (i = 0; i < tickValues.length; i += 1) {
@@ -433,7 +474,7 @@
       areaPoints.push(x.toFixed(2) + ',' + y.toFixed(2));
       pointMarkup += '' +
         '<circle cx="' + x.toFixed(2) + '" cy="' + y.toFixed(2) + '" r="4.5" class="hs-programs-chart__point hs-programs-chart__point--' + point.type + '"></circle>' +
-        '<title>' + escapeHtml(point.label + ' • ' + formatShortDate(point.date) + ' • Zbývá ' + point.remaining) + '</title>';
+        '<title>' + escapeHtml(point.label + ' • ' + formatShortDate(point.date) + ' • ' + t('Zbývá') + ' ' + point.remaining) + '</title>';
 
       if (points.length <= 8) {
         var valueX = x;
@@ -449,8 +490,9 @@
       }
     }
 
-    areaPoints.unshift(padLeft + ',' + (padTop + innerHeight));
-    areaPoints.push((width - padRight) + ',' + (padTop + innerHeight));
+    var baselineY = getY(0);
+    areaPoints.unshift(padLeft + ',' + baselineY.toFixed(2));
+    areaPoints.push((width - padRight) + ',' + baselineY.toFixed(2));
 
     xTicks.push({ x: getX(points[0], 0), label: formatShortDate(points[0].date) });
     if (points.length > 2) {
@@ -473,7 +515,7 @@
     }
 
     return '' +
-      '<svg class="hs-programs-chart__svg" viewBox="0 0 ' + width + ' ' + height + '" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Vývoj zůstatku vstupů v čase">' +
+      '<svg class="hs-programs-chart__svg" style="width:' + width + 'px;min-width:' + width + 'px;max-width:none" viewBox="0 0 ' + width + ' ' + height + '" preserveAspectRatio="xMidYMid meet" role="img" aria-label="' + escapeHtml(t('Vývoj zůstatku vstupů v čase')) + '">' +
         gridMarkup +
         '<path d="M ' + areaPoints.join(' L ') + ' Z" class="hs-programs-chart__area"></path>' +
         '<polyline points="' + linePoints.join(' ') + '" class="hs-programs-chart__line"></polyline>' +
@@ -491,6 +533,7 @@
     var i;
     var balance = 0;
     var summary;
+    var minRemaining;
     var maxRemaining;
     var chartHtml;
     var chartEl;
@@ -498,6 +541,7 @@
     var chartWidth;
 
     if (!content) return;
+    applyProgramTableScroll(content);
     chartWidth = chartViewportWidth(content);
 
     existing = content.querySelector('[data-hs-program-graph]');
@@ -516,7 +560,7 @@
         date: events[i].date,
         type: events[i].type,
         label: events[i].label,
-        remaining: Math.max(0, balance),
+        remaining: balance,
         dayKey: chartDayKey(events[i].date)
       };
 
@@ -531,31 +575,36 @@
       }
     }
 
+    chartWidth = chartScrollableWidth(chartWidth, Math.max(1, points.length), 104);
+
     summary = readSummary(content);
-    maxRemaining = 0;
+    minRemaining = Math.min(0, summary.remaining);
+    maxRemaining = Math.max(0, summary.prepaid, summary.remaining);
     for (i = 0; i < points.length; i += 1) {
+      if (points[i].remaining < minRemaining) minRemaining = points[i].remaining;
       if (points[i].remaining > maxRemaining) maxRemaining = points[i].remaining;
     }
-    maxRemaining = niceMax(Math.max(maxRemaining, summary.prepaid, summary.remaining, 1));
+    minRemaining = minRemaining < 0 ? -niceMax(Math.abs(minRemaining)) : 0;
+    maxRemaining = niceMax(Math.max(maxRemaining, 1));
 
     chartHtml = '' +
       '<section class="hs-programs-chart" data-hs-program-graph="1">' +
         '<div class="hs-programs-chart__heading">' +
           '<div>' +
-            '<span>Vývoj zůstatku vstupů</span>' +
-            '<strong>' + summary.remaining + ' zbývá</strong>' +
+            '<span>' + escapeHtml(t('Vývoj zůstatku vstupů')) + '</span>' +
+            '<strong>' + summary.remaining + ' ' + escapeHtml(t('zbývá')) + '</strong>' +
           '</div>' +
-          '<p>Graf ukazuje, jak se v čase měnil počet zbývajících vstupů podle předplacení a docházky.</p>' +
+          '<p>' + escapeHtml(t('Graf ukazuje, jak se v čase měnil počet zbývajících vstupů podle předplacení a docházky.')) + '</p>' +
         '</div>' +
         '<div class="hs-programs-chart__legend">' +
-          '<div class="hs-programs-chart__legend-item"><span>Předplaceno</span><strong>' + summary.prepaid + '</strong></div>' +
-          '<div class="hs-programs-chart__legend-item"><span>Vyčerpáno</span><strong>' + summary.used + '</strong></div>' +
-          '<div class="hs-programs-chart__legend-item hs-programs-chart__legend-item--accent"><span>Zbývá</span><strong>' + summary.remaining + '</strong></div>' +
+          '<div class="hs-programs-chart__legend-item"><span>' + escapeHtml(t('Předplaceno')) + '</span><strong>' + summary.prepaid + '</strong></div>' +
+          '<div class="hs-programs-chart__legend-item"><span>' + escapeHtml(t('Vyčerpáno')) + '</span><strong>' + summary.used + '</strong></div>' +
+          '<div class="hs-programs-chart__legend-item hs-programs-chart__legend-item--accent"><span>' + escapeHtml(t('Zbývá')) + '</span><strong>' + summary.remaining + '</strong></div>' +
         '</div>' +
-        '<div class="hs-programs-chart__canvas">' + buildChartSvg(points, maxRemaining, chartWidth) + '</div>' +
+        '<div class="hs-programs-chart__canvas">' + buildChartSvg(points, minRemaining, maxRemaining, chartWidth) + '</div>' +
         '<div class="hs-programs-chart__meta">' +
-          '<span>Období: ' + escapeHtml(formatShortDate(points[0].date)) + ' – ' + escapeHtml(formatShortDate(points[points.length - 1].date)) + '</span>' +
-          '<span>Událostí: ' + events.length + '</span>' +
+          '<span>' + escapeHtml(t('Období')) + ': ' + escapeHtml(formatShortDate(points[0].date)) + ' – ' + escapeHtml(formatShortDate(points[points.length - 1].date)) + '</span>' +
+          '<span>' + escapeHtml(t('Událostí')) + ': ' + events.length + '</span>' +
         '</div>' +
       '</section>';
 
@@ -615,37 +664,337 @@
     loadPrograms("");
   }
 
-  pane.addEventListener("change", function (event) {
-    var select = event.target.closest ? event.target.closest("[data-hs-program-select]") : null;
-    if (!select || !pane.contains(select)) return;
-    loadPrograms(select.value || "");
-  });
-
-  pane.addEventListener("submit", function (event) {
-    var form = event.target.closest ? event.target.closest("[data-hs-programs-picker-form]") : null;
-    if (!form || !pane.contains(form)) return;
-    event.preventDefault();
-    var select = form.querySelector("[data-hs-program-select]");
-    loadPrograms(select ? select.value : "");
-  });
-
-  if (window.jQuery) {
-    window.jQuery(document)
-      .off("shown.bs.tab.hsPrograms", 'a[href="#Programy"]')
-      .on("shown.bs.tab.hsPrograms", 'a[href="#Programy"]', ensureLoaded);
+  function currentConsumeModal() {
+    var section = programsSection();
+    return section ? section.querySelector("[data-hs-program-consume-modal]") : null;
   }
 
-  if (!window.jQuery) {
-    document.addEventListener("click", function (event) {
-      var link = event.target.closest ? event.target.closest('a[href="#Programy"]') : null;
-      if (!link) return;
-      window.setTimeout(ensureLoaded, 0);
+  function setConsumeFeedback(modal, message, state) {
+    if (!modal) return;
+    var feedback = modal.querySelector("[data-hs-program-consume-feedback]");
+    if (!feedback) return;
+    feedback.classList.remove("is-error", "is-success");
+    if (!message) {
+      feedback.textContent = "";
+      feedback.hidden = true;
+      return;
+    }
+    feedback.textContent = message;
+    feedback.hidden = false;
+    if (state === "error") feedback.classList.add("is-error");
+    if (state === "success") feedback.classList.add("is-success");
+  }
+
+  function setConsumeBusy(modal, busy) {
+    if (!modal) return;
+    var controls = modal.querySelectorAll("[data-hs-program-consume-submit], [data-hs-program-consume-close], [data-hs-program-consume-minus], [data-hs-program-consume-plus], [data-hs-program-consume-quantity]");
+    for (var i = 0; i < controls.length; i += 1) controls[i].disabled = Boolean(busy);
+    modal.setAttribute("aria-busy", busy ? "true" : "false");
+  }
+
+  function openConsumeModal(button) {
+    var modal = currentConsumeModal();
+    if (!modal || !button) return;
+    modal.setAttribute("data-program-id", button.getAttribute("data-program-id") || "");
+
+    var name = modal.querySelector("[data-hs-program-consume-name]");
+    var remaining = modal.querySelector("[data-hs-program-consume-remaining]");
+    var quantity = modal.querySelector("[data-hs-program-consume-quantity]");
+    if (name) name.textContent = button.getAttribute("data-program-name") || "";
+    if (remaining) remaining.textContent = button.getAttribute("data-program-remaining") || "0";
+    if (quantity) quantity.value = "1";
+    setConsumeFeedback(modal, "", "");
+    setConsumeBusy(modal, false);
+    modal.hidden = false;
+    document.documentElement.classList.add("hs-program-consume-open");
+    window.setTimeout(function () {
+      if (quantity && typeof quantity.focus === "function") {
+        quantity.focus();
+        if (typeof quantity.select === "function") quantity.select();
+      }
+    }, 0);
+  }
+
+  function closeConsumeModal() {
+    var modal = currentConsumeModal();
+    if (!modal || modal.hidden) return;
+    if (modal.getAttribute("aria-busy") === "true") return;
+    modal.hidden = true;
+    document.documentElement.classList.remove("hs-program-consume-open");
+  }
+
+  function consumeQuantity(modal) {
+    var input = modal ? modal.querySelector("[data-hs-program-consume-quantity]") : null;
+    if (!input) return 0;
+    var value = parseInt(String(input.value || "").replace(/[^0-9-]/g, ""), 10);
+    return Number.isFinite(value) ? value : 0;
+  }
+
+  function changeConsumeQuantity(delta) {
+    var modal = currentConsumeModal();
+    if (!modal) return;
+    var input = modal.querySelector("[data-hs-program-consume-quantity]");
+    if (!input) return;
+    var value = consumeQuantity(modal);
+    if (value < 1) value = 1;
+    value += delta;
+    if (value < 1) value = 1;
+    input.value = String(value);
+    input.focus();
+  }
+
+  function pollConsumeCompletion(commandId, programId, attempt) {
+    var id = parseInt(commandId || "0", 10);
+    var pid = parseInt(programId || "0", 10);
+    var step = Math.max(0, parseInt(attempt || "0", 10) || 0);
+    if (!Number.isFinite(id) || id <= 0 || !Number.isFinite(pid) || pid <= 0 || step >= 30) return;
+    window.setTimeout(function () {
+      fetch("/str/program-consume.php?action=status&commandId=" + encodeURIComponent(String(id)), {
+        method: "GET",
+        credentials: "same-origin",
+        headers: { "X-Requested-With": "XMLHttpRequest" }
+      })
+        .then(function (response) {
+          return response.text().then(function (body) {
+            var json = null;
+            try { json = body ? JSON.parse(body) : null; } catch (ignore) {}
+            if (!response.ok || !json || !json.ok) throw new Error(json && json.error ? json.error : ("HTTP " + response.status));
+            return json;
+          });
+        })
+        .then(function (json) {
+          if (json.status === "done") {
+            loadPrograms(String(pid));
+            return;
+          }
+          if (json.status === "failed") return;
+          pollConsumeCompletion(id, pid, step + 1);
+        })
+        .catch(function () { pollConsumeCompletion(id, pid, step + 1); });
+    }, step === 0 ? 500 : 1000);
+  }
+
+  function submitConsume() {
+    var modal = currentConsumeModal();
+    if (!modal || modal.getAttribute("aria-busy") === "true") return;
+    var quantity = consumeQuantity(modal);
+    var programId = parseInt(modal.getAttribute("data-program-id") || "0", 10);
+    var customerGuid = pane.getAttribute("data-hs-customer-guid") || "";
+    var csrf = pane.getAttribute("data-hs-program-csrf") || "";
+
+    if (!Number.isFinite(quantity) || quantity <= 0) {
+      setConsumeFeedback(modal, t("Zadejte množství větší než 0."), "error");
+      return;
+    }
+    if (!Number.isFinite(programId) || programId <= 0 || !customerGuid || !csrf) {
+      setConsumeFeedback(modal, t("Čerpání se nepodařilo připravit. Obnovte stránku a zkuste to znovu."), "error");
+      return;
+    }
+
+    setConsumeBusy(modal, true);
+    setConsumeFeedback(modal, t("Předávám požadavek do HairSoft…"), "");
+
+    fetch("/str/program-consume.php", {
+      method: "POST",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Requested-With": "XMLHttpRequest"
+      },
+      body: JSON.stringify({
+        csrf: csrf,
+        customerGuid: customerGuid,
+        programId: programId,
+        quantity: quantity
+      })
+    })
+      .then(function (response) {
+        return response.text().then(function (body) {
+          var json = null;
+          try { json = body ? JSON.parse(body) : null; } catch (ignore) {}
+          if (!response.ok || !json || !json.ok) {
+            var message = json && json.error ? json.error : ("HTTP " + response.status);
+            throw new Error(message);
+          }
+          return json;
+        });
+      })
+      .then(function (json) {
+        setConsumeFeedback(modal, t("Požadavek na čerpání byl zařazen do fronty pro HairSoft."), "success");
+        setConsumeBusy(modal, false);
+        if (json && json.commandId) pollConsumeCompletion(json.commandId, programId, 0);
+        window.setTimeout(function () {
+          closeConsumeModal();
+        }, 900);
+      })
+      .catch(function (error) {
+        setConsumeBusy(modal, false);
+        setConsumeFeedback(modal, error && error.message ? error.message : t("Čerpání se nepodařilo předat."), "error");
+      });
+  }
+
+
+  var programPhotos = [];
+  var photoCountPollTimer = null;
+
+  function photoButtonForProgram(programId) {
+    var id = String(programId || '');
+    var buttons = pane.querySelectorAll('[data-hs-program-photo-open]');
+    for (var i = 0; i < buttons.length; i += 1) {
+      if (String(buttons[i].getAttribute('data-program-id') || '') === id) return buttons[i];
+    }
+    return null;
+  }
+
+  function updatePhotoTotal(programId, count) {
+    var button = photoButtonForProgram(programId);
+    if (!button) return;
+    var safeCount = Math.max(0, parseInt(count, 10) || 0);
+    var badge = button.querySelector('[data-hs-program-photo-total]');
+    if (badge) badge.textContent = safeCount > 999 ? '999+' : String(safeCount);
+    button.setAttribute('data-program-photo-count', String(safeCount));
+    var label = t('Fotografie programu') + '. ' + t('Odesláno fotografií celkem') + ': ' + safeCount;
+    button.setAttribute('aria-label', label);
+    button.setAttribute('title', label);
+  }
+
+  function refreshVisiblePhotoTotal() {
+    var button = pane.querySelector('[data-hs-program-photo-open]');
+    if (!button) return;
+    updatePhotoTotal(button.getAttribute('data-program-id') || '', button.getAttribute('data-program-photo-count') || '0');
+  }
+
+  function fetchPhotoTotal(programId) {
+    var customerGuid = pane.getAttribute('data-hs-customer-guid') || '';
+    var id = parseInt(programId || '0', 10);
+    if (!customerGuid || !Number.isFinite(id) || id <= 0) return Promise.resolve(null);
+    var url = '/str/program-photo.php?action=count&customerGuid=' + encodeURIComponent(customerGuid) + '&programId=' + encodeURIComponent(String(id));
+    return fetch(url, { method:'GET', credentials:'same-origin', headers:{'X-Requested-With':'XMLHttpRequest'} })
+      .then(function (response) {
+        return response.text().then(function (body) {
+          var json = null;
+          try { json = body ? JSON.parse(body) : null; } catch (ignore) {}
+          if (!response.ok || !json || !json.ok) throw new Error(json && json.error ? json.error : ('HTTP ' + response.status));
+          return Math.max(0, parseInt(json.count, 10) || 0);
+        });
+      });
+  }
+
+  function pollPhotoTotal(programId, expectedCount, attempt) {
+    if (photoCountPollTimer) window.clearTimeout(photoCountPollTimer);
+    var delays = [1200, 2800, 5000, 8000, 12000, 18000];
+    var step = Math.max(0, Number(attempt) || 0);
+    if (step >= delays.length) return;
+    photoCountPollTimer = window.setTimeout(function () {
+      fetchPhotoTotal(programId).then(function (count) {
+        if (count == null) return;
+        updatePhotoTotal(programId, count);
+        if (count < expectedCount) pollPhotoTotal(programId, expectedCount, step + 1);
+      }).catch(function () {
+        pollPhotoTotal(programId, expectedCount, step + 1);
+      });
+    }, delays[step]);
+  }
+
+  function currentPhotoModal() {
+    var section = programsSection();
+    return section ? section.querySelector("[data-hs-program-photo-modal]") : null;
+  }
+
+  function revokeProgramPhotos() {
+    for (var i = 0; i < programPhotos.length; i += 1) {
+      if (programPhotos[i].url) URL.revokeObjectURL(programPhotos[i].url);
+    }
+    programPhotos = [];
+  }
+
+  function setPhotoFeedback(modal, message, state) {
+    if (!modal) return;
+    var box = modal.querySelector("[data-hs-program-photo-feedback]");
+    if (!box) return;
+    box.classList.remove("is-error", "is-success");
+    if (!message) { box.textContent = ""; box.hidden = true; return; }
+    box.textContent = message; box.hidden = false;
+    if (state === "error") box.classList.add("is-error");
+    if (state === "success") box.classList.add("is-success");
+  }
+
+  function photoBusy(modal, busy) {
+    if (!modal) return;
+    var controls = modal.querySelectorAll("[data-hs-program-photo-close], [data-hs-program-photo-capture], [data-hs-program-photo-submit], [data-hs-program-photo-subfolder], [data-hs-program-photo-remove], [data-hs-program-photo-camera-input]");
+    for (var i = 0; i < controls.length; i += 1) controls[i].disabled = Boolean(busy);
+    var sending = modal.querySelector('[data-hs-program-photo-sending]');
+    if (sending) sending.hidden = !busy;
+    modal.setAttribute("aria-busy", busy ? "true" : "false");
+  }
+
+  function updatePhotoModal() {
+    var modal = currentPhotoModal();
+    if (!modal) return;
+    var list = modal.querySelector("[data-hs-program-photo-list]");
+    var empty = modal.querySelector("[data-hs-program-photo-empty]");
+    var count = modal.querySelector("[data-hs-program-photo-count]");
+    var submit = modal.querySelector("[data-hs-program-photo-submit]");
+    if (count) count.textContent = String(programPhotos.length);
+    if (empty) empty.hidden = programPhotos.length > 0;
+    if (submit && modal.getAttribute("aria-busy") !== "true") submit.disabled = programPhotos.length === 0;
+    if (!list) return;
+    list.innerHTML = "";
+    programPhotos.forEach(function (photo, index) {
+      var item = document.createElement("div");
+      item.className = "hs-programs-photo-thumb";
+      item.innerHTML = '<img alt="' + escapeHtml(t("Fotografie")) + ' ' + (index + 1) + '" src="' + escapeHtml(photo.url) + '">' +
+        '<button type="button" data-hs-program-photo-remove="' + index + '" aria-label="' + escapeHtml(t("Odebrat fotografii")) + '">×</button>' +
+        '<span>' + (index + 1) + '</span>';
+      list.appendChild(item);
     });
   }
 
-  if (pane.classList.contains("active") && pane.getAttribute("data-hs-programs-loaded") !== "1") {
-    ensureLoaded();
-  } else if (pane.getAttribute("data-hs-programs-loaded") === "1") {
-    renderProgramsChart();
+  function openPhotoModal(button) {
+    var modal = currentPhotoModal();
+    if (!modal || !button) return;
+    revokeProgramPhotos();
+    modal.setAttribute("data-program-id", button.getAttribute("data-program-id") || "");
+    modal.setAttribute("data-program-name", button.getAttribute("data-program-name") || "");
+    var name = modal.querySelector("[data-hs-program-photo-name]");
+    var folder = modal.querySelector("[data-hs-program-photo-subfolder]");
+    var date = modal.querySelector("[data-hs-program-photo-date]");
+    if (name) name.textContent = button.getAttribute("data-program-name") || "";
+    if (folder) folder.value = "";
+    if (date) {
+      var d = new Date();
+      date.textContent = String(d.getDate()).padStart(2, "0") + "." + String(d.getMonth() + 1).padStart(2, "0") + "." + d.getFullYear();
+    }
+    setPhotoFeedback(modal, "", ""); photoBusy(modal, false); updatePhotoModal();
+    modal.hidden = false; document.documentElement.classList.add("hs-program-photo-open");
   }
-}());
+
+  function closePhotoModal() {
+    var modal = currentPhotoModal();
+    if (!modal || modal.hidden || modal.getAttribute("aria-busy") === "true") return;
+    modal.hidden = true; document.documentElement.classList.remove("hs-program-photo-open"); revokeProgramPhotos();
+  }
+
+  function jpegFromFile(file) {
+    return new Promise(function (resolve, reject) {
+      var objectUrl = URL.createObjectURL(file);
+      var image = new Image();
+      image.onload = function () {
+        try {
+          var maxSide = 2560;
+          var scale = Math.min(1, maxSide / Math.max(image.naturalWidth || 1, image.naturalHeight || 1));
+          var width = Math.max(1, Math.round((image.naturalWidth || 1) * scale));
+          var height = Math.max(1, Math.round((image.naturalHeight || 1) * scale));
+          var canvas = document.createElement("canvas"); canvas.width = width; canvas.height = height;
+          var ctx = canvas.getContext("2d");
+          if (!ctx) throw new Error(t("Fotografii se nepodařilo zpracovat."));
+          ctx.drawImage(image, 0, 0, width, height);
+          canvas.toBlob(function (blob) {
+            URL.revokeObjectURL(objectUrl);
+            if (!blob) { reject(new Error(t("Fotografii se nepodařilo zpracovat."))); return; }
+            resolve(blob);
+          }, "image/jpeg", 0.90);
+        } catch (error) { URL.revokeObjectURL(objectUrl); reject(error); }
+      };
+      image.onerror = function () { URL.revokeObjectURL(objectUrl); reject(new Error(t("Fotografii se nepodařilo načíst."))); };
+      image.src = objectUrl;

@@ -1,12 +1,45 @@
 <?php
 /*
- * HairSoft Klient V224 - read-only helper for HSBridge PROGRAMS mirror tables.
+ * HairSoft Klient V241 - read-only helper for HSBridge PROGRAMS mirror tables and delivered photo totals.
  *
  * The HSBridge endpoint is the only writer. This file only reads the mirror
  * tables and maps them to the current HS Klient branch/customer.
  */
 
 if (!function_exists('hsProgramsGroupId')) {
+    // V236: HairSoft program names can pass through legacy Windows-1250/Latin-1
+    // conversions. Canonicalise the known built-in label by a folded key so
+    // Ě, Ì, Í and their title-case variants all resolve to one safe value.
+    function hsProgramsDisplayName(string $value): string
+    {
+        $value = trim(preg_replace('/\s+/', ' ', $value) ?? $value);
+        if ($value === '') {
+            return '';
+        }
+
+        $folded = strtr($value, array(
+            'Ã“' => 'O', 'Ã³' => 'o', 'Äš' => 'E', 'Ä›' => 'e',
+            'Á' => 'A', 'á' => 'a', 'Č' => 'C', 'č' => 'c',
+            'Ď' => 'D', 'ď' => 'd', 'É' => 'E', 'é' => 'e',
+            'Ě' => 'E', 'ě' => 'e', 'Í' => 'I', 'í' => 'i',
+            'Ì' => 'I', 'ì' => 'i', 'Ň' => 'N', 'ň' => 'n',
+            'Ó' => 'O', 'ó' => 'o', 'Ř' => 'R', 'ř' => 'r',
+            'Š' => 'S', 'š' => 's', 'Ť' => 'T', 'ť' => 't',
+            'Ú' => 'U', 'ú' => 'u', 'Ů' => 'U', 'ů' => 'u',
+            'Ý' => 'Y', 'ý' => 'y', 'Ž' => 'Z', 'ž' => 'z',
+        ));
+        $folded = strtoupper($folded);
+        $folded = preg_replace('/[^A-Z0-9]+/', ' ', $folded) ?? $folded;
+        $folded = trim(preg_replace('/\s+/', ' ', $folded) ?? $folded);
+
+        if ($folded === 'ZONY TELA' || $folded === 'ZONY TILA') {
+            return 'Zóny těla';
+        }
+
+        return $value;
+    }
+
+
     function hsProgramsGroupId(mysqli $mysqli, int $swId): int
     {
         if ($swId <= 0) {
@@ -46,6 +79,21 @@ if (!function_exists('hsProgramsGroupId')) {
         return $rows;
     }
 
+    function hsProgramsTableExists(mysqli $mysqli, string $table): bool
+    {
+        if ($table === '' || !preg_match('/^[A-Za-z0-9_]+$/', $table)) {
+            return false;
+        }
+        $escaped = $mysqli->real_escape_string($table);
+        $result = $mysqli->query("SHOW TABLES LIKE '" . $escaped . "'");
+        if (!$result) {
+            return false;
+        }
+        $exists = $result->num_rows > 0;
+        $result->free();
+        return $exists;
+    }
+
     function hsProgramsActiveMeta(mysqli $mysqli, int $swId, int $groupId, int $requestedProgramId = 0): array
     {
         $meta = array(
@@ -71,7 +119,6 @@ if (!function_exists('hsProgramsGroupId')) {
             . '    WHERE sw_id=' . $swId . ' AND group_id=' . $groupId . ' '
             . '  ) z '
             . '  GROUP BY z.program_hs_id, z.customer_hs_id '
-            . '  HAVING SUM(z.delta_visits) > 0 '
             . ') active ON active.program_hs_id=p.program_hs_id '
             . 'WHERE p.sw_id=' . $swId . ' AND p.group_id=' . $groupId . ' '
             . 'GROUP BY p.program_hs_id, p.name '
@@ -81,11 +128,11 @@ if (!function_exists('hsProgramsGroupId')) {
         $selected = 0;
         foreach ($rows as $row) {
             $id = isset($row['program_hs_id']) ? (int) $row['program_hs_id'] : 0;
-            $name = isset($row['name']) ? trim((string) $row['name']) : '';
+            $name = isset($row['name']) ? hsProgramsDisplayName((string) $row['name']) : '';
             if ($id <= 0 || $name === '') {
                 continue;
             }
-            $remaining = isset($row['total_remaining']) ? max(0, (int) $row['total_remaining']) : 0;
+            $remaining = isset($row['total_remaining']) ? (int) $row['total_remaining'] : 0;
             $meta['activePrograms'][] = array(
                 'id' => (string) $id,
                 'name' => $name,
@@ -145,7 +192,7 @@ if (!function_exists('hsProgramsGroupId')) {
             $customerId = isset($row['customer_hs_id']) ? (int) $row['customer_hs_id'] : 0;
             $remaining = isset($row['remaining']) ? (int) $row['remaining'] : 0;
             if ($customerId > 0) {
-                $balances[$customerId] = max(0, $remaining);
+                $balances[$customerId] = $remaining;
             }
         }
         return $balances;
@@ -174,7 +221,7 @@ if (!function_exists('hsProgramsGroupId')) {
             }
             $programs[$programId] = array(
                 'id' => $programId,
-                'name' => isset($row['name']) ? trim((string) $row['name']) : '',
+                'name' => isset($row['name']) ? hsProgramsDisplayName((string) $row['name']) : '',
                 'prepaid' => 0,
                 'used' => 0,
                 'remaining' => 0,
@@ -182,6 +229,7 @@ if (!function_exists('hsProgramsGroupId')) {
                 'payments' => array(),
                 'visits' => array(),
                 'values' => array(),
+                'photoCount' => 0,
                 'lastActivity' => '',
                 'hasData' => false,
             );
@@ -269,8 +317,27 @@ if (!function_exists('hsProgramsGroupId')) {
             );
         }
 
+        // V241: count only batches that HSBridge has actually confirmed as delivered.
+        // The job row is intentionally kept after temporary files are deleted, so this
+        // remains a durable audit/count without storing the photos in HS Klient.
+        if (hsProgramsTableExists($mysqli, 'hsbridge_program_photo_jobs')) {
+            $photoRows = hsProgramsSafeRows(
+                $mysqli,
+                'SELECT program_hs_id, COALESCE(SUM(total_files),0) AS photo_count '
+                . 'FROM hsbridge_program_photo_jobs '
+                . 'WHERE sw_id=' . $swId . ' AND group_id=' . $groupId . ' AND customer_hs_id=' . $customerId . " AND status='done' "
+                . 'GROUP BY program_hs_id'
+            );
+            foreach ($photoRows as $photoRow) {
+                $photoProgramId = isset($photoRow['program_hs_id']) ? (int) $photoRow['program_hs_id'] : 0;
+                if ($photoProgramId > 0 && isset($programs[$photoProgramId])) {
+                    $programs[$photoProgramId]['photoCount'] = isset($photoRow['photo_count']) ? max(0, (int) $photoRow['photo_count']) : 0;
+                }
+            }
+        }
+
         foreach ($programs as $programId => &$program) {
-            $program['remaining'] = max(0, (int) $program['prepaid'] - (int) $program['used']);
+            $program['remaining'] = (int) $program['prepaid'] - (int) $program['used'];
             if (!$program['hasData']) {
                 unset($programs[$programId]);
             }

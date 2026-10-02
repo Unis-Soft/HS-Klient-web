@@ -8,6 +8,7 @@ import (
 	"encoding/json"
 	"errors"
 	"net/http"
+	"sync"
 	"time"
 )
 
@@ -41,7 +42,11 @@ func postHSKlientPrograms(c Config, snapshot ProgramsSnapshot, eventID string) e
 	return nil
 }
 
+var programsSyncMu sync.Mutex
+
 func syncHSKlientPrograms(c Config) error {
+	programsSyncMu.Lock()
+	defer programsSyncMu.Unlock()
 	features := readHSSystemFeatures()
 	if !features.HSKlientEnabled {
 		return nil
@@ -90,7 +95,7 @@ func syncHSKlientPrograms(c Config) error {
 	return nil
 }
 
-const programsPollInterval = 15 * time.Minute
+const programsPollInterval = 10 * time.Minute
 
 func runProgramsModule() {
 	var lastErr string

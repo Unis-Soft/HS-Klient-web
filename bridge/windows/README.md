@@ -164,7 +164,7 @@ Budoucí Bonfero voucher integrace není ve V005 aktivována a bude přidána a�
 samostatně.
 
 
-## V006 – PROGRAMS po 15 minutách
+## V006 – PROGRAMS po 15 minutách (historie)
 
 PROGRAMS kontroluje HairSoft databázi 4× za hodinu, tedy každých 15 minut.
 Snapshot se na server odešle pouze při změně dat.
@@ -225,3 +225,27 @@ nikoli do `name`. V010 opravuje MySQL provider na:
 
 Dočasná V009 schema diagnostika byla odstraněna. V008 pravidlo jednoho aktivního
 Bridge na jednu databázi a 15minutová frekvence PROGRAMS zůstávají beze změny.
+
+## V011 – čerpání Programů z HS Klient
+
+HS Klient může zařadit jednoduchý příkaz `programId + customerId + quantity` do samostatné serverové fronty.
+HSBridge V011 kontroluje frontu po 10 sekundách a provede jediný INSERT do `program_visits`.
+
+Zásadní pravidlo: **HairSoft má vždy prioritu.** SQLite používá `busy_timeout=0`; pokud je databáze právě používaná, Bridge okamžitě uvolní pokus a server příkaz nabídne později. Žádná kontrola nároku ani zůstatku se nedělá. Záporný zůstatek je povolen a případná oprava se provádí v HairSoft.
+
+Endpoint fronty:
+`https://klient.hairsoft.cz/str/api/hsbridge-program-actions.php`
+
+## V012 – fotografie Programů přes Bridge
+
+HSBridge V012 přidává samostatnou frontu fotografií z detailu Programu v HS Klient.
+Bridge nepoužívá HairSoft DB. Po autentizovaném stažení dávky ukládá fotografie přímo do:
+
+`<HairSoft>\Images\Customers\<customer.id>\DD.MM.YYYY\[volitelná podsložka]\`
+
+Každý soubor se stáhne nejprve do `.part`, ověří se velikost a SHA-256 a teprve potom se atomicky přejmenuje na finální název. Retry stejného jobu nevytváří duplicity. Po potvrzeném přenosu server dočasné fotografie smaže.
+
+
+## V014 – okamžitý odpis konkrétního zákazníka + 10min kontrola
+
+Po úspěšném čerpání HSBridge neposílá celý PROGRAMS snapshot. `result` endpoint zrcadlí pouze právě vytvořený `program_visits` řádek konkrétního zákazníka do HS Klient a klientská karta po potvrzení stav znovu načte. Tím zůstává HairSoft DB zatížena pouze původním krátkým INSERTem. Plný read-only PROGRAMS snapshot je pojistka/reconciliation a běží každých 10 minut.

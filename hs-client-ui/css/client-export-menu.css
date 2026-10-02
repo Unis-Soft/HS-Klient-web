@@ -211,3 +211,45 @@ div.dt-button-background {
     transition: none !important;
   }
 }
+
+/* V238 – customer-list export items use inline SVG so every action has a stable icon. */
+div.dt-button-collection > .hs-customer-export-action .hs-customer-export-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 28px;
+  width: 28px;
+  height: 28px;
+  margin: 0 9px 0 0;
+  color: #5d7599;
+  border-radius: 8px;
+  background: #edf2f7;
+  transition: color .15s ease, background .15s ease;
+}
+
+div.dt-button-collection > .hs-customer-export-action .hs-customer-export-icon svg {
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+div.dt-button-collection > .hs-customer-export-action:hover .hs-customer-export-icon,
+div.dt-button-collection > .hs-customer-export-action:focus .hs-customer-export-icon,
+div.dt-button-collection > .hs-customer-export-action.active .hs-customer-export-icon {
+  color: #168f8b;
+  background: #dff2f1;
+}
+
+@media (max-width: 767px) {
+  div.dt-button-collection > .hs-customer-export-action .hs-customer-export-icon {
+    flex-basis: 32px;
+    width: 32px;
+    height: 32px;
+    margin-right: 10px;
+    border-radius: 9px;
+  }
+}

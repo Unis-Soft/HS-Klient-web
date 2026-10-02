@@ -27,3 +27,44 @@ CACHE:
 
 HSBridge ani hsbridge.php se nemeni.
 Po nahrani doporucen Ctrl+F5.
+
+V237 - PROGRAMY CERPANI
+======================
+NOVE SOUBORY:
+- /str/program-consume.php
+- /hs-client-ui/php/program-consume.php
+- /str/api/hsbridge-program-actions.php  (zdroj je v /bridge/hsklient-server/hsbridge-program-actions.php)
+
+ZMENENE SOUBORY:
+- /hs-client-ui/php/strana/KartaOsoby.php
+- /hs-client-ui/php/strana/_programs_data.php
+- /hs-client-ui/php/strana/ssf/ssf_zakaznici.php
+- /hs-client-ui/js/client-detail-programs.js
+- /hs-client-ui/js/client-customers.js
+- /hs-client-ui/js/i18n.js
+- /hs-client-ui/css/client-detail-programs.css
+- /hs-client-ui/php/index.php
+- /hs-client-ui/VERSION.txt
+- /hs-client-ui/data/changelog.php
+
+HSBridge:
+- zdroje /bridge/windows jsou V011;
+- po sestaveni nahradit HSBridge.exe na aktivnim HairSoft PC/serveru;
+- SQLite zapis nikdy neceka na HairSoft DB (busy_timeout=0).
+
+V238 - PROGRAMY FIX + EXPORT
+===========================
+ZMENENE/NOVE SOUBORY:
+- /hs-client-ui/js/client-detail-programs.js
+- /hs-client-ui/php/strana/KartaOsoby.php
+- /hs-client-ui/css/client-detail-programs.css
+- /hs-client-ui/css/client-export-menu.css
+- /hs-client-ui/php/index.php
+- /hs-client-ui/VERSION.txt
+- /hs-client-ui/data/changelog.php
+- /str/api/hsbridge-program-actions.php
+
+DULEZITE:
+- /str/api/hsbridge-program-actions.php je v tomto ZIPu uz primo ve spravne ceste.
+- HSBridge.exe zustava V011; znovu jej kvuli V238 menit neni treba.
+- Po nahrani doporucen Ctrl+F5.

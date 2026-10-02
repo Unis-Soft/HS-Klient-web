@@ -1,4 +1,4 @@
-/* HairSoft Klient – moderní seznam zákazníků, verze 225 */
+/* HairSoft Klient – moderní seznam zákazníků, verze 236 */
 (function () {
   "use strict";
 
@@ -103,15 +103,17 @@
   }
 
   function formatCustomerTotal() {
-    var link = document.querySelector('#main-content a[href*="strana=Zakaznici"][href*="AkceTab=Vsechny"]');
-    var total = link ? link.querySelector(".widget-mini .total") : null;
-    var target = total ? (total.querySelector("font") || total) : null;
-    var raw;
+    var row = customersKpiRow();
+    var totals;
 
-    if (!target) return;
-    raw = String(target.textContent || "").replace(/\s/g, "");
-    if (!/^\d+$/.test(raw)) return;
-    target.textContent = raw.replace(/\B(?=(\d{3})+(?!\d))/g, "\u00a0");
+    if (!row) return;
+    totals = row.querySelectorAll(".widget-mini .total");
+    Array.prototype.forEach.call(totals, function (total) {
+      var target = total.querySelector("font") || total;
+      var raw = String(target.textContent || "").replace(/\s/g, "");
+      if (!/^\d+$/.test(raw)) return;
+      target.textContent = raw.replace(/\B(?=(\d{3})+(?!\d))/g, "\u00a0");
+    });
   }
 
   function ensureValueWrapper(cell) {
@@ -190,8 +192,29 @@
   }
 
 
+  function normaliseKnownProgramName(value) {
+    var text = String(value || "").replace(/\s+/g, " ").trim();
+    var repaired;
+    var folded;
+
+    if (!text) return text;
+    if (typeof window.hsCanonicalProgramName === "function") {
+      return window.hsCanonicalProgramName(text);
+    }
+
+    // V236: HairSoft data can arrive with legacy Windows-1250/Latin-1 mojibake.
+    // Normalise the known built-in program by meaning, not by one exact Unicode glyph.
+    repaired = text
+      .replace(/Ã“/g, "Ó").replace(/Ã³/g, "ó")
+      .replace(/Äš/g, "Ě").replace(/Ä›/g, "ě");
+    folded = repaired.normalize ? repaired.normalize("NFD").replace(/[\u0300-\u036f]/g, "") : repaired;
+    folded = folded.toUpperCase().replace(/[^A-Z0-9]+/g, " ").replace(/\s+/g, " ").trim();
+    if (folded === "ZONY TELA" || folded === "ZONY TILA") return "Zóny těla";
+    return text;
+  }
+
   function programDisplayName(value) {
-    return translate(String(value || "").replace(/\s+/g, " ").trim());
+    return translate(normaliseKnownProgramName(value));
   }
 
   function shortenProgramName(value, maxLength) {
@@ -209,11 +232,11 @@
       var id = program && typeof program === "object" ? (program.id ?? program.programId ?? index) : index;
       var name = program && typeof program === "object" ? (program.name ?? program.title ?? "") : String(program || "");
       var remaining = program && typeof program === "object" ? Number(program.remaining ?? 0) : 0;
-      if (!Number.isFinite(remaining) || remaining < 0) remaining = 0;
+      if (!Number.isFinite(remaining)) remaining = 0;
       return { id: String(id), name: String(name || "").trim(), remaining: Math.round(remaining) };
     }).filter(function (program) { return program.name !== ""; });
     var totalRemaining = Number(meta.totalRemaining);
-    if (!Number.isFinite(totalRemaining) || totalRemaining < 0) {
+    if (!Number.isFinite(totalRemaining)) {
       totalRemaining = programs.reduce(function (sum, program) { return sum + program.remaining; }, 0);
     }
     return {
@@ -318,28 +341,74 @@
     return Boolean(programColumnEnabled);
   };
 
-  function programsKpiSourceColumn() {
-    var link = document.querySelector('#main-content a[href*="strana=Zakaznici"][href*="AkceTab=Vsechny"]');
-    return link ? (link.closest('[class*="col-"]') || link.parentElement) : null;
+  function customersKpiRow() {
+    var main = document.getElementById("main-content");
+    var table = document.querySelector(TABLE_SELECTOR);
+    var rows;
+    var candidates = [];
+    var index;
+
+    if (!main || !table) return null;
+
+    // menu.js runs before this file and marks the existing customer KPI row.
+    // Pick the nearest KPI group that is physically before the customer table.
+    rows = main.querySelectorAll(".hs-system-kpi-row");
+    for (index = 0; index < rows.length; index += 1) {
+      if (!rows[index].querySelector(".widget-mini, .hs-system-kpi-card")) continue;
+      if (rows[index].compareDocumentPosition(table) & Node.DOCUMENT_POSITION_FOLLOWING) {
+        candidates.push(rows[index]);
+      }
+    }
+    if (candidates.length) return candidates[candidates.length - 1];
+
+    // Defensive fallback for a page where the global KPI enhancer did not run.
+    rows = main.querySelectorAll(".row");
+    for (index = 0; index < rows.length; index += 1) {
+      if (!rows[index].querySelector(".widget-mini .total, .widget-mini .title")) continue;
+      if (rows[index].compareDocumentPosition(table) & Node.DOCUMENT_POSITION_FOLLOWING) {
+        candidates.push(rows[index]);
+      }
+    }
+    return candidates.length ? candidates[candidates.length - 1] : null;
+  }
+
+  function syncCustomersKpiGrid(row) {
+    var main = document.getElementById("main-content");
+    var count;
+    var classes;
+    var index;
+    if (!row) return;
+
+    count = row.querySelectorAll(".widget-mini").length;
+    classes = Array.prototype.slice.call(row.classList);
+    for (index = 0; index < classes.length; index += 1) {
+      if (/^hs-system-kpi-count-\d+$/.test(classes[index])) row.classList.remove(classes[index]);
+    }
+
+    row.classList.add("hs-system-kpi-row");
+    if (count > 0) row.classList.add("hs-system-kpi-count-" + String(count));
+    row.style.setProperty("--hs-system-kpi-columns", String(Math.min(Math.max(count, 1), 4)));
+    row.style.setProperty("--hs-system-kpi-tablet-columns", String(Math.min(Math.max(count, 1), 2)));
+    if (main) main.classList.add("hs-system-kpi-content");
   }
 
   function removeProgramsKpi() {
     var existing = document.querySelector("#main-content .hs-programs-kpi-column");
+    var row = existing ? existing.parentElement : null;
     if (existing && existing.parentNode) existing.parentNode.removeChild(existing);
+    if (row) syncCustomersKpiGrid(row);
   }
 
   function renderProgramsKpi(normalized) {
-    var sourceColumn = programsKpiSourceColumn();
-    var row = sourceColumn ? sourceColumn.parentElement : null;
+    var row = customersKpiRow();
     var column;
     var card;
     var label;
     var value;
-    var detail;
     var total;
     var breakdown;
 
-    if (!sourceColumn || !row || !normalized || !normalized.programs.length) {
+    if (!row || !normalized || !normalized.programs.length) {
       removeProgramsKpi();
       return;
     }
@@ -347,27 +416,24 @@
     column = row.querySelector(":scope > .hs-programs-kpi-column");
     if (!column) {
       column = document.createElement("div");
-      column.className = String(sourceColumn.className || "").trim() + " hs-programs-kpi-column";
+      column.className = "hs-system-kpi-item hs-programs-kpi-column";
       card = document.createElement("div");
-      card.className = "hs-programs-kpi-card";
+      card.className = "panel panel-solid-success widget-mini hs-system-kpi-card hs-programs-kpi-card";
       card.innerHTML = '' +
-        '<div class="hs-programs-kpi-card__head">' +
-          '<span class="hs-programs-kpi-card__label"></span>' +
-          '<span class="hs-programs-kpi-card__icon" aria-hidden="true">' +
+        '<div class="panel-body">' +
+          '<span class="hs-kpi-icon" aria-hidden="true">' +
             '<svg viewBox="0 0 24 24"><path d="M5 5h14v14H5z"></path><path d="M8 9h8M8 13h5M8 17h3"></path></svg>' +
           '</span>' +
-        '</div>' +
-        '<strong class="hs-programs-kpi-card__value">0</strong>' +
-        '<span class="hs-programs-kpi-card__detail"></span>';
+          '<span class="total hs-programs-kpi-card__value">0</span>' +
+          '<span class="title hs-programs-kpi-card__label"></span>' +
+        '</div>';
       column.appendChild(card);
       row.appendChild(column);
     }
 
-    row.classList.add("hs-customers-kpi-row");
     card = column.querySelector(".hs-programs-kpi-card");
     label = column.querySelector(".hs-programs-kpi-card__label");
     value = column.querySelector(".hs-programs-kpi-card__value");
-    detail = column.querySelector(".hs-programs-kpi-card__detail");
     total = Number(normalized.totalRemaining) || 0;
 
     if (label) {
@@ -380,14 +446,11 @@
       return programDisplayName(program.name) + ": " + program.remaining;
     }).join(" • ");
 
-    if (detail) {
-      detail.textContent = normalized.programs.length > 1 ? breakdown : "";
-      detail.title = breakdown;
-      detail.classList.toggle("is-hidden", normalized.programs.length <= 1);
-    }
     if (card) {
       card.title = breakdown ? translate("Zbývající vstupy celkem") + " — " + breakdown : translate("Zbývající vstupy celkem");
+      card.setAttribute("aria-label", card.title);
     }
+    syncCustomersKpiGrid(row);
   }
 
   function prepareTopScrollbar(wrapper) {

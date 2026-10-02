@@ -1,0 +1,12 @@
+<!doctype html><html><head><meta charset="utf-8"><title>test</title></head><body>
+<div id="out"></div>
+<script>try{localStorage.setItem('hairsoft-client-language','en')}catch(e){document.body.setAttribute('data-storage-error',String(e))}</script>
+<script src="file:///mnt/data/hs_v235/hs-client-ui/js/i18n.js"></script>
+<script>
+function run(){
+ var vals=['ZÓNY TĚLA','ZÓNY TÍLA','Zóny těla','Programy','Událostí','Intervalů','dní','zbývá','Období','Vývoj zůstatku vstupů v čase'];
+ document.getElementById('out').textContent=vals.map(function(v){return v+'='+window.hsTranslate(v)}).join('|');
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+</script>
+</body></html>

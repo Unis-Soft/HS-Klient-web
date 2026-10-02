@@ -270,7 +270,7 @@ try {
         $cell = $hideSensitive ? 'Anonymizováno' : hsCustomerText(isset($source['lidi_hs_cell']) ? $source['lidi_hs_cell'] : '');
 
         $customerHsId = isset($source['lidi_hs_id']) ? (int) $source['lidi_hs_id'] : 0;
-        $programRemaining = ($selectedProgramId > 0 && $customerHsId > 0 && isset($programBalances[$customerHsId]) && (int) $programBalances[$customerHsId] > 0)
+        $programRemaining = ($selectedProgramId > 0 && $customerHsId > 0 && isset($programBalances[$customerHsId]))
             ? (int) $programBalances[$customerHsId]
             : '—';
 

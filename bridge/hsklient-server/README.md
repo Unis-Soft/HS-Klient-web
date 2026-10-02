@@ -55,3 +55,30 @@ The endpoint creates `hsbridge_sync_audit` and `hsbridge_statistics_audit` autom
 Both require:
 - `X-HS-Bridge-ID`
 - `X-HS-Bridge-Token`
+
+
+## V011 - reverse PROGRAMS actions
+
+For HS Klient V237 also copy `hsbridge-program-actions.php` to:
+
+`/str/api/hsbridge-program-actions.php`
+
+It uses the same Directory/SoftRC identity mapping as the HS Klient bridge endpoint.
+The endpoint never accepts `sw_id` or group ID from the Windows client. It resolves
+them from the authenticated Bridge identity and `sw_info`.
+
+Routes:
+
+- `GET ?route=next` - lease one pending PROGRAMS consumption command for the authenticated PC/group.
+- `POST ?route=result` - acknowledge the command as `done`, `retry`, or `failed`.
+
+The queue lives in HS Klient MySQL table `hsbridge_program_commands`. No table is
+added to the HairSoft database. The Windows Bridge performs the local HairSoft
+`program_visits` INSERT and uses a zero SQLite busy timeout so HairSoft has priority.
+
+
+## V243 - PROGRAMS persistent local authorization
+
+`hsbridge-program-actions.php` no longer revalidates a healthy Bridge against the external Directory on a timer.
+The first successful Directory verification stores `bridge_id`, SHA-256(token) and `sw_id` in the local HS Klient MySQL table `hsbridge_program_pc_bindings`.
+Subsequent ACTION/PHOTO polls authenticate locally; the current group and HS Klient license are still read locally on every request. Directory is used again only when the matching local binding is missing (for example first use or token change).

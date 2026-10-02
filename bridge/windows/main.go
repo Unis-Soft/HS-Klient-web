@@ -12,7 +12,7 @@ import (
 	"time"
 )
 
-const bridgeVersion = "V010"
+const bridgeVersion = "V014"
 
 var codeRe = regexp.MustCompile(`^[A-Z0-9-]{1,20}$`)
 var errUserExit = errors.New("user exit")
@@ -24,7 +24,7 @@ func main() {
 		if errors.Is(err, errorAlreadyExists) {
 			return
 		}
-		showMessageBox("HSBridge V010", "Bridge nelze spustit: "+err.Error())
+		showMessageBox("HSBridge V014", "Bridge nelze spustit: "+err.Error())
 		return
 	}
 	defer release()
@@ -34,16 +34,16 @@ func main() {
 		if os.IsNotExist(err) {
 			c = defaultConfig()
 		} else {
-			showMessageBox("HSBridge V010", "Nelze nacist config.json: "+err.Error())
+			showMessageBox("HSBridge V014", "Nelze nacist config.json: "+err.Error())
 			return
 		}
 	}
 	if err := ensureBridgeIdentity(&c); err != nil {
-		showMessageBox("HSBridge V010", "Nelze vytvorit identitu Bridge: "+err.Error())
+		showMessageBox("HSBridge V014", "Nelze vytvorit identitu Bridge: "+err.Error())
 		return
 	}
 	if err := saveConfig(c); err != nil {
-		showMessageBox("HSBridge V010", "Nelze ulozit config.json: "+err.Error())
+		showMessageBox("HSBridge V014", "Nelze ulozit config.json: "+err.Error())
 		return
 	}
 
@@ -109,6 +109,8 @@ func main() {
 	// PROGRAMS bezi nezavisle na voucherovem propojeni.
 	if features.HSKlientEnabled {
 		go runProgramsModule()
+		go runProgramActionsModule()
+		go runProgramPhotosModule()
 	}
 
 	// Voucher pairing je samostatny modul. Na beznem HS Klient PC se nikdy
@@ -126,7 +128,7 @@ func main() {
 	if err != nil {
 		if !errors.Is(err, errUserExit) {
 			logf("PAIR ERROR %v", err)
-			showMessageBox("HSBridge V010", "Propojeni se nepodarilo: "+err.Error())
+			showMessageBox("HSBridge V014", "Propojeni se nepodarilo: "+err.Error())
 		}
 		return
 	}

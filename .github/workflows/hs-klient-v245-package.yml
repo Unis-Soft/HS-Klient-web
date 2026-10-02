@@ -1,0 +1,50 @@
+name: HS Klient V245 package
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'hs-client-ui/**'
+      - 'str/**'
+      - 'README.md'
+      - 'README_V245.md'
+      - '.github/workflows/hs-klient-v245-package.yml'
+  workflow_dispatch:
+
+jobs:
+  validate-and-package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: PHP syntax
+        run: |
+          php -l hs-client-ui/php/index.php
+          php -l hs-client-ui/php/strana/KartaOsoby.php
+          php -l hs-client-ui/php/strana/_programs_data.php
+          php -l hs-client-ui/php/strana/ssf/ssf_zakaznici.php
+          php -l hs-client-ui/php/program-consume.php
+          php -l hs-client-ui/php/program-photo.php
+          php -l str/api/hsbridge-program-actions.php
+      - name: JavaScript syntax
+        run: |
+          node --check hs-client-ui/js/client-customers.js
+          node --check hs-client-ui/js/client-customers-pdf.js
+          node --check hs-client-ui/js/client-detail-programs.js
+          node --check hs-client-ui/js/client-detail-export.js
+          node --check hs-client-ui/js/i18n.js
+      - name: Verify V245
+        shell: bash
+        run: |
+          test "$(tr -d '\r\n ' < hs-client-ui/VERSION.txt)" = "245"
+          test -f README_V245.md
+          grep -Fq 'client-detail-export.js?v=245' hs-client-ui/php/index.php
+          grep -Fq 'client-detail-export.css?v=245' hs-client-ui/php/index.php
+      - name: Package
+        run: |
+          zip -qr KLIENT_HAIRSOFT_V245_CUSTOMER_EXPORT.zip . -x '.git/*' '.github/*' 'KLIENT_HAIRSOFT_V245_CUSTOMER_EXPORT.zip' 'bridge/HSBridge_*.exe'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: KLIENT_HAIRSOFT_V245_CUSTOMER_EXPORT
+          path: KLIENT_HAIRSOFT_V245_CUSTOMER_EXPORT.zip
+          if-no-files-found: error
