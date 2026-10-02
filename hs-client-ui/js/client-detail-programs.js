@@ -230,8 +230,17 @@
     return String(rounded).replace('.', ',');
   }
 
-  function buildAttendanceChartSvg(intervals, maxY) {
+  function chartViewportWidth(content) {
     var width = 760;
+    if (content && typeof content.getBoundingClientRect === 'function') {
+      width = Math.round((content.getBoundingClientRect().width || 0) - 44);
+    }
+    if (!Number.isFinite(width) || width <= 0) width = 760;
+    return Math.max(420, Math.min(1400, width));
+  }
+
+  function buildAttendanceChartSvg(intervals, maxY, chartWidth) {
+    var width = Math.max(420, Number(chartWidth) || 760);
     var height = 240;
     var padLeft = 42;
     var padRight = 20;
@@ -289,7 +298,7 @@
     }
 
     return '' +
-      '<svg class="hs-programs-chart__svg" viewBox="0 0 ' + width + ' ' + height + '" preserveAspectRatio="none" role="img" aria-label="Počet dní mezi jednotlivými čerpáními programu">' +
+      '<svg class="hs-programs-chart__svg" viewBox="0 0 ' + width + ' ' + height + '" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Počet dní mezi jednotlivými čerpáními programu">' +
         gridMarkup + barMarkup + tickMarkup +
       '</svg>';
   }
@@ -303,6 +312,7 @@
     var chartHtml;
     var chartEl;
     var valuesSection;
+    var chartWidth = chartViewportWidth(content);
 
     if (!intervals.length) {
       chartHtml = '' +
@@ -342,7 +352,7 @@
             '<div class="hs-programs-chart__legend-item"><span>Nejkratší</span><strong>' + shortest + ' dní</strong></div>' +
             '<div class="hs-programs-chart__legend-item"><span>Nejdelší</span><strong>' + longest + ' dní</strong></div>' +
           '</div>' +
-          '<div class="hs-programs-chart__canvas">' + buildAttendanceChartSvg(intervals, maxDays) + '</div>' +
+          '<div class="hs-programs-chart__canvas">' + buildAttendanceChartSvg(intervals, maxDays, chartWidth) + '</div>' +
           '<div class="hs-programs-chart__meta">' +
             '<span>Od ' + escapeHtml(formatShortDate(attendance.visits[0].date)) + ' do ' + escapeHtml(formatShortDate(attendance.visits[attendance.visits.length - 1].date)) + '</span>' +
             '<span>Intervalů: ' + intervals.length + '</span>' +
@@ -359,8 +369,8 @@
     else content.appendChild(chartEl);
   }
 
-  function buildChartSvg(points, maxY) {
-    var width = 760;
+  function buildChartSvg(points, maxY, chartWidth) {
+    var width = Math.max(420, Number(chartWidth) || 760);
     var height = 240;
     var padLeft = 42;
     var padRight = 20;
@@ -435,7 +445,7 @@
     }
 
     return '' +
-      '<svg class="hs-programs-chart__svg" viewBox="0 0 ' + width + ' ' + height + '" preserveAspectRatio="none" role="img" aria-label="Vývoj zůstatku vstupů v čase">' +
+      '<svg class="hs-programs-chart__svg" viewBox="0 0 ' + width + ' ' + height + '" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Vývoj zůstatku vstupů v čase">' +
         gridMarkup +
         '<path d="M ' + areaPoints.join(' L ') + ' Z" class="hs-programs-chart__area"></path>' +
         '<polyline points="' + linePoints.join(' ') + '" class="hs-programs-chart__line"></polyline>' +
@@ -457,8 +467,10 @@
     var chartHtml;
     var chartEl;
     var valuesSection;
+    var chartWidth;
 
     if (!content) return;
+    chartWidth = chartViewportWidth(content);
 
     existing = content.querySelector('[data-hs-program-graph]');
     if (existing && existing.parentNode) existing.parentNode.removeChild(existing);
@@ -501,7 +513,7 @@
           '<div class="hs-programs-chart__legend-item"><span>Vyčerpáno</span><strong>' + summary.used + '</strong></div>' +
           '<div class="hs-programs-chart__legend-item hs-programs-chart__legend-item--accent"><span>Zbývá</span><strong>' + summary.remaining + '</strong></div>' +
         '</div>' +
-        '<div class="hs-programs-chart__canvas">' + buildChartSvg(points, maxRemaining) + '</div>' +
+        '<div class="hs-programs-chart__canvas">' + buildChartSvg(points, maxRemaining, chartWidth) + '</div>' +
         '<div class="hs-programs-chart__meta">' +
           '<span>Období: ' + escapeHtml(formatShortDate(points[0].date)) + ' – ' + escapeHtml(formatShortDate(points[points.length - 1].date)) + '</span>' +
           '<span>Událostí: ' + points.length + '</span>' +
