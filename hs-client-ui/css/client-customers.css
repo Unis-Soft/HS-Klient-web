@@ -28,6 +28,102 @@
   border-radius: 18px;
 }
 
+
+/* V234: třetí horní KPI karta Programy. Bez combo – karta je vždy souhrn
+   zůstatků napříč všemi aktivními programy. Výběr konkrétního programu zůstává
+   pouze v hlavičce datové tabulky. */
+.hs-customers-page #main-content .hs-customers-kpi-row {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+}
+
+.hs-customers-page #main-content .hs-customers-kpi-row > [class*="col-"] {
+  float: none !important;
+  width: auto !important;
+  min-width: 0;
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+}
+
+.hs-programs-kpi-card {
+  min-height: 126px;
+  padding: 17px 20px 16px;
+  border-top: 3px solid #249b96;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 8px 26px rgba(38, 53, 73, .06);
+}
+
+.hs-programs-kpi-card__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.hs-programs-kpi-card__label {
+  color: #4b5d75;
+  font-family: Tahoma, Arial, sans-serif !important;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.hs-programs-kpi-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: #249b96;
+  border-radius: 11px;
+  background: #eaf7f6;
+}
+
+.hs-programs-kpi-card__icon svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.hs-programs-kpi-card__value {
+  display: block;
+  margin-top: 15px;
+  color: #193b5b;
+  font-family: "Segoe UI", Arial, sans-serif !important;
+  font-size: 27px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.hs-programs-kpi-card__detail {
+  display: block;
+  margin-top: 8px;
+  overflow: hidden;
+  color: #8390a1;
+  font-size: 10px;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hs-programs-kpi-card__detail.is-hidden {
+  display: none;
+}
+
+@media (max-width: 1100px) {
+  .hs-customers-page #main-content .hs-customers-kpi-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
 .hs-customers-table-wrapper {
   color: var(--hs-customers-ink);
   font-family: Tahoma, Arial, sans-serif !important;
@@ -224,7 +320,7 @@
   padding: 3px 0 2px;
   overflow: hidden;
   color: #415773;
-  font-family: Arial, "Segoe UI", sans-serif;
+  font-family: "Segoe UI", Arial, sans-serif !important;
   font-size: 13px;
   font-weight: 700;
   line-height: 20px;
@@ -238,6 +334,7 @@
 
 .hs-customers-table-wrapper .hs-program-column-select {
   box-sizing: border-box;
+  font-family: "Segoe UI", Arial, sans-serif !important;
   width: 132px;
   max-width: 100%;
   height: 34px;
