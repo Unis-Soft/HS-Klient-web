@@ -230,6 +230,15 @@
     return String(rounded).replace('.', ',');
   }
 
+  function chartDayKey(date) {
+    if (!(date instanceof Date) || Number.isNaN(date.getTime())) return "";
+    return [
+      date.getFullYear(),
+      String(date.getMonth() + 1).padStart(2, "0"),
+      String(date.getDate()).padStart(2, "0")
+    ].join("-");
+  }
+
   function chartViewportWidth(content) {
     var width = 760;
     if (content && typeof content.getBoundingClientRect === 'function') {
@@ -285,9 +294,16 @@
       }
     }
 
-    var tickIndexes = [0];
-    if (intervals.length > 2) tickIndexes.push(Math.floor((intervals.length - 1) / 2));
-    if (intervals.length > 1) tickIndexes.push(intervals.length - 1);
+    var tickIndexes = [];
+    var step;
+    if (intervals.length <= 10) {
+      for (i = 0; i < intervals.length; i += 1) tickIndexes.push(i);
+    } else {
+      step = Math.ceil(intervals.length / 8);
+      for (i = 0; i < intervals.length; i += step) tickIndexes.push(i);
+      if (tickIndexes[tickIndexes.length - 1] !== intervals.length - 1) tickIndexes.push(intervals.length - 1);
+    }
+
     var seen = {};
     for (i = 0; i < tickIndexes.length; i += 1) {
       var idx = tickIndexes[i];
@@ -420,7 +436,16 @@
         '<title>' + escapeHtml(point.label + ' • ' + formatShortDate(point.date) + ' • Zbývá ' + point.remaining) + '</title>';
 
       if (points.length <= 8) {
-        pointMarkup += '<text x="' + x.toFixed(2) + '" y="' + (y - 10).toFixed(2) + '" text-anchor="middle" class="hs-programs-chart__point-value">' + point.remaining + '</text>';
+        var valueX = x;
+        var valueAnchor = 'middle';
+        if (i === 0) {
+          valueX = x + 9;
+          valueAnchor = 'start';
+        } else if (i === points.length - 1) {
+          valueX = x - 9;
+          valueAnchor = 'end';
+        }
+        pointMarkup += '<text x="' + valueX.toFixed(2) + '" y="' + (y - 10).toFixed(2) + '" text-anchor="' + valueAnchor + '" class="hs-programs-chart__point-value">' + point.remaining + '</text>';
       }
     }
 
@@ -441,7 +466,10 @@
     for (i = 0; i < xTicks.length; i += 1) {
       if (xTicks[i].label === lastLabel) continue;
       lastLabel = xTicks[i].label;
-      tickMarkup += '<text x="' + xTicks[i].x.toFixed(2) + '" y="' + (height - 12) + '" text-anchor="middle" class="hs-programs-chart__axis-label">' + escapeHtml(xTicks[i].label) + '</text>';
+      var axisAnchor = 'middle';
+      if (i === 0) axisAnchor = 'start';
+      else if (i === xTicks.length - 1) axisAnchor = 'end';
+      tickMarkup += '<text x="' + xTicks[i].x.toFixed(2) + '" y="' + (height - 12) + '" text-anchor="' + axisAnchor + '" class="hs-programs-chart__axis-label">' + escapeHtml(xTicks[i].label) + '</text>';
     }
 
     return '' +
@@ -483,13 +511,24 @@
 
     for (i = 0; i < events.length; i += 1) {
       balance += events[i].delta;
-      points.push({
+      var point = {
         ts: events[i].ts,
         date: events[i].date,
         type: events[i].type,
         label: events[i].label,
-        remaining: Math.max(0, balance)
-      });
+        remaining: Math.max(0, balance),
+        dayKey: chartDayKey(events[i].date)
+      };
+
+      if (points.length && point.dayKey && points[points.length - 1].dayKey === point.dayKey) {
+        points[points.length - 1].ts = point.ts;
+        points[points.length - 1].date = point.date;
+        points[points.length - 1].type = point.type;
+        points[points.length - 1].label += ' / ' + point.label;
+        points[points.length - 1].remaining = point.remaining;
+      } else {
+        points.push(point);
+      }
     }
 
     summary = readSummary(content);
@@ -516,7 +555,7 @@
         '<div class="hs-programs-chart__canvas">' + buildChartSvg(points, maxRemaining, chartWidth) + '</div>' +
         '<div class="hs-programs-chart__meta">' +
           '<span>Období: ' + escapeHtml(formatShortDate(points[0].date)) + ' – ' + escapeHtml(formatShortDate(points[points.length - 1].date)) + '</span>' +
-          '<span>Událostí: ' + points.length + '</span>' +
+          '<span>Událostí: ' + events.length + '</span>' +
         '</div>' +
       '</section>';
 
