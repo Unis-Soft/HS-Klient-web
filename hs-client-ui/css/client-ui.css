@@ -85,6 +85,13 @@ html.hs-voucher-boot:not(:has(.hs-voucher-load-error)) #main-wrapper > section.m
   }
 }
 
+/* V231: skutečná oprava druhého bílého probliknutí.
+   Legacy animate.css přidávalo novému hlavnímu obsahu fadeInUp po každém
+   plném PHP načtení. Navigaci ani první full-page reload tím neměníme. */
+#main-wrapper > section.main-content-wrapper #main-content.animated.fadeInUp {
+  animation: none !important;
+}
+
 /* Rozbalení hlavní navigace funguje i tehdy, když konkrétní stránka
    nedokončí výstup a původní navigační plugin se nenačte. */
 aside.sidebar-left .nav-pills > li.hs-submenu-open > .nav-sub {
