@@ -221,15 +221,17 @@
   display: inline-block;
   max-width: 138px;
   margin: 0 auto;
+  padding: 3px 0 2px;
   overflow: hidden;
   color: #415773;
-  font-family: Tahoma, Arial, sans-serif;
+  font-family: Arial, "Segoe UI", sans-serif;
   font-size: 13px;
   font-weight: 700;
-  line-height: 18px;
+  line-height: 20px;
   letter-spacing: 0;
   text-align: center;
   text-overflow: ellipsis;
+  text-transform: none;
   vertical-align: middle;
   white-space: nowrap;
 }
