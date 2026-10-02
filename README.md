@@ -4,7 +4,7 @@ Webový HS Klient a související HSBridge.
 
 ## Aktuální verze
 
-- HS Klient: **V233**
+- HS Klient: **V234**
 - HSBridge: **V010**
 - PROGRAMS synchronizace: **každých 15 minut**, snapshot se odesílá pouze při změně dat.
 - HairSoft databáze pro PROGRAMS: **SQLite i MySQL síťová verze**.
@@ -79,3 +79,15 @@ běžném počtu intervalů.
 Opraveno vertikální ořezávání velkých českých znaků v názvu Programu, zejména
 Ě. Logika jednoho programu, zkracování dlouhého názvu a combo pro více programů
 zůstává beze změny.
+
+
+## V234 – Programy: KPI, diakritika a překlady
+
+V seznamu zákazníků přibyla souhrnná karta Programy s celkovým počtem
+nevyčerpaných vstupů napříč aktivními programy. Při více programech karta
+zůstává bez comboboxu; konkrétní program se dál vybírá pouze v hlavičce tabulky.
+
+Opraven byl skutečný důvod špatného vykreslení velkého Ě – globální Tahoma
+`!important` přebíjela předchozí override. Programová sekce je zároveň nově
+zapojena do i18n a název ZÓNY TĚLA se zobrazuje jako Zóny těla / Zóny tela /
+Body zones / Körperzonen.
