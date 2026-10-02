@@ -4759,7 +4759,7 @@ if ($osoba_guid!="" && isset($hsMultiReady) && $hsMultiReady) {
 
                                             <div class="tab-pane <?php echo $ZalozkaProgramy; ?>" id="Programy" data-hs-programs-loaded="<?php echo $AktivniZalozkaProgramy == 1 ? '1' : '0'; ?>" data-hs-customer-guid="<?php echo htmlspecialchars($osoba_guid, ENT_QUOTES, 'UTF-8'); ?>">
 
-                                              <section class="hs-client-programs" aria-labelledby="hs-programs-title">
+                                              <section class="hs-client-programs" aria-labelledby="hs-programs-title" data-hs-i18n-force>
                                                 <div class="hs-programs-panel">
                                                   <div class="hs-programs-panel__heading">
                                                     <div class="hs-programs-panel__heading-copy">
