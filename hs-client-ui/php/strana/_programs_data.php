@@ -51,12 +51,13 @@ if (!function_exists('hsProgramsGroupId')) {
         $meta = array(
             'activePrograms' => array(),
             'selectedProgramId' => '',
+            'totalRemaining' => 0,
         );
         if ($swId <= 0 || $groupId <= 0) {
             return $meta;
         }
 
-        $sql = 'SELECT p.program_hs_id, p.name '
+        $sql = 'SELECT p.program_hs_id, p.name, SUM(active.remaining) AS total_remaining '
             . 'FROM hsbridge_programs p '
             . 'JOIN ('
             . '  SELECT z.program_hs_id, z.customer_hs_id, SUM(z.delta_visits) AS remaining '
@@ -84,7 +85,13 @@ if (!function_exists('hsProgramsGroupId')) {
             if ($id <= 0 || $name === '') {
                 continue;
             }
-            $meta['activePrograms'][] = array('id' => (string) $id, 'name' => $name);
+            $remaining = isset($row['total_remaining']) ? max(0, (int) $row['total_remaining']) : 0;
+            $meta['activePrograms'][] = array(
+                'id' => (string) $id,
+                'name' => $name,
+                'remaining' => $remaining,
+            );
+            $meta['totalRemaining'] += $remaining;
             if ($id === $requestedProgramId) {
                 $selected = $id;
             }
