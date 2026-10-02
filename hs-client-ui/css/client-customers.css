@@ -208,19 +208,29 @@
 }
 
 .hs-customers-table-wrapper .hs-col-programs {
-  max-width: 150px;
+  max-width: 160px;
+}
+
+.hs-customers-table-wrapper thead .hs-col-programs {
+  padding-right: 10px !important;
+  padding-left: 10px !important;
+  vertical-align: middle !important;
 }
 
 .hs-customers-table-wrapper .hs-program-column-label {
-  display: block;
-  max-width: 126px;
+  display: inline-block;
+  max-width: 138px;
   margin: 0 auto;
-  padding: 0 4px;
   overflow: hidden;
+  color: #415773;
   font-family: Tahoma, Arial, sans-serif;
-  font-size: 12px;
-  line-height: 1.2;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: 0;
+  text-align: center;
   text-overflow: ellipsis;
+  vertical-align: middle;
   white-space: nowrap;
 }
 
@@ -378,9 +388,9 @@
 }
 
 .hs-customers-table-wrapper .hs-col-programs {
-  width: 132px !important;
-  min-width: 132px;
-  max-width: 150px;
+  width: 150px !important;
+  min-width: 150px;
+  max-width: 160px;
   font-variant-numeric: tabular-nums;
 }
 
