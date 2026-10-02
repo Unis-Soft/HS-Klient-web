@@ -4,7 +4,7 @@
 
   var TABLE_SELECTOR = "#zakaznici_tabulka";
   var PROGRAM_COLUMN_INDEX = 9;
-  var PROGRAM_NAME_MAX = 20;
+  var PROGRAM_NAME_MAX = 24;
   var programMeta = null;
   var programColumnEnabled = true;
   var programColumnLabel = "Programy";
