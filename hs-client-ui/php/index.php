@@ -495,18 +495,18 @@ window.addEventListener('load',function(){setTimeout(function(){document.querySe
 
     <!-- Custom styles for this theme -->
     <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="/hs-client-ui/css/client-ui.css?v=203">
+    <link rel="stylesheet" href="/hs-client-ui/css/client-ui.css?v=231">
     <link rel="stylesheet" href="/hs-client-ui/css/company-switch.css?v=221">
     <link rel="stylesheet" href="/hs-client-ui/css/dashboard-charts.css?v=197">
     <link rel="stylesheet" href="/hs-client-ui/css/client-form.css?v=196">
-    <link rel="stylesheet" href="/hs-client-ui/css/client-customers.css?v=223">
+    <link rel="stylesheet" href="/hs-client-ui/css/client-customers.css?v=231">
     <link rel="stylesheet" href="/hs-client-ui/css/client-customers-mobile.css?v=222">
     <link rel="stylesheet" href="/hs-client-ui/css/client-detail-desktop.css?v=211">
     <link rel="stylesheet" href="/hs-client-ui/css/client-detail-profile.css?v=223">
     <link rel="stylesheet" href="/hs-client-ui/css/client-detail-timeline.css?v=210">
     <link rel="stylesheet" href="/hs-client-ui/css/client-detail-sms-chat.css?v=196">
     <link rel="stylesheet" href="/hs-client-ui/css/client-detail-gallery.css?v=196">
-    <link rel="stylesheet" href="/hs-client-ui/css/client-detail-programs.css?v=225">
+    <link rel="stylesheet" href="/hs-client-ui/css/client-detail-programs.css?v=231">
     <link rel="stylesheet" href="/hs-client-ui/css/client-detail-ratings.css?v=196">
     <link rel="stylesheet" href="/hs-client-ui/css/client-detail-files.css?v=196">
     <link rel="stylesheet" href="/hs-client-ui/css/client-copy-test.css?v=205">
@@ -561,7 +561,7 @@ window.addEventListener('load',function(){setTimeout(function(){document.querySe
     <script src="/hs-client-ui/js/client-detail-profile.js?v=223" defer></script>
     <script src="/hs-client-ui/js/client-detail-sms-chat.js?v=196" defer></script>
     <script src="/hs-client-ui/js/client-detail-gallery.js?v=196" defer></script>
-    <script src="/hs-client-ui/js/client-detail-programs.js?v=225" defer></script>
+    <script src="/hs-client-ui/js/client-detail-programs.js?v=231" defer></script>
     <script src="/hs-client-ui/js/client-detail-ratings.js?v=196" defer></script>
     <script src="/hs-client-ui/js/client-detail-files.js?v=196" defer></script>
     <script src="/hs-client-ui/js/client-copy-test.js?v=209" defer></script>
