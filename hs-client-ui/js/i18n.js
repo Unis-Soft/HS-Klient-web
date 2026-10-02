@@ -194,6 +194,8 @@
     ["Poslední návštěva", "Posledná návšteva", "Last visit", "Letzter Besuch"],
     ["Programy", "Programy", "Programs", "Programme"],
     ["Programy zákazníka", "Programy zákazníka", "Customer programs", "Kundenprogramme"],
+    ["ZÓNY TĚLA", "Zóny tela", "Body zones", "Körperzonen"],
+    ["Zbývající vstupy celkem", "Zostávajúce vstupy celkom", "Total remaining entries", "Verbleibende Eintritte gesamt"],
     ["Programová data se zatím nezobrazují.", "Programové dáta sa zatiaľ nezobrazujú.", "Program data are not displayed yet.", "Programmdaten werden derzeit noch nicht angezeigt."],
     ["Sekce je připravena pro napojení dat z HairSoft.", "Sekcia je pripravená na napojenie dát z HairSoft.", "The section is ready for HairSoft data integration.", "Der Bereich ist für die Anbindung von HairSoft-Daten vorbereitet."],
     ["Poslední změna", "Posledná zmena", "Last modified", "Letzte Änderung"],
@@ -885,6 +887,7 @@
   }
 
   function isProtectedContent(element) {
+    if (element.closest("[data-hs-i18n-force]")) return false;
     return !!element.closest("script,style,noscript,textarea,code,pre,#ui-datepicker-div,.ui-datepicker-inline,.hs-client-language-switcher,[data-hs-i18n-ignore],.profile-body,#contact-list,.nadpis1,.c3-legend-item,.c3-tooltip-name");
   }
 
