@@ -70,7 +70,7 @@
   padding: 3px 0 2px;
   overflow: hidden;
   color: #253a53;
-  font-family: Arial, "Segoe UI", sans-serif !important;
+  font-family: "Segoe UI", Arial, sans-serif !important;
   font-size: 15px;
   font-weight: 700;
   line-height: 21px;
@@ -703,4 +703,12 @@
   font-size: 12px;
   line-height: 1.55;
   text-align: center;
+}
+
+
+/* V234: vyšší specificita než původní #Programy * Tahoma !important.
+   Předchozí V233 změna se kvůli tomu v prohlížeči vůbec neuplatnila. */
+.hs-client-profile-ui #Programy .hs-programs-panel__heading h3,
+.hs-client-profile-ui #Programy .hs-programs-picker select {
+  font-family: "Segoe UI", Arial, sans-serif !important;
 }
