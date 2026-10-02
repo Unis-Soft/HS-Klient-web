@@ -253,7 +253,7 @@
     if (!programColumnEnabled) return;
 
     if (!programs) {
-      programColumnLabel = "Programy";
+      programColumnLabel = translate("Programy");
       cells.forEach(function (cell) {
         makeHeaderStatic(cell);
         cell.innerHTML = '<span class="hs-program-column-label">Programy</span>';
@@ -287,8 +287,8 @@
       makeHeaderStatic(cell);
       cell.textContent = "";
       select.className = "hs-program-column-select";
-      select.setAttribute("aria-label", "Vybrat program");
-      select.title = "Vybrat program";
+      select.setAttribute("aria-label", translate("Vybrat program"));
+      select.title = translate("Vybrat program");
       programs.forEach(function (program) {
         var option = document.createElement("option");
         option.value = program.id;
@@ -311,7 +311,7 @@
   }
 
   window.hsCustomersProgramExportHeader = function () {
-    return programColumnLabel || "Programy";
+    return programColumnLabel || translate("Programy");
   };
 
   window.hsCustomersProgramColumnVisible = function () {
