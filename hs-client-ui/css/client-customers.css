@@ -208,21 +208,25 @@
 }
 
 .hs-customers-table-wrapper .hs-col-programs {
-  max-width: 180px;
+  max-width: 150px;
 }
 
 .hs-customers-table-wrapper .hs-program-column-label {
   display: block;
-  max-width: 150px;
+  max-width: 126px;
   margin: 0 auto;
+  padding: 0 4px;
   overflow: hidden;
+  font-family: Tahoma, Arial, sans-serif;
+  font-size: 12px;
+  line-height: 1.2;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .hs-customers-table-wrapper .hs-program-column-select {
   box-sizing: border-box;
-  width: 148px;
+  width: 132px;
   max-width: 100%;
   height: 34px;
   padding: 0 28px 0 10px;
@@ -374,9 +378,9 @@
 }
 
 .hs-customers-table-wrapper .hs-col-programs {
-  width: 92px !important;
-  min-width: 92px;
-  max-width: 92px;
+  width: 132px !important;
+  min-width: 132px;
+  max-width: 150px;
   font-variant-numeric: tabular-nums;
 }
 
