@@ -499,14 +499,14 @@ window.addEventListener('load',function(){setTimeout(function(){document.querySe
     <link rel="stylesheet" href="/hs-client-ui/css/company-switch.css?v=221">
     <link rel="stylesheet" href="/hs-client-ui/css/dashboard-charts.css?v=197">
     <link rel="stylesheet" href="/hs-client-ui/css/client-form.css?v=196">
-    <link rel="stylesheet" href="/hs-client-ui/css/client-customers.css?v=232">
+    <link rel="stylesheet" href="/hs-client-ui/css/client-customers.css?v=233">
     <link rel="stylesheet" href="/hs-client-ui/css/client-customers-mobile.css?v=222">
     <link rel="stylesheet" href="/hs-client-ui/css/client-detail-desktop.css?v=211">
     <link rel="stylesheet" href="/hs-client-ui/css/client-detail-profile.css?v=223">
     <link rel="stylesheet" href="/hs-client-ui/css/client-detail-timeline.css?v=210">
     <link rel="stylesheet" href="/hs-client-ui/css/client-detail-sms-chat.css?v=196">
     <link rel="stylesheet" href="/hs-client-ui/css/client-detail-gallery.css?v=196">
-    <link rel="stylesheet" href="/hs-client-ui/css/client-detail-programs.css?v=232">
+    <link rel="stylesheet" href="/hs-client-ui/css/client-detail-programs.css?v=233">
     <link rel="stylesheet" href="/hs-client-ui/css/client-detail-ratings.css?v=196">
     <link rel="stylesheet" href="/hs-client-ui/css/client-detail-files.css?v=196">
     <link rel="stylesheet" href="/hs-client-ui/css/client-copy-test.css?v=205">
