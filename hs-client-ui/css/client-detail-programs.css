@@ -662,7 +662,8 @@
   }
 
   .hs-client-profile-ui .hs-programs-chart__svg {
-    height: 210px;
+    height: auto;
+    max-height: none;
   }
 
   .hs-client-profile-ui .hs-programs-chart__meta {
