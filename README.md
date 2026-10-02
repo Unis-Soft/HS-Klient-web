@@ -4,7 +4,7 @@ Webový HS Klient a související HSBridge.
 
 ## Aktuální verze
 
-- HS Klient: **V232**
+- HS Klient: **V233**
 - HSBridge: **V010**
 - PROGRAMS synchronizace: **každých 15 minut**, snapshot se odesílá pouze při změně dat.
 - HairSoft databáze pro PROGRAMS: **SQLite i MySQL síťová verze**.
@@ -72,3 +72,10 @@ Opraveno zobrazení názvu jednoho Programu v seznamu i detailu. Graf zůstatku
 slučuje více událostí stejného dne do jednoho vizuálního bodu a drží krajní
 datumy uvnitř grafu. Graf frekvence zobrazuje datum pod každým sloupcem při
 běžném počtu intervalů.
+
+
+## V233 – česká diakritika v názvu Programu
+
+Opraveno vertikální ořezávání velkých českých znaků v názvu Programu, zejména
+Ě. Logika jednoho programu, zkracování dlouhého názvu a combo pro více programů
+zůstává beze změny.
